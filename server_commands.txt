@@ -1,0 +1,116 @@
+
+        ==========================
+		LoX Server Command Summary
+        ==========================
+
+// These commands can be set using the +set command line arguments
+// or they can be set in a config file. I find it best to set them
+// in the configuration files and to keep 3 different files for the
+// modes. This allows me to set different host names and other parameters
+// for each of the modes.
+
+set campertime	5 to 600	// default 60, number of seconds a player can stand in one spot 
+							// before he's warned about camping. 5 seconds later... kaboom.
+
+set daynighttime 0	// cycle day/night on each map session
+
+// these are mutally exclusive, set only one of them to 1
+set deathmatch 0|1	// make it a deathmatch game
+set ctf 0|1			// make it a CTF (Extinction) game
+set coop 0|1		// make it a cooperative game
+
+set debugmodels 0|1	// print model debug info to server & client consoles
+
+set public 0|1		// 1 = public server to be listed on master servers
+
+//setmaster q2master.planetquake.com master0.gamespy.com satan.idsoftware.com udp.speakeasy.net
+
+set hostname "Server Name" // set the server's name string
+
+set ServerAdmin "<QwazyWabbit>" s
+set email "<windowmeister@hotmail.com>" s
+set webpage "<webpage address goes here>" s
+
+set rcon_password password	s // the server rcon password
+set spectator_password s	// password needed to become spectator
+set password s				// the player password if the server is private
+
+//hard coded limit for these items is 1 to 10, use banning to disable them
+set maxtrackers n	// max trackers per user, default=3
+set maxturrets n	// max turrets per user, default=3
+set maxlasertrips n // max laser tripwires per user, default=4
+set maxfloatingmines n //max floating mines, default=7
+
+set kamifrozen 0|1	// allow clients to go kamikaze if frozen
+set disruptortrackers 0|1	// allow tracker launch with disruptor
+set homerseekowner 0|1 // homers/skippers will seek their owner
+set logstats 0|1	// player statistics will appear in server log
+
+set dmflags 8532		// deathmatch flags, see server_readme.txt
+set maxclients 12	// max number of client connections
+set maxspectators 6	// max number of spectators
+set fraglimit 20	// new map when a player gets this score
+set timelimit 20	// nobody scored fraglimit, new map in 20 minutes
+set spawn_protect 0 to 6 // how long a player has respawn invincibility
+
+set revengereward n	// angel of revenge gets n frag points
+
+set highfraggeraward 0	// award bonus frags for being fastest fragger
+
+set weaponban n		// bitmap of weapon bans; see server_readme.txt
+set featureban n	// bitmap of feature bans; see server_readme.txt
+set fragban 0		// bitmap of frag bans; see server_readme.txt
+set loxweaponban 0	// bitmap of lox weapon bans; see server_readme.txt
+set loxsweeperban 0	// bitmap of lox sweeper bans; see server_readme.txt
+set loxgrenadeban 0	// bitmap of lox grenade bans; see server_readme.txt
+set loxfeatureban 0	// bitmap of lox feature bans; see server_readme.txt
+set loxarmorban	0	// bitmap of lox armor bans; see server_readme.txt
+set loxtrackerban 0	// bitmap of weapons to be banned from tracker launch permission
+set loxturretban 0	// bitmap of weapons to be banned from turret launch permission
+
+set electpercentage 0 to 100 // percent players required for map change vote passing (default 55)
+							 // use 0 to inhibit map voting
+set electduration	10 to 120 // duration of an election (default 30 seconds)
+set electreminders	0 to 6	// number of reminders to send in an election (default 3)
+set electallowveto	0|1		// default 0, a single NO vote can cancel an election
+set electstarts		1 to 6	// default 2, the number of times per map a player can initiate an election
+
+set loxarmorban 0	// bitmap of lox armor bans; see server_readme.txt
+set maplist 1		// use the default maplist.txt file for server map rotation
+
+set maxrate 15000	// the maximum rate in bytes per sec. the server will 
+					// send to a client before limiting its output. A server frame
+					// is limited to 1400 bytes max. size, and at 10 fps the server
+					// will cap at 14000 bytes per second anyway.
+
+set cl_maxfps 30	// max. client frames per sec.
+					// this is the max. number of frames per seconde the server
+					// will allow a client to send. A server frame is transmitted
+					// to each client 10 times per second.
+
+set ext_devt 0|1	// normally 0, set to 1 to enable extinction map development
+					// prints locations of weapons on the console when you run
+					// over them. Use laser tripwire to identify map coordinates
+					// for placement of entities in ent files. 
+					// Never set this to 1 in a live server.
+
+set logarstats 0|1|2 // default 0, 1 causes LOX to log ARSG compatible data to
+					 // lox/arsg.log file, 2 causes LOX to send it to the qconsole
+					 // streams as normally logged data where it can go to the server
+					 // console and to the qconsole.log file.
+
+set g_rockets_takedamage 0|1 // guided rockets can take damage and be shot down.
+set g_nukes_takedamage   0|1 // guided nukes can take damage, no|yes
+                             // game defaults to 0, no damage
+
+// Note: Numbers can be entered as decimal, hexadecimal or octal numbers depending
+//	  on the format used. This follows the "C" convention: 123 is decimal,
+//	  0x123 is hex, 0123 is octal. This can be handy for weapon ban variables
+//	  since it might be easier to enter a number as 0xf00 than to do the math
+//	  and enter it as decimal 3840. In octal this would be 07400. This is merely
+//	  a notational convenience.
+//
+//	  Many console variables don't show in the variable lists displayed by
+//	  game scanners. The size of the status packet is limited by Q2 design
+//	  therefore the list of exposed variables has to be kept short.
+

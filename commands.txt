@@ -1,0 +1,105 @@
+====================================================
+WOD: Lethal Orifice eXamination
+I recommend that you print this out.
+====================================================
+-
+Super Blaster: Press 1 twice
+Flare Gun: Press 1 three times
+Anti-flare Gun: Press 1 four times
+Mace: Press 1 five times
+Sniper Gun: Press 2 twice when you have the shotgun
+Homing Rocket Launcher: Press 7 twice when you have the rocket launcher
+Plasma Gun: Press 8 twice when you have the hyperblaster
+Freeze Gun: Select Super Shotgun twice
+Select the Machine Gun again for standard.
+Select Flamethrower[9] twice for the standard railgun
+Streetsweeper: select the Chaingun twice
+Bazooka: select the Grenade Launcher twice
+SuperBlasterSweeper: in the console type in use SuperBlasterSweeper
+FreezerSweeper : in the console type in use FreezerSweeper 
+GrenadeSweeper : in the console type in use GrenadeSweeper 
+BazookaSweeper : in the console type in use BazookaSweeper 
+RailgunSweeper : in the console type in use RailgunSweeper 
+Chunk Gun: in the console type in use chunkgun
+Flamesweeper: in the console type in use flamesweeper 
+Skipper Homing Rocket: in the console type in use Skipper Homing Rocket
+Airfist : in the console type in use airfist
+Positron : in the console type in use positron
+Guided Missile : in the console type in use Guided Missile
+Lightning gun : in the console type in use Lightning gun
+Nailgun : in the console type in use Nailgun
+Buckyball Launcher: in the console type in use buckyball launcher
+Sword : in the console type in use sword
+Icecube gun: in the console type in use icecube gun
+
+-
+--------------------------------------------------------
+Function		| binding	| Command
+--------------------------------------------------------
+Night Vision		| N		| cmd night vision
+--------------------------------------------------------
+Jetpack			| J		| use jetpack
+--------------------------------------------------------
+Laser Sight		| S		| cmd lsight
+--------------------------------------------------------
+Laser Tripwire		| L		| cmd laser
+--------------------------------------------------------
+TractorBeam Pull	| o		| cmd pull
+--------------------------------------------------------
+TractorBeam Push	| p		| cmd push
+--------------------------------------------------------
+Cycles Zoom Views	| f11		| cmd zoom 1
+--------------------------------------------------------
+Original View		| f10		| cmd zoom 0
+--------------------------------------------------------
+Kamikaze		| end		| cmd kamikaze
+--------------------------------------------------------
+Grappling Hook:		| G		| +hook
+Slide up grapple        | R		| +shrink
+Slide down grapple      | F		| +grow
+--------------------------------------------------------
+Scanner			| S		| cmd scanner x y
+--------------------------------------------------------
+Chasecam		| X		| cmd chasecam
+--------------------------------------------------------
+Decoy			| D		| cmd decoy
+--------------------------------------------------------
+Toggle Burst fire for   | M		| cmd firemode
+Standard machine gun    | M		| cmd firemode
+--------------------------------------------------------
+Angel of Life		| l		| cmd angelol
+Angel of Death          | l		| cmd angelod
+Angel of Mercy	        | l		| cmd angelom
+Angel of Energy	        | l		| cmd angeloe
+Angel of Frost	        | l		| cmd angelof
+Angel of Plague		| l		| cmd angelop
+Angel of Flame		| l		| cmd angeloflame
+Angel of Horror		| l		| cmd angelohorror
+Angel of Blindness	| l		| cmd angeloblind
+Angel of Revenge	| l		| cmd angelor
+Angel of Unfreeze	| l		| cmd angelou
+--------------------------------------------------------
+Flashlight		| k		| cmd flashlight
+--------------------------------------------------------
+use commands "thirdx" and "thirdz" to adjust the chasecam
+use command "invis" to become invisible
+use command "cloak" to cloak from scanner
+use command "flashlight" to use flashlight
+use command "sweeperfiremode" to toggle the sweeper fire mode
+use command "explosive" to toggle the grenades explosive mode
+use command "detonate" to detonate the explosive
+use command "skinlist" to display the names and skins of players
+use command "ver" to display the mod version banner
+--------------------------------------------------------
+
+Type "vote map mapname" at the console to initiate an election
+among the players for a map change.
+			
+To use darKMajick grenades (yes the spelling is intentional):
+a.) Select the grenade from the heads up display by using [ and ],
+-OR-
+bind a key to "use grenades" and press the key several times
+b.) Press enter again after selecting the grenades, it will go through
+a list and text up at the screen of which grenade you have selected.
+
+* Tip * Use console command "give all" to get all the items.

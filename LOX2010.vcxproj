@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AA4F5DC4-719E-4581-9A82-D8FBA585E44E}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>LOX2010</RootNamespace>
+    <ProjectName>gamex86.real</ProjectName>
+    <SccProjectName>Svn</SccProjectName>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <OutDir>c:\quake2\lox\</OutDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>c:\quake2\lox\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>_DEBUG;LOX2010_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <EnablePREfast>false</EnablePREfast>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <BaseAddress>0x20000000</BaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>.\./build/binaries/debug/gamex86.lib</ImportLibrary>
+      <StackReserveSize>
+      </StackReserveSize>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <ModuleDefinitionFile>game.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;LOX2010_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <ModuleDefinitionFile>game.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="g_ai.c" />
+    <ClCompile Include="g_chase.c" />
+    <ClCompile Include="g_cmds.c" />
+    <ClCompile Include="g_combat.c" />
+    <ClCompile Include="g_devmenu.c" />
+    <ClCompile Include="g_ent.c" />
+    <ClCompile Include="g_func.c" />
+    <ClCompile Include="g_items.c" />
+    <ClCompile Include="g_main.c" />
+    <ClCompile Include="g_misc.c" />
+    <ClCompile Include="g_monster.c" />
+    <ClCompile Include="g_offworld.c" />
+    <ClCompile Include="g_phys.c" />
+    <ClCompile Include="g_save.c" />
+    <ClCompile Include="g_spawn.c" />
+    <ClCompile Include="g_svcmds.c" />
+    <ClCompile Include="g_target.c" />
+    <ClCompile Include="g_team.c" />
+    <ClCompile Include="g_trigger.c" />
+    <ClCompile Include="g_turret.c" />
+    <ClCompile Include="g_utils.c" />
+    <ClCompile Include="g_weapon.c" />
+    <ClCompile Include="highscorer.c" />
+    <ClCompile Include="jetpack.c" />
+    <ClCompile Include="kamikaze.c" />
+    <ClCompile Include="lasertrip.c" />
+    <ClCompile Include="lithhook.c" />
+    <ClCompile Include="lsight.c" />
+    <ClCompile Include="l_airfist.c" />
+    <ClCompile Include="l_angelob.c" />
+    <ClCompile Include="l_angeloblind.c" />
+    <ClCompile Include="l_angelod.c" />
+    <ClCompile Include="l_angeloe.c" />
+    <ClCompile Include="l_angelof.c" />
+    <ClCompile Include="l_angeloh.c" />
+    <ClCompile Include="l_angelol.c" />
+    <ClCompile Include="l_angelom.c" />
+    <ClCompile Include="l_angelop.c" />
+    <ClCompile Include="l_angelor.c" />
+    <ClCompile Include="l_angelou.c" />
+    <ClCompile Include="l_angels.c" />
+    <ClCompile Include="l_antiflaregun.c" />
+    <ClCompile Include="l_antimattercannon.c" />
+    <ClCompile Include="l_ar_admin.c" />
+    <ClCompile Include="l_backpack.c" />
+    <ClCompile Include="l_bazookasweeper.c" />
+    <ClCompile Include="l_bucky.c" />
+    <ClCompile Include="l_chunkgun.c" />
+    <ClCompile Include="l_daynight.c" />
+    <ClCompile Include="l_disintegrator.c" />
+    <ClCompile Include="l_dm_grenades.c" />
+    <ClCompile Include="l_doubleimpact.c" />
+    <ClCompile Include="l_durg.c" />
+    <ClCompile Include="l_durgsweeper.c" />
+    <ClCompile Include="l_energyvortex.c" />
+    <ClCompile Include="l_explosivemachinegun.c" />
+    <ClCompile Include="l_fbfg.c" />
+    <ClCompile Include="l_flamesweeper.c" />
+    <ClCompile Include="l_flamethrower.c" />
+    <ClCompile Include="l_flaregun.c" />
+    <ClCompile Include="l_flashlight.c" />
+    <ClCompile Include="l_floatingminelauncher.c" />
+    <ClCompile Include="l_freezatron.c" />
+    <ClCompile Include="l_freezegun.c" />
+    <ClCompile Include="l_freezersweeper.c" />
+    <ClCompile Include="l_grenadesweeper.c" />
+    <ClCompile Include="l_guidednuke.c" />
+    <ClCompile Include="l_guidedrocket.c" />
+    <ClCompile Include="l_help.c" />
+    <ClCompile Include="l_iceballgun.c" />
+    <ClCompile Include="l_kaminit.c" />
+    <ClCompile Include="l_lightninggun.c" />
+    <ClCompile Include="l_mace.c" />
+    <ClCompile Include="l_matchplay.c" />
+    <ClCompile Include="l_nailgun.c" />
+    <ClCompile Include="l_nuke.c" />
+    <ClCompile Include="l_nukegrenade.c" />
+    <ClCompile Include="l_plasmarifle.c" />
+    <ClCompile Include="l_positron.c" />
+    <ClCompile Include="l_pulserifle.c" />
+    <ClCompile Include="l_railgunsweeper.c" />
+    <ClCompile Include="l_rockets.c" />
+    <ClCompile Include="l_snipersweeper.c" />
+    <ClCompile Include="l_spiralrocket.c" />
+    <ClCompile Include="l_stickinggrenades.c" />
+    <ClCompile Include="l_stickygrenadesweeper.c" />
+    <ClCompile Include="l_superblaster.c" />
+    <ClCompile Include="l_superblastersweeper.c" />
+    <ClCompile Include="l_superrailshotgun.c" />
+    <ClCompile Include="l_sword.c" />
+    <ClCompile Include="l_tracker.c" />
+    <ClCompile Include="l_turret.c" />
+    <ClCompile Include="l_vacuummaker.c" />
+    <ClCompile Include="l_voting.c" />
+    <ClCompile Include="maplist.c" />
+    <ClCompile Include="m_actor.c" />
+    <ClCompile Include="m_berserk.c" />
+    <ClCompile Include="m_boss2.c" />
+    <ClCompile Include="m_boss3.c" />
+    <ClCompile Include="m_boss31.c" />
+    <ClCompile Include="m_boss32.c" />
+    <ClCompile Include="m_brain.c" />
+    <ClCompile Include="m_chick.c" />
+    <ClCompile Include="m_flash.c" />
+    <ClCompile Include="m_flipper.c" />
+    <ClCompile Include="m_float.c" />
+    <ClCompile Include="m_flyer.c" />
+    <ClCompile Include="m_gladiator.c" />
+    <ClCompile Include="m_gunner.c" />
+    <ClCompile Include="m_hover.c" />
+    <ClCompile Include="m_infantry.c" />
+    <ClCompile Include="m_insane.c" />
+    <ClCompile Include="m_medic.c" />
+    <ClCompile Include="m_move.c" />
+    <ClCompile Include="m_mutant.c" />
+    <ClCompile Include="m_parasite.c" />
+    <ClCompile Include="m_soldier.c" />
+    <ClCompile Include="m_supertank.c" />
+    <ClCompile Include="m_tank.c" />
+    <ClCompile Include="oak.c" />
+    <ClCompile Include="oakai.c" />
+    <ClCompile Include="performance.c" />
+    <ClCompile Include="p_client.c" />
+    <ClCompile Include="p_hook.c" />
+    <ClCompile Include="p_hud.c" />
+    <ClCompile Include="p_menu.c" />
+    <ClCompile Include="p_trail.c" />
+    <ClCompile Include="p_view.c" />
+    <ClCompile Include="p_weapon.c" />
+    <ClCompile Include="q_shared.c" />
+    <ClCompile Include="scanner.c" />
+    <ClCompile Include="s_cam.c" />
+    <ClCompile Include="unicast_snd.c" />
+    <ClCompile Include="wf_decoy.c" />
+    <ClCompile Include="x_fbomb.c" />
+    <ClCompile Include="x_fire.c" />
+    <ClCompile Include="zbotcheck.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="game.h" />
+    <ClInclude Include="g_local.h" />
+    <ClInclude Include="g_team.h" />
+    <ClInclude Include="g_weapon.h" />
+    <ClInclude Include="kamikaze.h" />
+    <ClInclude Include="lithhook.h" />
+    <ClInclude Include="l_airfist.h" />
+    <ClInclude Include="l_angels.h" />
+    <ClInclude Include="l_antiflaregun.h" />
+    <ClInclude Include="l_antimattercannon.h" />
+    <ClInclude Include="l_ar_admin.h" />
+    <ClInclude Include="l_backpack.h" />
+    <ClInclude Include="l_banner.h" />
+    <ClInclude Include="l_bucky.h" />
+    <ClInclude Include="l_chunkgun.h" />
+    <ClInclude Include="l_disintegrator.h" />
+    <ClInclude Include="l_dm_grenades.h" />
+    <ClInclude Include="l_doubleimpact.h" />
+    <ClInclude Include="l_durg.h" />
+    <ClInclude Include="l_durgsweeper.h" />
+    <ClInclude Include="l_energyvortex.h" />
+    <ClInclude Include="l_fbfg.h" />
+    <ClInclude Include="l_flamesweeper.h" />
+    <ClInclude Include="l_flaregun.h" />
+    <ClInclude Include="l_flashlight.h" />
+    <ClInclude Include="l_freezatron.h" />
+    <ClInclude Include="l_freezegun.h" />
+    <ClInclude Include="l_help.h" />
+    <ClInclude Include="l_iceballgun.h" />
+    <ClInclude Include="l_kaminit.h" />
+    <ClInclude Include="l_lightninggun.h" />
+    <ClInclude Include="l_mace.h" />
+    <ClInclude Include="l_nailgun.h" />
+    <ClInclude Include="l_nuke.h" />
+    <ClInclude Include="l_nukegrenade.h" />
+    <ClInclude Include="l_positron.h" />
+    <ClInclude Include="l_pulserifle.h" />
+    <ClInclude Include="l_rockets.h" />
+    <ClInclude Include="l_spiralrocket.h" />
+    <ClInclude Include="l_stickinggrenades.h" />
+    <ClInclude Include="l_superrailshotgun.h" />
+    <ClInclude Include="l_sword.h" />
+    <ClInclude Include="l_tracker.h" />
+    <ClInclude Include="l_turret.h" />
+    <ClInclude Include="l_vacuummaker.h" />
+    <ClInclude Include="l_voting.h" />
+    <ClInclude Include="maplist.h" />
+    <ClInclude Include="m_actor.h" />
+    <ClInclude Include="m_berserk.h" />
+    <ClInclude Include="m_boss2.h" />
+    <ClInclude Include="m_boss31.h" />
+    <ClInclude Include="m_boss32.h" />
+    <ClInclude Include="m_brain.h" />
+    <ClInclude Include="m_chick.h" />
+    <ClInclude Include="m_flipper.h" />
+    <ClInclude Include="m_float.h" />
+    <ClInclude Include="m_flyer.h" />
+    <ClInclude Include="m_gladiator.h" />
+    <ClInclude Include="m_gunner.h" />
+    <ClInclude Include="m_hover.h" />
+    <ClInclude Include="m_infantry.h" />
+    <ClInclude Include="m_insane.h" />
+    <ClInclude Include="m_medic.h" />
+    <ClInclude Include="m_mutant.h" />
+    <ClInclude Include="m_parasite.h" />
+    <ClInclude Include="m_player.h" />
+    <ClInclude Include="m_rider.h" />
+    <ClInclude Include="m_soldier.h" />
+    <ClInclude Include="m_supertank.h" />
+    <ClInclude Include="m_tank.h" />
+    <ClInclude Include="oak.h" />
+    <ClInclude Include="performance.h" />
+    <ClInclude Include="p_menu.h" />
+    <ClInclude Include="q_shared.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="resource1.h" />
+    <ClInclude Include="scanner.h" />
+    <ClInclude Include="ver_resource.h" />
+    <ClInclude Include="x_fbomb.h" />
+    <ClInclude Include="x_fire.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LOX2010.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="game.def" />
+    <None Include="makefile" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

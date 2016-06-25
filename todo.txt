@@ -1,0 +1,60 @@
+TODO: 
+
+Fix angel of life bug. Angel won't seek base weapon if the base weapon is banned. 
+Lox-level weps are not acquired until you actually run over the weapon. 
+Fix is now in place to keep angelol from going off-orbit. 
+This looks like it will take a lot of messing with the inventory tree. 
+
+Add Gamma Ray Projector. 
+(something like the IR laser in WOD 8 but the gamma ray cooks wall hiders) 
+
+Add a Tournament mode. Special maplist? Countdown timer.  Spectators. Referee? 
+
+Complete installation package for the LOX mod complete with 
+necessary skins, PAKs and textures.  Installation program? 
+
+Can't hit Escape to see Q2 menu when the scanner is up...must turn scanner off first. 
+
+Do top-12 dogtag list on death but do sorted tagless full list on scoreboard request? 
+
+COOPBUG: Debug COOP mode. Especially the special map items like CD keys, power cubes. 
+If a player who picked up one of these items quits the game the items get lost. 
+If a door key or CD is missing the story can't progress. 
+Need to make dying/quitting players drop all the special items they carry, 
+perhaps even letting them return to their proper map positions so players 
+can find them easily. 
+
+Slow down the rate of fire for cataclysm and napalm grenades. 
+
+DMBUG: First angel spawned by the first player on a new server start doesn't show up. 
+(It spawns invisible.) It only does this when custom_ents is 1. Same thing goes for 
+first spawn of any item by first player, apparantly. 
+
+DMBUG: R1Q2 server bitches in log about 
+"GAME ERROR: cprintf to disconnected client" when a GameCam spectating player chats.
+
+Debug and fix CTF Extinction mode. (in progress 12-12-04) (Deacon testing) 
+
+CTFBUG: when rcon gamemap is issued to change to a different map, the 
+points from the previous map are carried over to the next map.   
+
+CTFBUG: if fake death is used while the main menu is up the server will crash.
+(crash is in Cmd_FeignDeath, line 1116, 
+self->client->ps.gunindex = gi.modelindex(self->client->pers.weapon->view_model); 
+has null pers.weapon when client is not in the game yet.)
+
+
+CTFBUG: When you enter the game and select your team, you will be in 
+spectator mode, with only horizontal rotation and movement through 
+keyboard movement binds ie. w,a,s,d.  Red team can be selected but 
+Blue team doesnt work and puts you into spectator mode.  Also when 
+two people are playing only the red team seems to work.  
+Blue team puts you into spec. 
+
+CTFBUG: When you select "Chase Cam" from the Menu upon entering, it 
+will go to the player but it will freeze the menu in place still viewable. 
+
+CTFBUG: not sure if this is a map/entity bug or LOX bug.  
+Q2DM1 elevator upper and lower limits are off a bit, the elevator 
+goes to the ceiling level and a little lower than the ground level.   
+

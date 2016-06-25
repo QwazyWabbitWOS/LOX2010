@@ -1,0 +1,44 @@
+cl_maxfps: This is the maximum frames per second the client will send to the server. 
+These are UDP frames, the internet protocol used by Q2 and most other real-time games. 
+The average frame sized sent by a LOX client when the player is actively playing is 
+about 45 bytes. So 30 fps x 45 bytes/frame = 1350 Bps or abut 13,500 bps worth of 
+bandwidth that your client will use to send your actions to the server as you play. 
+Take this data rate times 10 players and those 10 clients are consuming an average 
+of 1.35 Mbps of upstream bandwidth to the server. This is why Quake 2 originally 
+allowed only 20 FPS for each client. If you want more players, you need to 
+lower the allowed client fps. 
+
+A server frame occurs 10 times per second for each player. The server frame 
+size is variable, ranging anywhere from 100 bytes to a hard-coded maximum of 
+1400 bytes. So for a server with 10 players and a maximum sized set of frames 
+to send to each player, the aggregate bandwidth would be 10 x 10 x 1400 = 140,000 Bps 
+or about 14 Mbps of downstream data rate when allowing for about a 20% UDP overhead. 
+A T1 link is 1.5 Mbps so you can see that when server frames get larger, even a T1 
+can become overloaded and we start losing frames or they become delayed. This is a 
+peak value, most of the time the downstream bandwidth of a server should hover 
+around 450 bytes per frame and at 10 users it would be 45,000 kBps or about 
+450,000 bps at the server's ethernet port. 
+
+Since Quake 2 has a fixed server frame rate of 10 fps per client we will see one 
+server frame for every 3 client frames on the wire for each player in the game 
+when every player is limited to 30 fps. If we limit it to 20 fps, the ratio then 
+becomes 2 client frames for every server frame. Simple, isn't it? 
+
+So what's an overflow? When you see a "WARNING: msg overflowed for ..." message 
+in the server log it means the server tried to send a server frame to that 
+particular client and it exceeded the 1400 byte limit imposed by the Quake 2 
+core code and that particular frame of data was discarded by the core and was 
+not transmitted to the client at all. In other words, the server is absolutely 
+prevented from sending more than 1400 byes of information to the client and each 
+msg overflow message represents a discarded server frame. (The maximum ethernet 
+frame size for most traffic when you need to prevent fragmentation of the frames 
+is 1492 bytes so the DATA size must be limited to less than this to allow for 
+the UDP and ethernet frame headers. The Quake 2 designers limited it to 1400 bytes 
+of data to prevent the UDP frames from being fragmented by the routers as they 
+traverse the internet.) The total overhead of a single Ethernet/IP/UDP frame 
+is 42 bytes, so they could have gone up to 1450 data bytes I suppose, but they 
+didn't and changing may not be possible at this point, assuming the additional 
+50 bytes would gain anything. I should also mention that some routers allow 
+1500 byte frames, but there is no guarantee that all the routers between any 
+client and any server would all allow this, so 1492 is adopted as the "standard". 
+
