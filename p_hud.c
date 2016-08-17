@@ -268,9 +268,9 @@ void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 		// send the layout
 		Com_sprintf (entry, sizeof(entry),
 			"client %i %i %i %i %i %i ",
-			x, y, sorted[i], 
-			cl->resp.score, 
-			cl->ping, time_in/600);
+			x, y, sorted[i], // location & player index
+			cl->resp.score,  // his score
+			cl->ping, time_in/600);  // his ping and in-game minutes
 		
 		j = strlen(entry);
 		if (stringlength + j > 1024)

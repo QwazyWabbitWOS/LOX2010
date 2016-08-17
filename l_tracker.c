@@ -448,7 +448,7 @@ void Tracker_Weapon_Fire (edict_t *ent)
 	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Snipersweeper")==0) &&
 		((i_loxtrackerban & LTB_SNIPERGUN))) return;
 
-	//STOP_PERFORMANCE_TIMER(__func__);
+	//STOP_PERFORMANCE_TIMER(__FUNCTION__);
 
 	// passed all that, time to launch one
 	if (max_trackers->value > 10) gi.cvar_set("max_trackers", "10");  //set a reasonable hard coded limit.

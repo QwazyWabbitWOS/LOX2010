@@ -58,12 +58,12 @@ cvar_t *map_medcount;		// upper bound of medium
 
 //public
 qboolean	Maplist_Next (void);
-void	Maplist_InitVars(void);
-qboolean Maplist_CheckStockmaps(char *thismap);
-qboolean Maplist_CheckFileExists(char *mapname);
+void		Maplist_InitVars(void);
+qboolean	Maplist_CheckStockmaps(char *thismap);
+qboolean	Maplist_CheckFileExists(char *mapname);
 
 //private
-static int Maplist_CountPlayers(void);
+static int  Maplist_CountPlayers(void);
 static void Maplist_VariableLoad(void);
 static void Maplist_VariesMonthly(void);
 
