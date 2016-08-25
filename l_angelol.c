@@ -139,8 +139,13 @@ int aol_needitem (edict_t *ent, edict_t *it)
 {
 	int index = ITEM_INDEX(it->item);
 	
-	if (it->svflags & SVF_NOCLIENT) return QFALSE;
+	if (it->svflags & SVF_NOCLIENT) 
+		return QFALSE;
 	
+	// ignore mega-health item if client has regen or vamp
+	if (it->count == 100 && (ent->client->regenhealth || ent->client->vampihealth))
+		return QFALSE;
+
 	if (it->item->pickup == Pickup_Health && (ent->health < ent->max_health || it->style & 1))
 		return QTRUE;
 	
@@ -152,8 +157,10 @@ int aol_needitem (edict_t *ent, edict_t *it)
 			return QFALSE;	// leave the weapon for others to pickup
 		}
 		
-		if (it->touch == Drop_Temp_Touch) return QFALSE;
-		if ((it->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM))) return QFALSE;
+		if (it->touch == Drop_Temp_Touch) 
+			return QFALSE;
+		if ((it->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM))) 
+			return QFALSE;
 		
 		// map-spawned fundamental weapons
 		// If any of these are banned, the angel will ignore them and you
