@@ -63,7 +63,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define BUILD	"Debug  "
 #endif
 
-#define VERSION	"v1.12.20"	//QW// single instance of version string
+#define VERSION	"1.12.20"	//QW// single instance of version string
 
 // the "gameversion" client command will print this plus compile date
 #define	GAMEVERSION		"WOD:LOX, "VERSION	//deathmatch
@@ -658,8 +658,8 @@ typedef struct gitem_s
 } gitem_t;
 
 
-char statusbar[1024];	// this is the status bar (HUD) buffer for DM and CTF //QW//
-						//QW// I am not sure why it's set to 1024 and not 1400.
+char statusbar[1390];	// this is the status bar (HUD) buffer for DM and CTF //QW//
+
 //
 // this structure is left intact through an entire game
 // it should be initialized at dll load time, and read/written to
@@ -1751,8 +1751,8 @@ struct edict_s
 	float		ideal_yaw;
 
 	float		nextthink;
-//	float		nextthink4;		// from Paril's wall hider detection
-//	void		(*think4)(edict_t *self);
+	float		nextthink4;		// from Paril's wall hider detection
+	void		(*think4)(edict_t *self);
 
 	void		(*prethink) (edict_t *ent);
 	void		(*think)(edict_t *self);

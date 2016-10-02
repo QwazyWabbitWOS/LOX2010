@@ -9,7 +9,7 @@ static char loxbanner[] =
 {
 	"|=========================================================|\n"
 	"|      Welcome to WoD:LOX, Lethal Orifice eXamination     |\n"
-	"|      Version "VERSION" "BUILD" "__DATE__" "__TIME__"      |\n" //looks weird, prints right
+	"|      Version "VERSION" "BUILD" "__DATE__" "__TIME__"       |\n" //looks weird, prints right
 	"|=========================================================|\n"
 	"| For all game info,features and commands please read the |\n"
 	"| readme file. If you have any bug reports, comments or   |\n"

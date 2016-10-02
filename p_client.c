@@ -2350,24 +2350,24 @@ qboolean findspawnpoint (edict_t *ent)
 // Paril: Is the player STILL stuck in a solid?
 // Note: This code will only see if the player's origin is
 // in a solid. If it isn't, we assume he can still hook/crouch/jump out of the spot.
-//void AreWeStillInSolidcommaspaceIfYesRespawnUs (edict_t *ent)
-//{
-//	if (gi.pointcontents(ent->s.origin) & CONTENTS_SOLID)
-//	{
-//		vec3_t old_origin;
-//
-//		VectorCopy (ent->s.origin, old_origin);
-//		// Crap, we're still in a solid.
-//		// Let's get him out of there.
-//		// Note: If the player keeps getting stuck in solid, we
-//		// should find out how he gets in there.
-//		gi.cprintf (ent, PRINT_HIGH, "There you go, now stay out of that spot.\n");
-//		findspawnpoint(ent);
-//		gi.dprintf ("Player %s was stuck in solid and was teleported out from %s to %s\n", ent->client->pers.netname, vtos(old_origin), vtos(ent->s.origin));
-//	}
-//	ent->think4 = NULL;
-//	ent->nextthink4 = -1;
-//}
+void AreWeStillInSolidcommaspaceIfYesRespawnUs (edict_t *ent)
+{
+	if (gi.pointcontents(ent->s.origin) & CONTENTS_SOLID)
+	{
+		vec3_t old_origin;
+
+		VectorCopy (ent->s.origin, old_origin);
+		// Crap, we're still in a solid.
+		// Let's get him out of there.
+		// Note: If the player keeps getting stuck in solid, we
+		// should find out how he gets in there.
+		gi.cprintf (ent, PRINT_HIGH, "There you go, now stay out of that spot.\n");
+		findspawnpoint(ent);
+		gi.dprintf ("Player %s was stuck in solid and was teleported out from %s to %s\n", ent->client->pers.netname, vtos(old_origin), vtos(ent->s.origin));
+	}
+	ent->think4 = NULL;
+	ent->nextthink4 = -1;
+}
 
 /*
 ==============
