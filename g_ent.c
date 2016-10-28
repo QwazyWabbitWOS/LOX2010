@@ -43,7 +43,7 @@ char *LoadEntFile(char *mapname, char *entities)
 	newentities = ReadEntFile(entfilename); 
 	
 	if (newentities) 
-	{   //leave these dprints active they show up in the server init console section 
+	{   //leave these gi.dprints active, they show up in the server console 
 		gi.dprintf("Entity file %s.ent found\n", mapname); 
 		return(newentities);   // reassign the ents 
 	} 
