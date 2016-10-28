@@ -835,7 +835,7 @@ void CreateStatusBar(void)
 	strcat(statusbar, Bar);
 	
 	// player location
-	sprintf(Bar, "if %d xv 105 yv 140 stat_string %d endif ", STAT_LOCATION, STAT_LOCATION);
+	sprintf(Bar, "if %d xv 60 yv 140 stat_string %d endif ", STAT_LOCATION, STAT_LOCATION);
 	strcat(statusbar, Bar);
 	
 	// Make sure we don't blow anything out of the water
