@@ -752,7 +752,7 @@ void CreateStatusBar(void)
 	char Bar[256]; // temporary storage
 	size_t s;
 	
-	memset(statusbar, 0, sizeof(statusbar));
+	memset(statusbar, 0, sizeof(statusbar)); // the actual status bar
 
 	sprintf(Bar, "if %d yb -24 xv 0 hnum xv 50 pic %d ", STAT_HEALTH_ICON, STAT_HEALTH_ICON);
 	strcat(statusbar, Bar);

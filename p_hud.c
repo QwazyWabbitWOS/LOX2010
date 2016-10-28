@@ -1089,7 +1089,10 @@ void G_SetStats (edict_t *ent)
 	//QW// show player location in HUD 
 	if (ent->client->resp.locationactive)
 	{
-		gi.configstring(CS_GENERAL + (ent - g_edicts - 1), va("%4.0f %4.0f %4.0f", ent->s.origin[0], ent->s.origin[1], ent->s.origin[2]));
+		gi.configstring(CS_GENERAL + (ent - g_edicts - 1), 
+			va("%4.0f %4.0f %4.0f Angle %3.0f", 
+			ent->s.origin[0], ent->s.origin[1], ent->s.origin[2],
+			ent->client->ps.viewangles[1]));
 		ent->client->ps.stats[STAT_LOCATION] = CS_GENERAL + (ent - g_edicts - 1);
 	}
 	else
