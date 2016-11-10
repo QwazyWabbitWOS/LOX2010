@@ -1019,7 +1019,7 @@ typedef enum temp_event_n
 #define	CS_ITEMS			(CS_LIGHTS + MAX_LIGHTSTYLES)
 #define	CS_PLAYERSKINS		(CS_ITEMS  + MAX_ITEMS)
 #define CS_GENERAL			(CS_PLAYERSKINS + MAX_CLIENTS)	//1568
-#define	MAX_CONFIGSTRINGS	(CS_GENERAL + MAX_GENERAL)
+#define	MAX_CONFIGSTRINGS	(CS_GENERAL + MAX_GENERAL)		//2080
 
 
 //==============================================
