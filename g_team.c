@@ -83,6 +83,9 @@ void CTFInit(void)
 		// Change the gamename.
 		gi.cvar_forceset ("gamename", GAMEVERSION_E);
 
+		// Force custom_ents.
+		gi.cvar_forceset ("custom_ents", "1");
+
 		// Start the match in 40 seconds.
 		ctfgame.matchStartFrame = 400;
 
