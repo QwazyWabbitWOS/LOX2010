@@ -64,7 +64,6 @@ void DayNightCycle(void)
 		level.lightcount1 = 12;	 //13 light levels a to m
 		level.lightcount2 = 0;
 		level.updown = DOWN;
-		gi.configstring(CS_LIGHTS + 0,"m");
 		
 		//range checks
 		if ((nightdaytime->value > timelimit->value) && timelimit->value != 0.0f)
