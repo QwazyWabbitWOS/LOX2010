@@ -1021,6 +1021,11 @@ typedef enum temp_event_n
 #define CS_GENERAL			(CS_PLAYERSKINS + MAX_CLIENTS)	//1568
 #define	MAX_CONFIGSTRINGS	(CS_GENERAL + MAX_GENERAL)		//2080
 
+//QW// The 2080 magic number comes from q_shared.h of the original game.
+// No game mod can go over this 2080 limit.
+#if (MAX_CONFIGSTRINGS > 2080)
+	#error MAX_CONFIGSTRINGS > 2080
+#endif
 
 //==============================================
 
