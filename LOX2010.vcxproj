@@ -57,7 +57,7 @@
       <EnablePREfast>false</EnablePREfast>
       <AssemblerOutput>NoListing</AssemblerOutput>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <BaseAddress>0x20000000</BaseAddress>
