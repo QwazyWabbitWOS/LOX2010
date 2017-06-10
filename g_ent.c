@@ -44,12 +44,12 @@ char *LoadEntFile(char *mapname, char *entities)
 	
 	if (newentities) 
 	{   //leave these gi.dprints active, they show up in the server console 
-		gi.dprintf("Entity file %s.ent found\n", mapname); 
+		gi.dprintf("LOX: Entity file %s.ent found\n", mapname); 
 		return(newentities);   // reassign the ents 
 	} 
 	else 
 	{ 
-		gi.dprintf("No entity file for %s.bsp\n", mapname); 
+		gi.dprintf("LOX: No entity file for %s.bsp\n", mapname); 
 		return(entities); 
 	} 
 } 
