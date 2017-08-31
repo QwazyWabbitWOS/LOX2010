@@ -35,16 +35,6 @@
 #include "g_local.h"
 #include "oak.h"
 
-static int sound_pain;
-static int sound_die;
-static int sound_idle;
-static int sound_punch;
-static int sound_sight;
-static int sound_search;
-static int sound_sight1;
-static int sound_sight2;
-static int sound_death;
-
 /************************************************
 *
 * Function:	Oak_Check_SP
