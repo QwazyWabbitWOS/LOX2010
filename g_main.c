@@ -338,7 +338,7 @@ void EndDMLevel (void)
 	
 	gi.dprintf ("Map is changing to %s\n", level.nextmap);
 
-	ARLog_Stats("MAP: %s\n", level.nextmap);
+	ARLog_Stats("START: %s\n", level.nextmap);
 
 	Voting_KillVoting();	// in case we had a vote in progress at the end of level
 

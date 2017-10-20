@@ -1018,16 +1018,6 @@ void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 
 	if (!self->deadflag)
 	{
-		//Wyrm: turret stuff
-		//                if (self->client->onturret)  //if linked to turret
-		//                        self->client->onturret = 0;
-
-		// make sure no trackers are still hurting us.
-		//	if (self->client->tracker_pain_framenum)
-		//	{
-		//		RemoveAttackingPainDaemons (self);
-		//	}
-
 		//Wyrm: guided missile
 		if (self->client->missile)
 			GuidedRocket_Think(self->client->missile);
@@ -1963,7 +1953,9 @@ void ClientPrintMOTD (edict_t *ent)
 
 	}
 	if (gMOTD != NULL) 	// If a MOTD was successfully loaded, print it.
+	{
 		gi.centerprintf (ent, "%s", gMOTD);
+	}
 	return;
 }
 

@@ -17,7 +17,7 @@ To use this module:
 Add the spawn function pointer to g_spawn.c:
   
 In the prototype list
-void SP_misc_offworld_teleporter (edict_t *self);	
+void SP_misc_teleporter_offworld (edict_t *self);	
 	
 In the spawn function hash at spawn_t spawns[], add:
   {"misc_offworld_teleporter", SP_misc_offworld_teleporter},
@@ -162,7 +162,8 @@ void SP_misc_teleporter_offworld (edict_t *ent)
 	
 	if (!ent->target || !ent->message)
 	{
-		gi.dprintf ("Teleporter is missing target or message %s %s %s.\n", ent->classname, ent->target, ent->message);
+		gi.dprintf ("Teleporter is missing target or message %s %s %s.\n", 
+			ent->classname, ent->target, ent->message);
 		G_FreeEdict (ent);
 		return;
 	}
