@@ -569,8 +569,6 @@ qboolean Add_Ammo (edict_t *ent, gitem_t *item, int count)
 				ent->client->pers.inventory[ITEM_INDEX(&gI_weapon_banzaigrenade)] = 1;
 			if (!(i_loxgrenadeban & LGB_SPINNINGRAILBOMB))
 				ent->client->pers.inventory[ITEM_INDEX(&gI_weapon_spinningrailbomb)] = 1;
-			
-			
 		}
 	}
 	else if (item->tag == AMMO_CELLS)

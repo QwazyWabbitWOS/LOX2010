@@ -39,8 +39,8 @@
 // Call Maplist_Next inside your EndDMLevel function to execute the
 // rotations.
 
-// these are the stock quake2 maps in pak0.pak, pak1.pak and pak3,pak
-static char *stockmaps[48] = 
+// these are the 48 stock quake2 maps in pak0.pak, pak1.pak and pak3,pak
+static char *stockmaps[] = 
 {
 	"base1", "base2", "base3", "biggun", "boss1", 
 	"boss2", "bunk1", "city1", "city2", "city3", 
@@ -81,8 +81,8 @@ void Maplist_InitVars(void)
 qboolean Maplist_CheckStockmaps(char *thismap)
 {
 	int i;
-	
-	for (i = 0; i < 48; i++)
+
+	for (i = 0; i < sizeof stockmaps / sizeof stockmaps[0]; i++)
 	{
 		if (strcmp (thismap, stockmaps[i]) == 0)
 			return QTRUE; 	// it's a stock map
