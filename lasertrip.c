@@ -321,7 +321,7 @@ void PlaceLaserTripwire (edict_t *ent)
 	laser -> movetype      = MOVETYPE_NONE;
 	laser -> solid         = SOLID_NOT;
 	laser -> s.renderfx    = RF_BEAM|RF_TRANSLUCENT;
-	laser -> s.modelindex  = 1;                    // must be non-zero
+	laser -> s.modelindex  = 1;    // must be non-zero
 	laser -> s.sound       = gi.soundindex ("world/laser.wav");
 	laser -> classname     = "lasertrip_laser";
 	laser -> s.frame       = 2;    // beam diameter

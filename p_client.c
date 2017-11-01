@@ -1590,8 +1590,8 @@ void respawn (edict_t *self)
 	if (deathmatch->value || coop->value)
 	{
 
-		self->cloaked = QFALSE;
-		self->oldmodel = QFALSE;
+		self->cloaked = 0;
+		self->oldmodel = 0;
 		self->client->organicarmor = 0;
 		self->client->slugarmor = 0;
 		self->client->cellarmor = 0;
