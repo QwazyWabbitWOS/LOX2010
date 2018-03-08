@@ -682,5 +682,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="makefile" />
+    <None Include="changelog.txt" />
   </ItemGroup>
 </Project>

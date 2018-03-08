@@ -350,6 +350,7 @@ char* Info_Hook_f_Text = {
 	"alias -grow \"hook stop\"\n"
 	"then bind your favorite hook key to \"+hook\"\n"
 	"bind other keys to the +shrink and +grow aliases to use them.\n"
+	"Type givehook in the console to obtain the binds.\n"
 	"------------------------------------------------\n"
 };
 
@@ -1015,7 +1016,7 @@ char* Info_GuidedMissile_Text = {
 
 char* Info_PlasmaRifle_Text = {
 	"\nPlasma Rifle------------------------------------\n"
-	"The alternate hyperblaster.  Fires a beam that you\n"
+	"The alternate hyperblaster. Fires a beam that you\n"
 	"can wave around; it tends to fry anything it touches.\n"
 	"------------------------------------------------\n"
 };
@@ -1073,6 +1074,7 @@ char* Info_EnergyVortex_Text = {
 
 char* Info_Disruptor_Text = {
 	"\nDisruptor---------------------------------------\n"
+	"An alternate in the hyperblaster class.\n"
 	"All I have to say is when you see the black spots run away.\n"
 	"------------------------------------------------\n"
 };

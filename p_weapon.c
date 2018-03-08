@@ -301,6 +301,7 @@ qboolean Pickup_Weapon (edict_t *ent, edict_t *other)
 		item == &gI_weapon_positron || 
 		item == &gI_weapon_freezatron || 
 		item == &gI_weapon_icecubegun || 
+		item == &gI_weapon_lightninggun || 
 		item == &gI_weapon_disintegrator)
 	{
 		if (!(i_weaponban & WB_HYPERBLASTER))
@@ -315,13 +316,14 @@ qboolean Pickup_Weapon (edict_t *ent, edict_t *other)
 			item4 = &gI_weapon_freezatron;
 		if (!(i_loxweaponban & LWB_ICECUBEGUN))
 			item5 = &gI_weapon_icecubegun;
+		if (!(i_loxweaponban & LWB_LIGHTNINGGUN))
+			item6 = &gI_weapon_lightninggun;
 		if (!(i_loxweaponban & LWB_DISINTEGRATOR))
-			item6 = &gI_weapon_disintegrator;
+			item7 = &gI_weapon_disintegrator;
 	}
 
 	else if (item == &gI_weapon_railgun || 
 		item == &gI_weapon_railgun2 || 
-		item == &gI_weapon_lightninggun || 
 		item == &gI_weapon_durg || 
 		item == &gI_weapon_sonicrailgun || 
 		item == &gI_weapon_kaminit ||
@@ -335,8 +337,6 @@ qboolean Pickup_Weapon (edict_t *ent, edict_t *other)
 			item = &gI_weapon_railgun2;
 		if (!(i_weaponban & WB_RAILGUN))
 			item2 = &gI_weapon_railgun2;
-		if (!(i_loxweaponban & LWB_LIGHTNINGGUN))
-			item3 = &gI_weapon_lightninggun;
 		if (!(i_loxweaponban & LWB_DURG))
 			item4 = &gI_weapon_durg;
 		if (!(i_loxweaponban & LWB_SONICRAILGUN))

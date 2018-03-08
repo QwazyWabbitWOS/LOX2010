@@ -636,6 +636,21 @@ xx/xx/xxxx - LOX Version 1.12.16 Released
              DF_HIGHFRAGGER, DF_WEAPONHEAT from DMFLAGS and made them cvars. 
              LOX Version 1.12.19.
 
+03/09/2018 - Added givehook command. This gives the aliases the +hook
+             command needs to operate. Player can now type givehook to the console
+			 and receive all the aliases needed to operate the hook.
+			 
+			 Fixed the rotation of the hyperblaster weapons. The default
+			 weapon select rotation wasn't correct, lightninggun, freezatron
+			 and disruptor weren't being selected.
+
+			 Moved the lightning gun into the hyperblaster class where
+			 it belonged per the docs. It was erroneously picking up 
+			 with the railgun.
+			 
+			 Mods to the help text per the changes.
+			 LOX Version 1.12.21
+
 ==============================================================================
 
 TheLopez

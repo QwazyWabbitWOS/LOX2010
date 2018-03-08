@@ -318,6 +318,7 @@
     <ResourceCompile Include="LOX2010.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="changelog.txt" />
     <None Include="game.def" />
     <None Include="makefile" />
   </ItemGroup>

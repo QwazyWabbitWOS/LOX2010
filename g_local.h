@@ -63,7 +63,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define BUILD	"Debug  "
 #endif
 
-#define VERSION	"1.12.20"	//QW// single instance of version string
+#define VERSION	"1.12.21"	//QW// single instance of version string
 
 // the "gameversion" client command will print this plus compile date
 #define	GAMEVERSION		"WOD:LOX, "VERSION	//deathmatch
@@ -1986,6 +1986,7 @@ void	G_TouchTriggers (edict_t *ent);
 void	G_TouchSolids (edict_t *ent);
 
 char	*G_CopyString (char *in);
+void StuffCmd(edict_t *ent, char *text);
 
 float	*tv (float x, float y, float z);
 char	*vtos (vec3_t v);
@@ -2159,6 +2160,7 @@ void ShowHeatbar (edict_t* ent, char* string) ;
 //
 void Cmd_Hook_f (edict_t *ent);
 void DropHook (edict_t *ent);
+void HookGiveBinds_f (edict_t *ent);
 
 //
 // p_weapon.c

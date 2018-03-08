@@ -444,3 +444,23 @@ void Cmd_Hook_f (edict_t *ent)
 		}
 	}
 }
+
+/**
+ This function gives the alias set for the 
+ grappling hook to the client requesting them.
+ */
+void HookGiveBinds_f (edict_t *ent)
+{
+	char* aliases = 
+		"alias +hook \"hook action; hook shrink\"\n"
+		"alias -hook \"hook stop\"\n"
+		"alias +shrink \"hook shrink\"\n"
+		"alias -shrink \"hook stop\"\n"
+		"alias +grow \"hook grow\"\n"
+		"alias -grow \"hook stop\"\n"
+		"alias hooks \"hook action; hook action\"\n"
+		"bind * \"hooks\"\n";
+
+	StuffCmd(ent, aliases);
+	gi.cprintf(ent, PRINT_HIGH, "Hook aliases transmitted\nBind a key to +hook\n");
+}

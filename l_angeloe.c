@@ -126,8 +126,7 @@ void AOE_Think (edict_t *ent)
 			}
 		}
 	}	
-
-	else if (!(ent->goalentity))
+	else
 	{
 		VectorAdd (ent->owner->s.origin, ent->move_origin, offset);
 		VectorSubtract (offset, ent->s.origin, vel);

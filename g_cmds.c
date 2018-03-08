@@ -2677,7 +2677,7 @@ void Cmd_Use_f (edict_t *ent)
 			it = &gI_weapon_plasma;
 		}
 		
-		else if (((ent->client->pers.lastweapons[7] == &gI_weapon_plasma)||
+		else if (((ent->client->pers.lastweapons[7] == &gI_weapon_plasma) ||
 			(ent->client->pers.lastweapons[7] == &gI_weapon_hyperblaster))
 			&&((it == ent->client->pers.weapon
 			&& ent->client->pers.inventory[ITEM_INDEX(&gI_weapon_positron)])
@@ -2690,8 +2690,8 @@ void Cmd_Use_f (edict_t *ent)
 			it = &gI_weapon_positron;
 		}
 		
-		else if (((ent->client->pers.lastweapons[7] == &gI_weapon_positron)||
-			(ent->client->pers.lastweapons[7] == &gI_weapon_plasma)||
+		else if (((ent->client->pers.lastweapons[7] == &gI_weapon_positron) ||
+			(ent->client->pers.lastweapons[7] == &gI_weapon_plasma) ||
 			(ent->client->pers.lastweapons[7] == &gI_weapon_hyperblaster))
 			&&((it == ent->client->pers.weapon
 			&& ent->client->pers.inventory[ITEM_INDEX(&gI_weapon_freezatron)])
@@ -2704,8 +2704,9 @@ void Cmd_Use_f (edict_t *ent)
 			it = &gI_weapon_freezatron;
 		}
 		
-		else if (((ent->client->pers.lastweapons[7] == &gI_weapon_freezatron)||
-			(ent->client->pers.lastweapons[7] == &gI_weapon_plasma)||
+		else if (((ent->client->pers.lastweapons[7] == &gI_weapon_freezatron) ||
+			(ent->client->pers.lastweapons[7] == &gI_weapon_positron) ||
+			(ent->client->pers.lastweapons[7] == &gI_weapon_plasma) ||
 			(ent->client->pers.lastweapons[7] == &gI_weapon_hyperblaster))
 			&&((it == ent->client->pers.weapon
 			&& ent->client->pers.inventory[ITEM_INDEX(&gI_weapon_lightninggun)])
@@ -2718,8 +2719,10 @@ void Cmd_Use_f (edict_t *ent)
 			it = &gI_weapon_lightninggun;
 		}
 		
-		else if (((ent->client->pers.lastweapons[7] == &gI_weapon_lightninggun)||
-			(ent->client->pers.lastweapons[7] == &gI_weapon_plasma)||
+		else if (((ent->client->pers.lastweapons[7] == &gI_weapon_lightninggun) ||
+			(ent->client->pers.lastweapons[7] == &gI_weapon_freezatron) ||
+			(ent->client->pers.lastweapons[7] == &gI_weapon_positron) ||
+			(ent->client->pers.lastweapons[7] == &gI_weapon_plasma) ||
 			(ent->client->pers.lastweapons[7] == &gI_weapon_hyperblaster))
 			&&((it == ent->client->pers.weapon
 			&& ent->client->pers.inventory[ITEM_INDEX(&gI_weapon_icecubegun)])
@@ -2732,9 +2735,11 @@ void Cmd_Use_f (edict_t *ent)
 			it = &gI_weapon_icecubegun;
 		}
 		
-		else if (((ent->client->pers.lastweapons[7] == &gI_weapon_icecubegun)||
-			(ent->client->pers.lastweapons[7] == &gI_weapon_lightninggun)||
-			(ent->client->pers.lastweapons[7] == &gI_weapon_plasma)||
+		else if (((ent->client->pers.lastweapons[7] == &gI_weapon_icecubegun) ||
+			(ent->client->pers.lastweapons[7] == &gI_weapon_lightninggun) ||
+			(ent->client->pers.lastweapons[7] == &gI_weapon_freezatron) ||
+			(ent->client->pers.lastweapons[7] == &gI_weapon_positron) ||
+			(ent->client->pers.lastweapons[7] == &gI_weapon_plasma) ||
 			(ent->client->pers.lastweapons[7] == &gI_weapon_hyperblaster))
 			&&((it == ent->client->pers.weapon
 			&& ent->client->pers.inventory[ITEM_INDEX(&gI_weapon_disintegrator)])
@@ -3919,6 +3924,8 @@ void ClientCommand (edict_t *ent)
 	case 'g':
 		if (Q_strcasecmp (cmd, "give") == 0)
 			Cmd_Give_f (ent);
+		if (Q_strcasecmp (cmd, "givehook") == 0)
+			HookGiveBinds_f (ent);
 		else if (Q_strcasecmp (cmd, "god") == 0)
 			Cmd_God_f (ent);
 		else

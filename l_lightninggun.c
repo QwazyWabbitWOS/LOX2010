@@ -14,7 +14,8 @@ void fire_lightning (edict_t *self, vec3_t start, vec3_t dir, int damage)
 	edict_t	*ent;
 	
 	//Wyrm: check for viewent
-	if (self->client && (self->client->chasetoggle == 1 || self->client->missile)&&(self->client->oldplayer))
+	if (self->client && (self->client->chasetoggle == 1 || 
+		self->client->missile)&&(self->client->oldplayer))
 	{
 		ent = self->client->oldplayer;
 		VectorClear(offset);

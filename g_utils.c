@@ -719,4 +719,13 @@ qboolean G_Within_Radius(vec3_t start, vec3_t end, float rad)
 	return (VectorLength(eorg) < rad); 
 } 
 
+void StuffCmd(edict_t *ent, char *text)
+{
 
+	if(!ent || !G_EntExists(ent))
+		return;
+
+	gi.WriteByte(svc_stufftext);
+	gi.WriteString(text);
+	gi.unicast(ent, QTRUE);
+}

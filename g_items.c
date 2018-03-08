@@ -3309,9 +3309,9 @@ gitem_t gI_weapon_lightninggun =	{
 		Drop_Weapon,
 		Weapon_LightningGun,
 		"misc/w_pkup.wav",
-		"models/weapons/g_rail/tris.md2", EF_ROTATE,
-		"models/weapons/v_rail/tris.md2",
-		/* icon */		"w_railgun",
+		"models/weapons/g_hyperb/tris.md2", EF_ROTATE,
+		"models/weapons/v_hyperb/tris.md2",
+		/* icon */		"w_hyperblaster",
 		/* pickup */	"Lightning Gun",
 		0,
 		5,
@@ -3322,7 +3322,7 @@ gitem_t gI_weapon_lightninggun =	{
 		/* precache */ "light/lhit.wav light/lstart.wav models/proj/lightning/tris.md2"
 };
 
-/*QUAKED weapon_lightninggun (.3 .3 1) (-16 -16 -16) (16 16 16)
+/*QUAKED weapon_antimattercannon (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 gitem_t gI_weapon_antimattercannon =	{
 	"weapon_antimattercannon",
