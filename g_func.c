@@ -863,7 +863,7 @@ void door_use_areaportals (edict_t *self, qboolean open)
 
 	while ((t = G_Find (t, FOFS(targetname), self->target)) != NULL)
 	{
-		if (Q_strcasecmp(t->classname, "func_areaportal") == 0)
+		if (Q_stricmp(t->classname, "func_areaportal") == 0)
 		{
 			gi.SetAreaPortalState (t->style, open);
 		}

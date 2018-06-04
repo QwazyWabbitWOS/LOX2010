@@ -83,18 +83,18 @@ void Voting_InitVars(void)
 /**********************************************************
 * Example command(Add to ClientCommand):
 	case 'v':
-		if (Q_strcasecmp(cmd, "vote") == 0)		// command is gi.argv(0)
+		if (Q_stricmp(cmd, "vote") == 0)		// command is gi.argv(0)
 		{
-			if (Q_strcasecmp(gi.argv(1), "map") == 0)	// gi.argv(1) determines election type
+			if (Q_stricmp(gi.argv(1), "map") == 0)	// gi.argv(1) determines election type
 				Voting_BeginElection(ent, ELECT_MAP);	// set the vote type flag and who started it.
-			else if (Q_strcasecmp(gi.argv(1), "yes") == 0)	// 'vote yes' command
+			else if (Q_stricmp(gi.argv(1), "yes") == 0)	// 'vote yes' command
 				Voting_CmdVote_f(ent, YES);
-			else if (Q_strcasecmp(gi.argv(1), "no") == 0)	// 'vote no' command
+			else if (Q_stricmp(gi.argv(1), "no") == 0)	// 'vote no' command
 				Voting_CmdVote_f(ent, NO);
 			else
 				Cmd_NotRecognized(ent);	//bad subcommand
 		}
-		else if (Q_strcasecmp (cmd, "ver") == 0)
+		else if (Q_stricmp (cmd, "ver") == 0)
 			Cmd_Ver_f (ent);
 		else
 			Cmd_NotRecognized(ent);

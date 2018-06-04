@@ -424,9 +424,9 @@ void CheckNeedPass (void)
 
 		need = 0;
 
-		if (*password->string && Q_strcasecmp(password->string, "none"))
+		if (*password->string && Q_stricmp(password->string, "none"))
 			need |= 1;
-		if (*spectator_password->string && Q_strcasecmp(spectator_password->string, "none"))
+		if (*spectator_password->string && Q_stricmp(spectator_password->string, "none"))
 			need |= 2;
 
 		gi.cvar_set("needpass", va("%d", need));

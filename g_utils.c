@@ -94,7 +94,7 @@ edict_t *G_Find (edict_t *from, int fieldofs, char *match)
 		s = *(char **) ((byte *)from + fieldofs);
 		if (!s)
 			continue;
-		if (!Q_strcasecmp (s, match))
+		if (!Q_stricmp (s, match))
 			return from;
 	}
 
@@ -267,8 +267,8 @@ void G_UseTargets (edict_t *ent, edict_t *activator)
 		while ((t = G_Find (t, FOFS(targetname), ent->target)) != NULL)
 		{
 			// doors fire area portals in a specific way
-			if (!Q_strcasecmp(t->classname, "func_areaportal") &&
-				(!Q_strcasecmp(ent->classname, "func_door") || !Q_strcasecmp(ent->classname, "func_door_rotating")))
+			if (!Q_stricmp(t->classname, "func_areaportal") &&
+				(!Q_stricmp(ent->classname, "func_door") || !Q_stricmp(ent->classname, "func_door_rotating")))
 				continue;
 
 			if (t == ent)

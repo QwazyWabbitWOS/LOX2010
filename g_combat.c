@@ -76,7 +76,7 @@ Killed
 void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, vec3_t point)
 {
 	// Was this the Chamber which just got killed? 
-	if (Q_strcasecmp(targ->classname, "Chamber")==0) 
+	if (Q_stricmp(targ->classname, "Chamber")==0) 
 	{ 
 		// Flag to detonate on next frame. 
 		targ->owner->client->chamber=0;
@@ -91,7 +91,7 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 	} 
 
 	// Was this the Baton which just got killed? 
-	if (Q_strcasecmp(targ->classname, "Baton")==0)
+	if (Q_stricmp(targ->classname, "Baton")==0)
 	{ 
 		// Flag Baton_Think() to detonate on next frame. 
 		targ->owner->client->baton=0; 
@@ -414,7 +414,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 	int			psave;
 	int			te_sparks;
 
-	if (Q_strcasecmp(targ->classname,"Tracker")==0)
+	if (Q_stricmp(targ->classname,"Tracker")==0)
 	{
 		targ->health = targ->health - damage;
 		if (targ->health <= 0) 
@@ -422,7 +422,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 		return;
 	}
 
-	if (Q_strcasecmp(targ->classname,"Turret")==0)
+	if (Q_stricmp(targ->classname,"Turret")==0)
 	{
 		targ->health = targ->health - damage;
 		if (targ->health <= 0) 
@@ -439,7 +439,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 		if (attacker->client != NULL 
 			&& attacker->client->pers.weapon != NULL 
 			&& attacker->client->pers.weapon->ammo != NULL 
-			&& Q_strcasecmp(attacker->client->pers.weapon->ammo->classname,"ammo_slugs")==0)
+			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname,"ammo_slugs")==0)
 		{
 			SpawnDamage (TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;
@@ -452,7 +452,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 		if (attacker->client != NULL 
 			&& attacker->client->pers.weapon != NULL 
 			&& attacker->client->pers.weapon->ammo != NULL 
-			&& Q_strcasecmp(attacker->client->pers.weapon->ammo->classname,"ammo_cells")==0)
+			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname,"ammo_cells")==0)
 		{
 			SpawnDamage (TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;
@@ -465,7 +465,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 		if (attacker->client != NULL 
 			&& attacker->client->pers.weapon != NULL 
 			&& attacker->client->pers.weapon->ammo != NULL 
-			&& Q_strcasecmp(attacker->client->pers.weapon->ammo->classname,"ammo_shells")==0)
+			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname,"ammo_shells")==0)
 		{
 			SpawnDamage (TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;
@@ -478,7 +478,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 		if (attacker->client != NULL 
 			&& attacker->client->pers.weapon != NULL 
 			&& attacker->client->pers.weapon->ammo != NULL 
-			&& Q_strcasecmp(attacker->client->pers.weapon->ammo->classname,"ammo_bullets")==0)
+			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname,"ammo_bullets")==0)
 		{
 			SpawnDamage (TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;
@@ -491,7 +491,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 		if (attacker->client != NULL 
 			&& attacker->client->pers.weapon != NULL 
 			&& attacker->client->pers.weapon->ammo != NULL 
-			&& Q_strcasecmp(attacker->client->pers.weapon->ammo->classname,"ammo_rockets")==0)
+			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname,"ammo_rockets")==0)
 		{
 			SpawnDamage (TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;
@@ -504,7 +504,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 		if (attacker->client != NULL 
 			&& attacker->client->pers.weapon != NULL 
 			&& attacker->client->pers.weapon->ammo != NULL 
-			&& Q_strcasecmp(attacker->client->pers.weapon->ammo->classname,"ammo_grenades")==0)
+			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname,"ammo_grenades")==0)
 		{
 			SpawnDamage (TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;

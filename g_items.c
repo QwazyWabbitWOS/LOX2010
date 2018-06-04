@@ -143,7 +143,7 @@ gitem_t	*FindItemByClassname (char *classname)
 		it = itemlist[i];
 		if (!it->classname)
 			continue;
-		if (!Q_strcasecmp(it->classname, classname))
+		if (!Q_stricmp(it->classname, classname))
 			return it;
 	}
 	
@@ -4509,7 +4509,7 @@ gitem_t *itemlist[] =
 		&gI_item_null2
 };
 
-// A copy of itemlist[], except it gets qsort()ed on Q_strcasecmp (pickup_name)
+// A copy of itemlist[], except it gets qsort()ed on Q_stricmp (pickup_name)
 gitem_t *itemlistSorted[] = 
 {
 	&gI_item_armor_body,
@@ -4700,7 +4700,7 @@ void SP_item_health_mega (edict_t *self)
 
 int CompareItemsByPickup (const void *a, const void *b)
 {
-	return Q_strcasecmp ((*(gitem_t **)a)->pickup_name,
+	return Q_stricmp ((*(gitem_t **)a)->pickup_name,
 		(*(gitem_t **)b)->pickup_name);
 }
 
@@ -4741,7 +4741,7 @@ gitem_t	*FindItem (char *pickup_name)
 	{
 		curr = (low + high) >> 1;
 		it = itemlistSorted[curr];
-		icmp = Q_strcasecmp (it->pickup_name, pickup_name);
+		icmp = Q_stricmp (it->pickup_name, pickup_name);
 		if (icmp > 0)
 			high = curr;
 		else if (icmp < 0)

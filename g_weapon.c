@@ -1687,7 +1687,7 @@ void fire_rail (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick
 		PlayerNoise(self, tr.endpos, PNOISE_IMPACT);
 		if (self->client->pers.weapon != NULL)
 		{
-			if (Q_strcasecmp(self->client->pers.weapon->classname,"weapon_wallpiercingrailgun")==0)
+			if (Q_stricmp(self->client->pers.weapon->classname,"weapon_wallpiercingrailgun")==0)
 			{
 				// Take this point, and add 1, until we find an open place...
 				VectorMA (tr.endpos, 10, aimdir, from);

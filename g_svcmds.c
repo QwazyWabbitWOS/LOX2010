@@ -416,11 +416,11 @@ static void SVCmd_Team_f (void)
 		return;
 	}
 
-	if (Q_strcasecmp (gi.argv (2), "red") == 0)
+	if (Q_stricmp (gi.argv (2), "red") == 0)
 		team = CTF_TEAM1;
-	else if (Q_strcasecmp (gi.argv (2), "blue") == 0)
+	else if (Q_stricmp (gi.argv (2), "blue") == 0)
 		team = CTF_TEAM2;
-	else if (Q_strcasecmp (gi.argv (2), "none") == 0)
+	else if (Q_stricmp (gi.argv (2), "none") == 0)
 		team = CTF_NOTEAM;
 	else
 	{
@@ -468,25 +468,25 @@ void	ServerCommand (void)
 	char	*cmd;
 
 	cmd = gi.argv(1);
-	if (Q_strcasecmp (cmd, "addip") == 0)
+	if (Q_stricmp (cmd, "addip") == 0)
 		SVCmd_AddIP_f ();
-	else if (Q_strcasecmp (cmd, "kickban") == 0)
+	else if (Q_stricmp (cmd, "kickban") == 0)
 		SVCmd_KickBan_f ();
-	else if (Q_strcasecmp (cmd, "listip") == 0)
+	else if (Q_stricmp (cmd, "listip") == 0)
 		SVCmd_ListIP_f ();
-	else if (Q_strcasecmp (cmd, "playsound") == 0)
+	else if (Q_stricmp (cmd, "playsound") == 0)
 		SVCmd_PlaySound_f();
-	else if (Q_strcasecmp (cmd, "removeip") == 0)
+	else if (Q_stricmp (cmd, "removeip") == 0)
 		SVCmd_RemoveIP_f ();
-	else if (Q_strcasecmp (cmd, "stifle") == 0)
+	else if (Q_stricmp (cmd, "stifle") == 0)
 		SVCmd_Stifle_f ();
-	else if (Q_strcasecmp (cmd, "survey") == 0)
+	else if (Q_stricmp (cmd, "survey") == 0)
 		Svcmd_Survey_f();
-	else if (Q_strcasecmp (cmd, "team") == 0)
+	else if (Q_stricmp (cmd, "team") == 0)
 		SVCmd_Team_f();
-	else if (Q_strcasecmp (cmd, "test") == 0)
+	else if (Q_stricmp (cmd, "test") == 0)
 		Svcmd_Test_f();
-	else if (Q_strcasecmp (cmd, "writeip") == 0)
+	else if (Q_stricmp (cmd, "writeip") == 0)
 		SVCmd_WriteIP_f ();
 	else
 		gi.cprintf (NULL, PRINT_HIGH, "Unknown server command \"%s\"\n", cmd);

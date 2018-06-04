@@ -159,57 +159,57 @@ void Turret_Think (edict_t *ent)
 		// the user was holding when he deployed the turret.
 		// We use it here to determine the fire function.
 		
-		if (Q_strcasecmp (ent->turretammotype, "Blaster") == 0) 
+		if (Q_stricmp (ent->turretammotype, "Blaster") == 0) 
 			fire_blaster (ent->owner, ent->s.origin, ent->movedir, 15, 1000, EF_BLASTER /* , hyper */);
-		else if (Q_strcasecmp (ent->turretammotype, "Mace") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Mace") == 0) 
 			fire_mace (ent->owner, ent->s.origin, ent->movedir, 2, 150, 200, 0);
-		else if (Q_strcasecmp (ent->turretammotype, "Flaregun") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Flaregun") == 0) 
 			fire_flaregun (ent->owner, ent->s.origin, ent->movedir, 0, 1000);
-		else if (Q_strcasecmp (ent->turretammotype, "Anti-Flaregun") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Anti-Flaregun") == 0) 
 			fire_flaregun (ent->owner, ent->s.origin, ent->movedir, 0, 1000);
-		else if (Q_strcasecmp (ent->turretammotype, "Airfist") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Airfist") == 0) 
             fire_airfist (ent->owner, ent->s.origin, ent->movedir, 2, 150, 400, 300);
-		else if (Q_strcasecmp (ent->turretammotype, "Shotgun") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Shotgun") == 0) 
 			fire_shotgun (ent->owner, ent->s.origin, ent->movedir, 4, 8, 500, 500, DEFAULT_DEATHMATCH_SHOTGUN_COUNT, MOD_SHOTGUN);
-		else if (Q_strcasecmp (ent->turretammotype, "Super Shotgun") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Super Shotgun") == 0)
 			fire_shotgun (ent->owner, ent->s.origin, ent->movedir, 4, 8, 500, 500, DEFAULT_DEATHMATCH_SHOTGUN_COUNT, MOD_SHOTGUN);
-		else if (Q_strcasecmp (ent->turretammotype, "Standard Machinegun") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Standard Machinegun") == 0) 
 			fire_bullet (ent->owner, ent->s.origin, ent->movedir, 8, 2, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, MOD_MACHINE);
-		else if (Q_strcasecmp (ent->turretammotype, "Nailgun") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Nailgun") == 0) 
 			fire_nail (ent->owner, ent->s.origin, ent->movedir, 18, 1000, MOD_NAIL);
-		else if (Q_strcasecmp (ent->turretammotype, "Pulserifle") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Pulserifle") == 0) 
 			fire_pulserifle (ent->owner, ent->s.origin, ent->movedir, 30, 500, EF_GRENADE);
-		else if (Q_strcasecmp (ent->turretammotype, "Machinegun") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Machinegun") == 0) 
 			fire_mr (ent->owner, ent->s.origin, ent->movedir, (15 + (int)(random() * 10.0)), 1000, 20, (15 + (int)(random() * 10.0)));
-		else if (Q_strcasecmp (ent->turretammotype, "Freezer") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Freezer") == 0) 
 			fire_freezer (ent->owner, ent->s.origin, ent->movedir, FREEZER_DAMAGE, FREEZER_SPEED, EF_BLASTER);
-		else if (Q_strcasecmp (ent->turretammotype, "Chaingun") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Chaingun") == 0) 
 			fire_bullet (ent->owner, ent->s.origin, ent->movedir, 8, 2, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, MOD_CHAINGUN);
-		else if (Q_strcasecmp (ent->turretammotype, "Streetsweeper") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Streetsweeper") == 0) 
 			fire_shotgun (ent->owner, ent->s.origin, ent->movedir, 4, 8, 500, 500, DEFAULT_DEATHMATCH_SHOTGUN_COUNT, MOD_STREETSWEEP);
-		else if (Q_strcasecmp (ent->turretammotype, "SuperBlastersweeper") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "SuperBlastersweeper") == 0) 
 			fire_super (ent->owner, ent->s.origin, ent->movedir, 50, 1000, EF_BLASTER /* , hyper */);
-		else if (Q_strcasecmp (ent->turretammotype, "Grenadesweeper") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Grenadesweeper") == 0) 
 			fire_flamegrenade (ent->owner, ent->s.origin, ent->movedir, 120, 600, 2.5, 50);		
-		else if (Q_strcasecmp (ent->turretammotype, "Chunkgun") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Chunkgun") == 0) 
 			fire_chunk (ent->owner, ent->s.origin, ent->movedir, 10, 500, MOD_PLAGUE);
-		else if (Q_strcasecmp (ent->turretammotype, "Freezersweeper") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Freezersweeper") == 0) 
 			fire_freezer (ent->owner, ent->s.origin, ent->movedir, FREEZER_DAMAGE, FREEZER_SPEED, EF_BLASTER);
-		else if (Q_strcasecmp (ent->turretammotype, "Flamesweeper") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Flamesweeper") == 0) 
 			fire_flame (ent->owner, ent->s.origin, ent->movedir, FLAMESWEEPER_DAMAGE, /*speed*/ FLAMESWEEPER_SPEED);
-		else if (Q_strcasecmp (ent->turretammotype, "Bazookasweeper") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Bazookasweeper") == 0) 
 			fire_grenade_dM (ent->owner, ent->s.origin, ent->movedir, 120, 500, 2.5, 50, 0, /* held */ QFALSE, /* bazookad */ QTRUE);		
-		else if (Q_strcasecmp (ent->turretammotype, "Railgunsweeper") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Railgunsweeper") == 0) 
 			fire_rail (ent->owner, ent->s.origin, ent->movedir, 150, 8);
-		else if (Q_strcasecmp (ent->turretammotype, "Super Rail Shotgun") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Super Rail Shotgun") == 0) 
 			fire_rail (ent->owner, ent->s.origin, ent->movedir, 150, 8);
-		else if (Q_strcasecmp (ent->turretammotype, "Antimatter Cannon") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Antimatter Cannon") == 0) 
 			fire_rail (ent->owner, ent->s.origin, ent->movedir, 150, 8);
-		else if (Q_strcasecmp (ent->turretammotype, "Disruptor") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Disruptor") == 0) 
 			fire_Disintegrator (ent->owner, ent->s.origin, ent->movedir, DIS_DAMAGE, DIS_SPEED, ent->enemy);
-		else if (Q_strcasecmp (ent->turretammotype, "Kaminit") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Kaminit") == 0) 
 			fire_kaminit (ent->owner, ent->s.origin, ent->movedir, /*damage*/0, /*kick*/ 0);
-		else if (Q_strcasecmp (ent->turretammotype, "Grenade Launcher") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Grenade Launcher") == 0) 
 			fire_grenade_dM (ent->owner, 
 				ent->s.origin, 
 				ent->movedir, 
@@ -220,11 +220,11 @@ void Turret_Think (edict_t *ent)
 				ent->dm_type, //type
 				QFALSE, // held
 				QFALSE); // bazookad		
-		else if (Q_strcasecmp (ent->turretammotype, "Sticking Grenades") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Sticking Grenades") == 0) 
 			fire_stickinggrenade (ent->owner, ent->s.origin, ent->movedir, 120, 600, 2.5, 40);
-		else if (Q_strcasecmp (ent->turretammotype, "Buckyball Launcher") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Buckyball Launcher") == 0) 
 			fire_buckyball (ent->owner, ent->s.origin, ent->movedir, BUCKY_DAMAGE, BUCKY_SPEED, 90);
-		else if (Q_strcasecmp (ent->turretammotype, "Bazooka") == 0) 
+		else if (Q_stricmp (ent->turretammotype, "Bazooka") == 0) 
 			fire_grenade_dM (ent->owner, 
 				ent->s.origin, 
 				ent->movedir, 
@@ -235,7 +235,7 @@ void Turret_Think (edict_t *ent)
 				ent->dm_type, //type
 				QFALSE, // held
 				QTRUE); // bazookad
-		else if (Q_strcasecmp (ent->turretammotype, "Double Impact") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Double Impact") == 0)
 		{
 			v[YAW]   = ent->movedir[YAW] - 6;
 			v[ROLL]  = ent->movedir[ROLL];
@@ -263,54 +263,54 @@ void Turret_Think (edict_t *ent)
 				/* held */ QFALSE, 
 				/* bazookad */ QTRUE);		
 		}
-		else if (Q_strcasecmp (ent->turretammotype, "Rocket Launcher") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Rocket Launcher") == 0)
 			fire_flamerocket (ent->owner, ent->s.origin, ent->movedir, (100 + (int)(random() * 20.0)), 650, 120, 120);
-		else if (Q_strcasecmp (ent->turretammotype, "Lightning Gun") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Lightning Gun") == 0)
 			fire_lightning (ent->owner, ent->s.origin, ent->movedir, 30);
-		else if (Q_strcasecmp (ent->turretammotype, "Positron") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Positron") == 0)
 		{
 			PositronBeamFire(ent->owner, ent->s.origin, ent->movedir);
 			ent->nextthink = level.time + 1.0f;	
 		}		
-		else if (Q_strcasecmp (ent->turretammotype, "Freezatron") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Freezatron") == 0)
 		{
 			FreezatronBeamFire(ent->owner, ent->s.origin, ent->movedir);
 			ent->nextthink = level.time + 1.0f;	
 		}
-		else if (Q_strcasecmp (ent->turretammotype, "HyperBlaster") == 0)
+		else if (Q_stricmp (ent->turretammotype, "HyperBlaster") == 0)
 			fire_blaster (ent->owner, ent->s.origin, ent->movedir, 15, 1000, EF_HYPERBLASTER /* , hyper */);
-		else if (Q_strcasecmp (ent->turretammotype, "Icecube Gun") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Icecube Gun") == 0)
 			fire_freezer (ent->owner, ent->s.origin, ent->movedir, FREEZER_DAMAGE, FREEZER_SPEED, EF_BLASTER);
-		else if (Q_strcasecmp (ent->turretammotype, "Super Blaster") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Super Blaster") == 0)
 			fire_super (ent->owner, ent->s.origin, ent->movedir, 50, 1000, EF_BLASTER /* , hyper */);
-		else if (Q_strcasecmp (ent->turretammotype, "Railgun2") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Railgun2") == 0)
 			fire_rail (ent->owner, ent->s.origin, ent->movedir, 150, 8);
-		else if (Q_strcasecmp (ent->turretammotype, "Wall Piercing Railgun") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Wall Piercing Railgun") == 0)
 			fire_rail (ent->owner, ent->s.origin, ent->movedir, 150, 8);
-		else if (Q_strcasecmp (ent->turretammotype, "Railgun") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Railgun") == 0)
 		{
 			vec3_t temp = {6, 9, 25};
 			vec3_t temp2 = {6, 4, 25};
 			PBM_FireFlamer (ent->owner, ent->s.origin, ent->movedir, 1200, 70, temp ,temp2 , 100, 50);
 		}
-		else if (Q_strcasecmp (ent->turretammotype, "Durg") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Durg") == 0)
 			fire_durg (ent->owner, ent->s.origin, ent->movedir, 0, 2);		
-		else if (Q_strcasecmp (ent->turretammotype, "Energy Vortex") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Energy Vortex") == 0)
 			fire_energyvortex (ent->owner, ent->s.origin, ent->movedir, 200, 500, 1000);
-		else if (Q_strcasecmp (ent->turretammotype, "BFG10K") == 0)
+		else if (Q_stricmp (ent->turretammotype, "BFG10K") == 0)
 			fire_bfg (ent->owner, ent->s.origin, ent->movedir, 200, 400, 1000);
-		else if (Q_strcasecmp (ent->turretammotype, "FBFG") == 0)
+		else if (Q_stricmp (ent->turretammotype, "FBFG") == 0)
 			fire_fbfg (ent->owner, ent->s.origin, ent->movedir, 200, 400, 1000);
-		else if (Q_strcasecmp (ent->turretammotype, "Sniper Gun") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Sniper Gun") == 0)
 			fire_sniper (ent->owner, ent->s.origin, ent->movedir, 300, 2500, EF_BLASTER);
-		else if (Q_strcasecmp (ent->turretammotype, "Snipersweeper") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Snipersweeper") == 0)
 			fire_sniper (ent->owner, ent->s.origin, ent->movedir, 300, 2500, EF_BLASTER);
-		else if (Q_strcasecmp (ent->turretammotype, "Plasma Rifle") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Plasma Rifle") == 0)
 			fire_plasma (ent->owner, ent->s.origin, ent->movedir, 15, 1200, EF_BFG);
 		
-		else if (Q_strcasecmp (ent->turretammotype, "Explosive Chaingun") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Explosive Chaingun") == 0)
 			fire_explosive_bullet (ent->owner, ent->s.origin, ent->movedir, 6, 7, 300,500, MOD_EXPLOSIVECHAINGUN);
-		else if (Q_strcasecmp (ent->turretammotype, "Explosive Super Shotgun") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Explosive Super Shotgun") == 0)
 		{
 			v[YAW]   = ent->movedir[YAW] - 4;
 			v[ROLL]  = ent->movedir[ROLL];
@@ -321,9 +321,9 @@ void Turret_Think (edict_t *ent)
 			fire_explosive_shotgun (ent->owner, ent->s.origin, forward, 4, 8,EF_BLASTER, 500, 500, DEFAULT_DEATHMATCH_SHOTGUN_COUNT/2, MOD_EXPLOSIVESSHOTGUN);
 		}
 		
-		else if (Q_strcasecmp (ent->turretammotype, "Explosive Shotgun") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Explosive Shotgun") == 0)
 			fire_explosive_shotgun (ent->owner, ent->s.origin, ent->movedir, 4, 8,TE_BLASTER, 500, 500, DEFAULT_DEATHMATCH_SHOTGUN_COUNT, MOD_EXPLOSIVESHOTGUN);
-		else if (Q_strcasecmp (ent->turretammotype, "Explosive Streetsweeper") == 0)
+		else if (Q_stricmp (ent->turretammotype, "Explosive Streetsweeper") == 0)
 			fire_explosive_shotgun (ent->owner, ent->s.origin, ent->movedir, 4, 8,TE_BLASTER, 500, 500, DEFAULT_DEATHMATCH_SHOTGUN_COUNT, MOD_EXPLOSIVESTREETSWEEPER);
 	}
 	
@@ -436,17 +436,17 @@ void Turret_Weapon_Fire (edict_t *ent)
 	assert(ent->client->dM_grenade >= DM_NORMALGRENADE && ent->client->dM_grenade <= DM_SPINNINGRAILBOMB);
 
 	// Weapons we never want to see used in turrets.
-	if (Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Guided Missile")==0) return;
-	else if (Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Sword")==0) return;
-	else if (Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Flaregun")==0) return;
-	else if (Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Anti-Flaregun")==0) return;
-	else if (Q_strcasecmp(ent->client->pers.weapon->icon,"a_grenades")==0) return;
-	else if (Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Vacuum Maker")==0) return;
-	else if (Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Spiral Rocket Launcher")==0) return;
-	else if (Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Homing Rocket Launcher")==0) return;
-	else if (Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Skipper Homing Rocket")==0) return;
-	else if (Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Teleport Grenade")==0) return;
-	else if (Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Floating Mine Launcher")==0) return;
+	if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Guided Missile")==0) return;
+	else if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Sword")==0) return;
+	else if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Flaregun")==0) return;
+	else if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Anti-Flaregun")==0) return;
+	else if (Q_stricmp(ent->client->pers.weapon->icon,"a_grenades")==0) return;
+	else if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Vacuum Maker")==0) return;
+	else if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Spiral Rocket Launcher")==0) return;
+	else if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Homing Rocket Launcher")==0) return;
+	else if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Skipper Homing Rocket")==0) return;
+	else if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Teleport Grenade")==0) return;
+	else if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Floating Mine Launcher")==0) return;
 	
 	// Grenades we never want to see used in turrets
 	else if (ent->client->dM_grenade == DM_TELEGRENADE) return;
@@ -454,49 +454,49 @@ void Turret_Weapon_Fire (edict_t *ent)
 	else if (ent->client->dM_grenade == DM_BANZAIGRENADE) return;
 
 	// configurable turret banning
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"BFG10K")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"BFG10K")==0) &&
 		((i_loxturretban & LTB_BFG10K))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Buckyball Launcher")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Buckyball Launcher")==0) &&
 		((i_loxturretban & LTB_BUCKY))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Disruptor")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Disruptor")==0) &&
 		((i_loxturretban & LTB_DISINTEGRATOR))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Double Impact")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Double Impact")==0) &&
 		((i_loxturretban & LTB_DOUBLEIMPACT))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Durg")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Durg")==0) &&
 		((i_loxturretban & LTB_DURG))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Energy Vortex")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Energy Vortex")==0) &&
 		((i_loxturretban & LTB_ENERGYVORTEX))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Explosive Shotgun")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Explosive Shotgun")==0) &&
 		((i_loxturretban & LTB_EXPLOSIVESHOTGUN))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Explosive Super Shotgun")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Explosive Super Shotgun")==0) &&
 		((i_loxturretban & LTB_EXPLOSIVESUPERSHOTGUN))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Explosive Machinegun")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Explosive Machinegun")==0) &&
 		((i_loxturretban & LTB_EXPLOSIVEMACHINEGUN))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"FBFG")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"FBFG")==0) &&
 		((i_loxturretban & LTB_FBFG))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Freezer")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Freezer")==0) &&
 		((i_loxturretban & LTB_FREEZEGUN))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Icecube Gun")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Icecube Gun")==0) &&
 		((i_loxturretban & LTB_ICECUBEGUN))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Kaminit")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Kaminit")==0) &&
 		((i_loxturretban & LTB_KAMINIT))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Lightning Gun")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Lightning Gun")==0) &&
 		((i_loxturretban & LTB_LIGHTNINGGUN))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Nailgun")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Nailgun")==0) &&
 		((i_loxturretban & LTB_NAILGUN))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Positron")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Positron")==0) &&
 		((i_loxturretban & LTB_POSITRON))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Freezatron")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Freezatron")==0) &&
 		((i_loxturretban & LTB_FREEZATRON))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Pulserifle")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Pulserifle")==0) &&
 		((i_loxturretban & LTB_PULSERIFLE))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Railgun")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Railgun")==0) &&
 		((i_loxturretban & LTB_RAILGUN))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Sticking Grenades")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Sticking Grenades")==0) &&
 		((i_loxturretban & LTB_STICKGRENADELAUNCHER))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Sniper Gun")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Sniper Gun")==0) &&
 		((i_loxturretban & LTB_SNIPERGUN))) return;
-	if ((Q_strcasecmp(ent->client->pers.weapon->pickup_name,"Snipersweeper")==0) &&
+	if ((Q_stricmp(ent->client->pers.weapon->pickup_name,"Snipersweeper")==0) &&
 		((i_loxturretban & LTB_SNIPERGUN))) return;
 	
 	// passed all that, time to launch one
