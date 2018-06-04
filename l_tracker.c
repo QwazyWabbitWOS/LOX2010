@@ -116,15 +116,7 @@ void Tracker_Think (edict_t *ent)
 		else if (Q_strcasecmp (ent->trackerammotype, "Shotgun") == 0) 
 			fire_shotgun (ent->owner, ent->s.origin, ent->movedir, 4, 8, 500, 500, DEFAULT_DEATHMATCH_SHOTGUN_COUNT, MOD_SHOTGUN);
 		else if (Q_strcasecmp (ent->trackerammotype, "Super Shotgun") == 0)
-		{
-			v[YAW]   = ent->movedir[YAW] - 4;
-			v[ROLL]  = ent->movedir[ROLL];
-			AngleVectors (v, forward, NULL, NULL);
-			fire_shotgun (ent->owner, ent->s.origin, forward, 4, 8, 500, 500, DEFAULT_DEATHMATCH_SHOTGUN_COUNT, MOD_SHOTGUN);
-			v[YAW]   = ent->movedir[YAW] + 4;
-			AngleVectors (v, forward, NULL, NULL);
-			fire_shotgun (ent->owner, ent->s.origin, forward, 4, 8, 500, 500, DEFAULT_DEATHMATCH_SHOTGUN_COUNT, MOD_SHOTGUN);
-		}
+			fire_shotgun (ent->owner, ent->s.origin, ent->movedir, 4, 8, 500, 500, DEFAULT_DEATHMATCH_SHOTGUN_COUNT, MOD_SHOTGUN);
 		else if (Q_strcasecmp (ent->trackerammotype, "Standard Machinegun") == 0) 
 			fire_bullet (ent->owner, ent->s.origin, ent->movedir, 8, 2, DEFAULT_BULLET_HSPREAD, DEFAULT_BULLET_VSPREAD, MOD_MACHINE);
 		else if (Q_strcasecmp (ent->trackerammotype, "Nailgun") == 0) 
