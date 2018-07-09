@@ -112,7 +112,7 @@ void AOB_Think (edict_t *ent)
 		VectorCopy (vel, ent->velocity);
 	}
 	
-	if (!ent->owner->health <= 0)
+	if (!(ent->owner->health <= 0))
 	{
 		VectorAdd (ent->owner->s.origin, ent->move_origin, offset);
 		VectorSubtract (offset, ent->s.origin, vel);

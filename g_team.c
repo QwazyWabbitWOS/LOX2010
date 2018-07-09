@@ -1636,10 +1636,10 @@ void TeamplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 {
 	FILE *f;
 	char filename[MAX_QPATH];
-	int nEntSize;
+	int nEntSize = 0;
 	int nRead;
-	char *pszCustomEnt;
-	int err;
+	char *pszCustomEnt = NULL;
+	int err = 0;
 
 	if (!custom_ents->value && !ctf->value)
 	{

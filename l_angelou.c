@@ -34,7 +34,7 @@ void AOU_Think (edict_t *ent)
 		VectorCopy (offset, ent->move_origin);
 	}
 	
-	if (!ent->owner->health <= 0)
+	if (!(ent->owner->health <= 0))
 	{
 		if (ent->owner->frozen == 1)
 		{

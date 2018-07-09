@@ -1929,7 +1929,7 @@ void ClientPrintMOTD (edict_t *ent)
 
 		// Count the number of bytes in the file.
 		motdBytes = 0;
-		while ((c = fgetc (in)), c != EOF)
+		while ((c = fgetc (in)) != EOF)
 			motdBytes++;
 
 		// Make space for that many bytes.
@@ -1940,7 +1940,7 @@ void ClientPrintMOTD (edict_t *ent)
 		fclose (in);
 		in = fopen (motdPath, "rt");
 		here = gMOTD; //extra pointer for writing into gMOTD
-		while ((c = fgetc (in)), c != EOF)
+		while ((c = fgetc (in)) != EOF)
 		{
 			*here = c;
 			here++;

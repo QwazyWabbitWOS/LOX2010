@@ -127,9 +127,11 @@ void PMenu_Next(edict_t *ent)
 	i = hnd->cur;
 	p = hnd->entries + hnd->cur;
 	do {
-		i++, p++;
-		if (i == hnd->num)
-			i = 0, p = hnd->entries;
+		i++; p++;
+		if (i == hnd->num) {
+			i = 0;
+			p = hnd->entries;
+		}
 		if (p->SelectFunc)
 			break;
 	} while (i != hnd->cur);
@@ -166,8 +168,9 @@ void PMenu_Prev(edict_t *ent)
 			p = hnd->entries + i;
 		} 
 		else
-			i--, p--;
-		
+		{
+			i--; p--;
+		}
 		if (p->SelectFunc)
 			break;
 
