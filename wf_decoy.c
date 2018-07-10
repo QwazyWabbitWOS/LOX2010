@@ -195,19 +195,7 @@ void decoy_pain (edict_t *self, edict_t *other, float kick, int damage)
 //
 // ATTACK frames
 //
-static int blaster_flash [] = 
-{
-	MZ2_SOLDIER_BLASTER_1, 
-	MZ2_SOLDIER_BLASTER_2, 
-	MZ2_SOLDIER_BLASTER_3, 
-	MZ2_SOLDIER_BLASTER_4, 
-	MZ2_SOLDIER_BLASTER_5, 
-	MZ2_SOLDIER_BLASTER_6, 
-	MZ2_SOLDIER_BLASTER_7, 
-	MZ2_SOLDIER_BLASTER_8
-};
-
-static int shotgun_flash [] = 
+static int shotgun_flash [] =
 {
 	MZ2_SOLDIER_SHOTGUN_1, 
 	MZ2_SOLDIER_SHOTGUN_2, 
@@ -217,18 +205,6 @@ static int shotgun_flash [] =
 	MZ2_SOLDIER_SHOTGUN_6, 
 	MZ2_SOLDIER_SHOTGUN_7, 
 	MZ2_SOLDIER_SHOTGUN_8
-};
-
-static int machinegun_flash [] = 
-{
-	MZ2_SOLDIER_MACHINEGUN_1, 
-	MZ2_SOLDIER_MACHINEGUN_2, 
-	MZ2_SOLDIER_MACHINEGUN_3, 
-	MZ2_SOLDIER_MACHINEGUN_4, 
-	MZ2_SOLDIER_MACHINEGUN_5, 
-	MZ2_SOLDIER_MACHINEGUN_6, 
-	MZ2_SOLDIER_MACHINEGUN_7, 
-	MZ2_SOLDIER_MACHINEGUN_8
 };
 
 void decoy_fire (edict_t *self, int flash_number)
