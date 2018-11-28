@@ -681,7 +681,7 @@
     <None Include="game.def">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="makefile" />
     <None Include="changelog.txt" />
+    <None Include="GNUmakefile" />
   </ItemGroup>
 </Project>

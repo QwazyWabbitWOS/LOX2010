@@ -320,7 +320,7 @@
   <ItemGroup>
     <None Include="changelog.txt" />
     <None Include="game.def" />
-    <None Include="makefile" />
+    <None Include="GNUmakefile" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
