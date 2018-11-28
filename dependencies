@@ -1,4 +1,3 @@
-dwm.o: dwm.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
 g_ai.o: g_ai.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
 g_chase.o: g_chase.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
 g_cmds.o: g_cmds.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
@@ -91,7 +90,7 @@ l_doubleimpact.o: l_doubleimpact.c g_local.h q_shared.h game.h g_weapon.h \
 l_durg.o: l_durg.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
   l_angels.h l_durg.h
 l_durgsweeper.o: l_durgsweeper.c g_local.h q_shared.h game.h g_weapon.h \
-  p_menu.h l_durgsweeper.h l_angels.h
+  p_menu.h l_durg.h l_durgsweeper.h l_angels.h m_player.h
 l_energyvortex.o: l_energyvortex.c g_local.h q_shared.h game.h g_weapon.h \
   p_menu.h l_energyvortex.h l_airfist.h
 l_explosivemachinegun.o: l_explosivemachinegun.c g_local.h q_shared.h \
@@ -124,7 +123,7 @@ l_guidedrocket.o: l_guidedrocket.c g_local.h q_shared.h game.h g_weapon.h \
 l_help.o: l_help.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
   l_help.h
 l_iceballgun.o: l_iceballgun.c g_local.h q_shared.h game.h g_weapon.h \
-  p_menu.h x_fire.h
+  p_menu.h x_fire.h l_iceballgun.h
 l_kaminit.o: l_kaminit.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
   l_angels.h l_kaminit.h
 l_lightninggun.o: l_lightninggun.c g_local.h q_shared.h game.h g_weapon.h \
@@ -237,11 +236,9 @@ m_tank.o: m_tank.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
   m_tank.h
 maplist.o: maplist.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
   maplist.h
-new_grenadetouch.o: new_grenadetouch.c
 oak.o: oak.c g_local.h q_shared.h game.h g_weapon.h p_menu.h oak.h
 oakai.o: oakai.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
   m_player.h oak.h
-old_grenadetouch.o: old_grenadetouch.c
 p_client.o: p_client.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
   g_team.h m_player.h l_angels.h scanner.h kamikaze.h l_ar_admin.h \
   l_rockets.h l_backpack.h
@@ -256,9 +253,9 @@ p_view.o: p_view.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
   g_team.h m_player.h scanner.h
 p_weapon.o: p_weapon.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
   m_player.h l_angels.h l_rockets.h x_fbomb.h l_dm_grenades.h
-performance.o: performance.c q_shared.h
+performance.o: performance.c g_local.h q_shared.h game.h g_weapon.h \
+  p_menu.h performance.h
 q_shared.o: q_shared.c q_shared.h
-q_shsys.o: q_shsys.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
 s_cam.o: s_cam.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
 scanner.o: scanner.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
   g_team.h scanner.h

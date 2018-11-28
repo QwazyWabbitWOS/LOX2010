@@ -3,7 +3,7 @@
 
 //public
 void Weapon_EnergyVortex (edict_t *ent);
-void fire_energyvortex (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius);;
+void fire_energyvortex (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius);
 
 //private
 void energyvortex_explode (edict_t *self);

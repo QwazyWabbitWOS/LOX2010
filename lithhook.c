@@ -75,7 +75,7 @@ void hook_reset (edict_t *rhook)
 	}
 	if (rhook->laser) G_FreeEdict(rhook->laser);
 	G_FreeEdict(rhook);
-};
+}
 
 qboolean hook_cond_reset(edict_t *self)
 {
