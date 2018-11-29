@@ -38,7 +38,8 @@ void _STOP_PERFORMANCE_TIMER (char* str)
 	QueryPerformanceFrequency (&freq);
 	diff = stop.QuadPart - start.QuadPart;
 	res = ((double)((double)diff / (double)freq.QuadPart));
-	sprintf(string, "%s executed in %.6f secs.\n", str, res);
+	Com_sprintf(string, sizeof string,
+		"%s executed in %.6f secs.\n", str, res);
 	OutputDebugString(string);
 	//	Com_Printf (string);
 	totalTime += res;
@@ -46,9 +47,6 @@ void _STOP_PERFORMANCE_TIMER (char* str)
 #endif
 #endif
 
-#ifdef _DEBUG
-#define DEBUG
-#endif
 
 //QW//
 /* Use this function to trace execution or whatever.
@@ -68,8 +66,9 @@ void DbgPrintf (char *msg, ...)
 	va_start (argptr, msg);
 	vsnprintf (text, sizeof(text), msg, argptr);
 	va_end (argptr);
-#ifdef _WIN32
-#ifdef DEBUG
+
+#if defined _DEBUG
+#if defined _WIN32
 	OutputDebugString(text);
 #endif /* _DEBUG */
 #else // Not WIN32
