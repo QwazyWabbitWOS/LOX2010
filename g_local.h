@@ -1164,8 +1164,8 @@ int	power_shield_index;
 extern	gitem_armor_t	jacketarmor_info;//	= { 25,  50, .30, .00, ARMOR_JACKET};
 extern	gitem_armor_t	combatarmor_info;//	= { 50, 100, .60, .30, ARMOR_COMBAT};
 extern	gitem_armor_t	bodyarmor_info;//	= {100, 200, .80, .60, ARMOR_BODY};
-static	qboolean		is_quad;
-static	byte			is_silenced;
+qboolean is_quad;
+byte     is_silenced;
 
 extern	field_t fields[];
 extern	gitem_t	*itemlist[];
