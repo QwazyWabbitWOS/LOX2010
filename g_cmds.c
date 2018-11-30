@@ -3328,35 +3328,37 @@ void Cmd_Players_f (edict_t *ent)
 	char	small[64];
 	char	large[1280];
 	int		index[256];
-	
+
 	count = 0;
 	for (i = 0 ; i < maxclients->value ; i++)
+	{
 		if (game.clients[i].pers.connected && (g_edicts + i + 1)->inuse)
 		{
 			index[count] = i;
 			count++;
 		}
-		
-		// sort by frags
-		qsort (index, count, sizeof(index[0]), PlayerSort);
-		
-		// print information
-		large[0] = 0;
-		
-		for (i = 0 ; i < count ; i++)
-		{
-			Com_sprintf (small, sizeof(small), "%3i %s\n",
-				game.clients[index[i]].ps.stats[STAT_FRAGS],
-				game.clients[index[i]].pers.netname);
-			if (strlen (small) + strlen(large) > sizeof(large) - 100 )
-			{	// can't print all of them in one packet
-				strcat (large, "...\n");
-				break;
-			}
-			strcat (large, small);
+	}
+
+	// sort by frags
+	qsort (index, count, sizeof(index[0]), PlayerSort);
+
+	// print information
+	large[0] = 0;
+
+	for (i = 0 ; i < count ; i++)
+	{
+		Com_sprintf (small, sizeof(small), "%3i %s\n",
+			game.clients[index[i]].ps.stats[STAT_FRAGS],
+			game.clients[index[i]].pers.netname);
+		if (strlen (small) + strlen(large) > sizeof(large) - 100 )
+		{	// can't print all of them in one packet
+			strcat (large, "...\n");
+			break;
 		}
-		
-		gi.cprintf (ent, PRINT_HIGH, "%s\n%i players\n", large, count);
+		strcat (large, small);
+	}
+
+	gi.cprintf (ent, PRINT_HIGH, "%s\n%i players\n", large, count);
 }
 
 //  =================
@@ -3368,36 +3370,36 @@ void Cmd_Push_f (edict_t *ent)
 	vec3_t	forward;
 	vec3_t	end;
 	trace_t	tr;
-	
+
 	// No pushing when you're dead.
 	if (ent->deadflag)
 		return;
-	
+
 	// Or if you're frozen.
 	if (ent->frozen)
 		return;
-	
+
 	// Or if push/pull has been banned.
 	if (i_featureban & FB_PUSHPULL)
 		return;
-	
+
 	// Or when you're a ghost.
 	if (ctf->value && ent->movetype == MOVETYPE_NOCLIP && ent->solid == SOLID_NOT)
 		return;
-	
+
 	//User can't use push tool if you are flying the angeloe
 	if (ent->client->pers.special == AOENERGY)
 		return;
-	
+
 	VectorCopy (ent->s.origin, start);
 	start[2] += ent->viewheight - 8;
 	AngleVectors (ent->client->v_angle, forward, NULL, NULL);
 	VectorMA (start, 8192, forward, end);
 	tr = gi.trace (start, NULL, NULL, end, ent, MASK_SHOT);
-	
+
 	if (tr.ent->client != NULL && tr.ent->client->pers.special == AOENERGY) 
 		return; //QW// target flying angeloe blocks the pusher
-	
+
 	if (tr.ent && ((tr.ent->svflags & SVF_MONSTER)
 		/* || (tr.ent->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM)) */
 		|| (tr.ent->client)))
@@ -3413,11 +3415,11 @@ void Cmd_Push_f (edict_t *ent)
 		gi.WritePosition (start);
 		gi.WritePosition (tr.endpos);
 		gi.multicast (ent->s.origin, MULTICAST_PHS);
-		
+
 		// Have the pusher emit a sound.
 		gi.sound (ent, CHAN_WEAPON, gi.soundindex ("items/damage3.wav"), 1,
 			ATTN_NORM, 0);
-		
+
 		// Now push them.
 		VectorScale (forward, 2500, forward);
 		VectorAdd (forward, tr.ent->velocity, tr.ent->velocity);
