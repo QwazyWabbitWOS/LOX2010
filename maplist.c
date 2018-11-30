@@ -27,6 +27,12 @@
 #include "g_local.h"
 #include "maplist.h"
 
+
+//private
+static int  Maplist_CountPlayers(void);
+static void Maplist_VariableLoad(void);
+static void Maplist_VariesMonthly(void);
+
 // This module gracefully handles maplist file errors such as
 // extra blank lines, spaces at the end of names and it
 // protects against non-existent maps.
