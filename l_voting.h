@@ -75,10 +75,5 @@ void Voting_CheckVoting(void);
 void Voting_KillVoting(void);
 void Voting_InitVars(void);
 
-//private
-static void Voting_WinElection(void);
-static int Voting_CountPlayers(void);
-static qboolean Voting_PeekMaplist(void);
-
 #endif	// L_VOTING_H
 
