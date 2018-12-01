@@ -87,7 +87,13 @@ void offworld_teleporter_touch (edict_t *self, edict_t *other, cplane_t *plane, 
 	if (strstr(external_server, "q2@") != NULL)  // we have a match for remote q2 server
 	{
 		i = sprintf(exit_message, "say Offworld transport to %s ...\n", external_server);
-		stuffcmd(other, exit_message); 
+		if (i != -1)
+			stuffcmd(other, exit_message);
+		else
+		{
+			gi.cprintf(other, PRINT_HIGH, "Server exit message format error.\n");
+			return;
+		}
 		k = strlen(external_server);
 		
 		for ( j = 3 ; j < k ; j++)
