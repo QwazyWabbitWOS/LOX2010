@@ -293,7 +293,6 @@ void myhoming_rethink (edict_t *rocket)
 // Skipper homing rocket
 void myhoming_think (edict_t *ent) 
 {
-	float temp;
 	vec_t speed;
 	vec3_t targetdir;
 	static int seen;
@@ -315,9 +314,8 @@ void myhoming_think (edict_t *ent)
 	if (seen > 8) seen = 8;
 	if (seen < 0) seen = 8;
 	seen -= 1;
-	temp = speed;
-	
 	speed -= 5;
+
 	VectorScale (targetdir, speed, ent->velocity);
 	if (seen < 1)
 	{
