@@ -1983,7 +1983,7 @@ void T_ShockWave (edict_t *inflictor, float damage, float radius)
 	float	points;
 	edict_t	*ent = NULL;
 	vec3_t	v;
-	vec3_t	dir;
+	//vec3_t	dir;
 	
 	float 	SHOCK_TIME = 0.1f;
 	
@@ -2001,13 +2001,14 @@ void T_ShockWave (edict_t *inflictor, float damage, float radius)
 			points = 0.5;
 		if (points > 10)
 			points = 10;
+		
 		if (points > 0)
 		{
-			VectorSubtract (ent->s.origin, inflictor->s.origin, dir);
+			//VectorSubtract (ent->s.origin, inflictor->s.origin, dir);
 			ent->client->v_dmg_pitch = -points;
 			ent->client->v_dmg_roll = 0;
 			ent->client->v_dmg_time = level.time + SHOCK_TIME;
-			ent->client->kick_origin[2] = -points*4;
+			ent->client->kick_origin[2] = -points * 4;
 		}
 	}
 }
