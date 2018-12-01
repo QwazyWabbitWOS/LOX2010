@@ -135,7 +135,6 @@ void AttachIce (edict_t *self)
 
 void T_FreezeRadiusDamage (edict_t *inflictor, edict_t *attacker, float damage, edict_t *ignore, float radius, int mod)
 {
-	int		enemyhealth;
 	int		points;
 	edict_t	*ent = NULL;
 	vec3_t	v, dir;
@@ -159,8 +158,6 @@ void T_FreezeRadiusDamage (edict_t *inflictor, edict_t *attacker, float damage, 
 		points = (int) (damage - 0.85f * VectorLength (v));
 		if (ent == attacker)
 			points = points / 2;
-		
-		enemyhealth = ent->health;
 		
 		if (points > 0)
 		{
@@ -213,34 +210,34 @@ void IceTouch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
 {
 	if (other == ent->owner)
 	{
-		if (other->client)
+		if (other->client) {
 			if (!other->client->iceball)
 				VectorCopy(ent->movedir, ent->velocity);
-			
-			return;
+		}
+		return;
 	}
-	
+
 	if (surf && (surf->flags & SURF_SKY))
 	{
 		G_FreeEdict (ent);
 		return;
 	}
-	
+
 	//do some fun stuff
-	
+
 	T_FreezeRadiusDamage(ent, ent->owner, ent->dmg + 0.0f, NULL, ent->dmg + 40.0f, MOD_FREEZE);
-	
+
 	if (ent->owner->client)
-        if (ent->owner->client->iceball == ent)
-        {
+		if (ent->owner->client->iceball == ent)
+		{
 			ent->owner->client->iceball = NULL;
 			ent->owner->client->machinegun_shots = 1;
-        }
-		
-        ent->think = G_FreeEdict;
-        ent->nextthink = level.time + 0.1f;
-        ent->solid = SOLID_NOT;
-        ent->s.event = EV_PLAYER_TELEPORT; //fog!
+		}
+
+		ent->think = G_FreeEdict;
+		ent->nextthink = level.time + 0.1f;
+		ent->solid = SOLID_NOT;
+		ent->s.event = EV_PLAYER_TELEPORT; //fog!
 }
 
 void CreateIce (edict_t *self)
