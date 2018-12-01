@@ -111,7 +111,7 @@ void AOP_Think (edict_t *ent)
 		{
 			ent->enemy->plaguetime = (int)(level.time + 6.0f);
 			ent->enemy->plaguedamage = 1;
-			ent->enemy->health = ent->enemy->health -= 5;
+			ent->enemy->health -= 5;
 			ent->enemy->damagecauser = ent->owner;
 			VectorSubtract (ent->enemy->s.origin, ent->s.origin, vel);
 			VectorScale (vel, 7, vel);
