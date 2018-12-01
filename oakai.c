@@ -272,10 +272,6 @@ void OakAI_MoveToEnemy(edict_t *self, float dist)
 
 void OakAI_MoveToGoal (edict_t *ent, float dist)
 {
-	edict_t		*goal;
-	
-	goal = ent->goalentity;
-
 	if (!ent->groundentity && !(ent->flags & (FL_FLY|FL_SWIM)))
 		return;
 
