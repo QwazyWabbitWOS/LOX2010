@@ -198,7 +198,8 @@ void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 	int		x, y;
 	int		sorted[MAX_CLIENTS];
 	int		sortedscores[MAX_CLIENTS];
-	int		score, total, picnum;
+	int		score, total;
+	//int		picnum;
 	gclient_t	*cl;
 	edict_t		*cl_ent;
 	char	*tag;
@@ -236,11 +237,11 @@ void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 	if (total > 12)	// max of 12 scores
 		total = 12;
 	
-	for (i=0 ; i<total ; i++)
+	for (i = 0 ; i < total ; i++)
 	{
 		cl = &game.clients[sorted[i]];
 		cl_ent = g_edicts + 1 + sorted[i];
-		picnum = gi.imageindex ("i_fixme");
+		//picnum = gi.imageindex ("i_fixme");
 		x = (i >= 6) ? 160 : 0;
 		y = 32 + 32 * (i % 6); // dogtag is 32 units high
 		
