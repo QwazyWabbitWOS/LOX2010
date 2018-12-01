@@ -619,6 +619,7 @@ void PBM_CheckFire (edict_t *self)
 
 	/* The fire may inflict a small amount of burn damage. */
 	if (self->timestamp)
+	{
 		if (self->timestamp < level.time)
 		{
 			vec3_t	damage = {3, 0, 5};
@@ -626,9 +627,9 @@ void PBM_CheckFire (edict_t *self)
 			PBM_BurnRadius(self, 50, damage, NULL);
 			self->timestamp = level.time + random();
 		}
-
-		/* Fire is still burning, check again. */
-		self->nextthink  = level.time + FRAMETIME;
+	}
+	/* Fire is still burning, check again. */
+	self->nextthink  = level.time + FRAMETIME;
 }
 
 /*-------------------------------------------------------- New Code --------
@@ -1353,9 +1354,12 @@ void PBM_FlashRadius
 
 			/* If close to ground zero, set it on fire. */
 			if (dist <= radii[0])
+			{
 				if (ent && (ent->health > ent->gib_health))
-				{       ent->pain_debounce_time = 0;
-			PBM_Ignite2 (ent, attacker, spot);
+				{
+					ent->pain_debounce_time = 0;
+					PBM_Ignite2 (ent, attacker, spot);
+				}
 			}
 		}
 		else if (!ent->client && (ent->svflags & SVF_MONSTER))
