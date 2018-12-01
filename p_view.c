@@ -512,8 +512,10 @@ void SV_AddBlend (float r, float g, float b, float a, float *v_blend)
 	v_blend[3] = a2;
 }
 
+#if _WIN32
 #pragma warning(push)
 #pragma warning(disable : 4305)	// truncation from 'double' to 'float'
+#endif
 
 /*
 =============
@@ -674,7 +676,9 @@ void SV_CalcBlend (edict_t *ent)
 			ent->client->bonus_alpha = 0;
 	}
 }
+#if _WIN32
 #pragma warning(pop)
+#endif
 
 /*
 =================
