@@ -509,14 +509,14 @@ void oak_fire1 (edict_t *self)
 
 mframe_t oak_frames_attack1 [] =
 {
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  oak_fire1,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  oak_fire1},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL}
 };
 
 mmove_t oak_move_attack1 = 
