@@ -198,12 +198,11 @@ void Weapon_GuidedNuke_Fire (edict_t *ent)
 {
 	vec3_t	offset, start, forward, right;
 	int		damage;
-	float	damage_radius;
 	int		radius_damage;
 	
 	damage = 400 + (int)(random() * 20.0);
 	radius_damage = 300;
-	damage_radius = 120;
+
 	if (is_quad)
 	{
 		damage *= 4;
