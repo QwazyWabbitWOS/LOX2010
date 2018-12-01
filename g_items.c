@@ -593,7 +593,7 @@ qboolean Add_Ammo (edict_t *ent, gitem_t *item, int count)
 
 qboolean Pickup_Ammo (edict_t *ent, edict_t *other)
 {
-	int			oldcount;
+	//int			oldcount;
 	int			count;
 	qboolean	weapon;
 	
@@ -605,7 +605,7 @@ qboolean Pickup_Ammo (edict_t *ent, edict_t *other)
 	else
 		count = ent->item->quantity;
 	
-	oldcount = other->client->pers.inventory[ITEM_INDEX(ent->item)];
+	//oldcount = other->client->pers.inventory[ITEM_INDEX(ent->item)];
 	
 	if (!Add_Ammo (other, ent->item, count))
 		return QFALSE;
