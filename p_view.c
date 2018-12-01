@@ -598,6 +598,7 @@ void SV_CalcBlend (edict_t *ent)
 			SV_AddBlend (0, 0, 1, 0.08, ent->client->ps.blend);
 	}
 	else
+	{
 		/*ATTILA end*/
 
 		if (ent->client->quad_framenum > level.framenum)
@@ -671,6 +672,7 @@ void SV_CalcBlend (edict_t *ent)
 		ent->client->bonus_alpha -= 0.1;
 		if (ent->client->bonus_alpha < 0)
 			ent->client->bonus_alpha = 0;
+	}
 }
 #pragma warning(pop)
 
