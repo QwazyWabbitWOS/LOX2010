@@ -67,7 +67,8 @@ void MatchplayDoCountdown (void)
 			// Reset the score for round 2.  (They were able to see the score
 			// during the intermission.)
 			if (MatchplayCheckRound2())
-				//				matchgame.spawn1 = matchgame.spawn2 = 0;
+			{
+				//matchgame.spawn1 = matchgame.spawn2 = 0;
 
 				// Put all team members into the game.
 				for (i = 1; i <= maxclients->value; i++)
@@ -87,9 +88,9 @@ void MatchplayDoCountdown (void)
 					// Spawn them into the game.
 					respawn (ent);
 				}
-
-				// No more countdown.
-				matchgame.matchStartFrame = 0;
+			}
+			// No more countdown.
+			matchgame.matchStartFrame = 0;
 		}
 	}
 }
