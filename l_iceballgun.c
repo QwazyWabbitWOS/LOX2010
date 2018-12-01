@@ -228,16 +228,18 @@ void IceTouch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
 	T_FreezeRadiusDamage(ent, ent->owner, ent->dmg + 0.0f, NULL, ent->dmg + 40.0f, MOD_FREEZE);
 
 	if (ent->owner->client)
+	{
 		if (ent->owner->client->iceball == ent)
 		{
 			ent->owner->client->iceball = NULL;
 			ent->owner->client->machinegun_shots = 1;
 		}
+	}
 
-		ent->think = G_FreeEdict;
-		ent->nextthink = level.time + 0.1f;
-		ent->solid = SOLID_NOT;
-		ent->s.event = EV_PLAYER_TELEPORT; //fog!
+	ent->think = G_FreeEdict;
+	ent->nextthink = level.time + 0.1f;
+	ent->solid = SOLID_NOT;
+	ent->s.event = EV_PLAYER_TELEPORT; //fog!
 }
 
 void CreateIce (edict_t *self)
