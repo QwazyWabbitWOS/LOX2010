@@ -543,7 +543,8 @@ void jorg_attack(edict_t *self)
 	
 	VectorSubtract (self->enemy->s.origin, self->s.origin, vec);
 	range = VectorLength (vec);
-	if(range); //do nothing
+	if(range)
+		; //do nothing
 
 	if (random() <= 0.75)
 	{
@@ -623,7 +624,8 @@ qboolean Jorg_CheckAttack (edict_t *self)
 	}
 	
 	enemy_infront = infront(self, self->enemy);
-	if (enemy_infront); // do nothing
+	if (enemy_infront)
+		; // do nothing
 	enemy_range = range(self, self->enemy);
 	VectorSubtract (self->enemy->s.origin, self->s.origin, temp);
 	enemy_yaw = vectoyaw(temp);
