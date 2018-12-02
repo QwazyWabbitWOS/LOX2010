@@ -544,7 +544,7 @@ qboolean Boss2_CheckAttack (edict_t *self)
 	vec3_t	temp;
 	float	chance;
 	trace_t	tr;
-	qboolean	enemy_infront;
+	qboolean	enemy_infront = 0;
 	int			enemy_range;
 	float		enemy_yaw;
 
