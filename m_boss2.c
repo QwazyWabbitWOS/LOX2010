@@ -550,7 +550,7 @@ qboolean Boss2_CheckAttack (edict_t *self)
 
 	if (self->enemy->health > 0)
 	{
-	// see if any entities are in the way of the shot
+		// see if any entities are in the way of the shot
 		VectorCopy (self->s.origin, spot1);
 		spot1[2] += self->viewheight;
 		VectorCopy (self->enemy->s.origin, spot2);
@@ -562,9 +562,11 @@ qboolean Boss2_CheckAttack (edict_t *self)
 		if (tr.ent != self->enemy)
 			return QFALSE;
 	}
-	
+
 	enemy_infront = infront(self, self->enemy);
-	enemy_range = range(self, self->enemy);
+	if (enemy_infront) {
+		enemy_range = range(self, self->enemy);
+	}
 	VectorSubtract (self->enemy->s.origin, self->s.origin, temp);
 	enemy_yaw = vectoyaw(temp);
 
@@ -580,14 +582,14 @@ qboolean Boss2_CheckAttack (edict_t *self)
 			self->monsterinfo.attack_state = AS_MISSILE;
 		return QTRUE;
 	}
-	
-// missile attack
+
+	// missile attack
 	if (!self->monsterinfo.attack)
 		return QFALSE;
-		
+
 	if (level.time < self->monsterinfo.attack_finished)
 		return QFALSE;
-		
+
 	if (enemy_range == RANGE_FAR)
 		return QFALSE;
 
