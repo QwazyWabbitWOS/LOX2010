@@ -110,7 +110,7 @@ void Cmd_DropArmor_f(edict_t *ent)
 void Cmd_LBind_f(edict_t *ent)
 {
 	
-	unsigned length;
+	size_t length;
 	
 	if (gi.argc() < 2) 
 	{
