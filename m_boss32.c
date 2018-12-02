@@ -607,14 +607,14 @@ void makron_sight(edict_t *self, edict_t *other)
 void makron_attack(edict_t *self)
 {
 	vec3_t	vec;
-	//float	range;
+	float	range;
 	float	r;
 
 	r = random();
 
 	VectorSubtract (self->enemy->s.origin, self->s.origin, vec);
-	//range = VectorLength (vec);
-
+	range = VectorLength (vec);
+	if (range); //do nothing
 
 	if (r <= 0.3)
 		self->monsterinfo.currentmove = &makron_move_attack3;
@@ -715,7 +715,7 @@ qboolean Makron_CheckAttack (edict_t *self)
 	vec3_t	temp;
 	float	chance;
 	trace_t	tr;
-	//qboolean	enemy_infront;
+	qboolean	enemy_infront;
 	int			enemy_range;
 	float		enemy_yaw;
 
@@ -734,7 +734,7 @@ qboolean Makron_CheckAttack (edict_t *self)
 			return QFALSE;
 	}
 	
-	infront(self, self->enemy);
+	enemy_infront = infront(self, self->enemy);
 	enemy_range = range(self, self->enemy);
 	VectorSubtract (self->enemy->s.origin, self->s.origin, temp);
 	enemy_yaw = vectoyaw(temp);
