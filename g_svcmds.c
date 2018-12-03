@@ -232,14 +232,16 @@ SV_ListIP_f
 */
 static void SVCmd_ListIP_f (void)
 {
-	int		i;
+	int		i, j;
 	byte	b[4];
-	
+
 	gi.cprintf (NULL, PRINT_HIGH, "Filter list:\n");
-	for (i=0 ; i<numipfilters ; i++)
+	for (i = 0; i < numipfilters; i++)
 	{
-		*(unsigned *)b = ipfilters[i].compare;
-		gi.cprintf (NULL, PRINT_HIGH, "%3i.%3i.%3i.%3i\n", b[0], b[1], b[2], b[3]);
+		for (j = 0; j < 4; j++){	
+			b[j] = (ipfilters[i].compare >> (j * 8)) & 0xff;
+		}
+		gi.cprintf (NULL, PRINT_HIGH, "%i.%i.%i.%i\n", b[0], b[1], b[2], b[3]);
 	}
 }
 
@@ -253,7 +255,7 @@ static void SVCmd_WriteIP_f (void)
 	FILE	*f;
 	char	name[MAX_OSPATH];
 	byte	b[4];
-	int		i;
+	int		i, j;
 
 	if (gamedir->string && gamedir->string[0])
 		sprintf (name, "./%s/listip.cfg", gamedir->string);
@@ -271,9 +273,11 @@ static void SVCmd_WriteIP_f (void)
 	
 	fprintf(f, "set filterban %d\n", (int)filterban->value);
 
-	for (i=0 ; i<numipfilters ; i++)
+	for (i = 0; i < numipfilters; i++)
 	{
-		*(unsigned *)b = ipfilters[i].compare;
+		for (j = 0; j < 4; j++){	
+			b[j] = (ipfilters[i].compare >> (j * 8)) & 0xff;
+		}
 		fprintf (f, "sv addip %i.%i.%i.%i\n", b[0], b[1], b[2], b[3]);
 	}
 	
