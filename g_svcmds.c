@@ -83,13 +83,13 @@ qboolean StringToFilter (char *s, ipfilter_t *f)
 	byte	b[4];
 	byte	m[4];
 	
-	for (i=0 ; i<4 ; i++)
+	for (i = 0; i < 4; i++)
 	{
 		b[i] = 0;
 		m[i] = 255;
 	}
 	
-	for (i=0 ; i<4 ; i++)
+	for (i = 0; i < 4; i++)
 	{
 		if (*s < '0' || *s > '9')
 		{
@@ -114,8 +114,8 @@ qboolean StringToFilter (char *s, ipfilter_t *f)
 		s++;
 	}
 	
-	f->mask = *(unsigned *)m;
-	f->compare = *(unsigned *)b;
+	memcpy(&f->mask, m, sizeof f->mask);
+	memcpy(&f->compare, b, sizeof f->compare);
 
 	return QTRUE;
 }
@@ -148,13 +148,13 @@ qboolean SV_FilterPacket (char *from)
 		p++;
 	}
 	
-	in = *(unsigned *)m;
+	memcpy(&in, m, sizeof in);
 
-	for (i=0 ; i<numipfilters ; i++)
+	for (i = 0; i < numipfilters; i++)
 		if ((in & ipfilters[i].mask) == ipfilters[i].compare)
-			return (int)filterban->value;
+			return (qboolean)filterban->value;
 
-	return (int)!filterban->value;
+	return (qboolean)!filterban->value;
 }
 
 
