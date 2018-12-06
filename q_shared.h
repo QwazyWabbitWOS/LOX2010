@@ -28,10 +28,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma warning(disable : 4100)	// C4100 unreferenced formal parameter
 #if _MSC_VER > 1500
 #pragma warning(disable : 4996)	// disable warnings from VS 2010 about deprecated CRT functions (_CRT_SECURE_NO_WARNINGS).
-#endif
-#endif
-
-#define __attribute__(x) 
+#endif /*_MSC_VER */
+#endif /* _WIN32 */
 
 #include <assert.h>
 #include <float.h>
@@ -147,10 +145,6 @@ extern vec3_t vec3_origin;
 #define	nanmask (255<<23)
 
 #define	IS_NAN(x) (((*(int *)&x)&nanmask)==nanmask)
-
-// microsoft's fabs seems to be ungodly slow
-//float Q_fabs (float f);
-//#define	fabs(f) Q_fabs(f)
 
 #if !defined C_ONLY
 extern long Q_ftol( float f );

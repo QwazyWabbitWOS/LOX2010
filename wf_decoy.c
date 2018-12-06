@@ -38,49 +38,49 @@ void decoy_idle (edict_t *self)
 
 mframe_t decoy_frames_stand1 [] =
 {
-	    ai_stand, 0, decoy_idle,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
+	{ai_stand, 0, decoy_idle},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
 		
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
 		
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
 		
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL}
 };
 
 mmove_t decoy_move_stand1 = 
@@ -99,24 +99,24 @@ void decoy_stand (edict_t *self)
 // TAUNT frames
 mframe_t decoy_frames_taunt1 [] =
 {
-		ai_stand, 0, decoy_idle,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
+	{ai_stand, 0, decoy_idle},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
 		
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL,
-		ai_stand, 0, NULL
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL},
+	{ai_stand, 0, NULL}
 };
 
 mmove_t decoy_move_taunt1 = 
@@ -137,12 +137,12 @@ void decoy_taunt (edict_t *self)
 //
 mframe_t decoy_frames_run [] =
 {
-		ai_run, 10, NULL,
-		ai_run, 11, NULL,
-		ai_run, 11, NULL,
-		ai_run, 16, NULL,
-		ai_run, 10, NULL,
-		ai_run, 15, NULL
+	{ai_run, 10, NULL},
+	{ai_run, 11, NULL},
+	{ai_run, 11, NULL},
+	{ai_run, 16, NULL},
+	{ai_run, 10, NULL},
+	{ai_run, 15, NULL}
 };
 
 mmove_t decoy_move_run = 
@@ -167,10 +167,10 @@ void decoy_run (edict_t *self)
 //
 mframe_t decoy_frames_pain1 [] =
 {
-		ai_move, -3, NULL,
-		ai_move, 4,  NULL,
-		ai_move, 1,  NULL,
-		ai_move, 0,  NULL
+	{ai_move, -3, NULL},
+	{ai_move, 4,  NULL},
+	{ai_move, 1,  NULL},
+	{ai_move, 0,  NULL}
 };
 
 mmove_t decoy_move_pain1 = 
@@ -257,14 +257,14 @@ void decoy_fire1 (edict_t *self)
 
 mframe_t decoy_frames_attack1 [] =
 {
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  decoy_fire1,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  decoy_fire1},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL}
 };
 
 mmove_t decoy_move_attack1 = 

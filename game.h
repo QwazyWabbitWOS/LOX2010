@@ -1,6 +1,8 @@
 
 // game.h -- game dll information visible to server
 // This is the server/DLL interface
+#ifndef GAME_H
+#define GAME_H 
 
 #define	GAME_API_VERSION	3
 
@@ -216,3 +218,4 @@ typedef struct game_export_s
 } game_export_t;
 
 game_export_t *GetGameApi (game_import_t *import);
+#endif /* GAME_H */

@@ -64,6 +64,11 @@
 #include "l_voting.h"
 #include "maplist.h"
 
+//private
+static void Voting_WinElection(void);
+static int Voting_CountPlayers(void);
+static qboolean Voting_PeekMaplist(void);
+
 voting_t	voting;
 
 // Called by InitGame()

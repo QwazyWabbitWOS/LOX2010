@@ -136,11 +136,11 @@ void SP_Oak_f(edict_t *owner)
 		ent->monsterinfo.idle = NULL;
 		
 	//Set up sounds
-		sound_idle =    gi.soundindex ("soldier/solidle1.wav");
-		sound_sight1 =  gi.soundindex ("soldier/solsght1.wav");
-		sound_sight2 =  gi.soundindex ("soldier/solsrch1.wav");
-		sound_pain = gi.soundindex ("soldier/solpain1.wav");
-		sound_death = gi.soundindex ("misc/keyuse.wav");
+		oak_sound_idle =    gi.soundindex ("soldier/solidle1.wav");
+		oak_sound_sight1 =  gi.soundindex ("soldier/solsght1.wav");
+		oak_sound_sight2 =  gi.soundindex ("soldier/solsrch1.wav");
+		oak_sound_pain = gi.soundindex ("soldier/solpain1.wav");
+		oak_sound_death = gi.soundindex ("misc/keyuse.wav");
 		gi.soundindex ("soldier/solatck1.wav");
 		
 		ent->monsterinfo.idle_time = 0;

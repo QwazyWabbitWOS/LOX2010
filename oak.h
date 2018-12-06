@@ -79,21 +79,14 @@ void OakAI_Salute(edict_t *self);
 void OakAI_Taunt(edict_t *self);
 void OakAI_Wave(edict_t *self);
 
-static int sound_pain;
-static int sound_die;
-static int sound_idle;
-static int sound_punch;
-static int sound_sight;
-static int sound_search;
-static int sound_sight1;
-static int sound_sight2;
-static int sound_death;
-
-
-/************************************************
-*
-* 
-*
-************************************************/
+int oak_sound_pain;
+int oak_sound_die;
+int oak_sound_idle;
+int oak_sound_punch;
+int oak_sound_sight;
+int oak_sound_search;
+int oak_sound_sight1;
+int oak_sound_sight2;
+int oak_sound_death;
 
 #endif

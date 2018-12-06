@@ -5,18 +5,20 @@
 #
 # ELF only
 #
-# Edited November 27, 2018 by QwazyWabbit
+# Edited December 03, 2018 by QwazyWabbit
 #
 # Requires GNU make
 #
 
 # this nice line comes from the linux kernel makefile
-ARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/alpha/axp/)
+ARCH := $(shell uname -m | sed -e s/i.86/i386/ \
+	-e s/sun4u/sparc64/ -e s/arm.*/arm/ \
+	-e s/sa110/arm/ -e s/alpha/axp/)
 
 # On 64-bit OS use the command: setarch i386 make all
 # to obtain the 32-bit binary DLL on 64-bit Linux.
 
-CC = gcc -std=gnu99
+CC = gcc -std=c99 -Wall -Wpedantic
 
 # on x64 machines do this preparation:
 # sudo apt-get install ia32-libs
@@ -25,10 +27,10 @@ CC = gcc -std=gnu99
 # this will let you build 32-bits on ia64 systems
 #
 # This is for native build
-CFLAGS=-O3 -DARCH="$(ARCH)"
+CFLAGS=-O2 -DARCH="$(ARCH)" -DSTDC_HEADERS
 # This is for 32-bit build on 64-bit host
 ifeq ($(ARCH),i386)
-CFLAGS =-m32 -O3 -fPIC -DARCH="$(ARCH)" -DSTDC_HEADERS -I/usr/include
+CFLAGS =-m32 -O2 -DARCH="$(ARCH)" -DSTDC_HEADERS -I/usr/include
 endif
 
 # use this when debugging
@@ -53,8 +55,6 @@ endif
 SHLIBEXT=so
 #set position independent code
 SHLIBCFLAGS=-fPIC
-
-ORIGDIR=Source
 
 DO_SHLIB_CC=$(CC) $(CFLAGS) $(SHLIBCFLAGS) -o $@ -c $<
 

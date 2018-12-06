@@ -116,7 +116,7 @@ void fbfg_think (edict_t *self)
 	edict_t	*ent;
 	edict_t	*ignore;
 	vec3_t	point,dir,start,end;
-	int		dmg;
+	//int		dmg;
 	trace_t	tr;
 	int mod;
 	
@@ -125,10 +125,10 @@ void fbfg_think (edict_t *self)
 	if (i_fragban & WFB_BFG10K)
 		mod |= MOD_NOFRAG;
 	
-	if (deathmatch->value)
-		dmg = 5;
-	else
-		dmg = 10;
+	//if (deathmatch->value)
+	//	dmg = 5;
+	//else
+	//	dmg = 10;
 	
 	ent = NULL;
 	while ((ent = findradius(ent, self->s.origin, 256)) != NULL)

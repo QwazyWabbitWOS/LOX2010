@@ -67,7 +67,8 @@ void MatchplayDoCountdown (void)
 			// Reset the score for round 2.  (They were able to see the score
 			// during the intermission.)
 			if (MatchplayCheckRound2())
-				//				matchgame.spawn1 = matchgame.spawn2 = 0;
+			{
+				//matchgame.spawn1 = matchgame.spawn2 = 0;
 
 				// Put all team members into the game.
 				for (i = 1; i <= maxclients->value; i++)
@@ -87,9 +88,9 @@ void MatchplayDoCountdown (void)
 					// Spawn them into the game.
 					respawn (ent);
 				}
-
-				// No more countdown.
-				matchgame.matchStartFrame = 0;
+			}
+			// No more countdown.
+			matchgame.matchStartFrame = 0;
 		}
 	}
 }
@@ -125,7 +126,7 @@ void MatchplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	// Get the size of the file.
 	if (fseek (f, 0, SEEK_END) != 0)
 	{
-		gi.dprintf ("%s: fseek %s\n", __FUNCTION__, szFile);
+		gi.dprintf ("%s: fseek %s\n", __func__, szFile);
 		fclose(f);
 		return;
 	}
@@ -133,14 +134,14 @@ void MatchplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	nEntSize = ftell (f);
 	if (nEntSize < 0)
 	{
-		gi.dprintf ("%s: ftell %s (%d)\n", __FUNCTION__, szFile, nEntSize);
+		gi.dprintf ("%s: ftell %s (%d)\n", __func__, szFile, nEntSize);
 		fclose(f);
 		return;
 	}
 
 	if (fseek (f, 0, SEEK_SET) != 0)
 	{
-		gi.dprintf ("%s: fseek %s\n", __FUNCTION__, szFile);
+		gi.dprintf ("%s: fseek %s\n", __func__, szFile);
 		fclose(f);
 		return;
 	}
@@ -149,7 +150,7 @@ void MatchplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	pszCustomEnt = gi.TagMalloc (nEntSize + 1, TAG_LEVEL);
 	if (!pszCustomEnt)
 	{
-		gi.dprintf ("%s: TagMalloc\n", __FUNCTION__);
+		gi.dprintf ("%s: TagMalloc\n", __func__);
 		fclose(f);
 		return;
 	}
@@ -157,7 +158,7 @@ void MatchplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	if (nRead != nEntSize)
 	{
 		gi.dprintf ("%s: fread %s (%d/%d)\n",
-			__FUNCTION__, szFile, nRead, nEntSize);
+			__func__, szFile, nRead, nEntSize);
 		gi.TagFree (pszCustomEnt);
 		fclose (f);
 		return;

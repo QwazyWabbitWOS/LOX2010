@@ -150,7 +150,7 @@ void oak_pain (edict_t *self, edict_t *other, float kick, int damage)
 		return;
 	
 	self->pain_debounce_time = level.time + 3;
-	gi.sound (self, CHAN_VOICE, sound_pain, 1, ATTN_NORM, 0);
+	gi.sound (self, CHAN_VOICE, oak_sound_pain, 1, ATTN_NORM, 0);
 
 	//gi.bprintf(PRINT_HIGH, "Oak: in oak_pain ouch!\n");
 	OakAI_RunFrames(self, FRAME_pain101, FRAME_pain104);
@@ -180,9 +180,9 @@ void oak_painthink(edict_t *self)
 void oak_sight(edict_t *self, edict_t *other)
 {
 	if (random() < 0.5)
-		gi.sound (self, CHAN_VOICE, sound_sight1, 1, ATTN_NORM, 0);
+		gi.sound (self, CHAN_VOICE, oak_sound_sight1, 1, ATTN_NORM, 0);
 	else
-		gi.sound (self, CHAN_VOICE, sound_sight2, 1, ATTN_NORM, 0);
+		gi.sound (self, CHAN_VOICE, oak_sound_sight2, 1, ATTN_NORM, 0);
 }
 
 /************************************************
@@ -272,10 +272,6 @@ void OakAI_MoveToEnemy(edict_t *self, float dist)
 
 void OakAI_MoveToGoal (edict_t *ent, float dist)
 {
-	edict_t		*goal;
-	
-	goal = ent->goalentity;
-
 	if (!ent->groundentity && !(ent->flags & (FL_FLY|FL_SWIM)))
 		return;
 
@@ -513,14 +509,14 @@ void oak_fire1 (edict_t *self)
 
 mframe_t oak_frames_attack1 [] =
 {
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  oak_fire1,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL,
-		ai_charge, 0,  NULL
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  oak_fire1},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL},
+	{ai_charge, 0,  NULL}
 };
 
 mmove_t oak_move_attack1 = 
