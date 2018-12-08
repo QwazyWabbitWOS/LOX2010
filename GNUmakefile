@@ -1,11 +1,11 @@
 #
-# Quake2 gamei386.so Makefile for Linux
+# Quake2 gamei386.real.so Makefile for Linux
 #
 # Jan '98 by Zoid <zoid@idsoftware.com>
 #
 # ELF only
 #
-# Edited December 03, 2018 by QwazyWabbit
+# Edited December 08, 2018 by QwazyWabbit
 #
 # Requires GNU make
 #
