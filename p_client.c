@@ -1917,13 +1917,13 @@ void ClientPrintMOTD (edict_t *ent)
 			return;
 		}
 
-		sprintf (motdPath, "./%s/%s", gamedir->string, motdfile->string);
+		sprintf (motdPath, "%s/%s", gamedir->string, motdfile->string);
 
 		// Open the file.
 		in = fopen (motdPath, "rt");
 		if (in == NULL)
 		{
-			gi.dprintf("Unable to open MOTD file.\n");
+			gi.dprintf("LOX: Unable to open MOTD file %s\n", motdPath);
 			gMOTD = NULL;
 			return;
 		}
