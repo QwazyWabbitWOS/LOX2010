@@ -538,6 +538,23 @@ void ExitLevel (void)
 		TeamplayRebalanceTeams();
 }
 
+int CountConnectedClients (void)
+{
+	int n, count;
+	edict_t *player;
+
+	count = 0;
+	for (n = 1; n <= maxclients->value; n++)
+	{
+		player = &g_edicts[n];
+		if (!player->inuse)
+			continue;
+		else
+			count++;
+	}
+	return count;
+}
+
 /*
 ================
 G_RunFrame
@@ -569,6 +586,13 @@ void G_RunFrame (void)
 	
 	// choose a client for monsters to target this frame
 	AI_SetSightClient ();
+	
+	if (level.intermissiontime && (level.intermissiontime < (level.time - 15)))
+	{
+		// exit intermissions only if we have clients
+		if (CountConnectedClients())
+			level.exitintermission = 1;
+	}
 	
 	// exit intermissions
 	if (level.exitintermission)
