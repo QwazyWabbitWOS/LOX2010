@@ -28,6 +28,7 @@ cvar_t	*skill;
 cvar_t	*noscore;
 cvar_t	*fraglimit;
 cvar_t	*timelimit;
+cvar_t	*scoreboardtime;
 
 cvar_t	*spectator_password;
 cvar_t	*needpass;
@@ -587,7 +588,7 @@ void G_RunFrame (void)
 	// choose a client for monsters to target this frame
 	AI_SetSightClient ();
 	
-	if (level.intermissiontime && (level.intermissiontime < (level.time - 15)))
+	if (level.intermissiontime && (level.intermissiontime < (level.time - scoreboardtime->value)))
 	{
 		// exit intermissions only if we have clients
 		if (CountConnectedClients())

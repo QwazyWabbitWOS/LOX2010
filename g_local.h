@@ -1002,6 +1002,7 @@ extern	cvar_t	*skill;
 extern	cvar_t	*noscore;
 extern	cvar_t	*fraglimit;
 extern	cvar_t	*timelimit;
+extern	cvar_t	*scoreboardtime;
 extern	cvar_t	*spectator_password;
 extern	cvar_t	*needpass;
 extern	cvar_t	*g_select_empty;
@@ -2191,6 +2192,7 @@ void G_RunEntity (edict_t *ent);
 void SaveClientData (void);
 void FetchClientEntData (edict_t *ent);
 void EndDMLevel (void);
+int CountConnectedClients (void);
 
 //
 // g_func.c
