@@ -116,18 +116,15 @@ void PositronBeamFire(edict_t *ent, vec3_t start, vec3_t dir)
 void weapon_positron_fire (edict_t *ent)
 {
 	vec3_t	start, forward, right, offset;
-	int			damage;
-	int			kick;
-	
-	damage = 80;
-	kick = 200;
-	
+	int			damage = 80;
+	int			kick = 200;
+
 	if (is_quad)
 	{
 		damage *= 4;
 		kick *= 4;
 	}
-	
+
 	AngleVectors (ent->client->v_angle, forward, right, NULL);
 	
 	VectorScale (forward, -3, ent->client->kick_origin);
@@ -141,7 +138,7 @@ void weapon_positron_fire (edict_t *ent)
 	{
 		PositronBeamFire (ent, ent->client->angel->s.origin, forward);
 	}
-	if (!ent->client->silencer_shots)
+	if (ent->client && !ent->client->silencer_shots)
 		gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/pt_fire.wav"), 1, ATTN_NORM, 0);
 	else
 		gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/pt_fire.wav"), 0.2f, ATTN_NORM, 0);

@@ -2346,6 +2346,12 @@ void Chaingun_Fire (edict_t *ent)
 	else
 		damage = 8;
 
+	if (is_quad)
+	{
+		damage *= 4;
+		kick *= 4;
+	}
+
 	if (ent->client->ps.gunframe == 5)
 		gi.sound(ent, CHAN_AUTO, gi.soundindex("weapons/chngnu1a.wav"), 1, ATTN_IDLE, 0);
 
@@ -2418,12 +2424,6 @@ void Chaingun_Fire (edict_t *ent)
 		}
 		NoAmmoWeaponChange (ent);
 		return;
-	}
-
-	if (is_quad)
-	{
-		damage *= 4;
-		kick *= 4;
 	}
 
 	for (i=0 ; i<3 ; i++)
@@ -3505,6 +3505,10 @@ void weapon_bfg_fire (edict_t *ent)
 	else
 		damage = 500;
 
+	if (is_quad)
+		damage *= 4;
+
+	VectorCopy(ent->s.origin, start);
 	if (ent->client->ps.gunframe == 9)
 	{
 		// send muzzle flash
@@ -3526,9 +3530,6 @@ void weapon_bfg_fire (edict_t *ent)
 		ent->client->ps.gunframe++;
 		return;
 	}
-
-	if (is_quad)
-		damage *= 4;
 
 	AngleVectors (ent->client->v_angle, forward, right, NULL);
 

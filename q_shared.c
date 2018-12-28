@@ -1038,10 +1038,10 @@ void Com_sprintf (char *dest, int size, char *fmt, ...)
 	if (len == -1 || len == size)
 	{
 		Com_Printf ("Com_sprintf: overflow of size %d\n", size);
-		len = size-1;
+		len = size - 1;
 	}
 
-	bigbuffer[size-1] = '\0';
+	bigbuffer[size - 1] = '\0';
 	strcpy (dest, bigbuffer);
 }
 
