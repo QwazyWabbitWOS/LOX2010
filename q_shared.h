@@ -969,12 +969,14 @@ typedef enum temp_event_n
 #define DF_FIXED_FOV			32768
 // end of original 16 dmflags for vanilla Q2
 
-//#define DF_REVENGE_FACTOR		65536	// not used as of LOX 1.12.19
-//#define DF_DAYNIGHT			131072	// not used as of LOX 1.12.10
-//#define DF_ANTICAMPER			262144	// not used as of LOX 1.12.19
-//#define DF_HIGHFRAGGER			524288	// not used as of LOX 1.12.19
-
-//#define DF_WEAPONHEAT			1048576	// not used as of LOX 1.12.19
+/*
+ * These were added by idSoftware for their CTF and 
+ * are defined in g_ctf.h originally.  
+ * LOX uses g_team.h which looks like a renamed g_ctf.h.
+#define DF_CTF_FORCEJOIN	131072	
+#define DF_ARMOR_PROTECT	262144
+#define DF_TEAMREBALANCE	524288
+*/
 
 /*
 ==========================================================
