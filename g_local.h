@@ -1072,6 +1072,7 @@ extern	cvar_t	*fast_weapon_change;	//QW//enable/disable fast weapon change
 extern	cvar_t  *peak_edicts;		//QW// the max number of edicts used in the game to date
 extern	cvar_t	*max_cats;		//QW// maximum cataclysm devices per player per level
 extern	cvar_t	*zbot_check;	//QW// enable/disable internal zbot checking
+extern	cvar_t	*console_chat;
 //QW//
 
 // these contain the conversion of the strings in the corresponding

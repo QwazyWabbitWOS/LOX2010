@@ -3800,8 +3800,10 @@ void Cmd_PlayerList_f(edict_t *ent)
 
 void Cmd_NotRecognized(edict_t *ent)
 {
-	gi.cprintf (ent, PRINT_HIGH, "Unrecognized command: %s %s\n",
-		gi.argv ( 0 ), gi.args());
+	if (console_chat->value)
+		Cmd_Say_f (ent, QFALSE, QTRUE);
+	else
+		gi.cprintf (ent, PRINT_HIGH, "Unrecognized command: %s %s\n", gi.argv ( 0 ), gi.args());
 }
 
 /*

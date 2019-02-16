@@ -97,6 +97,7 @@ cvar_t	*highfraggerreward;
 cvar_t	*sv_bestplayer;
 cvar_t	*max_cats;		//QW// maximum cataclysm devices per player per level
 cvar_t	*zbot_check;	//QW// enable/disable internal zbot checking
+cvar_t	*console_chat;
 
 //QW//
 cvar_t	*debugmodels;		// set for model messages in console
