@@ -763,17 +763,13 @@ qboolean ai_checkattack (edict_t *self)
 				if (self->goalentity == self->enemy)
 				{
                     if (self->movetarget)
-						{
-						    self->goalentity = self->movetarget;
-                        }
+					    self->goalentity = self->movetarget;
 					else
-						{
-						    self->goalentity = NULL;
-						}
+					    self->goalentity = NULL;
+				}
 				self->monsterinfo.aiflags &= ~AI_SOUND_TARGET;
 				if (self->monsterinfo.aiflags & AI_TEMP_STAND_GROUND)
 					self->monsterinfo.aiflags &= ~(AI_STAND_GROUND | AI_TEMP_STAND_GROUND);
-				}
 			}
 			else
 			{
