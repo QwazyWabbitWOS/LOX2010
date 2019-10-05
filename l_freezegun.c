@@ -53,7 +53,7 @@ void Weapon_Freezer_Fire (edict_t *ent)
 		damage = FREEZER_DAMAGE;
 	else
 		damage = FREEZER_DAMAGE - 15;
-	Freezer_Fire (ent, vec3_origin, damage, QFALSE, EF_BLASTER);
+	Freezer_Fire (ent, vec3_origin, damage, false, EF_BLASTER);
 	ent->client->ps.gunframe++;
 	if (! ((int)dmflags->value & DF_INFINITE_AMMO))
 		ent->client->pers.inventory[ent->client->ammo_index]

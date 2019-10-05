@@ -68,7 +68,7 @@ void Weapon_Plasma_Fire (edict_t *ent)
 	else
 		damage = 20;
 
-	Plasma_Fire (ent, vec3_origin, damage, QFALSE, EF_BFG);
+	Plasma_Fire (ent, vec3_origin, damage, false, EF_BFG);
 	ent->client->ps.gunframe++;
 	if (! ((int)dmflags->value & DF_INFINITE_AMMO))
 		ent->client->pers.inventory[ent->client->ammo_index]

@@ -55,7 +55,7 @@ void Weapon_Super_Fire (edict_t *ent)
 		damage = 50;
 	else
 		damage = 150;
-	Super_Fire (ent, vec3_origin, damage, QFALSE, EF_BLASTER);
+	Super_Fire (ent, vec3_origin, damage, false, EF_BLASTER);
 	ent->client->ps.gunframe++;
 }
 

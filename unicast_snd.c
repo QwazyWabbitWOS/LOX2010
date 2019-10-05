@@ -10,7 +10,7 @@ void UnicastSound(edict_t *ent, int flags)
 	gi.WriteByte (gi.soundindex("numberone.wav"));
 	gi.WriteByte(0);	//attenuation
 	gi.WriteShort (0);	//channel
-	gi.unicast (ent, QTRUE);
+	gi.unicast (ent, true);
 }
 
 /*
@@ -33,6 +33,6 @@ for (i=0; i<maxclients->value; i++)
 [12:56] <Lmty_> 	gi.WriteByte (soundindex_); //soundindex
 [12:56] <Lmty_> 	gi.WriteByte(0);	//attenuation
 [12:56] <Lmty_> 	gi.WriteShort(0);	//channel
-[12:56] <Lmty_> 	gi.unicast (ent, QTRUE);
+[12:56] <Lmty_> 	gi.unicast (ent, true);
 [12:56] <Lmty_> }
 */

@@ -57,10 +57,10 @@ void weapon_railgun_fire (edict_t *ent)
 		damage = 10;
 	else
 		damage = 20;
-	fire_rg (ent, vec3_origin, damage, QFALSE, EF_ROCKET);
+	fire_rg (ent, vec3_origin, damage, false, EF_ROCKET);
 	if (ent->client && ent->client->pers.special == AODEATH)
 	{
-		fire_rg (ent, ent->client->angel->s.origin, damage, QFALSE, EF_ROCKET);
+		fire_rg (ent, ent->client->angel->s.origin, damage, false, EF_ROCKET);
 	}
 	ent->client->ps.gunframe++;
 	if (! ((int)dmflags->value & DF_INFINITE_AMMO))

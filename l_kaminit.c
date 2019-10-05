@@ -25,7 +25,7 @@ void fire_kaminit (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int k
 	VectorMA (start, 8192, aimdir, end);
 	VectorCopy (start, from);
 	ignore = self;
-	water = QFALSE;
+	water = false;
 	mask = MASK_SHOT|CONTENTS_SLIME|CONTENTS_LAVA;
 	while (ignore)
 	{
@@ -34,7 +34,7 @@ void fire_kaminit (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int k
 		if (tr.contents & (CONTENTS_SLIME|CONTENTS_LAVA))
 		{
 			mask &= ~(CONTENTS_SLIME|CONTENTS_LAVA);
-			water = QFALSE;
+			water = false;
 		}
 		else
 		{

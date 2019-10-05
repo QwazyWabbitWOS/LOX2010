@@ -267,9 +267,9 @@ void MatchplayStartRound2 (void)
 		MatchplayMakeObserver (ent);
 
 		// Show them the scoreboard.
-		ent->client->showscores = QTRUE;
+		ent->client->showscores = true;
 		DeathmatchScoreboardMessage (ent, NULL);
-		gi.unicast (ent, QTRUE);
+		gi.unicast (ent, true);
 	}
 }
 

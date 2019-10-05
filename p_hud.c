@@ -34,7 +34,7 @@
 void MoveClientToIntermission (edict_t *ent)
 {
 	if (deathmatch->value || coop->value)
-		ent->client->showscores = QTRUE;
+		ent->client->showscores = true;
 	VectorCopy (level.intermission_origin, ent->s.origin);
 	ent->client->ps.pmove.origin[0] = level.intermission_origin[0]*8;
 	ent->client->ps.pmove.origin[1] = level.intermission_origin[1]*8;
@@ -58,7 +58,7 @@ void MoveClientToIntermission (edict_t *ent)
 	ent->client->invincible_framenum = 0;
 	ent->client->breather_framenum = 0;
 	ent->client->enviro_framenum = 0;
-	ent->client->grenade_blew_up = QFALSE;
+	ent->client->grenade_blew_up = false;
 	ent->client->grenade_time = 0;
 	
 	// don't drown during intermission
@@ -78,7 +78,7 @@ void MoveClientToIntermission (edict_t *ent)
 	if (deathmatch->value || coop->value)
 	{
 		DeathmatchScoreboardMessage (ent, NULL);
-		gi.unicast (ent, QTRUE);
+		gi.unicast (ent, true);
 	}
 }
 
@@ -95,7 +95,7 @@ void BeginIntermission (edict_t *targ)
 		CTFCalcScores();
 	//ZOID
 	
-	game.autosaved = QFALSE;
+	game.autosaved = false;
 	
 	// respawn any dead clients
 	for (i=0 ; i<maxclients->value ; i++)
@@ -714,7 +714,7 @@ DeathmatchScoreboard
 void DeathmatchScoreboard (edict_t *ent)
 {
 	DeathmatchScoreboardMessage (ent, ent->enemy);
-	gi.unicast (ent, QTRUE);
+	gi.unicast (ent, true);
 }
 
 
@@ -725,8 +725,8 @@ void DeathmatchScoreboard (edict_t *ent)
 **************************/
 void Cmd_Score_f (edict_t *ent)
 {
-	ent->client->showinventory = QFALSE;
-	ent->client->showhelp = QFALSE;
+	ent->client->showinventory = false;
+	ent->client->showhelp = false;
 	
 	//ZOID
 	if (ent->client->menu)
@@ -738,12 +738,12 @@ void Cmd_Score_f (edict_t *ent)
 	
 	if (ent->client->showscores)
 	{
-		ent->client->showscores = QFALSE;
-		ent->client->update_chase = QTRUE;
+		ent->client->showscores = false;
+		ent->client->update_chase = true;
 		return;
 	}
 	
-	ent->client->showscores = QTRUE;
+	ent->client->showscores = true;
 	DeathmatchScoreboard (ent);
 }
 
@@ -787,7 +787,7 @@ void HelpComputer (edict_t *ent)
 	
 	gi.WriteByte (svc_layout);
 	gi.WriteString (string);
-	gi.unicast (ent, QTRUE);
+	gi.unicast (ent, true);
 }
 
 
@@ -805,16 +805,16 @@ void Cmd_Help_f (edict_t *ent)
 		return;
 	}
 
-	ent->client->showinventory = QFALSE;
-	ent->client->showscores = QFALSE;
+	ent->client->showinventory = false;
+	ent->client->showscores = false;
 
 	if (ent->client->showhelp && (ent->client->resp.game_helpchanged == game.helpchanged))
 	{
-		ent->client->showhelp = QFALSE;
+		ent->client->showhelp = false;
 		return;
 	}
 
-	ent->client->showhelp = QTRUE;
+	ent->client->showhelp = true;
 	ent->client->resp.helpchanged = 0;
 	HelpComputer (ent);
 }

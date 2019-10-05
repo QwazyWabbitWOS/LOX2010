@@ -35,12 +35,12 @@ void PMenu_Open(edict_t *ent, pmenu_t *entries, int cur, int num)
 	else
 		hnd->cur = i;
 	
-	ent->client->showscores = QTRUE;
-	ent->client->inmenu = QTRUE;
+	ent->client->showscores = true;
+	ent->client->inmenu = true;
 	ent->client->menu = hnd;
 	
 	PMenu_Update(ent);
-	gi.unicast (ent, QTRUE);
+	gi.unicast (ent, true);
 }
 
 void PMenu_Close(edict_t *ent)
@@ -50,7 +50,7 @@ void PMenu_Close(edict_t *ent)
 	
 	gi.TagFree (ent->client->menu);
 	ent->client->menu = NULL;
-	ent->client->showscores = QFALSE;
+	ent->client->showscores = false;
 }
 
 void PMenu_Update(edict_t *ent)
@@ -61,7 +61,7 @@ void PMenu_Update(edict_t *ent)
 	int x;
 	pmenuhnd_t *hnd;
 	char *t;
-	qboolean alt = QFALSE;
+	qboolean alt = false;
 	
 	if (!ent->client->menu)
 	{
@@ -79,7 +79,7 @@ void PMenu_Update(edict_t *ent)
 		t = p->text;
 		if (*t == '*')
 		{
-			alt = QTRUE;
+			alt = true;
 			t++;
 		}
 		sprintf(string + strlen(string), "yv %d ", 32 + i * 8);
@@ -99,7 +99,7 @@ void PMenu_Update(edict_t *ent)
 			sprintf(string + strlen(string), "string2 \"%s\" ", t);
 		else
 			sprintf(string + strlen(string), "string \"%s\" ", t);
-		alt = QFALSE;
+		alt = false;
 	}
 	
 	ShowHeatbar (ent, string);
@@ -139,7 +139,7 @@ void PMenu_Next(edict_t *ent)
 	hnd->cur = i;
 	
 	PMenu_Update(ent);
-	gi.unicast (ent, QTRUE);
+	gi.unicast (ent, true);
 }
 
 void PMenu_Prev(edict_t *ent)
@@ -179,7 +179,7 @@ void PMenu_Prev(edict_t *ent)
 	hnd->cur = i;
 	
 	PMenu_Update(ent);
-	gi.unicast (ent, QTRUE);
+	gi.unicast (ent, true);
 }
 
 void PMenu_Select(edict_t *ent)

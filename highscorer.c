@@ -99,7 +99,7 @@ void HighScorerOld(void)
 // So basically this is my method of fixing it.
 // The high scoring player will remain the leader until another player reaches over his score.
 // Ties are not announced as it can get confusing with more than one player.
-// If you wanted to announce ties, you could just keep setting ->tied to QTRUE and printing "Player [and player and player] are tied for first"
+// If you wanted to announce ties, you could just keep setting ->tied to true and printing "Player [and player and player] are tied for first"
 // and clear it when LeaderMan changes.
 
 // FIXME: Technically, the ->inLead flag is not needed here, but it will be needed
@@ -189,8 +189,8 @@ void HighScorer()
 				// Throw him the flag and tell everyone they suck.
 				pLeader = tempLeader;
 #ifdef USE_INLEAD_FLAG
-				pLeader->client->inLead = QTRUE;
-				pOldLeader->client->inLead = QFALSE;
+				pLeader->client->inLead = true;
+				pOldLeader->client->inLead = false;
 #endif
 				gi.bprintf (PRINT_MEDIUM, "%s has taken the lead!\n", pLeader->client->pers.netname);
 				gi.sound(pLeader, CHAN_AUTO, gi.soundindex("misc/comp_up.wav"), 1, ATTN_NORM, 0);
@@ -253,8 +253,8 @@ void HighScorer()
 				// Throw him the flag and tell everyone they suck.
 				pLeader = tempLeader;
 #ifdef USE_INLEAD_FLAG
-				pLeader->client->inLead = QTRUE;
-				pOldLeader->client->inLead = QFALSE;
+				pLeader->client->inLead = true;
+				pOldLeader->client->inLead = false;
 #endif
 				gi.bprintf (PRINT_MEDIUM, "%s is no longer in the lead!\n%s has taken the lead!\n", 
 					pOldLeader->client->pers.netname,
@@ -279,7 +279,7 @@ void HighScorer()
 					// Clear his status, let everybody know he isn't in the lead but that no one has taken over.
 					pLeader = NULL;
 #ifdef USE_INLEAD_FLAG
-					pOldLeader->client->inLead = QFALSE;
+					pOldLeader->client->inLead = false;
 #endif
 					gi.bprintf (PRINT_MEDIUM, "%s is no longer in the lead! The spot is up for grabs!\n", 
 						pOldLeader->client->pers.netname);

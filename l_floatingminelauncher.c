@@ -63,8 +63,8 @@ void weapon_floatingminelauncher_fire (edict_t *ent)
 
 	fire_grenade_dM (ent, start, forward, damage, 500, 2.5, radius, 
 		ent->client->dM_grenade, 
-		/* held */ QFALSE, 
-		/* bazookad */ QTRUE);
+		/* held */ false, 
+		/* bazookad */ true);
 	
 	if (!is_silenced)
 	{

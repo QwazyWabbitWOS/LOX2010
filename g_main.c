@@ -422,7 +422,7 @@ void CheckNeedPass (void)
 	// as needed
 	if (password->modified || spectator_password->modified) 
 	{
-		password->modified = spectator_password->modified = QFALSE;
+		password->modified = spectator_password->modified = false;
 
 		need = 0;
 
@@ -697,7 +697,7 @@ int HACK_modelindex (char *name)
 		// If this model hasn't been seen before, report it & its number.
 		if (!modelSeen[result])
 		{
-			modelSeen[result] = QTRUE;
+			modelSeen[result] = true;
 			if (debugmodels->value) 
 				gi.dprintf ("modelindex %d allocated to %s\n", result, name);
 		}

@@ -140,7 +140,7 @@ void AOM_Think (edict_t *ent)
 int aom_valid (edict_t *cur)
 {
 	if (cur->think == target_laser_think)
-		return QTRUE;
+		return true;
 	
 	switch(cur->classnum) 
 	{
@@ -167,10 +167,10 @@ int aom_valid (edict_t *cur)
 	case	CN_HOMINGROCKET:
 	case	CN_GUIDEDNUKE:
 	case	CN_NUKE:
-		return QTRUE;
+		return true;
 		break;
 	default:
-		return QFALSE;
+		return false;
 		break;
 	}
 }

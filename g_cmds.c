@@ -1290,8 +1290,8 @@ void Cmd_FeignDeath (edict_t *self)
 	{
 		static int i;
 		
-		self->client->feign = QTRUE;
-		self->client->raising_up = QFALSE;
+		self->client->feign = true;
+		self->client->raising_up = false;
 		
 		//gi.dprintf ("Feigning death\n");
 		
@@ -1348,8 +1348,8 @@ void Cmd_FeignDeath (edict_t *self)
 		vec3_t	mins = {-16, -16, -24};
 		vec3_t	maxs = {16, 16, 32};
 		
-		self->client->feign = QFALSE;
-		self->client->raising_up = QTRUE;
+		self->client->feign = false;
+		self->client->raising_up = true;
 		
 		self->movetype = MOVETYPE_WALK;
 		self->viewheight = 22;
@@ -1375,7 +1375,7 @@ void Cmd_FeignDeath (edict_t *self)
 			
 		}
 		
-		self->client->raising_up = QTRUE;
+		self->client->raising_up = true;
 		self->s.modelindex2=self->client->oldweaponindex;
 		self->client->ps.gunindex=self->client->oldgunindex; 
 		
@@ -1464,13 +1464,13 @@ void Cmd_Invisible(edict_t *ent)
 		gi.cprintf(ent, PRINT_HIGH, "Invisibility On\n");
 		ent->client->cloak_time = level.time + 30.0f;
 		gi.sound(ent, CHAN_ITEM, gi.soundindex("items/protect.wav"), 1, ATTN_NORM, 0);
-		ent->client->invisible = QTRUE;
+		ent->client->invisible = true;
 	}
 	else
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Invisibility Off\n");
 		ent->client->cloak_time = level.time;
-		ent->client->invisible = QFALSE;
+		ent->client->invisible = false;
 	}
 }
 
@@ -1495,14 +1495,14 @@ void Cmd_cloak_f (edict_t *ent)
 	if (!ent->cloaked)
 	{
 		ent->client->cloaktime = 200 + level.framenum;
-		ent->cloaked = QTRUE;
+		ent->cloaked = true;
 		if (ent->oldmodel)
-			ent->oldmodel = QFALSE;
+			ent->oldmodel = false;
 		gi.cprintf(ent, PRINT_HIGH, "Cloaked\n");
 	}
 	else
 	{
-		ent->cloaked = QFALSE;
+		ent->cloaked = false;
 		ent->client->cloaktime = level.framenum;
 		gi.cprintf(ent, PRINT_HIGH, "Uncloaked\n");
 	}
@@ -1571,7 +1571,7 @@ char *ClientTeam (edict_t *ent)
 	if (!ent->client)
 		return value;
 	
-	strncpy(value, Info_ValueForKey (ent->client->pers.userinfo, "skin"), sizeof(value)-1);
+	Q_strncpy(value, Info_ValueForKey (ent->client->pers.userinfo, "skin"), sizeof(value)-1);
 	p = strchr(value, '/');
 	if (!p)
 		return value;
@@ -1591,17 +1591,17 @@ qboolean OnSameTeam (edict_t *ent1, edict_t *ent2)
 	
 	if (ctf->value && ent1->client && ent2->client
 		&& (ent1->client->resp.ctf_team == ent2->client->resp.ctf_team))
-		return QTRUE;
+		return true;
 	
 	if ((int)(dmflags->value) & (DF_MODELTEAMS | DF_SKINTEAMS))
 	{
-		strncpy (ent1Team, ClientTeam (ent1), sizeof(ent1Team)-1);
-		strncpy (ent2Team, ClientTeam (ent2), sizeof(ent2Team)-1);
+		Q_strncpy (ent1Team, ClientTeam (ent1), sizeof(ent1Team)-1);
+		Q_strncpy (ent2Team, ClientTeam (ent2), sizeof(ent2Team)-1);
 		
-		if (strcmp(ent1Team, ent2Team) == 0)
-			return QTRUE;
+		if (Q_stricmp(ent1Team, ent2Team) == 0)
+			return true;
 	}
-	return QFALSE;
+	return false;
 }	
 
 void SelectNextItem (edict_t *ent, int itflags)
@@ -1728,9 +1728,9 @@ void Cmd_Give_f (edict_t *ent)
 	name = gi.args();
 	
 	if (Q_stricmp(name, "all") == 0)
-		give_all = QTRUE;
+		give_all = true;
 	else
-		give_all = QFALSE;
+		give_all = false;
 	
 	if (give_all || Q_stricmp(gi.argv(1), "health") == 0)
 	{
@@ -2239,7 +2239,8 @@ void Cmd_Use_f (edict_t *ent)
 		}
 		
 		else if (((ent->client->pers.lastweapons[3] == &gI_weapon_machinerocketgun)||
-			(ent->client->pers.lastweapons[3] == &gI_weapon_machinerocketgun))
+			(ent->client->pers.lastweapons[3] == &gI_weapon_machine) ||
+			(ent->client->pers.lastweapons[3] == &gI_weapon_machinegun))
 			&&((it == ent->client->pers.weapon
 			&& ent->client->pers.inventory[ITEM_INDEX(&gI_weapon_explosivemachinegun)])
 			|| (it != ent->client->pers.weapon
@@ -2252,6 +2253,7 @@ void Cmd_Use_f (edict_t *ent)
 		}
 		
 		else if (((ent->client->pers.lastweapons[3] == &gI_weapon_explosivemachinegun) ||
+			(ent->client->pers.lastweapons[3] == &gI_weapon_machinerocketgun) ||
 			(ent->client->pers.lastweapons[3] == &gI_weapon_machine)||
 			(ent->client->pers.lastweapons[3] == &gI_weapon_machinegun))
 			&&((it == ent->client->pers.weapon
@@ -2267,6 +2269,7 @@ void Cmd_Use_f (edict_t *ent)
 		
 		else if (((ent->client->pers.lastweapons[3] == &gI_weapon_pulserifle)||
 			(ent->client->pers.lastweapons[3] == &gI_weapon_explosivemachinegun) ||
+			(ent->client->pers.lastweapons[3] == &gI_weapon_machinerocketgun) ||
 			(ent->client->pers.lastweapons[3] == &gI_weapon_machine)||
 			(ent->client->pers.lastweapons[3] == &gI_weapon_machinegun))
 			&&((it == ent->client->pers.weapon
@@ -3067,21 +3070,21 @@ void Cmd_Inven_f (edict_t *ent)
 	
 	cl = ent->client;
 	
-	cl->showscores = QFALSE;
-	cl->showhelp = QFALSE;
+	cl->showscores = false;
+	cl->showhelp = false;
 	
 	//ZOID
 	if (ent->client->menu)
 	{
 		PMenu_Close(ent);
-		ent->client->update_chase = QTRUE;
+		ent->client->update_chase = true;
 		return;
 	}
 	//ZOID
 	
 	if (cl->showinventory)
 	{
-		cl->showinventory = QFALSE;
+		cl->showinventory = false;
 		return;
 	}
 	
@@ -3093,14 +3096,14 @@ void Cmd_Inven_f (edict_t *ent)
 	}
 	//ZOID
 	
-	cl->showinventory = QTRUE;
+	cl->showinventory = true;
 	
 	gi.WriteByte (svc_inventory);
 	for (i=0 ; i<MAX_ITEMS ; i++)
 	{
 		gi.WriteShort (cl->pers.inventory[i]);
 	}
-	gi.unicast (ent, QTRUE);
+	gi.unicast (ent, true);
 	
 	if (cl->pers.scanner_active & 1) // if it's on
 		cl->pers.scanner_active = 2; // set the changed bit
@@ -3290,13 +3293,13 @@ void Cmd_Kill_f (edict_t *ent)
 //  =================
 void Cmd_PutAway_f (edict_t *ent)
 {
-	ent->client->showscores = QFALSE;
-	ent->client->showhelp = QFALSE;
-	ent->client->showinventory = QFALSE;
+	ent->client->showscores = false;
+	ent->client->showhelp = false;
+	ent->client->showinventory = false;
 	//ZOID
 	if (ent->client->menu)
 		PMenu_Close(ent);
-	ent->client->update_chase = QTRUE;
+	ent->client->update_chase = true;
 	//ZOID
 }
 
@@ -3599,13 +3602,13 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
 	
 	// If there's no teamplay, don't do team chat.
 	if (!ctf->value && !((int)(dmflags->value) & (DF_MODELTEAMS | DF_SKINTEAMS)))
-		team = QFALSE;
+		team = false;
 	
 	// If this player is dead or a ghost, don't allow team chat.
 	if (ctf->value 
 		&& (ent->deadflag || (ent->solid == SOLID_NOT && ent->movetype == MOVETYPE_NOCLIP))
 		&& !TeamplayCheckCountdown())
-		team = QFALSE;
+		team = false;
 	
 	// set up the player name to start the text string
 	if (team)
@@ -3765,7 +3768,7 @@ void Cmd_Zoom_f (edict_t *ent)
 void Cmd_PlayerList_f(edict_t *ent)
 {
 	int i;
-	char st[80];
+	char str[80];
 	char text[1400];
 	edict_t *e2;
 	
@@ -3780,20 +3783,20 @@ void Cmd_PlayerList_f(edict_t *ent)
 		if (!e2->inuse)
 			continue;
 		
-		Com_sprintf(st, sizeof(st), "%02d:%02d %4d %5d %s%s\n",
+		Com_sprintf(str, sizeof(str), "%02d:%02d %4d %5d %s%s\n",
 			(level.framenum - e2->client->resp.enterframe) / 600,
 			((level.framenum - e2->client->resp.enterframe) % 600)/10,
 			e2->client->ping,
 			e2->client->resp.score,
 			e2->client->pers.netname,
 			e2->client->resp.spectator ? " (spectator)" : "");
-		if (strlen(text) + strlen(st) > sizeof(text) - 50)
+		if (strlen(text) + strlen(str) > sizeof(text) - 50)
 		{
 			sprintf(text+strlen(text), "And more...\n");
 			gi.cprintf(ent, PRINT_HIGH, "%s", text);
 			return;
 		}
-		strcat(text, st);
+		strcat(text, str);
 	}
 	gi.cprintf(ent, PRINT_HIGH, "%s", text);
 }
@@ -3801,7 +3804,7 @@ void Cmd_PlayerList_f(edict_t *ent)
 void Cmd_NotRecognized(edict_t *ent)
 {
 	if (console_chat->value)
-		Cmd_Say_f (ent, QFALSE, QTRUE);
+		Cmd_Say_f (ent, false, true);
 	else
 		gi.cprintf (ent, PRINT_HIGH, "Unrecognized command: %s %s\n", gi.argv ( 0 ), gi.args());
 }
@@ -3826,11 +3829,11 @@ void ClientCommand (edict_t *ent)
 		if (Q_stricmp (cmd, "players") == 0)
 			Cmd_Players_f (ent);
 		else if (Q_stricmp (cmd, "say") == 0)
-			Cmd_Say_f (ent, QFALSE, QFALSE);
+			Cmd_Say_f (ent, false, false);
 		else if (Q_stricmp (cmd, "say_team") == 0
 			|| Q_stricmp (cmd, "steam") == 0)
 		{
-			Cmd_Say_f (ent, QTRUE, QFALSE);
+			Cmd_Say_f (ent, true, false);
 		}
 		else if (Q_stricmp (cmd, "score") == 0)
 			Cmd_Score_f (ent);
@@ -4060,10 +4063,10 @@ void ClientCommand (edict_t *ent)
 		
 	case 's':
 		if (Q_stricmp (cmd, "say") == 0)
-			Cmd_Say_f (ent, QFALSE, QFALSE);
+			Cmd_Say_f (ent, false, false);
 		else if (Q_stricmp (cmd, "say_team") == 0
 			|| Q_stricmp (cmd, "steam") == 0)
-			Cmd_Say_f (ent, QTRUE, QFALSE);
+			Cmd_Say_f (ent, true, false);
 		else if (Q_stricmp (cmd, "scanner") == 0)
 			Toggle_Scanner (ent);
 		else if (Q_stricmp (cmd, "score") == 0)

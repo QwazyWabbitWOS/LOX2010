@@ -958,14 +958,13 @@ skipwhite:
 	if (c == '\"')
 	{
 		data++;
-		for (;;)
+		while (1)
 		{
 			c = *data++;
 			if (c == '\"' || !c)
 			{
-				com_token[len] = 0;
-				*data_p = data;
-				return com_token;
+				//bugfix from skuller
+				goto finish;
 			}
 			if (len < MAX_TOKEN_CHARS)
 			{
@@ -987,9 +986,11 @@ skipwhite:
 		c = *data;
 	} while (c>32);
 
+finish:
+
 	if (len == MAX_TOKEN_CHARS)
 	{
-		//Com_Printf ("Token exceeded %i chars, discarded.\n", MAX_TOKEN_CHARS);
+		Com_Printf ("Token exceeded %i chars, discarded.\n", MAX_TOKEN_CHARS);
 		len = 0;
 	}
 	com_token[len] = 0;
@@ -1026,23 +1027,24 @@ void Com_PageInMemory (byte *buffer, int size)
 
 static	char	bigbuffer[0x10000]; // for Com_Sprintf
 
-void Com_sprintf (char *dest, int size, char *fmt, ...)
+/**
+ Safer, uses large buffer
+*/
+void Com_sprintf(char *dest, int size, char *fmt, ...)
 {
-	int			len;
+	int		len;
 	va_list		argptr;
 
-	va_start (argptr, fmt);
-	len = vsnprintf (bigbuffer, sizeof(bigbuffer)-1, fmt, argptr);
-	va_end (argptr);
-
-	if (len == -1 || len == size)
+	va_start(argptr, fmt);
+	len = vsprintf(bigbuffer, fmt, argptr);
+	va_end(argptr);
+	if (len < size)
+		strncpy(dest, bigbuffer, size - 1);
+	else
 	{
-		Com_Printf ("Com_sprintf: overflow of size %d\n", size);
-		len = size - 1;
+		Com_Printf("ERROR! %s: destination buffer overflow of len %i, size %i\n"
+			"Input was: %s", __func__, len, size, bigbuffer);
 	}
-
-	bigbuffer[size - 1] = '\0';
-	strcpy (dest, bigbuffer);
 }
 
 /** Case independent string compare (strcasecmp)
@@ -1060,6 +1062,16 @@ int	Q_stricmp(const char *s1, const char *s2)
 			return (0);
 	return (tolower(*uc1) - tolower(*--uc2));
 }
+
+/**
+ A wrapper for strncpy that unlike strncpy, always terminates strings with NUL.
+ */
+void Q_strncpy(char* pszDest, const char* pszSrc, int nDestSize)
+{
+	strncpy(pszDest, pszSrc, nDestSize);
+	pszDest[nDestSize - 1] = '\0';
+}
+
 
 /*
 =====================================================================

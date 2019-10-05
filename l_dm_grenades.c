@@ -1484,7 +1484,7 @@ void SetGrenadeEffects(edict_t *grenade, int type)
 // grenade tosses. The handheld and bazookad methods
 // should have been separate functions. 
 // I can't imagine what this thing would do if both
-// booleans were QTRUE. //QW//
+// booleans were true. //QW//
 //
 // ****************************************************
 void fire_grenade_dM (edict_t *self, vec3_t start, vec3_t aimdir, int damage,
@@ -2082,8 +2082,8 @@ qboolean isvisible (edict_t *self, edict_t *other)
 	spot2[2] += other->viewheight;
 	trace = gi.trace (spot1, vec3_origin, vec3_origin, spot2, self, MASK_OPAQUE);
 	if (trace.fraction == 1.0)
-		return QTRUE;
-	return QFALSE;
+		return true;
+	return false;
 }
 
 

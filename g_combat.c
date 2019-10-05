@@ -9,7 +9,7 @@
 ============
 CanDamage
 
-Returns QTRUE if the inflictor can directly damage the target.  Used for
+Returns true if the inflictor can directly damage the target.  Used for
 explosions and melee attacks.
 ============
 */
@@ -25,46 +25,46 @@ qboolean CanDamage (edict_t *targ, edict_t *inflictor)
 		VectorScale (dest, 0.5, dest);
 		trace = gi.trace (inflictor->s.origin, vec3_origin, vec3_origin, dest, inflictor, MASK_SOLID);
 		if (trace.fraction == 1.0)
-			return QTRUE;
+			return true;
 		if (trace.ent == targ)
-			return QTRUE;
-		return QFALSE;
+			return true;
+		return false;
 	}
 	
 	trace = gi.trace (inflictor->s.origin, vec3_origin, vec3_origin, targ->s.origin, inflictor, MASK_SOLID);
 	if (trace.fraction == 1.0)
-		return QTRUE;
+		return true;
 
 	VectorCopy (targ->s.origin, dest);
 	dest[0] += 15.0;
 	dest[1] += 15.0;
 	trace = gi.trace (inflictor->s.origin, vec3_origin, vec3_origin, dest, inflictor, MASK_SOLID);
 	if (trace.fraction == 1.0)
-		return QTRUE;
+		return true;
 
 	VectorCopy (targ->s.origin, dest);
 	dest[0] += 15.0;
 	dest[1] -= 15.0;
 	trace = gi.trace (inflictor->s.origin, vec3_origin, vec3_origin, dest, inflictor, MASK_SOLID);
 	if (trace.fraction == 1.0)
-		return QTRUE;
+		return true;
 
 	VectorCopy (targ->s.origin, dest);
 	dest[0] -= 15.0;
 	dest[1] += 15.0;
 	trace = gi.trace (inflictor->s.origin, vec3_origin, vec3_origin, dest, inflictor, MASK_SOLID);
 	if (trace.fraction == 1.0)
-		return QTRUE;
+		return true;
 
 	VectorCopy (targ->s.origin, dest);
 	dest[0] -= 15.0;
 	dest[1] -= 15.0;
 	trace = gi.trace (inflictor->s.origin, vec3_origin, vec3_origin, dest, inflictor, MASK_SOLID);
 	if (trace.fraction == 1.0)
-		return QTRUE;
+		return true;
 
 
-	return QFALSE;
+	return false;
 }
 
 
@@ -284,9 +284,9 @@ static int CheckArmor (edict_t *ent, vec3_t point, vec3_t normal, int damage, in
 	armor = GetItemByIndex (index);
 
 	if (dflags & DAMAGE_ENERGY)
-		save = (int)ceil(((gitem_armor_t *)armor->info)->energy_protection*damage);
+		save = (int)ceilf(((gitem_armor_t *)armor->info)->energy_protection*damage);
 	else
-		save = (int)ceil(((gitem_armor_t *)armor->info)->normal_protection*damage);
+		save = (int)ceilf(((gitem_armor_t *)armor->info)->normal_protection*damage);
 	if (save >= client->pers.inventory[index])
 		save = client->pers.inventory[index];
 
@@ -380,10 +380,10 @@ qboolean CheckTeamDamage (edict_t *targ, edict_t *attacker)
 	if (ctf->value && targ->client && attacker->client)
 		if (targ->client->resp.ctf_team == attacker->client->resp.ctf_team &&
 			targ != attacker)
-			return QTRUE;
+			return true;
 //ZOID
 
-	return QFALSE;
+	return false;
 }
 
 //************************************

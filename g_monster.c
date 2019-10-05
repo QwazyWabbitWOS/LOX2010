@@ -32,7 +32,7 @@ void monster_fire_shotgun (edict_t *self, vec3_t start, vec3_t aimdir, int damag
 
 void monster_fire_blaster (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, int flashtype, int effect)
 {
-	fire_blaster (self, start, dir, damage, speed, effect /* , QFALSE */);
+	fire_blaster (self, start, dir, damage, speed, effect /* , false */);
 
 	gi.WriteByte (svc_muzzleflash2);
 	gi.WriteShort (self - g_edicts);
@@ -213,7 +213,7 @@ void M_WorldEffects (edict_t *ent)
 			{	// drown!
 				if (ent->pain_debounce_time < level.time)
 				{
-					dmg = (int) (2 + 2 * floor(level.time - ent->air_finished));
+					dmg = (int) (2 + 2 * floorf(level.time - ent->air_finished));
 					if (dmg > 15)
 						dmg = 15;
 					T_Damage (ent, world, world, vec3_origin, ent->s.origin, vec3_origin, dmg, 0, DAMAGE_NO_ARMOR, MOD_WATER);
@@ -231,7 +231,7 @@ void M_WorldEffects (edict_t *ent)
 			{	// suffocate!
 				if (ent->pain_debounce_time < level.time)
 				{
-					dmg = (int) (2 + 2 * floor(level.time - ent->air_finished));
+					dmg = (int) (2 + 2 * floorf(level.time - ent->air_finished));
 					if (dmg > 15)
 						dmg = 15;
 					T_Damage (ent, world, world, vec3_origin, ent->s.origin, vec3_origin, dmg, 0, DAMAGE_NO_ARMOR, MOD_WATER);
@@ -533,7 +533,7 @@ qboolean monster_start (edict_t *self)
 	if (deathmatch->value && strcmp (self->classname, "decoy") != 0)
 	{
 		G_FreeEdict (self);
-		return QFALSE;
+		return false;
 	} 
 
 	if ((self->spawnflags & 4) && !(self->monsterinfo.aiflags & AI_GOOD_GUY))
@@ -576,7 +576,7 @@ qboolean monster_start (edict_t *self)
 	if (self->monsterinfo.currentmove)
 		self->s.frame = self->monsterinfo.currentmove->firstframe + (rand() % (self->monsterinfo.currentmove->lastframe - self->monsterinfo.currentmove->firstframe + 1));
 
-	return QTRUE;
+	return true;
 }
 
 void monster_start_go (edict_t *self)
@@ -594,18 +594,18 @@ void monster_start_go (edict_t *self)
 		edict_t		*target;
 
 		target = NULL;
-		notcombat = QFALSE;
-		fixup = QFALSE;
+		notcombat = false;
+		fixup = false;
 		while ((target = G_Find (target, FOFS(targetname), self->target)) != NULL)
 		{
 			if (strcmp(target->classname, "point_combat") == 0)
 			{
 				self->combattarget = self->target;
-				fixup = QTRUE;
+				fixup = true;
 			}
 			else
 			{
-				notcombat = QTRUE;
+				notcombat = true;
 			}
 		}
 		if (notcombat && self->combattarget)

@@ -202,12 +202,12 @@ qboolean IsFemale (edict_t *ent)
 	char		*info;
 
 	if (!ent->client)
-		return QFALSE;
+		return false;
 
 	info = Info_ValueForKey (ent->client->pers.userinfo, "skin");
 	if (info[0] == 'f' || info[0] == 'F')
-		return QTRUE;
-	return QFALSE;
+		return true;
+	return false;
 }
 
 
@@ -865,7 +865,7 @@ void TossClientWeapon (edict_t *self)
 		item = NULL;
 
 	if (!((int)(dmflags->value) & DF_QUAD_DROP))
-		quad = QFALSE;
+		quad = false;
 	else
 		quad = (self->client->quad_framenum > (level.framenum + 10));
 
@@ -956,7 +956,7 @@ void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 	self->client->mine = 0;
 	self->client->mine_count = 0;
 	self->client->curr_heat = 0;
-	self->client->heat_active = QFALSE;
+	self->client->heat_active = false;
 	self->client->chamber = 0; // Turn OFF. 
 	self->client->baton = 0; // Turn OFF. 
 
@@ -1143,7 +1143,7 @@ void InitClientPersistant (gclient_t *client)
 	client->guidedMissileFired = 0;
 	client->mine_count = 0;
 	client->mine = 0;
-	client->heat_active = QFALSE;
+	client->heat_active = false;
 	client->curr_heat = 0;
 	client->chamber=0; // default to OFF. 
 	client->scannerx = 80;
@@ -1230,7 +1230,7 @@ void InitClientPersistant (gclient_t *client)
 	memcpy (client->pers.onrespawn, onrespawn, sizeof(onrespawn));
 	memcpy (client->pers.onenemydeath, onenemydeath, sizeof(onenemydeath));
 
-	client->pers.connected = QTRUE;
+	client->pers.connected = true;
 	ClearScanner(client);
 }
 
@@ -1647,7 +1647,7 @@ void PutClientInServer (edict_t *ent)
 	client_persistent_t	saved;
 	client_respawn_t	resp;
 
-	qboolean spawnlive = QTRUE;
+	qboolean spawnlive = true;
 
 	// find a spawn point
 	// do it before setting health back up, so farthest
@@ -1718,7 +1718,7 @@ void PutClientInServer (edict_t *ent)
 	ent->takedamage = DAMAGE_AIM;
 	ent->movetype = MOVETYPE_WALK;
 	ent->viewheight = 22;
-	ent->inuse = QTRUE;
+	ent->inuse = true;
 	ent->classname = "player";
 	ent->classnum = CN_PLAYER;
 	ent->mass = 200;
@@ -1819,7 +1819,7 @@ void PutClientInServer (edict_t *ent)
 
 	ent->thirdoffx = 32; //Sets up the default reletive camera position
 	ent->thirdoffz = 40;
-	ent->thirdperson = QFALSE;
+	ent->thirdperson = false;
 
 	// darKMajick:
 	client->dM_grenade = 0;
@@ -1856,7 +1856,7 @@ mode, so clear everything out before starting them.
 =====================*/
 void ClientBeginDeathmatch (edict_t *ent)
 { 
-	static qboolean Ghost_Spawned = QFALSE;
+	static qboolean Ghost_Spawned = false;
 
 	// Create Ghost on first Player connect.
 	if (highfragger->value)
@@ -1864,7 +1864,7 @@ void ClientBeginDeathmatch (edict_t *ent)
 		if ((sv_bestplayer->value == 1.0) && !Ghost_Spawned)
 		{
 			Create_Ghost();	
-			Ghost_Spawned = QTRUE;
+			Ghost_Spawned = true;
 		} 
 	}
 
@@ -1900,7 +1900,7 @@ cvar_t *motdfile;
 void ClientPrintMOTD (edict_t *ent)
 {
 	FILE *in;
-	char motdPath[MAX_QPATH + 1];
+	char motdPath[MAX_QPATH];
 	int c;
 	int motdBytes;
 	char *here;
@@ -2117,7 +2117,7 @@ void ClientUserinfoChanged (edict_t *ent, char *userinfo)
 ClientConnect
 
 Called when a player begins connecting to the server.
-The game can refuse entrance to a client by returning QFALSE.
+The game can refuse entrance to a client by returning false.
 If the client is allowed, the connection process will continue
 and eventually get to ClientBegin()
 Changing levels will NOT cause this to be called again, but
@@ -2135,7 +2135,7 @@ qboolean ClientConnect (edict_t *ent, char *userinfo)
 	if (SV_FilterPacket(ip))
 	{
 		Info_SetValueForKey (userinfo, "rejmsg", "Banned.");
-		return QFALSE;
+		return false;
 	}
 
 	// parse the ip address
@@ -2144,7 +2144,7 @@ qboolean ClientConnect (edict_t *ent, char *userinfo)
 	// check for a password
 	value = Info_ValueForKey (userinfo, "password");
 	if (strcmp (password->string, value) != 0)
-		return QFALSE;
+		return false;
 
 	// they can connect
 	ent->client = game.clients + (ent - g_edicts - 1);
@@ -2176,10 +2176,10 @@ qboolean ClientConnect (edict_t *ent, char *userinfo)
 		Log_Time(); // time string has \n built in so we don't need one here
 	}
 
-	ent->client->pers.connected = QTRUE;
+	ent->client->pers.connected = true;
 	ARLog_Stats("IN: %s\n",ent->client->pers.netname);
 	ARLog_Stats("UI: %s\n",ent->client->pers.userinfo); //QW// ARSG stats logging
-	return QTRUE;
+	return true;
 }
 
 /*
@@ -2216,9 +2216,9 @@ void ClientDisconnect (edict_t *ent)
 	gi.unlinkentity (ent);
 	ent->s.modelindex = 0;
 	ent->solid = SOLID_NOT;
-	ent->inuse = QFALSE;
+	ent->inuse = false;
 	ent->classname = "disconnected";
-	ent->client->pers.connected = QFALSE;
+	ent->client->pers.connected = false;
 	ent->client->angel = NULL;
 	ent->client->pers.special = 0;
 	playernum = ent-g_edicts-1;
@@ -2290,13 +2290,13 @@ qboolean FindSmallPoint (edict_t *ent)
 	if (j >= 1000 || k >= 500)
 	{
 		gi.dprintf ("%s couldn't find a spawnpoint: FindSmallPoint\n", ent->client->pers.netname);
-		return QFALSE;
+		return false;
 	}
 
 	loc[2] += 82;
 	VectorCopy(loc,ent->s.origin);
 	VectorCopy(loc,ent->s.old_origin);
-	return QTRUE;
+	return true;
 }
 
 // Paril, finds a random place on the map to put something.
@@ -2332,13 +2332,13 @@ qboolean findspawnpoint (edict_t *ent)
 	if (j >= 1000 || k >= 500)
 	{
 		FindSmallPoint (ent);
-		return QFALSE;
+		return false;
 	}
 
 	loc[2] += 82;
 	VectorCopy(loc,ent->s.origin);
 	VectorCopy(loc,ent->s.old_origin);
-	return QTRUE;
+	return true;
 }
 
 // Paril: Is the player STILL stuck in a solid?
@@ -2401,7 +2401,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		// can exit intermission after five seconds
 		if (level.time > level.intermissiontime + 5.0 
 			&& (ucmd->buttons & BUTTON_ANY) )
-			level.exitintermission = QTRUE;
+			level.exitintermission = true;
 		return;
 	}
 
@@ -2476,7 +2476,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 
 	if (memcmp(&client->old_pmove, &pm.s, sizeof(pm.s)))
 	{
-		pm.snapinitial = QTRUE;
+		pm.snapinitial = true;
 		//		gi.dprintf ("pmove changed!\n");
 	}
 
@@ -2620,7 +2620,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 	{
 		if (!client->weapon_thunk)
 		{
-			client->weapon_thunk = QTRUE;
+			client->weapon_thunk = true;
 			Think_Weapon (ent);
 		}
 	}
@@ -2761,7 +2761,7 @@ void ClientBeginServerFrame (edict_t *ent)
 		&& !ent->frozen)
 		Think_Weapon (ent);
 	else
-		client->weapon_thunk = QFALSE;
+		client->weapon_thunk = false;
 
 	if (ent->deadflag)
 	{

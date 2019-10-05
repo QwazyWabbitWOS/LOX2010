@@ -73,8 +73,8 @@ void Weapon_NukeGrenade (edict_t *ent)
 			if (!ent->client->grenade_blew_up && level.time >= ent->client->grenade_time)
 			{
 				ent->client->weapon_sound = 0;
-				weapon_nukegrenade_fire (ent, QTRUE);
-				ent->client->grenade_blew_up = QTRUE;
+				weapon_nukegrenade_fire (ent, true);
+				ent->client->grenade_blew_up = true;
 			}
 			
 			if (ent->client->buttons & BUTTON_ATTACK)
@@ -85,7 +85,7 @@ void Weapon_NukeGrenade (edict_t *ent)
 				if (level.time >= ent->client->grenade_time)
 				{
 					ent->client->ps.gunframe = 15;
-					ent->client->grenade_blew_up = QFALSE;
+					ent->client->grenade_blew_up = false;
 				}
 				else
 				{
@@ -97,7 +97,7 @@ void Weapon_NukeGrenade (edict_t *ent)
 		if (ent->client->ps.gunframe == 12)
 		{
 			ent->client->weapon_sound = 0;
-			weapon_nukegrenade_fire (ent, QFALSE);
+			weapon_nukegrenade_fire (ent, false);
 		}
 		
 		if ((ent->client->ps.gunframe == 15) && (level.time < ent->client->grenade_time))
@@ -339,7 +339,7 @@ void Fire_Touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf
 		if (crandom() < .4)
 		{
 			VectorSet(grenade1,20,20,crandom()*40+30);
-			fire_fire(ent->owner, ent->s.origin, grenade1, 90, 5, crandom()*2, 120, QFALSE);
+			fire_fire(ent->owner, ent->s.origin, grenade1, 90, 5, crandom()*2, 120, false);
 			if (crandom() < .2)
 				Fire_Explode (ent);
 		}
@@ -445,9 +445,9 @@ void Cluster_SM_Explode (edict_t *ent)
 	VectorSet(grenade3,-20,20,random()*20+30);
 
 	// Sean : explode the four grenades outwards
-	fire_fire(ent->owner, origin, grenade1, 90, 10, random()*4+1, 120,QFALSE);
-	fire_fire(ent->owner, origin, grenade2, 90, 10, random()*4+1, 120,QFALSE);
-	fire_fire(ent->owner, origin, grenade3, 94, 10, random()*4+1, 120,QFALSE);
+	fire_fire(ent->owner, origin, grenade1, 90, 10, random()*4+1, 120,false);
+	fire_fire(ent->owner, origin, grenade2, 90, 10, random()*4+1, 120,false);
+	fire_fire(ent->owner, origin, grenade3, 94, 10, random()*4+1, 120,false);
 
 	 G_FreeEdict (ent);
 }

@@ -95,7 +95,7 @@ void ARLog_Stats(const char *fmt, ... )
 	
 } 
 
-// Check local time and return QTRUE if it's midnight
+// Check local time and return true if it's midnight
 int	CheckLocalMidnight(void)
 {
     time_t	long_time;
@@ -105,9 +105,9 @@ int	CheckLocalMidnight(void)
 	ltime = localtime(&long_time); 
 	
 	if (ltime->tm_hour == 0 && ltime->tm_min == 0 && ltime->tm_sec == 0)
-		return QTRUE;
+		return true;
 	else 
-		return QFALSE;
+		return false;
 }
 
 // this renames the stats file from lox/stats.log (or whatever)

@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifdef _WIN32
   #define WIN32_LEAN_AND_MEAN	//non-MFC
   #include <windows.h>
-  #define CRTDBG_MAP_ALLOC
+  #define _CRTDBG_MAP_ALLOC
   #include <stdlib.h>
   #include <crtdbg.h>
   #ifndef __func__
@@ -2299,3 +2299,4 @@ void MatchplayMakeObserver (edict_t *ent);
 void DoMatchCountdown(edict_t *ent);
 
 #endif
+

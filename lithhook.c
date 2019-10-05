@@ -82,7 +82,7 @@ qboolean hook_cond_reset(edict_t *self)
 	if (!self->owner || (!self->enemy && self->owner->client && self->owner->client->hookstate == HOOK_ON))
 	{
 		hook_reset (self);
-		return (QTRUE);
+		return (true);
 	}
 	
 	if ((self->enemy && !self->enemy->inuse) || (!self->owner->inuse) ||
@@ -90,17 +90,17 @@ qboolean hook_cond_reset(edict_t *self)
 		(self->owner->health <= 0))
 	{
 		hook_reset (self);
-		return (QTRUE);
+		return (true);
 	}
 	
 	if (!((self->owner->client->latched_buttons|self->owner->client->buttons) & BUTTON_ATTACK)
 		&& (strcmp(self->owner->client->pers.weapon->pickup_name, "Grapple") == 0))
 	{
 		hook_reset (self);
-		return (QTRUE);
+		return (true);
 	}
 	
-	return(QFALSE);
+	return(false);
 }
 
 void hook_cond_reset_think(edict_t *hook)

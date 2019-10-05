@@ -320,9 +320,9 @@ void InitGame (void)
 	Maplist_InitVars();	// initialize the maplist management Cvars
 	Voting_InitVars();
 
-	initialization = QTRUE;
+	initialization = true;
 	UpdateBans();
-	initialization = QFALSE;
+	initialization = false;
 
 	// items
 	InitItems();
@@ -392,61 +392,61 @@ void UpdateBans (void)
 	if (weaponban->modified || initialization) 
 	{
 		i_weaponban = strtoul(weaponban->string, NULL,0);
-		weaponban->modified = QFALSE;
+		weaponban->modified = false;
 	}
 	
 	if (featureban->modified || initialization)
 	{
 		i_featureban = strtoul(featureban->string, NULL,0);
-		featureban->modified = QFALSE;
+		featureban->modified = false;
 	}
 	
 	if (fragban->modified || initialization)
 	{
 		i_fragban = strtoul(fragban->string, NULL,0);
-		fragban->modified = QFALSE;
+		fragban->modified = false;
 	}
 	
 	if (loxweaponban->modified || initialization)
 	{
 		i_loxweaponban = strtoul(loxweaponban->string, NULL,0);
-		loxweaponban->modified = QFALSE;
+		loxweaponban->modified = false;
 	}
 	
 	if (loxfeatureban->modified || initialization)
 	{
 		i_loxfeatureban = strtoul(loxfeatureban->string, NULL,0);
-		loxfeatureban->modified = QFALSE;
+		loxfeatureban->modified = false;
 	}
 	
 	if (loxgrenadeban->modified || initialization)
 	{
 		i_loxgrenadeban = strtoul(loxgrenadeban->string, NULL,0);
-		loxgrenadeban->modified = QFALSE;
+		loxgrenadeban->modified = false;
 	}
 	
 	if (loxarmorban->modified || initialization)
 	{
 		i_loxarmorban = strtoul(loxarmorban->string, NULL,0);
-		loxarmorban->modified = QFALSE;
+		loxarmorban->modified = false;
 	}
 	
 	if (loxsweeperban->modified || initialization)
 	{
 		i_loxsweeperban = strtoul(loxsweeperban->string, NULL,0);
-		loxsweeperban->modified = QFALSE;
+		loxsweeperban->modified = false;
 	}
 	
 	if (loxtrackerban->modified || initialization)
 	{
 		i_loxtrackerban = strtoul(loxtrackerban->string, NULL,0);
-		loxtrackerban->modified = QFALSE;
+		loxtrackerban->modified = false;
 	}
 	
 	if (loxturretban->modified || initialization)
 	{
 		i_loxturretban = strtoul(loxturretban->string, NULL,0);
-		loxturretban->modified = QFALSE;
+		loxturretban->modified = false;
 	}
 
 	//QW// bounds check for armor/regen/organic upgrade probabilities
@@ -488,7 +488,7 @@ void UpdateBans (void)
 		//limit value ranges allowed for the respawn protection
 		if (respawn_protect->value <= 0) gi.cvar_set("respawn_protect","0");
 		if (respawn_protect->value >= 6) gi.cvar_set("respawn_protect","6");
-		respawn_protect->modified = QFALSE;
+		respawn_protect->modified = false;
 	}
 
 //	STOP_PERFORMANCE_TIMER(__func__);
@@ -718,7 +718,7 @@ void WriteGame (char *filename, qboolean autosave)
 
 	game.autosaved = autosave;
 	fwrite (&game, sizeof(game), 1, f);
-	game.autosaved = QFALSE;
+	game.autosaved = false;
 
 	for (i=0 ; i<game.maxclients ; i++)
 		WriteClient (f, &game.clients[i]);
@@ -740,7 +740,7 @@ void ReadGame (char *filename)
 		exit(1); // never gets here
 	}
 	fread (str, sizeof(str), 1, f);
-	if (strcmp (str, __DATE__))
+	if (Q_stricmp (str, __DATE__))
 	{
 		fclose (f);
 		gi.error ("Savegame from an older version.\n");
@@ -991,7 +991,7 @@ void ReadLevel (char *filename)
 	{
 		ent = &g_edicts[i+1];
 		ent->client = game.clients + i;
-		ent->client->pers.connected = QFALSE;
+		ent->client->pers.connected = false;
 	}
 
 	// do any load time things at this point

@@ -36,7 +36,7 @@ void stuffcmd(edict_t *ent, char *s)
 {
 	gi.WriteByte (svc_stufftext);	        
 	gi.WriteString (s);
-	gi.unicast (ent, QTRUE);	
+	gi.unicast (ent, true);	
 }
 
 /*--------------------------------------------------------------------------*/
@@ -49,7 +49,7 @@ int i;
 vec3_t viewpoint;
 
 if (targ->movetype == MOVETYPE_PUSH)
-return QFALSE; // bmodels not supported
+return false; // bmodels not supported
 
 // Find the center of the target.
 for (i = 0; i < 3; i++)
@@ -61,9 +61,9 @@ viewpoint[2] += inflictor->viewheight;
 trace = gi.trace (viewpoint, vec3_origin, vec3_origin, targpoint,
 inflictor, MASK_SOLID);
 if (trace.fraction == 1.0)
-return QTRUE;
+return true;
 
-return QFALSE;
+return false;
 }
 */
 /*--------------------------------------------------------------------------*/
@@ -213,8 +213,8 @@ void CTFAssignTeam(gclient_t *who)
 ================
 SelectCTFSpawnPoint
 
-Find a place to spawn this player.  Returns QTRUE if a team-spawnpoint was found
-and the player can be spawned live.  Returns QFALSE if the player should be
+Find a place to spawn this player.  Returns true if a team-spawnpoint was found
+and the player can be spawned live.  Returns false if the player should be
 spawned as a ghost, waiting for a spawnpoint to open up.
 ================
 */
@@ -226,7 +226,7 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive)
 	float	range, range1, range2;
 
 	spot = NULL;
-	*spawnlive = QTRUE;
+	*spawnlive = true;
 
 	// If we already found the spot, don't look again.
 	if (ctfgame.spawnHere)
@@ -238,7 +238,7 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive)
 
 	// If the game hasn't started yet, spawn as a ghost.
 	if (ctfgame.matchStartFrame && level.framenum < ctfgame.matchStartFrame)
-		*spawnlive = QFALSE;
+		*spawnlive = false;
 
 	// Try to spawn at a team-owned spawnpoint.
 	if (ent->client->resp.ctf_state == CTF_STATE_PLAYING
@@ -293,8 +293,8 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive)
 
 			// If any teammates were found on this spawnpoint, and we want to give
 			// them more time to get off of it, skip this spot.
-			if (level.time - spot->freetime > 0.0
-				&& level.time - spot->freetime < 3.0)
+			if (level.time - spot->freetime > 0.0f
+				&& level.time - spot->freetime < 3.0f)
 			{
 				// Remember the respawn-time of the first player we can telefrag.
 				if (lowRespawnTime > spot->freetime)
@@ -372,7 +372,7 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive)
 				}
 			}
 
-			*spawnlive = QFALSE;
+			*spawnlive = false;
 		}
 	}
 
@@ -391,7 +391,7 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive)
 			&& ctfgame.spawn1 == 0 && ctfgame.spawn2 > 0)
 			|| (ent->client->resp.ctf_team == CTF_TEAM2
 			&& ctfgame.spawn2 == 0 && ctfgame.spawn1 > 0)))
-			*spawnlive = QFALSE;
+			*spawnlive = false;
 
 		ent->client->resp.ctf_state = CTF_STATE_PLAYING;
 
@@ -411,7 +411,7 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive)
 			break;
 		default:
 			spot = G_Find (NULL, FOFS(classname), "info_player_start");
-			*spawnlive = QFALSE; // redundant; teamless players are ghosts anyway
+			*spawnlive = false; // redundant; teamless players are ghosts anyway
 			goto spotFound;
 		}
 
@@ -492,12 +492,12 @@ return;
 if (ent->client->resp.id_state)
 {
 gi.cprintf(ent, PRINT_HIGH, "Disabling player identification display.\n");
-ent->client->resp.id_state = QFALSE;
+ent->client->resp.id_state = false;
 }
 else
 {
 gi.cprintf(ent, PRINT_HIGH, "Activating player identification display.\n");
-ent->client->resp.id_state = QTRUE;
+ent->client->resp.id_state = true;
 }
 }
 */
@@ -714,7 +714,7 @@ void CTFTeam_f (edict_t *ent)
 	if ((level.time - ent->client->respawn_time) < 5)
 	{
 		gi.cprintf (ent, PRINT_HIGH, "You can't change teams for another %.1f "
-			"seconds.\n", level.time - ent->client->respawn_time);
+			"seconds.\n", (float)((double)level.time - (double)ent->client->respawn_time));
 		return;
 	}
 
@@ -996,7 +996,7 @@ void CTFChaseCam(edict_t *ent, pmenu_t *p)
 	int i;
 	edict_t *e;
 
-	ent->client->resp.spectator = QTRUE;
+	ent->client->resp.spectator = true;
 
 	if (ent->client->chase_target)
 	{
@@ -1012,7 +1012,7 @@ void CTFChaseCam(edict_t *ent, pmenu_t *p)
 		{
 			ent->client->chase_target = e;
 			PMenu_Close(ent);
-			ent->client->update_chase = QTRUE;
+			ent->client->update_chase = true;
 			break;
 		}
 	}
@@ -1029,8 +1029,8 @@ void CTFShowScores(edict_t *ent, pmenu_t *p)
 {
 	PMenu_Close(ent);
 
-	ent->client->showscores = QTRUE;
-	ent->client->showinventory = QFALSE;
+	ent->client->showscores = true;
+	ent->client->showinventory = false;
 	DeathmatchScoreboard (ent);
 }
 
@@ -1167,7 +1167,7 @@ void CTFCredits(edict_t *ent, pmenu_t *p)
 
 void TeamplayMakeObserver (edict_t *ent)
 {
-	ent->client->resp.spectator = QTRUE;
+	ent->client->resp.spectator = true;
 	ent->movetype = MOVETYPE_NOCLIP;
 	//ent->deadflag = DEAD_DEAD;
 	ent->health = 0;
@@ -1186,7 +1186,7 @@ void TeamplayMakeObserver (edict_t *ent)
 qboolean CTFStartClient(edict_t *ent)
 {
 	if (ent->client->resp.ctf_team != CTF_NOTEAM)
-		return QFALSE;
+		return false;
 
 	if (!((int)dmflags->value & DF_CTF_FORCEJOIN))
 	{
@@ -1198,9 +1198,9 @@ qboolean CTFStartClient(edict_t *ent)
 		PMenu_Open (ent, creditsmenu, -1, sizeof(creditsmenu) / sizeof(pmenu_t));
 		//CTFOpenJoinMenu(ent);
 
-		return QTRUE;
+		return true;
 	}
-	return QFALSE;
+	return false;
 }
 
 char *CTFCheckRules (void)
@@ -1408,13 +1408,13 @@ void TeamplaySpawnpointTouch (edict_t *self, edict_t *other,
 	{
 		// This is the first time this spawnpoint has been touched.
 		self->s.renderfx &= ~RF_SHELL_GREEN;
-		captured = QFALSE;
+		captured = false;
 	}
 	else
 	{
 		// This spawnpoint just got captured from the other team.
 		self->s.renderfx &= ~(RF_SHELL_RED|RF_SHELL_BLUE);
-		captured = QTRUE;
+		captured = true;
 	}
 
 	// Who does it belong to now?
@@ -1468,20 +1468,20 @@ void TeamplayCheckRespawn (void)
 	spawn1 = spawn2 = NULL;
 
 	// Start by allowing both teams to be respawned.
-	canspawn1 = QTRUE;
-	canspawn2 = QTRUE;
+	canspawn1 = true;
+	canspawn2 = true;
 
 	// If a team has no spawnpoints, don't let them spawn.
 	if (ctfgame.spawn1 == 0)
-		canspawn1 = QFALSE;
+		canspawn1 = false;
 	if (ctfgame.spawn2 == 0)
-		canspawn2 = QFALSE;
+		canspawn2 = false;
 
 	// If there's a delay before we can spawn, don't let them spawn.
 	if (level.time < ctfgame.checkRespawnTime1)
-		canspawn1 = QFALSE;
+		canspawn1 = false;
 	if (level.time < ctfgame.checkRespawnTime2)
-		canspawn2 = QFALSE;
+		canspawn2 = false;
 
 	// If we can't spawn anyone from either team, just leave now.
 	if (!canspawn1 && !canspawn2)
@@ -1552,7 +1552,7 @@ void TeamplayCheckRespawn (void)
 
 
 
-// Returns QTRUE if we're counting down to play.
+// Returns true if we're counting down to play.
 qboolean TeamplayCheckCountdown (void)
 {
 	return (ctf->value && ctfgame.matchStartFrame != 0);
@@ -1662,10 +1662,11 @@ void TeamplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 			gi.dprintf ("ERROR: %s: fread %s (%d/%d) not all entities were loaded\n",
 				__func__, filename, nRead, nEntSize);
 			gi.TagFree (pszCustomEnt);
-			err = QTRUE;
+			err = true;
 		}
 
-		if (!err)
+		// pszCustomEnt can't be NULL if we get here but we make the compiler happy.
+		if (!err && pszCustomEnt)
 		{			
 			pszCustomEnt[nEntSize] = '\0';
 			SpawnEntities (mapname, pszCustomEnt, spawnpoint);
@@ -1765,9 +1766,9 @@ void TeamplayStartRound2 (void)
 		TeamplayMakeObserver (ent);
 
 		// Show them the scoreboard.
-		ent->client->showscores = QTRUE;
+		ent->client->showscores = true;
 		DeathmatchScoreboardMessage (ent, NULL);
-		gi.unicast (ent, QTRUE);
+		gi.unicast (ent, true);
 	}
 }
 
@@ -1835,7 +1836,7 @@ void TeamplayRebalanceTeams (void)
 		// particular reason.  It could have been frags-per-frame.  I just thought
 		// I'd get less roundoff error this way, or maybe someday one will want to
 		// display the total frags-per-minute of each team, or something.)
-		minutes = (level.framenum - ent->client->resp.enterframe) / 600.0;
+		minutes = (float)(level.framenum - ent->client->resp.enterframe) / 600.0f;
 		fragrate = ent->client->resp.score / minutes;
 
 		// Put them on the team with the lowest total fragrate.

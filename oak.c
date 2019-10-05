@@ -118,7 +118,7 @@ void SP_Oak_f(edict_t *owner)
 		ent->max_grenades = 50;
 		ent->max_cells = 200;
 		ent->max_slugs = 50;
-		ent->inuse = QTRUE;
+		ent->inuse = true;
 		*/ 
 		
 		// think functions

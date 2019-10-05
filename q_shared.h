@@ -56,8 +56,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 typedef unsigned char 		byte;
-typedef enum {false, true}	boolean;
-typedef enum bool_n {QFALSE, QTRUE} qboolean;
+typedef enum {false, true}	qboolean;
 
 #ifndef NULL
 #define NULL ((void *)0)
@@ -217,6 +216,7 @@ void Com_PageInMemory (byte *buffer, int size);
 
 // Case insensitive string compare function
 int Q_stricmp (const char *s1, const char *s2);
+void Q_strncpy(char* pszDest, const char* pszSrc, int nDestSize);
 
 //=============================================
 
@@ -429,8 +429,8 @@ typedef struct csurface_s
 // a trace is returned when a box is swept through the world
 typedef struct trace_s
 {
-	qboolean	allsolid;	// if QTRUE, plane is not valid
-	qboolean	startsolid;	// if QTRUE, the initial point was in a solid area
+	qboolean	allsolid;	// if true, plane is not valid
+	qboolean	startsolid;	// if true, the initial point was in a solid area
 	float		fraction;	// time completed, 1.0 = didn't hit anything
 	vec3_t		endpos;		// final position
 	cplane_t	plane;		// surface normal at impact
@@ -934,9 +934,6 @@ typedef enum temp_event_n
 #define STAT_NOTCAPPED			STAT_CTF_NOTCAPPED
 
 // MAX_STATS, I'm not sure if this is an absolute limit or arbitrary. //QW//
-// In any case we have a few spares before we need to worry.
-// I think this is just arbitrary and only used to size the
-// stats array in the player_state_t structure.
 
 // ===================================================================
 

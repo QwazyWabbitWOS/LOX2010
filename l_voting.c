@@ -38,7 +38,7 @@
 * -QwazyWabbit
 *
 * Spectators don't count for voting and can't vote.
-* When using GameCam proxy in server, ent->inuse will be QFALSE.
+* When using GameCam proxy in server, ent->inuse will be false.
 ***********************************************************/
 
 // Module Interface:
@@ -49,7 +49,7 @@
 // Call Voting_BeginElection() from inside ClientCommand per the sample
 // at the start of Voting_BeginElection below.
 
-// Call Voting_CmdVote_f() from ClientCommand with QTRUE for yes vote, QFALSE for no.
+// Call Voting_CmdVote_f() from ClientCommand with true for yes vote, false for no.
 
 // Call Voting_KillVoting() inside EndDMLevel() to clean up just before BeginIntermission.
 
@@ -119,20 +119,20 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 	if (electpercentage->value == 0)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Elections are disabled.\n");
-		return QFALSE;
+		return false;
 	}
 	
 	if (voting.election != ELECT_NONE)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Election already in progress.\n");
-		return QFALSE;
+		return false;
 	}
 	
 	// prevent vote cheating after a level change
 	if (level.time < 10.0)
 	{
-		gi.cprintf(ent, PRINT_HIGH, "Too soon to start a vote, %0.0f seconds left.\n", 10.0f - level.time);
-		return QFALSE;
+		gi.cprintf(ent, PRINT_HIGH, "Too soon to start a vote, %0.0f seconds left.\n", 10.0 - level.time);
+		return false;
 	}
 	
 	// count players (preliminary count)
@@ -146,7 +146,7 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 		gi.cprintf(ent, PRINT_HIGH, 
 			"New players can't start an election. You have %i seconds to wait.\n", 
 			(450 - time_in)/10);
-		return QFALSE;
+		return false;
 	}
 	
 	// Time enough to rejoin all clients, clear votes & re-count players
@@ -155,7 +155,7 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 	if (voting.count < MIN_VOTERS)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Not enough players for election.\n");
-		return QFALSE;
+		return false;
 	}
 	
 	//
@@ -168,13 +168,13 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 		if (strlen(mapname) > 64)
 		{
 			gi.cprintf(ent, PRINT_HIGH, "Map name too long.\n");
-			return QFALSE;
+			return false;
 		}
 		
 		if (strstr(mapname, ".")) // no dots allowed
 		{
 			gi.cprintf(ent, PRINT_HIGH, "Do not use an extension in the map name.\n");
-			return QFALSE;
+			return false;
 		}
 		
 		// if argv[2] is missing or contains invalid filename characters
@@ -184,7 +184,7 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 			|| strstr(mapname, ","))
 		{
 			gi.cprintf(ent, PRINT_HIGH, "Invalid input.\n");
-			return QFALSE;
+			return false;
 		}
 		
 		// a user wants next map in rotation
@@ -204,14 +204,14 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 		if (!Maplist_CheckStockmaps(mapname) && !Maplist_CheckFileExists(mapname))
 		{
 			gi.cprintf(ent, PRINT_HIGH, "Map %s does not exist on this server.\n", mapname);
-			return QFALSE;
+			return false;
 		}
 
 		// player only gets two shots per map to start a vote, this stops vote spamming	
 		if (voting.etarget == ent && ent->client->resp.votes_started >= electstarts->value)
 		{
 			gi.cprintf(ent, PRINT_HIGH, "You can't start another vote yet.\n");
-			return QFALSE;
+			return false;
 		}
 		
 		strncpy(voting.elevel, mapname, sizeof(voting.elevel) - 1);
@@ -226,7 +226,7 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 	else if (type > ELECT_NEXTMAP) // last supported mode
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Other vote modes not implemented.\n");
-		return QFALSE;
+		return false;
 	}
 	
 	//proceed with election
@@ -253,7 +253,7 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 	voting.electstarttime = level.time;
 	voting.electtime = level.time + electduration->value; // duration of an election
 	voting.remindtime = level.time + electduration->value/electreminders->value; // reminders for election votes
-	strncpy(voting.emsg, msg, sizeof(voting.emsg) - 1);
+	Q_strncpy(voting.emsg, msg, sizeof(voting.emsg) - 1);
 	
 	if (electautoyes->value)
 		Voting_CmdVote_f (ent, YES);	// register initiator's yes vote
@@ -270,7 +270,7 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 		voting.yesvotes, voting.novotes, voting.needvotes,
 		(int)(voting.electtime - level.time));
 	
-	return QTRUE;
+	return true;
 }
 
 // terminate election when time expires and we still don't have a winner
@@ -357,7 +357,7 @@ void Voting_CmdVote_f(edict_t *ent, int choice)
 	case YES: 
 		voting.evotes++;
 		voting.yesvotes++;
-		ent->client->resp.voted = QTRUE;
+		ent->client->resp.voted = true;
 		if (voting.evotes == voting.needvotes)
 		{
 			// the election has been won
@@ -367,7 +367,7 @@ void Voting_CmdVote_f(edict_t *ent, int choice)
 		
 	case NO:
 		voting.novotes++;
-		ent->client->resp.voted = QTRUE;
+		ent->client->resp.voted = true;
 		break;
 		
 	default:
@@ -427,7 +427,7 @@ static int Voting_CountPlayers(void)
 		if (ent->inuse)	// count only active players
 		{
 			count++;
-			ent->client->resp.voted = QFALSE;
+			ent->client->resp.voted = false;
 		}
 	}
 	return (count);

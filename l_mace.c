@@ -53,8 +53,8 @@ qboolean mace_horn_infront (edict_t *self, edict_t *other)
 	dot = DotProduct (vec, forward);
 	
 	if (dot > 0.8)
-		return QTRUE;
-	return QFALSE;
+		return true;
+	return false;
 }
 
 void fire_mace (edict_t *self, vec3_t start, vec3_t aimdir, int inDamage, int strength, float inRange, float recoil)

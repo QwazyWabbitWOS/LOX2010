@@ -116,7 +116,7 @@ void LaserSightThink (edict_t *self)
 	gi.WriteByte (TE_BFG_LASER);
 	gi.WritePosition (self->owner->s.origin);
 	gi.WritePosition (tr.endpos);
-	gi.unicast (self->owner, QTRUE);
+	gi.unicast (self->owner, true);
 #endif
 
 }

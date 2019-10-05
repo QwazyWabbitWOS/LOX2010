@@ -20,14 +20,14 @@ Next, in p_client.c, add a simple forward declaration:
 
 Then in p_client.c, anywhere in the ClientThink function, call the
 ZbotCheck function.  Pass it the same parameters you get from ClientThink.
-It will return QTRUE if the client is using a Zbot.  Simple example:
+It will return true if the client is using a Zbot.  Simple example:
 
 	if (ZbotCheck(ent, ucmd))
 		gi.bprintf(PRINT_HIGH, ">>> Zbot detected: %s\n",
 		ent->client->pers.netname);
 
 From here you can do as you please with the cheater.  ZbotCheck will only
-return QTRUE once, following returns will be QFALSE.
+return true once, following returns will be false.
 ============================================================================*/
 
 #include "g_local.h"
@@ -43,7 +43,7 @@ qboolean ZbotCheck(edict_t *ent, usercmd_t *ucmd)
 
 	if (!zbot_check->value)
 	{
-		return QFALSE;
+		return false;
 	}
 
 	tog0 = resp->tog;
@@ -62,7 +62,7 @@ qboolean ZbotCheck(edict_t *ent, usercmd_t *ucmd)
 			if (!resp->jitter)
 				resp->jitter_time = level.time;
 			if (++resp->jitter == ZBOT_JITTERMAX)
-				return QTRUE;
+				return true;
 		}
 		resp->jitter_last = level.time;
 	}
@@ -73,5 +73,5 @@ qboolean ZbotCheck(edict_t *ent, usercmd_t *ucmd)
 	if (level.time > resp->jitter_time + ZBOT_JITTERTIME)
 		resp->jitter = 0;
 
-	return QFALSE;
+	return false;
 }

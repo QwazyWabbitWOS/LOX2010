@@ -34,7 +34,7 @@ qboolean G_EntExists(edict_t *ent)
 //====================================================== 
 qboolean G_ClientNotDead(edict_t *ent)
 { 
-	qboolean buried = QTRUE; 
+	qboolean buried = true; 
 	qboolean b1 = (qboolean)(ent->client->ps.pmove.pm_type!=PM_DEAD); 
 	qboolean b2 = (qboolean)(ent->deadflag != DEAD_DEAD); 
 	qboolean b3 = (qboolean)(ent->health > 0); 
@@ -47,9 +47,9 @@ qboolean G_ClientNotDead(edict_t *ent)
 qboolean G_ClientInGame(edict_t *ent)
 { 
 	if (!G_EntExists(ent)) 
-		return QFALSE; 
+		return false; 
 	if (!G_ClientNotDead(ent)) 
-		return QFALSE; 
+		return false; 
 	return (qboolean)(ent->client->respawn_time + 5.0 < level.time); 
 } 
 
@@ -90,10 +90,10 @@ qboolean Baton_Expired(edict_t *baton)
 	if ((baton->delay < level.time) || (baton->owner->client->baton == 0)) 
 	{ 
 		Baton_Explode(baton); 
-		return QTRUE; 
+		return true; 
 	} 
 	else 
-		return QFALSE; 
+		return false; 
 } 
 
 //================================================================== 
@@ -301,7 +301,7 @@ qboolean fire_hit (edict_t *self, vec3_t aim, int damage, int kick)
 	VectorSubtract (self->enemy->s.origin, self->s.origin, dir);
 	range = VectorLength(dir);
 	if (range > aim[0])
-		return QFALSE;
+		return false;
 	
 	if (aim[1] > self->mins[0] && aim[1] < self->maxs[0])
 	{
@@ -323,7 +323,7 @@ qboolean fire_hit (edict_t *self, vec3_t aim, int damage, int kick)
 	if (tr.fraction < 1)
 	{
 		if (!tr.ent->takedamage)
-			return QFALSE;
+			return false;
 		// if it will hit any client/monster then hit the one we wanted to hit
 		if ((tr.ent->svflags & SVF_MONSTER) || (tr.ent->client))
 			tr.ent = self->enemy;
@@ -339,7 +339,7 @@ qboolean fire_hit (edict_t *self, vec3_t aim, int damage, int kick)
 	T_Damage (tr.ent, self, self, dir, point, vec3_origin, damage, kick/2, DAMAGE_NO_KNOCKBACK, MOD_HIT);
 	
 	if (!(tr.ent->svflags & SVF_MONSTER) && (!tr.ent->client))
-		return QFALSE;
+		return false;
 	
 	// do our special form of knockback here
 	VectorMA (self->enemy->absmin, 0.5, self->enemy->size, v);
@@ -348,7 +348,7 @@ qboolean fire_hit (edict_t *self, vec3_t aim, int damage, int kick)
 	VectorMA (self->enemy->velocity, kick, v, self->enemy->velocity);
 	if (self->enemy->velocity[2] > 0)
 		self->enemy->groundentity = NULL;
-	return QTRUE;
+	return true;
 }
 
 
@@ -362,7 +362,7 @@ static void fire_lead (edict_t *self, vec3_t start, vec3_t aimdir, int damage, i
 	trace_t		tr;
 	vec3_t		dir, forward, right, up, end, water_start;
 	float		r, u;
-	qboolean	water = QFALSE;
+	qboolean	water = false;
 	int			content_mask = MASK_SHOT | MASK_WATER;
 	
 	tr = gi.trace (self->s.origin, NULL, NULL, start, self, MASK_SHOT);
@@ -379,7 +379,7 @@ static void fire_lead (edict_t *self, vec3_t start, vec3_t aimdir, int damage, i
 		
 		if (gi.pointcontents (start) & MASK_WATER)
 		{
-			water = QTRUE;
+			water = true;
 			VectorCopy (start, water_start);
 			content_mask &= ~MASK_WATER;
 		}
@@ -391,7 +391,7 @@ static void fire_lead (edict_t *self, vec3_t start, vec3_t aimdir, int damage, i
 		{
 			int		color;
 			
-			water = QTRUE;
+			water = true;
 			VectorCopy (tr.endpos, water_start);
 			
 			if (!VectorCompare (start, tr.endpos))
@@ -517,7 +517,7 @@ void fire_explosive_lead (edict_t *self, vec3_t start, vec3_t aimdir, int damage
 	float		r;
 	float		u;
 	vec3_t		water_start;
-	qboolean	water = QFALSE;
+	qboolean	water = false;
 	int			content_mask = MASK_SHOT | MASK_WATER;
 	
 	tr = gi.trace (self->s.origin, NULL, NULL, start, self, MASK_SHOT);
@@ -534,7 +534,7 @@ void fire_explosive_lead (edict_t *self, vec3_t start, vec3_t aimdir, int damage
 		
 		if (gi.pointcontents (start) & MASK_WATER)
 		{
-			water = QTRUE;
+			water = true;
 			VectorCopy (start, water_start);
 			content_mask &= ~MASK_WATER;
 		}
@@ -546,7 +546,7 @@ void fire_explosive_lead (edict_t *self, vec3_t start, vec3_t aimdir, int damage
 		{
 			int		color;
 			
-			water = QTRUE;
+			water = true;
 			VectorCopy (tr.endpos, water_start);
 			
 			if (!VectorCompare (start, tr.endpos))
@@ -1635,7 +1635,7 @@ void fire_rail (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick
 	VectorMA (start, 8192, aimdir, end);
 	VectorCopy (start, from);
 	ignore = self;
-	water = QFALSE;
+	water = false;
 	mask = MASK_SHOT|CONTENTS_SLIME|CONTENTS_LAVA;
 	while (ignore)
 	{
@@ -1644,7 +1644,7 @@ void fire_rail (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick
 		if (tr.contents & (CONTENTS_SLIME|CONTENTS_LAVA))
 		{
 			mask &= ~(CONTENTS_SLIME|CONTENTS_LAVA);
-			water = QTRUE;
+			water = true;
 		}
 		else
 		{

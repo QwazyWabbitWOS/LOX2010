@@ -26,7 +26,7 @@ void fire_superrailshotgun (edict_t *self, vec3_t start, vec3_t aimdir, int dama
 	VectorMA (start, 8192, aimdir, end);
 	VectorCopy (start, from);
 	ignore = self;
-	water = QFALSE;
+	water = false;
 	mask = MASK_SHOT|CONTENTS_SLIME|CONTENTS_LAVA;
 	
 	while (ignore)
@@ -44,7 +44,7 @@ void fire_superrailshotgun (edict_t *self, vec3_t start, vec3_t aimdir, int dama
 		if (tr.contents & (CONTENTS_SLIME|CONTENTS_LAVA))
 		{
 			mask &= ~(CONTENTS_SLIME|CONTENTS_LAVA);
-			water = QTRUE;
+			water = true;
 		}
 		else
 		{

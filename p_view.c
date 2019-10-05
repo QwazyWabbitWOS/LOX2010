@@ -315,7 +315,7 @@ void SV_CalcViewOffset (edict_t *ent)
 		ratio = (ent->client->fall_time - level.time) / FALL_TIME;
 		if (ratio < 0)
 			ratio = 0;
-		v[2] -= ratio * ent->client->fall_value * 0.4;
+		v[2] -= ratio * ent->client->fall_value * 0.4f;
 
 		// add bob height
 
@@ -1043,7 +1043,7 @@ void G_SetClientEffects (edict_t *ent)
 	else
 	{
 		ent->svflags &= ~SVF_NOCLIENT;
-		ent->client->invisible = QFALSE;
+		ent->client->invisible = false;
 	}
 	if (ent->cloaked)
 	{
@@ -1161,13 +1161,13 @@ void G_SetClientFrame (edict_t *ent)
 	client = ent->client;
 
 	if (client->ps.pmove.pm_flags & PMF_DUCKED)
-		duck = QTRUE;
+		duck = true;
 	else
-		duck = QFALSE;
+		duck = false;
 	if (xyspeed)
-		run = QTRUE;
+		run = true;
 	else
-		run = QFALSE;
+		run = false;
 
 	// check for stand/duck and stop/go transitions
 	if (duck != client->anim_duck && client->anim_priority != ANIM_DEATH)
@@ -1312,7 +1312,7 @@ void ClientEndServerFrame (edict_t *ent)
 	// calculate speed and cycle to be used for
 	// all cyclic walking effects
 	//
-	xyspeed = sqrt(ent->velocity[0]*ent->velocity[0] + ent->velocity[1]*ent->velocity[1]);
+	xyspeed = sqrtf(ent->velocity[0]*ent->velocity[0] + ent->velocity[1]*ent->velocity[1]);
 
 	if (xyspeed < 5)
 	{
@@ -1397,7 +1397,7 @@ void ClientEndServerFrame (edict_t *ent)
 			&& !(level.framenum & 31))
 		{
 			PMenu_Update (ent);
-			gi.unicast (ent, QFALSE);
+			gi.unicast (ent, false);
 		}
 		else if ((ent->client->showscores && !(level.framenum & 31))
 			|| (ent->client->pers.scanner_active && !(level.framenum & SCANNER_UPDATE_FREQ))
@@ -1405,7 +1405,7 @@ void ClientEndServerFrame (edict_t *ent)
 		{ 
 			DeathmatchScoreboardMessage (ent, ent->enemy);
 			ent->client->pers.scanner_active &= ~2;
-			gi.unicast (ent, QFALSE);
+			gi.unicast (ent, false);
 		}
 	}
 
@@ -1452,7 +1452,7 @@ void ThirdBegin (edict_t *ent)
 	clone->s.modelindex4 = ent->s.modelindex4;
 
 	gi.linkentity (clone);
-	ent->thirdperson = QTRUE;
+	ent->thirdperson = true;
 
 	ent->client->ps.pmove.pm_flags |= PMF_NO_PREDICTION;
 }
@@ -1466,7 +1466,7 @@ void ThirdEnd (edict_t *ent)
 {
 	ent->client->ps.gunindex = ent->currentweapon;
 	gi.cprintf (ent, PRINT_HIGH, "Chasecam Mode Off.\n");
-	ent->thirdperson = QFALSE;
+	ent->thirdperson = false;
 
 	ent->client->ps.pmove.pm_flags &= ~PMF_NO_PREDICTION;
 

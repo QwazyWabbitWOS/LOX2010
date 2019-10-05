@@ -47,7 +47,7 @@ void vectoangles2 (vec3_t value1, vec3_t angles)
 		if (yaw < 0)
 			yaw += 360;
 
-		forward = (float) sqrt (value1[0]*value1[0] + value1[1]*value1[1]);
+		forward = (float) sqrtf(value1[0]*value1[0] + value1[1]*value1[1]);
 		pitch = (float)(atan2(value1[2], forward) * 180 / M_PI);
 		if (pitch < 0)
 			pitch += 360;
@@ -412,7 +412,7 @@ void vectoangles (vec3_t value1, vec3_t angles)
 		if (yaw < 0)
 			yaw += 360;
 
-		forward = (float) sqrt (value1[0]*value1[0] + value1[1]*value1[1]);
+		forward = (float) sqrtf(value1[0]*value1[0] + value1[1]*value1[1]);
 		pitch = (float) (atan2(value1[2], forward) * 180 / M_PI);
 		if (pitch < 0)
 			pitch += 360;
@@ -435,7 +435,7 @@ char *G_CopyString (char *in)
 
 void G_InitEdict (edict_t *e)
 {
-	e->inuse = QTRUE;
+	e->inuse = true;
 	e->classname = "noclass";
 	e->classnum = CN_NOCLASS;
 	e->gravity = 1.0;
@@ -485,7 +485,7 @@ edict_t *G_Spawn (void)
 			continue;
 
 		// If it's safe to use it, do so.
-		if (e->freetime < 2 || level.time - e->freetime > 0.5)
+		if (e->freetime < 2 || level.time - e->freetime > 0.5f)
 		{
 			G_InitEdict (e);
 			return e;
@@ -503,7 +503,7 @@ edict_t *G_Spawn (void)
 	{ 
 		// the first couple seconds of server time can involve a lot of
 		// freeing and allocating, so relax the replacement policy
-		if (!e->inuse && ( e->freetime < 2 || level.time - e->freetime > 0.5 ) )
+		if (!e->inuse && ( e->freetime < 2 || level.time - e->freetime > 0.5f) )
 		{
 			G_InitEdict (e);
 			return e;
@@ -545,7 +545,7 @@ void G_FreeEdict (edict_t *ed)
 	ed->classname = "freed";
 	ed->classnum = CN_NOCLASS;
 	ed->freetime = level.time;
-	ed->inuse = QFALSE;
+	ed->inuse = false;
 
 	// Put this edict into the free-edict queue.
 	if (g_freeEdictsH == NULL)
@@ -701,10 +701,10 @@ qboolean KillBox (edict_t *ent)
 
 		// if we didn't kill it, fail
 		if (tr.ent->solid)
-			return QFALSE;
+			return false;
 	}
 
-	return QTRUE;		// all clear
+	return true;		// all clear
 }
 //====================================================== 
 // True if start and end are within radius distance. 
@@ -727,5 +727,5 @@ void StuffCmd(edict_t *ent, char *text)
 
 	gi.WriteByte(svc_stufftext);
 	gi.WriteString(text);
-	gi.unicast(ent, QTRUE);
+	gi.unicast(ent, true);
 }

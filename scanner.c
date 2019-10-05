@@ -44,8 +44,8 @@ void Toggle_Scanner (edict_t *ent)
 	// toggle low on/off bit (and clear scores/inventory display if required)
 	if ((ent->client->pers.scanner_active ^= 1) & 1)
 	{
-		ent->client->showinventory	= QFALSE;
-		ent->client->showscores = QFALSE;
+		ent->client->showinventory	= false;
+		ent->client->showscores = false;
 	}
 	
 	// set "just changed" bit

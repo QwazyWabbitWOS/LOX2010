@@ -39,9 +39,9 @@ Misc functions
 */
 void VelocityForDamage (int damage, vec3_t v)
 {
-	v[0] = 100.0 * crandom();
-	v[1] = 100.0 * crandom();
-	v[2] = 200.0 + 100.0 * random();
+	v[0] = 100.0f * crandom();
+	v[1] = 100.0f * crandom();
+	v[2] = 200.0f + 100.0f * random();
 
 	if (damage < 50)
 		VectorScale (v, 0.7f, v);

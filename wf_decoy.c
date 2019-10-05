@@ -454,15 +454,15 @@ void Toggle_Decoy_f (edict_t *self)
 	
 	string = gi.args();
 	if (Q_stricmp ( string, "on") == 0) 
-		turnon = QTRUE;
+		turnon = true;
 	else if (Q_stricmp ( string, "off") == 0) 
-		turnon = QFALSE;
+		turnon = false;
 	else
 	{  //toggle status
 		if (self->decoy)
-			turnon = QFALSE;
+			turnon = false;
 		else
-			turnon = QTRUE;
+			turnon = true;
 	}
 	
 	//If they want to turn it on and it's already on, return

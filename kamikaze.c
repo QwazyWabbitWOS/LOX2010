@@ -9,7 +9,7 @@ void Start_Kamikaze_Mode(edict_t *self)
 		return;             
 
 	/* not in kamikaze mode yet */
-	self->client->kamikaze_mode = QTRUE;
+	self->client->kamikaze_mode = true;
 
 	/*  Give us only so long */
 	self->client->kamikaze_timeleft = KAMIKAZE_BLOW_TIME;
@@ -32,7 +32,7 @@ qboolean Kamikaze_Active (edict_t *self)
 void Kamikaze_Cancel (edict_t *self)
 {
 	/* Cancel what we started. */
-	self->client->kamikaze_mode = QFALSE;
+	self->client->kamikaze_mode = false;
 	self->client->kamikaze_timeleft = 0;
 	self->client->kamikaze_framenum = 0;
 

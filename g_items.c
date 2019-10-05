@@ -212,10 +212,10 @@ qboolean Pickup_Powerup (edict_t *ent, edict_t *other)
 	
 	quantity = other->client->pers.inventory[ITEM_INDEX(ent->item)];
 	if ((skill->value == 1 && quantity >= 2) || (skill->value >= 2 && quantity >= 1))
-		return QFALSE;
+		return false;
 	
 	if ((coop->value) && (ent->item->flags & IT_STAY_COOP) && (quantity > 0))
-		return QFALSE;
+		return false;
 	
 	other->client->pers.inventory[ITEM_INDEX(ent->item)]++;
 	
@@ -251,7 +251,7 @@ qboolean Pickup_Powerup (edict_t *ent, edict_t *other)
 		}
 	}
 	
-	return QTRUE;
+	return true;
 }
 
 void Drop_General (edict_t *ent, gitem_t *item)
@@ -275,7 +275,7 @@ qboolean Pickup_Adrenaline (edict_t *ent, edict_t *other)
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
 		SetRespawn (ent, ent->item->quantity);
 	
-	return QTRUE;
+	return true;
 }
 
 qboolean Pickup_AncientHead (edict_t *ent, edict_t *other)
@@ -285,7 +285,7 @@ qboolean Pickup_AncientHead (edict_t *ent, edict_t *other)
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
 		SetRespawn (ent, ent->item->quantity);
 	
-	return QTRUE;
+	return true;
 }
 
 qboolean Pickup_Bandolier (edict_t *ent, edict_t *other)
@@ -323,7 +323,7 @@ qboolean Pickup_Bandolier (edict_t *ent, edict_t *other)
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
 		SetRespawn (ent, ent->item->quantity);
 	
-	return QTRUE;
+	return true;
 }
 
 qboolean Pickup_Pack (edict_t *ent, edict_t *other)
@@ -401,7 +401,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
 		SetRespawn (ent, ent->item->quantity);
 	
-	return QTRUE;
+	return true;
 }
 
 //======================================================================
@@ -496,20 +496,20 @@ qboolean Pickup_Key (edict_t *ent, edict_t *other)
 		if (strcmp(ent->classname, "key_power_cube") == 0)
 		{
 			if (other->client->pers.power_cubes & ((ent->spawnflags & 0x0000ff00)>> 8))
-				return QFALSE;
+				return false;
 			other->client->pers.inventory[ITEM_INDEX(ent->item)]++;
 			other->client->pers.power_cubes |= ((ent->spawnflags & 0x0000ff00) >> 8);
 		}
 		else
 		{
 			if (other->client->pers.inventory[ITEM_INDEX(ent->item)])
-				return QFALSE;
+				return false;
 			other->client->pers.inventory[ITEM_INDEX(ent->item)] = 1;
 		}
-		return QTRUE;
+		return true;
 	}
 	other->client->pers.inventory[ITEM_INDEX(ent->item)]++;
-	return QTRUE;
+	return true;
 }
 
 //======================================================================
@@ -520,7 +520,7 @@ qboolean Add_Ammo (edict_t *ent, gitem_t *item, int count)
 	int			max;
 	
 	if (!ent->client)
-		return QFALSE;
+		return false;
 	
 	if (item->tag == AMMO_BULLETS)
 		max = ent->client->pers.max_bullets;
@@ -576,19 +576,19 @@ qboolean Add_Ammo (edict_t *ent, gitem_t *item, int count)
 	else if (item->tag == AMMO_SLUGS)
 		max = ent->client->pers.max_slugs;
 	else
-		return QFALSE;
+		return false;
 	
 	index = ITEM_INDEX(item);
 	
 	if (ent->client->pers.inventory[index] == max)
-		return QFALSE;
+		return false;
 	
 	ent->client->pers.inventory[index] += count;
 	
 	if (ent->client->pers.inventory[index] > max)
 		ent->client->pers.inventory[index] = max;
 	
-	return QTRUE;
+	return true;
 }
 
 qboolean Pickup_Ammo (edict_t *ent, edict_t *other)
@@ -608,7 +608,7 @@ qboolean Pickup_Ammo (edict_t *ent, edict_t *other)
 	//oldcount = other->client->pers.inventory[ITEM_INDEX(ent->item)];
 	
 	if (!Add_Ammo (other, ent->item, count))
-		return QFALSE;
+		return false;
 	
 		/*
 		This, apparently, is the source of that fucking "switch to grenades every
@@ -627,7 +627,7 @@ qboolean Pickup_Ammo (edict_t *ent, edict_t *other)
 	
 	if (!(ent->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM)) && (deathmatch->value))
 		SetRespawn (ent, 30);
-	return QTRUE;
+	return true;
 }
 
 void Drop_Ammo (edict_t *ent, gitem_t *item)
@@ -674,21 +674,21 @@ void MegaHealth_think (edict_t *self)
 		G_FreeEdict (self);
 }
 
-// returns QTRUE if we picked up a health item.
+// returns true if we picked up a health item.
 // here, ent is the item touched and other is the player
 qboolean Pickup_Health (edict_t *ent, edict_t *other)
 {
 	// if already maxed out we don't pick up
 	if (!(ent->style & HEALTH_IGNORE_MAX))
 		if (other->health >= other->max_health)
-			return QFALSE;
+			return false;
 
 	//QW// 
 	// if player is healthy and item is 25 points
 	// or more no pickup
 	//ZOID
 	if (other->health >= 250 && ent->count > 25)
-		return QFALSE;
+		return false;
 	//ZOID
 
 	// we're picking it up
@@ -722,7 +722,7 @@ qboolean Pickup_Health (edict_t *ent, edict_t *other)
 	}
 
 	// we picked up the item
-	return QTRUE;
+	return true;
 }
 
 //======================================================================
@@ -967,7 +967,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 			
 			// if we're already maxed out then we don't need the new armor
 			if (other->client->pers.inventory[old_armor_index] >= newcount)
-				return QFALSE;
+				return false;
 			
 			// update current armor value
 			other->client->pers.inventory[old_armor_index] = newcount;
@@ -977,7 +977,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
 		SetRespawn (ent, 20);
 	
-	return QTRUE;
+	return true;
 }
 
 //======================================================================
@@ -1038,7 +1038,7 @@ qboolean Pickup_PowerArmor (edict_t *ent, edict_t *other)
 			ent->item->use (other, ent->item);
 	}
 	
-	return QTRUE;
+	return true;
 }
 
 void Drop_PowerArmor (edict_t *ent, gitem_t *item)

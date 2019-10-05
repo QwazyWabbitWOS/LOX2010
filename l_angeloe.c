@@ -141,7 +141,7 @@ void AOE_Think (edict_t *ent)
 int aoe_valid (edict_t *cur)
 {
 	if (cur->think == target_laser_think)
-		return QTRUE;
+		return true;
 	
 	switch(cur->classnum) 
 	{
@@ -164,10 +164,10 @@ int aoe_valid (edict_t *cur)
 	case	CN_GUIDEDROCKET:
 	case	CN_GUIDEDNUKE:
 	case	CN_NUKE:
-		return QTRUE;
+		return true;
 		break;
 	default:
-		return QFALSE;
+		return false;
 		break;
 	}
 }

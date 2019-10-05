@@ -62,8 +62,6 @@ static int			numipfilters;
 
 /*
 =================
-StringToFilter
-
 The formats for IP filters recognized by this command are:
 
 x.x.x.x
@@ -94,7 +92,7 @@ qboolean StringToFilter (char *s, ipfilter_t *f)
 		if (*s < '0' || *s > '9')
 		{
 			gi.cprintf(NULL, PRINT_HIGH, "Bad filter address: %s\n", s);
-			return QFALSE;
+			return false;
 		}
 		
 		j = 0;
@@ -117,7 +115,7 @@ qboolean StringToFilter (char *s, ipfilter_t *f)
 	memcpy(&f->mask, m, sizeof f->mask);
 	memcpy(&f->compare, b, sizeof f->compare);
 
-	return QTRUE;
+	return true;
 }
 
 /*
@@ -129,7 +127,7 @@ qboolean SV_FilterPacket (char *from)
 {
 	int		i;
 	unsigned	in;
-	byte m[4];
+	byte m[4] = { 0 };
 	char *p;
 
 	i = 0;
@@ -280,7 +278,7 @@ static void SVCmd_WriteIP_f (void)
 		{	
 			b[j] = (ipfilters[i].compare >> (j * 8)) & 0xff;
 		}
-		fprintf (f, "sv addip %i.%i.%i.%i\n", b[0], b[1], b[2], b[3]);
+		fprintf (f, "sv addip %u.%u.%u.%u\n", b[0], b[1], b[2], b[3]);
 	}
 	
 	fclose (f);

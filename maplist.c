@@ -83,7 +83,7 @@ void Maplist_InitVars(void)
 }
 
 // input argument is pointer to selected map
-// returns QTRUE if it is a stock map, else QFALSE
+// returns true if it is a stock map, else false
 qboolean Maplist_CheckStockmaps(char *thismap)
 {
 	int i;
@@ -91,22 +91,22 @@ qboolean Maplist_CheckStockmaps(char *thismap)
 	for (i = 0; i < sizeof stockmaps / sizeof stockmaps[0]; i++)
 	{
 		if (strcmp (thismap, stockmaps[i]) == 0)
-			return QTRUE; 	// it's a stock map
+			return true; 	// it's a stock map
 	}
-	return QFALSE;
+	return false;
 }
 
 qboolean Maplist_CheckFileExists(char *mapname)
 {
 	FILE *mf;
-	char buffer[MAX_QPATH + 1];
+	char buffer[MAX_QPATH];
 	
 	// check basedir
 	sprintf(buffer, "%s/baseq2/maps/%s.bsp", basedir->string, mapname);
 	mf = fopen (buffer, "r");
 	if (mf != NULL) {
 		fclose(mf);
-		return QTRUE;
+		return true;
 	}
 
 	// check gamedir
@@ -114,14 +114,14 @@ qboolean Maplist_CheckFileExists(char *mapname)
 	mf = fopen (buffer, "r");
 	if (mf != NULL) {	
 		fclose(mf);
-		return QTRUE;
+		return true;
 	}
-	return QFALSE; // no file found
+	return false; // no file found
 }
 
 /*
 * Called by EndDMLevel()
-* MaplistNext returns QTRUE if it has stored the name of
+* MaplistNext returns true if it has stored the name of
 * the next map to run in level.nextmap.
 * The EndDMLevel function can vary from mod to mod.
 * A sample EndDMLevel function that calls this code
@@ -134,26 +134,26 @@ qboolean Maplist_Next (void)
 	long offset;
 	FILE *in;
 	char *res_cp;
-	char buffer[MAX_QPATH];
+	char buffer[MAX_QPATH] = { 0 };
 	qboolean ok;
 	
 	// Make sure we can find the game directory.
 	if (!gamedir || !gamedir->string[0]) {
 		gi.dprintf ("No maplist -- can't find gamedir\n");
-		return QFALSE;
+		return false;
 	}
 	
 	// Make sure we can find the maplist file name.
 	if (!maplistfile || !maplistfile->string[0]) {
 		gi.dprintf ("Error: Maplist file name is null.\n");
-		return QFALSE;
+		return false;
 	}
 	
 	// Get the offset in the maplist.txt file.  
 	// Zero means maplist is turned off.
 	offset = (int)(maplist->value);
 	if (offset <= 0) 
-		return QFALSE;
+		return false;
 	
 	Maplist_VariableLoad();	// use player load sense if enabled.
 	Maplist_VariesMonthly();	// test and use monthly map lists
@@ -168,7 +168,7 @@ qboolean Maplist_Next (void)
 		{
 			gi.dprintf ("No maplist -- can't open ./%s/%s\n",
 				gamedir->string, mymaplistfile->string);
-			return QFALSE;
+			return false;
 		}
 		
 		i = 0;
@@ -189,20 +189,20 @@ qboolean Maplist_Next (void)
 					{
 						gi.dprintf ("ERROR: Maplist file is empty! /%s/%s\n",
 							gamedir->string, mymaplistfile->string);
-						return QFALSE;
+						return false;
 					}
 				}
 				// Other errors are not OK.
 				gi.dprintf ("No maplist -- error reading ./%s/%s\n",
 					gamedir->string, mymaplistfile->string);
-				return QFALSE;	// abort map change
+				return false;	// abort map change
 			}
 			i++;
 		} while (i < offset); // we found the line we want
 		
 		if (in != NULL)
 			fclose (in);
-		ok = QTRUE; // we think we have a map name
+		ok = true; // we think we have a map name
 		
 		// Trim any newline(s) or spaces from the end of the string.
 		res_cp = buffer + strlen (buffer) - 1;
@@ -212,12 +212,12 @@ qboolean Maplist_Next (void)
 			res_cp--;
 		}
 		
-		if (!buffer[0]) // oops, buffer line is blank, warn and recover at next line
+		if (strlen(buffer) == 0) // oops, buffer line is blank, warn and recover at next line
 		{
 			gi.bprintf(PRINT_HIGH,
 				"WARNING: Maplist line %i is blank, using next map in list.\n", offset);
 			offset++;
-			ok = QFALSE;
+			ok = false;
 			continue;
 		}
 		
@@ -226,7 +226,7 @@ qboolean Maplist_Next (void)
 			gi.bprintf(PRINT_HIGH,
 				"WARNING: Skipping double map, using next map in list.\n", offset);
 			offset++;
-			ok = QFALSE;
+			ok = false;
 			continue;
 		}
 		
@@ -238,7 +238,7 @@ qboolean Maplist_Next (void)
 			gi.bprintf(PRINT_HIGH, 
 				"WARNING: Maplist line %i, map %s was not found. Using next map in list.\n", offset, buffer);
 			offset++;
-			ok = QFALSE;
+			ok = false;
 			continue; // try next one in list
 		}
 	} while (!ok); //exit do-while if ok.
@@ -248,7 +248,7 @@ qboolean Maplist_Next (void)
 	offset++;
 	sprintf (buffer, "%ld", offset);	//save the current counter in the maplist pointer cvar
 	maplist = gi.cvar_set (maplist->name, buffer);//no matter what maplist counter we are using
-	return QTRUE;	// good to go
+	return true;	// good to go
 }
 
 static int Maplist_CountPlayers(void)
@@ -311,8 +311,8 @@ static void Maplist_VariesMonthly(void)
 	time_t	ct;
 	struct	tm *lt;
 	char	month[4];
-	char	file[MAX_QPATH + 1];
-	char	buff[MAX_QPATH + 1];
+	char	file[MAX_QPATH];
+	char	buff[MAX_QPATH];
 	FILE	*mf;
 	
 	// running monthly auto rotation
@@ -396,7 +396,7 @@ void EndDMLevel (void)
 		ent = CreateTargetChangeLevel(level.mapname);
 	
 	// get the next one out of the maplist
-	else if (Maplist_Next()) //returns QTRUE if maplist in use and map exists
+	else if (Maplist_Next()) //returns true if maplist in use and map exists
 		ent = CreateTargetChangeLevel(level.nextmap);
 	
 	// go to a specific map

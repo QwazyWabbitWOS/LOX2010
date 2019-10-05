@@ -75,8 +75,8 @@ void DayNightCycle(void)
 		if (minlevel->value > 2)				//put a ceiling on how bright "dim" can be
 			gi.cvar_set("minlevel", "2");	//otherwise why bother cycling it at all
 
-		nightdaytime->modified = QFALSE;
-		minlevel->modified = QFALSE;
+		nightdaytime->modified = false;
+		minlevel->modified = false;
 
 		result = (60 / FRAMETIME) * (nightdaytime->value / 26); //convert minutes to frames per step
 		

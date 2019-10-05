@@ -140,27 +140,27 @@ int aol_needitem (edict_t *ent, edict_t *it)
 	int index = ITEM_INDEX(it->item);
 	
 	if (it->svflags & SVF_NOCLIENT) 
-		return QFALSE;
+		return false;
 	
 	// ignore mega-health item if client has regen or vamp
 	if (it->count == 100 && (ent->client->regenhealth || ent->client->vampihealth))
-		return QFALSE;
+		return false;
 
 	if (it->item->pickup == Pickup_Health && (ent->health < ent->max_health || it->style & 1))
-		return QTRUE;
+		return true;
 	
 	if (it->item->pickup == Pickup_Weapon)
 	{
 		if (((int)(dmflags->value) & DF_WEAPONS_STAY) && ent->client->pers.inventory[index])
 		{
 			//if (!(it->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM) ) )
-			return QFALSE;	// leave the weapon for others to pickup
+			return false;	// leave the weapon for others to pickup
 		}
 		
 		if (it->touch == Drop_Temp_Touch) 
-			return QFALSE;
+			return false;
 		if ((it->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM))) 
-			return QFALSE;
+			return false;
 		
 		// map-spawned fundamental weapons
 		// If any of these are banned, the angel will ignore them and you
@@ -179,20 +179,20 @@ int aol_needitem (edict_t *ent, edict_t *it)
 			(it->item == &gI_weapon_hyperblaster && (i_weaponban & WB_HYPERBLASTER)) ||
 			(it->item == &gI_weapon_railgun && (i_weaponban & WB_RAILGUN)) ||
 			(it->item == &gI_weapon_bfg && (i_weaponban & WB_BFG10K)))
-			return QFALSE; // the base weapon was banned so we ignore it
-		return QTRUE; // all other weapons get picked up
+			return false; // the base weapon was banned so we ignore it
+		return true; // all other weapons get picked up
 	}
 	
-	if (it->item->pickup == Pickup_Powerup)	return QFALSE;
-	if (it->item->pickup == Pickup_Adrenaline) return QTRUE;
-	if (it->item->pickup == Pickup_AncientHead) return QTRUE;
-	if (it->item->pickup == Pickup_Bandolier) return QTRUE;
-	if (it->item->pickup == Pickup_Pack) return QTRUE;
-	if (it->item->pickup == Pickup_Key) return QTRUE;
+	if (it->item->pickup == Pickup_Powerup)	return false;
+	if (it->item->pickup == Pickup_Adrenaline) return true;
+	if (it->item->pickup == Pickup_AncientHead) return true;
+	if (it->item->pickup == Pickup_Bandolier) return true;
+	if (it->item->pickup == Pickup_Pack) return true;
+	if (it->item->pickup == Pickup_Key) return true;
 	
 	if (it->item->pickup == Pickup_Ammo)
 	{
-		int max = 0, index = 0;
+		int max = 0; index = 0;
 		
 		if (it->item->tag == AMMO_BULLETS)
 			max = ent->client->pers.max_bullets;
@@ -207,26 +207,26 @@ int aol_needitem (edict_t *ent, edict_t *it)
 		else if (it->item->tag == AMMO_SLUGS)
 			max = ent->client->pers.max_slugs;
 		else
-			return QFALSE;
+			return false;
 		
 		index = ITEM_INDEX(it->item);
 		
 		if (ent->client->pers.inventory[index] >= max)
-			return QFALSE;
+			return false;
 		
 		if (it->spawnflags & DROPPED_ITEM)
-			return QFALSE;
+			return false;
 		
-		return QTRUE;
+		return true;
 	}
 	
 	if (it->item->pickup == Pickup_Armor)
 	{
 		int old_armor_index = ArmorIndex(ent);
 		if (it->item->tag == ARMOR_SHARD) 
-			return QTRUE;
+			return true;
 		else if (old_armor_index == 0) 
-			return QTRUE;
+			return true;
 		else
 		{
 			gitem_armor_t	*oldinfo;
@@ -242,13 +242,13 @@ int aol_needitem (edict_t *ent, edict_t *it)
 			
 			if (newinfo->normal_protection > oldinfo->normal_protection)
 			{
-				return QTRUE;
+				return true;
 			}
 			
 			// if we're already maxed out then we don't need the new armor
 			if (ent->client->pers.inventory[old_armor_index] >= oldinfo->max_count)
-				return QFALSE;
+				return false;
 		}
 	}
-	return QFALSE;
+	return false;
 }

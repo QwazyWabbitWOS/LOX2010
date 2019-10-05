@@ -54,7 +54,7 @@ void FireGrenade_Explode (edict_t *ent)
 	//FIXME: if we are onground then raise our Z just a bit since we are a point?
 	T_RadiusDamage(ent, ent->owner, ent->dmg, NULL, ent->dmg_radius, mod);
 	// Flame cloud.
-	PBM_FlameCloud (ent->owner, ent->s.origin, cloud, timer, QTRUE, 70, damage,
+	PBM_FlameCloud (ent->owner, ent->s.origin, cloud, timer, true, 70, damage,
 		radius_damage, 100, 75);
 	T_ShockWave (ent, 255, 1024);
 	
@@ -247,7 +247,7 @@ void firerocket_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t
 		mod);
 	
 	// Flame cloud.
-	PBM_FlameCloud(ent->owner, ent->s.origin, cloud, timer, QTRUE, 70, damage, radius_damage, 100, 75);
+	PBM_FlameCloud(ent->owner, ent->s.origin, cloud, timer, true, 70, damage, radius_damage, 100, 75);
 	
 	gi.WriteByte (svc_temp_entity);
 	if (ent->waterlevel)

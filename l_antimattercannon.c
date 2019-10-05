@@ -26,9 +26,9 @@ void fire_asha  (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kic
 	vec3_t		dir, forward, right, up, end;
 	float		r, u;
 	vec3_t		water_start;
-	qboolean	water = QFALSE;
+	qboolean	water = false;
 	int			content_mask = MASK_SHOT | MASK_WATER;
-    qboolean    is_onturret = QFALSE;
+    qboolean    is_onturret = false;
 	
 	//eo! Turret encara no posat! FIXME
 	//#if 0
@@ -36,7 +36,7 @@ void fire_asha  (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kic
 	//		is_onturret = (self->client->onturret > 0);
 	//	else
 	//		if (self->flags & FL_TEAMSLAVE)
-	//			is_onturret=QTRUE;
+	//			is_onturret=true;
 	//#endif
 	
 	if (!is_onturret)
@@ -57,7 +57,7 @@ void fire_asha  (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kic
 		
 		if (gi.pointcontents (start) & MASK_WATER)
 		{
-			water = QTRUE;
+			water = true;
 			VectorCopy (start, water_start);
 			content_mask &= ~MASK_WATER;
 		}
@@ -69,7 +69,7 @@ void fire_asha  (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kic
 		{
 			int		color;
 			
-			water = QTRUE;
+			water = true;
 			VectorCopy (tr.endpos, water_start);
 			
 			if (!VectorCompare (start, tr.endpos))

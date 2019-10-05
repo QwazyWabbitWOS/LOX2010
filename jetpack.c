@@ -45,14 +45,14 @@ qboolean Jet_AvoidGround( edict_t *ent )
 }
 
 
-/*This function returns QTRUE if the jet is activated
+/*This function returns true if the jet is activated
 (surprise, surprise)*/
 qboolean Jet_Active( edict_t *ent )
 {
 	if ( ent->client->Jet_framenum >= level.framenum )
-		return QTRUE;
+		return true;
 	else
-		return QFALSE;
+		return false;
 }
 
 

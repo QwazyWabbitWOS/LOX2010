@@ -356,7 +356,7 @@ void ED_ParseField (char *key, char *value, edict_t *ent)
 	field_t	*f;
 	byte	*b;
 	float	v;
-	vec3_t	vec;
+	vec3_t	vec = { 0 };
 	
 	for (f=fields ; f->name ; f++)
 	{
@@ -373,10 +373,17 @@ void ED_ParseField (char *key, char *value, edict_t *ent)
 				*(char **)(b+f->ofs) = ED_NewString (value);
 				break;
 			case F_VECTOR:
-				sscanf (value, "%f %f %f", &vec[0], &vec[1], &vec[2]);
-				((float *)(b+f->ofs))[0] = vec[0];
-				((float *)(b+f->ofs))[1] = vec[1];
-				((float *)(b+f->ofs))[2] = vec[2];
+				if (sscanf(value, "%f %f %f", &vec[0], &vec[1], &vec[2])) {
+					((float*)(b + f->ofs))[0] = vec[0];
+					((float*)(b + f->ofs))[1] = vec[1];
+					((float*)(b + f->ofs))[2] = vec[2];
+				}
+				else {
+					((float*)(b + f->ofs))[0] = vec[0];	// if we get here, it's an error in the map
+					((float*)(b + f->ofs))[1] = vec[1]; // set all zeroes and log a warning.
+					((float*)(b + f->ofs))[2] = vec[2];
+					gi.dprintf("WARNING: Vector field incomplete in %s, map: %s, field: %s\n", __func__, level.mapname, f->name);
+				}
 				break;
 			case F_INT:
 				*(int *)(b+f->ofs) = atoi(value);
@@ -415,7 +422,7 @@ char *ED_ParseEdict (char *data, edict_t *ent)
 	char		keyname[256];
 	char		*com_token;
 	
-	init = QFALSE;
+	init = false;
 	memset (&st, 0, sizeof(st));
 	
 	// go through all the dictionary pairs
@@ -438,7 +445,7 @@ char *ED_ParseEdict (char *data, edict_t *ent)
 		if (com_token[0] == '}')
 			gi.error ("%s: closing brace without data", __func__);
 		
-		init = QTRUE;	
+		init = true;	
 		
 		// keynames with a leading underscore are used for utility comments,
 		// and are immediately discarded by quake
@@ -509,7 +516,7 @@ void G_FindTeams (void)
 
 // Define this to make SpawnEntities() output a version of the read entities
 // containing everything that wasn't freed.  (A game-development thing.)
-//#define STRIPENTS
+//#define DUMPENTS
 
 /*
 * ==============
@@ -527,13 +534,13 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	int			i;
 	float		skill_level;
 	
-#ifdef STRIPENTS
+#ifdef DUMPENTS
 	char *entstart;
 	FILE *f;
 	char szFile[MAX_QPATH];
-#endif //STRIPENTS
+#endif //DUMPENTS
 	
-#ifdef STRIPENTS
+#ifdef DUMPENTS
 	// Create the pathname to the new entity file.
 	Com_sprintf (szFile, sizeof (szFile), "%s/ent/new-%s.ent",
 		gamedir->string, mapname);
@@ -541,9 +548,9 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	// Try to open it.
 	f = fopen (szFile, "wb");
 	if (!f)
-		gi.error ("SpawnEntities STRIPENTS: couldn't open %s for writing\n",
+		gi.error ("SpawnEntities DUMPENTS: couldn't open %s for writing\n",
 		szFile);
-#endif //STRIPENTS
+#endif //DUMPENTS
 	
 	skill_level = floor (skill->value);
 	if (skill_level < 0)
@@ -578,10 +585,10 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	// parse ents
 	for (;;)
 	{
-#ifdef STRIPENTS
+#ifdef DUMPENTS
 		// keep track of where the entity started.
 		entstart = entities;
-#endif //STRIPENTS
+#endif
 		
 		// parse the opening brace	
 		com_token = COM_Parse (&entities);
@@ -594,10 +601,14 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 			ent = g_edicts;
 		else
 			ent = G_Spawn ();
+
+		assert(ent != NULL);
 		entities = ED_ParseEdict (entities, ent);
-		
+
 		// yet another map hack
-		if (!Q_stricmp(level.mapname, "command") && !Q_stricmp(ent->classname, "trigger_once") && !Q_stricmp(ent->model, "*27"))
+		if (!Q_stricmp(level.mapname, "command") && 
+			!Q_stricmp(ent->classname, "trigger_once") && 
+			!Q_stricmp(ent->model, "*27"))
 			ent->spawnflags &= ~SPAWNFLAG_NOT_HARD;
 		
 		// remove things (except the world) from different skill levels or deathmatch
@@ -631,7 +642,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 		
 		ED_CallSpawn (ent);
 		
-#ifdef STRIPENTS
+#ifdef DUMPENTS
 		// If this entity survived, print it.
 		if (ent->inuse)
 		{
@@ -647,14 +658,14 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 			// Write it.
 			nWritten = fwrite (entstart, sizeof (char), entsize, f);
 			if (nWritten != entsize)
-				gi.error ("SpawnEntities STRIPENTS: couldn't write to file\n");
+				gi.error ("SpawnEntities DUMPENTS: couldn't write to file\n");
 		}
-#endif //STRIPENTS
+#endif //DUMPENTS
 	}	
 	
-#ifdef STRIPENTS
+#ifdef DUMPENTS
 	fclose (f);
-#endif //STRIPENTS
+#endif
 	
 	gi.dprintf ("%i entities inhibited\n", inhibit);
 	
@@ -746,7 +757,7 @@ below it. This seems to give a nice uniform leading between lines.
 */
 
 // ===================================================================
-
+// This function is executed once in SP_worldspawn
 void CreateStatusBar(void)
 {
 	char Bar[256]; // temporary storage
@@ -866,7 +877,7 @@ void SP_worldspawn (edict_t *ent)
 {
 	ent->movetype = MOVETYPE_PUSH;
 	ent->solid = SOLID_BSP;
-	ent->inuse = QTRUE;			// since the world doesn't use G_Spawn()
+	ent->inuse = true;			// since the world doesn't use G_Spawn()
 	ent->s.modelindex = 1;		// world model is always index 1
 	//---------------
 	game.statusbar = statusbar;

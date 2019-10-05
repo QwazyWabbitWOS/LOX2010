@@ -141,66 +141,66 @@ qboolean PBM_InWater (edict_t *ent)
 {
 	/* For players and monsters. */
 	if (ent->waterlevel >= 2)
-		return QTRUE;
+		return true;
 
 	/* All-purpose check. */
 	if (gi.pointcontents(ent->s.origin) & MASK_WATER)
-		return QTRUE;
+		return true;
 	else
-		return QFALSE;
+		return false;
 }
 
 /*-------------------------------------------------------- New Code --------
 //  This checks if 'ent' is vulnerable to fire.  Entities that are
-//  immune to fire return QFALSE.  Entities that can burn return QTRUE.
+//  immune to fire return false.  Entities that can burn return true.
 //------------------------------------------------------------------------*/
 qboolean PBM_Flammable (edict_t *ent)
 {
 	/* Thou canst not burn what doth not exist. */
-	if (!ent)  return QFALSE;
+	if (!ent)  return false;
 
 	/* Any entity that is impervious to damage is inflammable. */
-	if (!ent->takedamage)  return QFALSE;
+	if (!ent->takedamage)  return false;
 
 	/* Dead and gibbed entities cannot burn. */
-	if (ent->health <= ent->gib_health)  return QFALSE;
+	if (ent->health <= ent->gib_health)  return false;
 
 	/* Any entity that is immune to lava cannot burn. */
-	if (ent->flags & FL_IMMUNE_LAVA)  return QFALSE;
+	if (ent->flags & FL_IMMUNE_LAVA)  return false;
 
 	/* If entity is a client, check for powerups. */
 	if (ent->client)
 	{
 		/* Invulnerability protects entity from burning. */
 		if (ent->client->invincible_framenum > level.framenum)
-			return QFALSE;
+			return false;
 
 		/* Bio-suit offers partial immunity to fire. */
 		if ((ent->client->enviro_framenum > level.framenum) && (random() < 0.75))
-			return QFALSE;
+			return false;
 	}
 
 	/* The entity is flammable. */
-	return QFALSE;
+	return false;
 }
 
 /*-------------------------------------------------------- New Code --------
-//  This checks if 'ent' can be set on fire.  If so, QFALSE is returned.
+//  This checks if 'ent' can be set on fire.  If so, false is returned.
 //------------------------------------------------------------------------*/
 qboolean PBM_FireResistant (edict_t *ent)
 {
 	/* An entity immune to damage (or fire) obviously can resist fire. */
 	if (!PBM_Flammable(ent))
-		return QTRUE;
+		return true;
 
 	/* Only creatures or barrels can be set on fire. */
 	if ( (!ent->client) && (!(ent->svflags & SVF_MONSTER)) &&
 		(strcmp(ent->classname, "misc_explobox")) )
-		return QTRUE;
+		return true;
 
 	/* Power armor halves the chance of igniting. */
 	if ((ent->flags & FL_POWER_ARMOR) && (rand() & 1))
-		return QTRUE;
+		return true;
 
 	/* The following monster types are resistant to fire. */
 	if ( (!strcmp(ent->classname, "monster_tank")) ||
@@ -209,10 +209,10 @@ qboolean PBM_FireResistant (edict_t *ent)
 		(!strcmp(ent->classname, "monster_boss2")) ||
 		(!strcmp(ent->classname, "monster_makron")) ||
 		(!strcmp(ent->classname, "monster_jorg")) )
-		return QTRUE;
+		return true;
 
 	/* Entity can be set on fire. */
-	return QFALSE;
+	return false;
 }
 
 /*-------------------------------------------------------- New Code --------
@@ -372,14 +372,14 @@ qboolean PBM_FlameOut (edict_t *self)
 	if (!self->enemy)
 	{	
 		PBM_BecomeNewExplosion (self);
-		return QTRUE;
+		return true;
 	}
 
 	/* If no burnout time is specified, entity should not be burning. */
 	if (!self->enemy->burnout)
 	{	
 		PBM_BecomeNewExplosion (self);
-		return QTRUE;
+		return true;
 	}
 
 	/* Explode as soon as the entity is gibbed. */
@@ -387,7 +387,7 @@ qboolean PBM_FlameOut (edict_t *self)
 	{	
 		self->enemy->burnout = 0;
 		BecomeExplosion2 (self);
-		return QTRUE;
+		return true;
 	}
 
 	/* The fire burns itself out after a period of time. */
@@ -395,7 +395,7 @@ qboolean PBM_FlameOut (edict_t *self)
 	{	
 		self->enemy->burnout = 0;
 		PBM_BecomeNewExplosion (self);
-		return QTRUE;
+		return true;
 	}
 
 	/* Check if the victim found some water. */
@@ -403,7 +403,7 @@ qboolean PBM_FlameOut (edict_t *self)
 	{	
 		self->enemy->burnout = 0;
 		PBM_BecomeSteam (self);
-		return QTRUE;
+		return true;
 	}
 
 	/* Gaining invulnerability kills the fire immediately. */
@@ -413,11 +413,11 @@ qboolean PBM_FlameOut (edict_t *self)
 		{	
 			self->enemy->burnout = 0;
 			PBM_BecomeNewExplosion (self);
-			return QTRUE;
+			return true;
 		}
 	}	
 	/* Keep on burning! */
-	return QFALSE;
+	return false;
 }
 
 /*-------------------------------------------------------- New Code --------
@@ -507,24 +507,24 @@ void PBM_Ignite (edict_t *victim, edict_t *attacker)
 }
 
 /*------------------------------------------------------/ New Code /--------
-//  This checks if 'ent' can be set on fire.  If so, QFALSE is returned.
+//  This checks if 'ent' can be set on fire.  If so, false is returned.
 //------------------------------------------------------------------------*/
 qboolean PBM_FireResistant2 (edict_t *ent, vec3_t point)
 {
 	/* An entity immune to damage (or fire) obviously can resist fire. */
 	if (PBM_Inflammable(ent))
-		return QTRUE;
+		return true;
 
 	/* Check if entity is resistant to fire.  (True by default.) */
 	if (!(ent->fireflags & FIREFLAG_IGNITE))
-		return QTRUE;
+		return true;
 
 	/* Check if entity is protected by power armor. */
 	if (PBM_ActivePowerArmor (ent, point))
-		return QTRUE;
+		return true;
 
 	/* Entity can be set on fire. */
-	return QFALSE;
+	return false;
 }
 
 /*------------------------------------------------------/ New Code /--------
@@ -1045,36 +1045,36 @@ void PBM_EasyFireDrop (edict_t *self)
 
 /*------------------------------------------------------/ New Code /--------
 //  This checks if 'ent' is impervious to fire.  Entities that are
-//  immune to fire return QTRUE.  Entities that can burn return QFALSE.
+//  immune to fire return true.  Entities that can burn return false.
 //------------------------------------------------------------------------*/
 qboolean PBM_Inflammable (edict_t *ent)
 {
 	/* Thou canst not burn what doth not exist. */
-	if (!ent)  return QTRUE;
+	if (!ent)  return true;
 
 	/* Any entity that is impervious to damage is inflammable. */
-	if (!ent->takedamage)  return QTRUE;
+	if (!ent->takedamage)  return true;
 
 	/* Dead and gibbed entities cannot burn. */
-	if (ent->health <= ent->gib_health)  return QTRUE;
+	if (ent->health <= ent->gib_health)  return true;
 
 	/* Any entity that is immune to lava cannot burn. */
-	if (ent->flags & FL_IMMUNE_LAVA)  return QTRUE;
+	if (ent->flags & FL_IMMUNE_LAVA)  return true;
 
 	/* If entity is a client, check for powerups. */
 	if (ent->client)
 	{
 		/* Invulnerability protects entity from burning. */
 		if (ent->client->invincible_framenum > level.framenum)
-			return QTRUE;
+			return true;
 
 		/* Bio-suit offers partial immunity to fire. */
 		if ((ent->client->enviro_framenum > level.framenum) && (random() < 0.8))
-			return QTRUE;
+			return true;
 	}
 
 	/* The entity is flammable. */
-	return QFALSE;
+	return false;
 }
 
 /*------------------------------------------------------/ New Code /--------
@@ -1090,14 +1090,14 @@ qboolean PBM_ActivePowerArmor (edict_t *ent, vec3_t point)
 	else if (ent->svflags & SVF_MONSTER)
 	{       
 		if (ent->monsterinfo.power_armor_power <= 0)
-			return QFALSE;
+			return false;
 		power_armor_type = ent->monsterinfo.power_armor_type;
 	}
 	else
-		return QFALSE;
+		return false;
 
 	if (power_armor_type == POWER_ARMOR_NONE)
-		return QFALSE;
+		return false;
 
 	if (power_armor_type == POWER_ARMOR_SCREEN)
 	{
@@ -1111,33 +1111,33 @@ qboolean PBM_ActivePowerArmor (edict_t *ent, vec3_t point)
 		VectorNormalize (v);
 		dot = DotProduct (v, forward);
 		if (dot <= 0.3)
-			return QFALSE;
+			return false;
 	}
 
 	/* Entity is protected by power armor. */
-	return QTRUE;
+	return true;
 }
 
 /*===========================/  END OF FILE  /===========================*/
 /*------------------------------------------------------/ New Code /--------
-//  This checks if 'ent' can be set on fire.  If so, QFALSE is returned.
+//  This checks if 'ent' can be set on fire.  If so, false is returned.
 //------------------------------------------------------------------------*/
 qboolean LPBM_FireResistant (edict_t *ent, vec3_t point)
 {
 	/* An entity immune to damage (or fire) obviously can resist fire. */
 	if (PBM_Inflammable(ent))
-		return QTRUE;
+		return true;
 
 	/* Check if entity is resistant to fire.  (True by default.) */
 	if (!(ent->fireflags & FIREFLAG_IGNITE))
-		return QTRUE;
+		return true;
 
 	/* Check if entity is protected by power armor. */
 	if (PBM_ActivePowerArmor (ent, point))
-		return QTRUE;
+		return true;
 
 	/* Entity can be set on fire. */
-	return QFALSE;
+	return false;
 }
 /*------------------------------------------------------/ New Code /--------
 //  This sets the victim on fire.
@@ -1215,51 +1215,51 @@ qboolean PBM_CanDamageFromPoint (edict_t *targ, vec3_t point)
 		VectorScale (dest, 0.5, dest);
 		trace = gi.trace (point, vec3_origin, vec3_origin, dest, NULL, MASK_SOLID);
 		if (trace.fraction == 1.0)
-			return QTRUE;
+			return true;
 		if (trace.ent == targ)
-			return QTRUE;
-		return QFALSE;
+			return true;
+		return false;
 	}
 
 	trace = gi.trace (point, vec3_origin, vec3_origin, targ->s.origin, NULL, MASK_SOLID);
 	if (trace.fraction == 1.0)
-		return QTRUE;
+		return true;
 
 	VectorCopy (targ->s.origin, dest);
 	dest[0] += 15.0;
 	dest[1] += 15.0;
 	trace = gi.trace (point, vec3_origin, vec3_origin, dest, NULL, MASK_SOLID);
 	if (trace.fraction == 1.0)
-		return QTRUE;
+		return true;
 
 	VectorCopy (targ->s.origin, dest);
 	dest[0] += 15.0;
 	dest[1] -= 15.0;
 	trace = gi.trace (point, vec3_origin, vec3_origin, dest, NULL, MASK_SOLID);
 	if (trace.fraction == 1.0)
-		return QTRUE;
+		return true;
 
 	VectorCopy (targ->s.origin, dest);
 	dest[0] -= 15.0;
 	dest[1] += 15.0;
 	trace = gi.trace (point, vec3_origin, vec3_origin, dest, NULL, MASK_SOLID);
 	if (trace.fraction == 1.0)
-		return QTRUE;
+		return true;
 
 	VectorCopy (targ->s.origin, dest);
 	dest[0] -= 15.0;
 	dest[1] -= 15.0;
 	trace = gi.trace (point, vec3_origin, vec3_origin, dest, NULL, MASK_SOLID);
 	if (trace.fraction == 1.0)
-		return QTRUE;
+		return true;
 
 
-	return QFALSE;
+	return false;
 }
 
 /*-------------------------------------------------------- New Code --------
-//  This destroys 'ent' if it is a projectile.  'QTRUE' is returned
-//  if entity is destroyed, 'QFALSE' is returned if entity was not
+//  This destroys 'ent' if it is a projectile.  'true' is returned
+//  if entity is destroyed, 'false' is returned if entity was not
 //  affected.
 //------------------------------------------------------------------------*/
 qboolean PBM_NegateMissile (edict_t *ent)
@@ -1274,12 +1274,12 @@ qboolean PBM_NegateMissile (edict_t *ent)
 	if (ent->clipmask == MASK_SHOT)
 	{
 	G_FreeEdict (ent);
-	return QTRUE;
+	return true;
 	}
 	*/
 
 	/* Entity was not affected. */
-	return QFALSE;
+	return false;
 }
 
 /*-------------------------------------------------------- New Code --------

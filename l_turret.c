@@ -198,7 +198,7 @@ void Turret_Think (edict_t *ent)
 		else if (Q_stricmp (ent->turretammotype, "Flamesweeper") == 0) 
 			fire_flame (ent->owner, ent->s.origin, ent->movedir, FLAMESWEEPER_DAMAGE, /*speed*/ FLAMESWEEPER_SPEED);
 		else if (Q_stricmp (ent->turretammotype, "Bazookasweeper") == 0) 
-			fire_grenade_dM (ent->owner, ent->s.origin, ent->movedir, 120, 500, 2.5, 50, 0, /* held */ QFALSE, /* bazookad */ QTRUE);		
+			fire_grenade_dM (ent->owner, ent->s.origin, ent->movedir, 120, 500, 2.5, 50, 0, /* held */ false, /* bazookad */ true);		
 		else if (Q_stricmp (ent->turretammotype, "Railgunsweeper") == 0) 
 			fire_rail (ent->owner, ent->s.origin, ent->movedir, 150, 8);
 		else if (Q_stricmp (ent->turretammotype, "Super Rail Shotgun") == 0) 
@@ -218,8 +218,8 @@ void Turret_Think (edict_t *ent)
 				2.5, //timer
 				50,  //damage radius
 				ent->dm_type, //type
-				QFALSE, // held
-				QFALSE); // bazookad		
+				false, // held
+				false); // bazookad		
 		else if (Q_stricmp (ent->turretammotype, "Sticking Grenades") == 0) 
 			fire_stickinggrenade (ent->owner, ent->s.origin, ent->movedir, 120, 600, 2.5, 40);
 		else if (Q_stricmp (ent->turretammotype, "Buckyball Launcher") == 0) 
@@ -233,8 +233,8 @@ void Turret_Think (edict_t *ent)
 				2.5, //timer
 				50,  //damage radius
 				ent->dm_type, //type
-				QFALSE, // held
-				QTRUE); // bazookad
+				false, // held
+				true); // bazookad
 		else if (Q_stricmp (ent->turretammotype, "Double Impact") == 0)
 		{
 			v[YAW]   = ent->movedir[YAW] - 6;
@@ -248,8 +248,8 @@ void Turret_Think (edict_t *ent)
 				2.5, //timer
 				50,  //damage radius
 				ent->dm_type, //type
-				QFALSE, //held
-				QTRUE); //bazookad
+				false, //held
+				true); //bazookad
 			v[YAW]   = ent->movedir[YAW] + 6;
 			AngleVectors (v, forward, NULL, NULL);
 			fire_grenade_dM (ent->owner, 
@@ -260,8 +260,8 @@ void Turret_Think (edict_t *ent)
 				2.5, 
 				50, 
 				ent->dm_type, 
-				/* held */ QFALSE, 
-				/* bazookad */ QTRUE);		
+				/* held */ false, 
+				/* bazookad */ true);		
 		}
 		else if (Q_stricmp (ent->turretammotype, "Rocket Launcher") == 0)
 			fire_flamerocket (ent->owner, ent->s.origin, ent->movedir, (100 + (int)(random() * 20.0)), 650, 120, 120);

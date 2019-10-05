@@ -124,8 +124,8 @@ void weapon_bazookasweeper_fire (edict_t *ent)
 			2.5,	//timer
 			50,		//damage_radius
 			ent->client->dM_grenade, //type
-			QFALSE,	//held
-			QTRUE);	//bazookad
+			false,	//held
+			true);	//bazookad
 		
 		if (ent->client->sweeperfiremode == 1)
 			ent->client->curr_heat += WEPHEAT_HIGH;
@@ -142,8 +142,8 @@ void weapon_bazookasweeper_fire (edict_t *ent)
 				2.5,	//timer
 				50,		//damage_radius
 				ent->client->dM_grenade, //type
-				QFALSE,	//held
-				QTRUE);	//bazookad
+				false,	//held
+				true);	//bazookad
 		}
 	}
 	else
@@ -156,8 +156,8 @@ void weapon_bazookasweeper_fire (edict_t *ent)
 			2.5,	//timer
 			50,		//damage_radius
 			ent->client->dM_grenade, //type
-			QFALSE,	//held
-			QTRUE);	//bazookad
+			false,	//held
+			true);	//bazookad
 		if (ent->client && ent->client->pers.special == AODEATH)
 		{
 			fire_grenade_dM (ent, 
@@ -168,8 +168,8 @@ void weapon_bazookasweeper_fire (edict_t *ent)
 				2.5,	//timer
 				50,		//damage_radius
 				ent->client->dM_grenade, //type
-				QFALSE,	//held
-				QTRUE);	//bazookad
+				false,	//held
+				true);	//bazookad
 		}
 	}
 	// send muzzle flash

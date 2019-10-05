@@ -254,7 +254,7 @@ void plat_CalcAcceleratedMove(moveinfo_t *moveinfo)
 		float	f;
 
 		f = (moveinfo->accel + moveinfo->decel) / (moveinfo->accel * moveinfo->decel);
-		moveinfo->move_speed = (float)(-2 + sqrt(4 - 4 * f * (-2 * moveinfo->remaining_distance))) / (2 * f);
+		moveinfo->move_speed = (float)(-2 + sqrtf(4 - 4 * f * (-2 * moveinfo->remaining_distance))) / (2 * f);
 		decel_dist = AccelerationDistance (moveinfo->move_speed, moveinfo->decel);
 	}
 
@@ -320,7 +320,7 @@ void plat_Accelerate (moveinfo_t *moveinfo)
 		// and cross over the decel_distance; figure the average speed for the
 		// entire move
 		p1_distance = moveinfo->remaining_distance - moveinfo->decel_distance;
-		p1_speed = (old_speed + moveinfo->move_speed) / 2.0;
+		p1_speed = (old_speed + moveinfo->move_speed) / 2.0f;
 		p2_distance = moveinfo->move_speed * (1.0 - (p1_distance / p1_speed));
 		distance = p1_distance + p2_distance;
 		moveinfo->current_speed = (p1_speed * (p1_distance / distance)) + (moveinfo->move_speed * (p2_distance / distance));
@@ -899,7 +899,7 @@ void door_hit_bottom (edict_t *self)
 		self->s.sound = 0;
 	}
 	self->moveinfo.state = STATE_BOTTOM;
-	door_use_areaportals (self, QFALSE);
+	door_use_areaportals (self, false);
 }
 
 void door_go_down (edict_t *self)
@@ -948,7 +948,7 @@ void door_go_up (edict_t *self, edict_t *activator)
 		AngleMove_Calc (self, door_hit_top);
 
 	G_UseTargets (self, activator);
-	door_use_areaportals (self, QTRUE);
+	door_use_areaportals (self, true);
 }
 
 void door_use (edict_t *self, edict_t *other, edict_t *activator)
@@ -1073,7 +1073,7 @@ void Think_SpawnDoorTrigger (edict_t *ent)
 	gi.linkentity (other);
 
 	if (ent->spawnflags & DOOR_START_OPEN)
-		door_use_areaportals (ent, QTRUE);
+		door_use_areaportals (ent, true);
 
 	Think_CalcMoveSpeed (ent);
 }
@@ -1540,7 +1540,7 @@ void train_next (edict_t *self)
 	vec3_t		dest;
 	qboolean	first;
 
-	first = QTRUE;
+	first = true;
 again:
 	if (!self->target)
 	{
@@ -1565,7 +1565,7 @@ again:
 			gi.dprintf ("connected teleport path_corners, see %s at %s\n", ent->classname, vtos(ent->s.origin));
 			return;
 		}
-		first = QFALSE;
+		first = false;
 		VectorSubtract (ent->s.origin, self->mins, self->s.origin);
 		VectorCopy (self->s.origin, self->s.old_origin);
 		self->s.event = EV_OTHER_TELEPORT;
@@ -1816,7 +1816,7 @@ void SP_func_timer (edict_t *self)
 
 	if (self->spawnflags & 1)
 	{
-		self->nextthink = level.time + 1.0 + st.pausetime + self->delay + self->wait + crandom() * self->random;
+		self->nextthink = level.time + 1.0f + st.pausetime + self->delay + self->wait + crandom() * self->random;
 		self->activator = self;
 	}
 
@@ -1898,7 +1898,7 @@ void door_secret_use (edict_t *self, edict_t *other, edict_t *activator)
 		return;
 
 	Move_Calc (self, self->pos1, door_secret_move1);
-	door_use_areaportals (self, QTRUE);
+	door_use_areaportals (self, true);
 }
 
 void door_secret_move1 (edict_t *self)
@@ -1943,7 +1943,7 @@ void door_secret_done (edict_t *self)
 		self->health = 0;
 		self->takedamage = DAMAGE_YES;
 	}
-	door_use_areaportals (self, QFALSE);
+	door_use_areaportals (self, false);
 }
 
 void door_secret_blocked  (edict_t *self, edict_t *other)
@@ -2011,10 +2011,10 @@ void SP_func_door_secret (edict_t *ent)
 	VectorClear (ent->s.angles);
 	side = 1.0f - (ent->spawnflags & SECRET_1ST_LEFT);
 	if (ent->spawnflags & SECRET_1ST_DOWN)
-		width = (float) fabs(DotProduct(up, ent->size));
+		width = (float) fabsf(DotProduct(up, ent->size));
 	else
-		width = (float) fabs(DotProduct(right, ent->size));
-	length = (float) fabs(DotProduct(forward, ent->size));
+		width = (float) fabsf(DotProduct(right, ent->size));
+	length = (float) fabsf(DotProduct(forward, ent->size));
 	if (ent->spawnflags & SECRET_1ST_DOWN)
 		VectorMA (ent->s.origin, -1 * width, up, ent->pos1);
 	else

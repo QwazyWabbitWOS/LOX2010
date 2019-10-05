@@ -374,9 +374,9 @@ qboolean Pickup_Weapon (edict_t *ent, edict_t *other)
 	&& other->client->pers.inventory[index])
 	{
 		if (!(ent->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM)))
-			return QFALSE;	// leave the weapon for others to pickup
+			return false;	// leave the weapon for others to pickup
 		if (ammo && !Add_Ammo (other, ammo, 0))
-			return QFALSE;	// gun *and* full ammo already
+			return false;	// gun *and* full ammo already
 	}
 
 	// Now add the weapons to their inventory.
@@ -446,7 +446,7 @@ qboolean Pickup_Weapon (edict_t *ent, edict_t *other)
 		((!deathmatch->value && autoweaponselect->value) || other->client->pers.weapon == &gI_weapon_blaster))
 		other->client->newweapon = item;
 
-	return QTRUE;
+	return true;
 }
 
 
@@ -493,7 +493,7 @@ void ChangeWeapon (edict_t *ent)
 	{
 		ent->client->grenade_time = level.time;
 		ent->client->weapon_sound = 0;
-		weapon_grenade_fire (ent, QFALSE);
+		weapon_grenade_fire (ent, false);
 		ent->client->grenade_time = 0;
 	}
 
@@ -564,9 +564,9 @@ void SetSweeperMode(edict_t *ent)
 		item == &gI_weapon_explosivestreetsweeper || 
 		item == &gI_weapon_stickygrenadesweeper)
 		
-		ent->client->sweeperactive = QTRUE;
+		ent->client->sweeperactive = true;
 	else
-		ent->client->sweeperactive = QFALSE;
+		ent->client->sweeperactive = false;
 	
 }
 /*
@@ -1074,12 +1074,12 @@ void Use_Weapon (edict_t *ent, gitem_t *item)
 		item == &gI_weapon_stickygrenadesweeper)
 	{
 		if (weaponheat->value)
-			ent->client->heat_active = QTRUE;
+			ent->client->heat_active = true;
 		else
-			ent->client->heat_active = QFALSE;
+			ent->client->heat_active = false;
 	}
 	else
-		ent->client->heat_active = QFALSE;
+		ent->client->heat_active = false;
 }
 
 
@@ -1456,7 +1456,7 @@ void weapon_grenade_fire (edict_t *ent, qboolean held)
 	typ = ent->client->dM_grenade;
 	// fire_grenade2 (ent, start, forward, damage, speed, timer, radius);
 	fire_grenade_dM (ent, start, forward, damage, speed, timer, radius, typ,
-		/* held */ QTRUE, /* bazookad */ QFALSE);
+		/* held */ true, /* bazookad */ false);
 
 	if (!ent->deadflag && ent->s.modelindex == 255)
 	{
@@ -1553,8 +1553,8 @@ void Weapon_Grenade (edict_t *ent)
 			if (!ent->client->grenade_blew_up && level.time >= ent->client->grenade_time)
 			{
 				ent->client->weapon_sound = 0;
-				weapon_grenade_fire (ent, QTRUE);
-				ent->client->grenade_blew_up = QTRUE;
+				weapon_grenade_fire (ent, true);
+				ent->client->grenade_blew_up = true;
 			}
 
 			if (ent->client->buttons & BUTTON_ATTACK)
@@ -1565,7 +1565,7 @@ void Weapon_Grenade (edict_t *ent)
 				if (level.time >= ent->client->grenade_time)
 				{
 					ent->client->ps.gunframe = 15;
-					ent->client->grenade_blew_up = QFALSE;
+					ent->client->grenade_blew_up = false;
 				}
 				else
 				{
@@ -1577,7 +1577,7 @@ void Weapon_Grenade (edict_t *ent)
 		if (ent->client->ps.gunframe == 12)
 		{
 			ent->client->weapon_sound = 0;
-			weapon_grenade_fire (ent, QFALSE);
+			weapon_grenade_fire (ent, false);
 		}
 
 		if ((ent->client->ps.gunframe == 15) && (level.time < ent->client->grenade_time))
@@ -1713,16 +1713,16 @@ void weapon_grenadelauncher_fire (edict_t *ent)
 	else if (ent->client->expactive == 1)
 	{
 		fire_grenade_dM (ent, start, forward, damage, speed, 100, radius,
-				ent->client->dM_grenade, /* held */ QFALSE, /* bazookad */ QFALSE);
+				ent->client->dM_grenade, /* held */ false, /* bazookad */ false);
 	}
 	else
 	{
 		fire_grenade_dM (ent, start, forward, damage, speed, timer, radius,
-			ent->client->dM_grenade, /* held */ QFALSE, /* bazookad */ QFALSE);
+			ent->client->dM_grenade, /* held */ false, /* bazookad */ false);
 		if (ent->client && ent->client->pers.special == AODEATH)
 		{
 			fire_grenade_dM (ent, ent->client->angel->s.origin, forward, damage, speed, timer, radius,
-				ent->client->dM_grenade, /* held */ QFALSE, /* bazookad */ QFALSE);
+				ent->client->dM_grenade, /* held */ false, /* bazookad */ false);
 		}
 	}
 
@@ -1784,11 +1784,11 @@ void weapon_bazooka_fire (edict_t *ent)
 	ent->client->kick_angles[0] = -1;
 
 	fire_grenade_dM (ent, start, forward, damage, 500, 2.5, radius,
-		ent->client->dM_grenade, /* held */ QFALSE, /* bazookad */ QTRUE);
+		ent->client->dM_grenade, /* held */ false, /* bazookad */ true);
 	if (ent->client && ent->client->pers.special == AODEATH)
 	{
 		fire_grenade_dM (ent, ent->client->angel->s.origin, forward, (float) damage, 500, 2.5, radius,
-		ent->client->dM_grenade, /* held */ QFALSE, /* bazookad */ QTRUE);
+		ent->client->dM_grenade, /* held */ false, /* bazookad */ true);
 	}
 
 	if (!is_silenced)
@@ -1968,7 +1968,7 @@ void Weapon_Blaster_Fire (edict_t *ent)
 
 	// ### Hentai ### BEGIN
 
-	Blaster_Fire (ent, vec3_origin, damage, QFALSE, EF_BLASTER);
+	Blaster_Fire (ent, vec3_origin, damage, false, EF_BLASTER);
 
 	ent->client->anim_priority = ANIM_ATTACK;
 	if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
@@ -2038,7 +2038,7 @@ void Weapon_HyperBlaster_Fire (edict_t *ent)
 			else
 				damage = 20;
 
-			Blaster_Fire (ent, offset, damage, QTRUE, effect);
+			Blaster_Fire (ent, offset, damage, true, effect);
 
 			if (!ent->deadflag && ent->s.modelindex == 255)
 			{
@@ -3339,7 +3339,7 @@ void Weapon_Sniper_Fire (edict_t *ent)
 		damage = 300;
 	else
 		damage = 600;
-	Sniper_Fire (ent, vec3_origin, damage, QFALSE, EF_BLASTER);
+	Sniper_Fire (ent, vec3_origin, damage, false, EF_BLASTER);
 	ent->client->ps.gunframe++;
 	if (! ((int)dmflags->value & DF_INFINITE_AMMO))
 		ent->client->pers.inventory[ent->client->ammo_index]
@@ -3634,8 +3634,8 @@ void Think_Airstrike (edict_t *ent)
 				100,	//timer
 				300,	//damage radius
 				ent->client->airstrike_grentype, //type of grenade held when airstrike called
-				QFALSE, // held
-				QTRUE); // bazookad
+				false, // held
+				true); // bazookad
 		j -= 30;
 	}
 	
