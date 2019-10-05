@@ -63,7 +63,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define BUILD	"Debug  "
 #endif
 
-#define VERSION	"1.12.21"	//QW// single instance of version string
+#define VERSION	"1.12.22"	//QW// single instance of version string
 
 // the "gameversion" client command will print this plus compile date
 #define	GAMEVERSION		"WOD:LOX, "VERSION	//deathmatch
