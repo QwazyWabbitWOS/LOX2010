@@ -162,6 +162,7 @@ void DoRespawn (edict_t *ent)
 		int choice;
 
 		master = ent->teammaster;
+		assert(master != NULL);
 
 		//ZOID
 		//in ctf, when we are weapons stay, only the master of a team of weapons
@@ -183,6 +184,7 @@ void DoRespawn (edict_t *ent)
 		}
 	}
 	
+	assert(ent != NULL);
 	ent->svflags &= ~SVF_NOCLIENT;
 	ent->solid = SOLID_TRIGGER;
 	gi.linkentity (ent);
@@ -1384,7 +1386,7 @@ void PrecacheItem (gitem_t *it)
 			s++;
 		
 		len = s-start;
-		if (len >= MAX_QPATH || len < 5)
+		if (len >= MAX_QPATH - 1 || len < 5)
 			gi.error ("PrecacheItem: %s has bad precache string", it->classname);
 		memcpy (data, start, len);
 		data[len] = 0;
