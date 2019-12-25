@@ -161,11 +161,9 @@ only happens when a new game is started or a save game
 is loaded.
 ============
 */
-
-cvar_t *version;
-
 void InitGame (void)
 {
+	cvar_t* version;	//The engine version string
 
 #ifdef	_WIN32
 	_CrtMemCheckpoint(&startup1);
@@ -175,7 +173,7 @@ void InitGame (void)
 	gi.dprintf (loxbanner);
 	version = gi.cvar ("version", "", CVAR_NOSET);
 	if (version)
-		gi.dprintf ("LOX detected engine: %s\n",version->string);
+		gi.dprintf ("LOX detected engine: %s\n", version->string);
 	Log_Time ();
 
 	srand(time(NULL)); //seed the rng

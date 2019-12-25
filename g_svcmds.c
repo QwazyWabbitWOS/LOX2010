@@ -78,14 +78,8 @@ qboolean StringToFilter (char *s, ipfilter_t *f)
 {
 	char	num[128];
 	int		i, j;
-	byte	b[4];
-	byte	m[4];
-	
-	for (i = 0; i < 4; i++)
-	{
-		b[i] = 0;
-		m[i] = 255;
-	}
+	byte	b[4] = { 0 };
+	byte	m[4] = { 255 };
 	
 	for (i = 0; i < 4; i++)
 	{
