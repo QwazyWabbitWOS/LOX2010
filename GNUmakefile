@@ -18,7 +18,7 @@ ARCH := $(shell uname -m | sed -e s/i.86/i386/ \
 # On 64-bit OS use the command: setarch i386 make all
 # to obtain the 32-bit binary DLL on 64-bit Linux.
 
-CC = gcc -std=c99 -Wall -Wpedantic
+CC = gcc -std=c11 -Wall -Wpedantic
 
 # on x64 machines do this preparation:
 # sudo apt-get install ia32-libs
@@ -27,10 +27,10 @@ CC = gcc -std=c99 -Wall -Wpedantic
 # this will let you build 32-bits on ia64 systems
 #
 # This is for native build
-CFLAGS=-O2 -DARCH="$(ARCH)" -DSTDC_HEADERS
+CFLAGS=-O3 -DARCH="$(ARCH)" -DSTDC_HEADERS
 # This is for 32-bit build on 64-bit host
 ifeq ($(ARCH),i386)
-CFLAGS =-m32 -O2 -DARCH="$(ARCH)" -DSTDC_HEADERS -I/usr/include
+CFLAGS =-m32 -O3 -DARCH="$(ARCH)" -DSTDC_HEADERS -I/usr/include
 endif
 
 # use this when debugging
