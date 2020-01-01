@@ -528,7 +528,8 @@ qboolean Add_Ammo (edict_t *ent, gitem_t *item, int count)
 		max = ent->client->pers.max_bullets;
 	else if (item->tag == AMMO_SHELLS)
 		max = ent->client->pers.max_shells;
-	else if (item->tag == AMMO_ROCKETS)		max = ent->client->pers.max_rockets;
+	else if (item->tag == AMMO_ROCKETS)
+		max = ent->client->pers.max_rockets;
 	else if (item->tag == AMMO_GRENADES)
 	{
 		max = ent->client->pers.max_grenades;
