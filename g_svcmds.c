@@ -234,7 +234,7 @@ static void SVCmd_ListIP_f (void)
 		{	
 			b[j] = (ipfilters[i].compare >> (j * 8)) & 0xff;
 		}
-		gi.cprintf (NULL, PRINT_HIGH, "%i.%i.%i.%i\n", b[0], b[1], b[2], b[3]);
+		gi.cprintf (NULL, PRINT_HIGH, "%3i.%3i.%3i.%3i\n", b[0], b[1], b[2], b[3]);
 	}
 }
 
