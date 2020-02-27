@@ -91,7 +91,7 @@ qboolean SV_RunThink (edict_t *ent)
 	
 	ent->nextthink = 0;
 	
-	if (!ent->think)
+	if (!ent->think || !ent->inuse)
 	{
 		if (ent->classname && ent->model)
 			gi.dprintf ("NULL ent->think (classname %s, model %s mapname %s)\n", ent->classname, ent->model, level.mapname);

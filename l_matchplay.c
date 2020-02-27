@@ -20,6 +20,10 @@ typedef struct match_s
 
 match_t matchgame;
 
+/**
+Initialize matches only if matchplay is set.
+This sets a 40 second countdown timer.
+*/
 void MatchInit(void)
 {
 	// Reset the teamplay game status.
