@@ -116,6 +116,34 @@ void PlayerNoise(edict_t *who, vec3_t where, int type)
 	gi.linkentity (noise);
 }
 
+void Weapon_Recoil(edict_t* self, float recoil)
+{
+	vec3_t	end, forward, dir;
+	trace_t tr;
+
+	if (self->client) // only players get recoil
+	{
+		AngleVectors(self->client->v_angle, forward, NULL, NULL);
+
+		// check if near a wall
+		VectorAdd(self->s.origin, self->client->ps.viewoffset, dir);
+		VectorMA(dir, 64, forward, end);
+		tr = gi.trace(dir, NULL, NULL, end, self, MASK_SOLID);
+
+		// Enhance recoil if we're hitting a close wall or floor
+		if (tr.fraction != 1) // 1 means we didn't hit anything
+			recoil += recoil * (1 - tr.fraction) * 3; // more recoil on hit
+
+		if (self->groundentity)
+		{
+			self->groundentity = NULL;
+			self->s.origin[2]++;
+		}
+
+		//apply recoil
+		VectorMA(self->velocity, -recoil, forward, self->velocity);
+	}
+}
 
 qboolean Pickup_Weapon (edict_t *ent, edict_t *other)
 {

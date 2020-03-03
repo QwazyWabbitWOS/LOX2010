@@ -2172,6 +2172,7 @@ void P_ProjectSource (gclient_t *client, vec3_t point, vec3_t distance, vec3_t f
 void PlayerNoise(edict_t *who, vec3_t where, int type);
 void Weapon_Generic (edict_t *ent, int FRAME_ACTIVATE_LAST, int FRAME_FIRE_LAST, int FRAME_IDLE_LAST, int FRAME_DEACTIVATE_LAST, int *pause_frames, int *fire_frames, void (*fire)(edict_t *ent));
 void weapon_grenadelauncher_fire (edict_t *ent);
+void Weapon_Recoil(edict_t* self, float recoil);
 
 //
 // m_move.c
