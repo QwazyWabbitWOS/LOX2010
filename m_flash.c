@@ -147,6 +147,7 @@ vec3_t monster_flash_offset [] =
 	{4.6f * 1.15f, -16.8f * 1.15f, 7.3f * 1.15f},
 
 // MZ2_CHICK_ROCKET_1				57
+//	-24.8, -9.0, 39.0,
 	{24.8f, -9.0f, 39.0f},			// PGM - this was incorrect in Q2
 
 // MZ2_FLYER_BLASTER_1				58

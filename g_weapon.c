@@ -1626,12 +1626,11 @@ void fire_rail (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick
 	edict_t		*ignore;
 	int			mask;
 	qboolean	water;
-	int mod;
 	int n;
 	
-	// Set up the means of death.
-	mod = MOD_RAILGUN2;
-	
+	if (!self)
+		return;
+
 	VectorMA (start, 8192, aimdir, end);
 	VectorCopy (start, from);
 	ignore = self;
@@ -1655,7 +1654,7 @@ void fire_rail (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick
 			
 			if ((tr.ent != self) && (tr.ent->takedamage))
 				T_Damage (tr.ent, self, self, aimdir, tr.endpos, tr.plane.normal,
-				damage, kick, 0, mod);
+				damage, kick, 0, MOD_RAILGUN2);
 		}
 		
 		VectorCopy (tr.endpos, from);
