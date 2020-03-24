@@ -44,7 +44,7 @@ qboolean M_CheckBottom (edict_t *ent)
 realcheck:
 	c_no++;
 //
-// check it for real
+// check it for real...
 //
 	start[2] = mins[2];
 	
