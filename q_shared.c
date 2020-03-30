@@ -1028,12 +1028,17 @@ void Com_PageInMemory (byte *buffer, int size)
 static	char	bigbuffer[0x10000]; // for Com_Sprintf
 
 /**
- Safer, uses large buffer
+ Safer, uses large buffer.  
+ //QW// The big buffer allows us to safely dump
+ its contents to the log if the resulting format string
+ exceeds the size expected by the calling function.
+ This way we can see if this was a bug or possibly
+ malicious input.
 */
-void Com_sprintf(char *dest, int size, char *fmt, ...)
+void Com_sprintf(char* dest, int size, char* fmt, ...)
 {
 	int		len;
-	va_list		argptr;
+	va_list	argptr;
 
 	va_start(argptr, fmt);
 	len = vsprintf(bigbuffer, fmt, argptr);
@@ -1092,8 +1097,7 @@ key and returns the associated value, or an empty string.
 char *Info_ValueForKey (char *s, char *key)
 {
 	char	pkey[512] = {0};
-	static	char value[2][512];	// use two buffers so compares
-								// work without stomping on each other
+	static	char value[2][MAX_INFO_STRING]; // Use two buffers so compares work without stomping on each other.
 	static	int	valueindex;
 	char	*o;
 
