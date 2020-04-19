@@ -27,12 +27,14 @@
 cvar_t	*nightdaytime;
 cvar_t	*minlevel;
 
-/*
-Suggested initialization in g_save.c:
-	nightdaytime  = gi.cvar("nightdaytime","0",0);	//QW// minutes for a day-night cycle
+void InitDayNightVars(void)
+{
+	nightdaytime = gi.cvar("nightdaytime", "0", 0);	//QW// minutes for a day-night cycle
 	minlevel = gi.cvar("minlevel", "0", 0);		//QW// lowest light level to apply (0 | 1 | 2)
+}
 
-  For 2 day/nights per map:
+/*
+For 2 day/nights per map:
   set timelimit 20
   set nightdaytime 10
   or any 2:1 ratio for these times.

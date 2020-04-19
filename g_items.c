@@ -184,8 +184,7 @@ void DoRespawn(edict_t* ent)
 			for (ent = master; ent; ent = ent->chain)
 				count++;
 
-			assert(count != 0);
-			choice = rand() % count;
+			choice = count ? rand() % count : 0;
 
 			count = 0;
 			for (ent = master; count < choice; ent = ent->chain)

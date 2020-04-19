@@ -2288,6 +2288,7 @@ void Cmd_SkinList_f(edict_t *ent);
 
 // defined in l_daynight.c
 void DayNightCycle(void);
+void InitDayNightVars(void);
 
 // defined in l_matchplay.c
 void MatchInit(void);

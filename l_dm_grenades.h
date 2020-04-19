@@ -45,7 +45,7 @@ typedef enum grenade_n
 		DM_MIDNIGHTGRENADE,
 		DM_FREEZATRONGRENADE,
 		DM_BANZAIGRENADE,
-		DM_SPINNINGRAILBOMB //keep this one last (assert catches undefined grenade types)
+		DM_SPINNINGRAILBOMB //keep this one last to catch undefined grenade types
 } grenade_t;
 
 void grenade_float(edict_t *ent);

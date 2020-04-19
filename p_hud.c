@@ -652,9 +652,6 @@ void DeathmatchScoreboardMessage (edict_t *ent, edict_t *killer)
 	if (!ent->client->showscores) // heatbar gets sent with scanner update
 		ShowHeatbar(ent, string);
 	
-	// in debug we stop, runtime notice is also posted to log file by A_ScoreboardMessage()
-	assert(strlen(string) < sizeof(string)); // string no bigger than 1400 bytes
-	
 	gi.WriteByte (svc_layout);
 	gi.WriteString (string);
 }

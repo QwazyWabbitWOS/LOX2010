@@ -268,9 +268,8 @@ void InitGame (void)
 	campertime = gi.cvar("campertime", "20", 0);		//QW// camping time limit 
 	matchplay = gi.cvar("matchplay", "0", 0);			//QW// matchplay makes game do countdown timer on each map
 
-	nightdaytime  = gi.cvar("nightdaytime","0",0);	//QW// minutes for a day-night cycle
-	minlevel = gi.cvar("minlevel", "0", 0);		//QW// lowest light level to apply (0 | 1 | 2)
-	
+	InitDayNightVars();
+
 	// flood control
 	flood_msgs = gi.cvar ("flood_msgs", "4", 0);
 	flood_persecond = gi.cvar ("flood_persecond", "4", 0);

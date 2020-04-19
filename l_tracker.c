@@ -32,7 +32,8 @@
 
 void Tracker_Think (edict_t *ent)
 {
-	vec3_t targetdir, forward, blipdir, v;
+	vec3_t targetdir = { 0 };
+	vec3_t forward, blipdir, v;
 	edict_t *blip = NULL;
 	float blipDot, targetDot;
 	edict_t *owner = NULL;
@@ -371,9 +372,11 @@ void Tracker_Weapon_Fire (edict_t *ent)
 	int		damage = TRK_DAMAGE;
 	float	radius;
 	
-	assert(ent->client->pers.weapon->pickup_name != NULL);
 	// trap bad grenade types if enum is malformed
-	assert(ent->client->dM_grenade >= DM_NORMALGRENADE && ent->client->dM_grenade <= DM_SPINNINGRAILBOMB);
+	if (!(ent->client->dM_grenade >= DM_NORMALGRENADE && ent->client->dM_grenade <= DM_SPINNINGRAILBOMB))
+	{
+		gi.dprintf("LOX WARNING: Bad dM_grenade type in %s", __func__);
+	}
 
 	// Weapons we never want to see used in trackers.
 	if (Q_stricmp(ent->client->pers.weapon->pickup_name,"Guided Missile")==0) return;

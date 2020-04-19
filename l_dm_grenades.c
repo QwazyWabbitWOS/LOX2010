@@ -520,12 +520,9 @@ void Grenade_Explode_dM (edict_t *ent)
 	edict_t		*flame, *head = NULL;
 	int n, mod;
 	
-	assert(ent != NULL);
 	if (ent == NULL)
 		return;
 
-	// type must be one of the enumerated types (l_dm_grenades.h)
-	assert (ent->dm_type >= DM_NORMALGRENADE && ent->dm_type <= DM_SPINNINGRAILBOMB);
 	// this should never happen in release but if it does, log it and fall through
 	if (!(ent->dm_type >= DM_NORMALGRENADE && ent->dm_type <= DM_SPINNINGRAILBOMB))
 		gi.dprintf ("Oops: dM grenade type out of range %i\n", ent->dm_type);
