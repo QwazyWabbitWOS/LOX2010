@@ -329,7 +329,7 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive)
 			else
 				count -= 2;
 
-			selection = rand() % count;
+			selection = count ? rand() % count : 0;
 
 			spot = NULL;
 			do
@@ -448,7 +448,7 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive)
 		else
 			count -= 2;
 
-		selection = rand() % count;
+		selection = count ? rand() % count : 0;
 
 		spot = NULL;
 		do
