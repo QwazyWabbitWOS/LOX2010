@@ -3569,7 +3569,7 @@ void Cmd_FireMode_f (edict_t *ent)
 	switch (ent->client->pers.fire_mode)
 	{
 	case 0:
-		ent->client->pers.fire_mode = 1;
+		ent->client->pers.fire_mode = 1;	// toggle into burst mode
 		gi.cprintf (ent, PRINT_HIGH,
 			"Standard Machinegun Burst Fire Mode\n");
 		break;
@@ -3577,7 +3577,7 @@ void Cmd_FireMode_f (edict_t *ent)
 	case 1:
 	default:
 		ent->client->burstfire_count = 0;
-		ent->client->pers.fire_mode = 0;
+		ent->client->pers.fire_mode = 0;	// toggle into automatic mode
 		gi.cprintf (ent, PRINT_HIGH,
 			"Standard Machinegun Fully Automatic Mode\n");
 		break;
