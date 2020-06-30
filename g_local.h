@@ -2149,8 +2149,6 @@ void ThirdEnd (edict_t *ent);
 void BeginIntermission (edict_t *targ);
 void MoveClientToIntermission (edict_t *client);
 void G_SetStats (edict_t *ent);
-void G_SetSpectatorStats (edict_t *ent);
-void G_CheckChaseStats (edict_t *ent);
 void ValidateSelectedItem (edict_t *ent);
 void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string);
 void A_ScoreboardMessage (edict_t *ent, edict_t *killer, char *string);

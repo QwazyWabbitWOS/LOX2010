@@ -325,30 +325,28 @@ void fire_fire (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int spee
 // TOUCH FIRE
 //************
 
-void Fire_Touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
+void Fire_Touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	vec3_t   grenade1;
-	
+
 	if (surf && (surf->flags & SURF_SKY))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 
 	if (!other->takedamage)
-		if (crandom() < .4)
+		if (crandom() < 0.4f)
 		{
-			VectorSet(grenade1,20,20,crandom()*40+30);
-			fire_fire(ent->owner, ent->s.origin, grenade1, 90, 5, crandom()*2, 120, false);
-			if (crandom() < .2)
-				Fire_Explode (ent);
+			VectorSet(grenade1, 20, 20, crandom() * 40 + 30);
+			fire_fire(ent->owner, ent->s.origin, grenade1, 90, 5, crandom() * 2, 120, false);
+			if (crandom() < 0.2f)
+				Fire_Explode(ent);
 		}
-	
+
 	ent->enemy = other;
-	Fire_Explode (ent);
-
-		return;
-
+	Fire_Explode(ent);
+	return;
 }
 
 //********************
