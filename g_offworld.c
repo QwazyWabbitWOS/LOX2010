@@ -76,7 +76,7 @@ void offworld_teleporter_touch (edict_t *self, edict_t *other, cplane_t *plane, 
 	
 	int			i, j, k;
     char		external_server[80];
-    char		exit_message[80];
+    char		exit_message[256];
     char		connect_message[120];
 	
    	if (!other->client) // touched by someone we don't know :)
