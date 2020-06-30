@@ -310,7 +310,7 @@ static void Maplist_VariesMonthly(void)
 {
 	time_t	ct;
 	struct	tm *lt;
-	char	month[4];
+	char	month[32];
 	char	file[MAX_QPATH];
 	char	buff[MAX_QPATH];
 	FILE	*mf;

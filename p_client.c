@@ -1512,10 +1512,12 @@ void SelectSpawnPoint (edict_t *ent, vec3_t origin, vec3_t angles)
 				gi.error ("Couldn't find spawn point %s\n", game.spawnpoint);
 		}
 	}
-
-	VectorCopy (spot->s.origin, origin);
-	origin[2] += 9;
-	VectorCopy (spot->s.angles, angles);
+	else
+	{
+		VectorCopy(spot->s.origin, origin);
+		origin[2] += 9;
+		VectorCopy(spot->s.angles, angles);
+	}
 }
 
 
@@ -2055,7 +2057,7 @@ void ClientUserinfoChanged (edict_t *ent, char *userinfo)
 	// check for malformed or illegal info strings
 	if (!Info_Validate(userinfo))
 	{
-		strncpy (userinfo, "\\name\\badinfo\\skin\\male/grunt", sizeof(userinfo)-1);
+		strcpy (userinfo, "\\name\\badinfo\\skin\\male/grunt");
 	}
 
 	// set name
