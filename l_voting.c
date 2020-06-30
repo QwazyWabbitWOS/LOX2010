@@ -112,7 +112,7 @@ void Voting_InitVars(void)
 int Voting_BeginElection(edict_t *ent, elect_t type)
 {
 	char *mapname;
-	char mappath[MAX_QPATH];
+	char mappath[MAX_OSPATH];
 	char msg[256];
 	int time_in;
 	
@@ -379,7 +379,7 @@ void Voting_CmdVote_f(edict_t *ent, int choice)
 // announce result and terminate election, invoke the resulting commands
 static void Voting_WinElection(void)
 {
-	char command[MAX_QPATH];
+	char command[MAX_OSPATH];
 	long n;
 	char s[64];
 	
