@@ -21,6 +21,9 @@ void fire_durg (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick
 	qboolean	water;
 	int mod;
 	
+	if (!self || !self->client)
+		return;
+	
 	// Set up the means of death.
 	mod = MOD_RAILGUN2;
 	

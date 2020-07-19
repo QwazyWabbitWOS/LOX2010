@@ -181,6 +181,9 @@ void weapon_mace_fire(edict_t* ent)
 	int		damage = 2;
 	int		kick = 8;
 
+	if (!ent || !ent->client)
+		return;
+
 	if (ent->client->ps.gunframe == 12)
 	{
 		if (ent->client->buttons & BUTTON_ATTACK)

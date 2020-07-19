@@ -285,6 +285,9 @@ void Flamethrower_Fire (edict_t *ent)
 	int			damage;
 	int			kick = 2;
 	
+	if (!ent || !ent->client)
+		return;
+
 	if (deathmatch->value)
 		damage = 15;
 	else

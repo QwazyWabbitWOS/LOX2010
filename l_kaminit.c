@@ -17,6 +17,9 @@ void fire_kaminit (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int k
 	int			mask, i, mod;
 	qboolean	water;
 	
+	if (!self || !self->client)
+		return;
+
 	// Set up the means of death.
 	mod = MOD_RAILGUN2;
 	if (i_fragban & WFB_KAMIKAZE)

@@ -248,6 +248,9 @@ void weapon_fbfg_fire (edict_t *ent)
 	int		damage;
 	float	damage_radius = 1000;
 	
+	if (!ent || !ent->client)
+		return;
+
 	if (deathmatch->value)
 		damage = 200;
 	else

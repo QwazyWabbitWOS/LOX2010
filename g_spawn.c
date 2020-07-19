@@ -677,33 +677,44 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 
 
 // ===================================================================
-// Unified HUD initialization
+// Unified HUD initialization by QwazyWabbit
 // ===================================================================
 
 // cursor positioning
-//	xl <value>		x-left side
-//	xr <value>		x-right side
-//	yb <value>		y-bottom
-//	yt <value>		y-top
-//	xv <value>		x-value
-//	yv <value>		y-value
+//  xl <value>      x-left side
+//  xr <value>      x-right side
+//  yb <value>      y-bottom
+//  yt <value>      y-top
+//  xv <value>      x-value
+//  yv <value>      y-value
 
 // drawing
-//	statpic <name>
-//	pic <stat>
-//	num <fieldwidth> <stat>
-//	string <stat>
+//  statpic <name>
+//  pic <stat>                Draw a pic from a stat number
+//  picn <name>               Draw a pic from a name string
+//  num <fieldwidth> <stat>   Print a number of specified width digits
+//  anum <stat>               Print the ammo count, 3 digits max, blink if low ammo
+//  hnum <stat>               Print the health count, 3 digits max, blink if low health
+//  rnum <stat>               Print the armor count, 3 digits max, blink if low armor
 
+//  client <x> <y> <index> <score> <ping> <time>    Draw a deathmatch client score block
+//  cstring <string> <x> <y>    Print a centered string
+//  cstring2 <string> <x> <y>   Print a highlighted centered string
+//  string <x> <y> <string>     Print a string at x,y
+//  string2 <x> <y> <string>    Print a highlighted string
+//  stat_string <stat>          Print a string based on index stat from client's configstrings
+//                              Used to display the item player just picked up.
+//
 // control
-//	if <stat>
-//	ifeq <stat> <value>
-//	ifbit <stat> <value>
-//	endif
+//  if <stat>               conditionally draw a number
+//  ifeq <stat> <value>     not implemented
+//  ifbit <stat> <value>    not implemented
+//  endif                   ends an "if" block
 
 // //QW//
 // In all cases <stat> is the integer representing the status message item
 // to be presented. I've used manifest constants to keep the messages
-// properly enumerated across the game modes and they are defined in 
+// properly enumerated across the game modes and they are defined in
 // q_shared.h. The code originally had these scattered about in
 // different places but it mostly used magic numbers in the messages and that just
 // made it hard to figure out exactly what was happening. They defined the constants
@@ -713,7 +724,9 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 
 // Positioning:
 // Position 0,0 is the center of the screen with x going negative to the right.
-// xv, yv is relative to this origin.
+// Positioning is based on a 640 x 480 screen, scaled to the actual video
+// width and height of the player's current screen resolution.
+// xv, yv is relative to the center origin.
 // xl is plus counts from origin left justified.
 // xr is minus counts from origin right justified.
 // yb is minus counts from bottom. (yb -10 is bottom line)
@@ -722,14 +735,14 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 /* //QW//
 A standard HUD character (conchar) is 8 screen units wide. The xl and xr origins are with
 respect to the left and right borders. Add/subract 2 units to keep a little space between
-the edge and the chars. For example, the string "FPH" is 3 chars wide, 3 * 8 = 24 units. 
-If using xr, add 2 and negate, giving -26 from the right edge as the start of the 
+the edge and the chars. For example, the string "FPH" is 3 chars wide, 3 * 8 = 24 units.
+If using xr, add 2 and negate, giving -26 from the right edge as the start of the
 string on the screen, "Range" is (-1)(5 * 8 + 2) = -42.
 Using xl, just use an origin of 2 to space a string 2 units from the border so it looks nice.
 */
 
 // //QW//
-// The big HUD characters for the counters are 16 units wide but 
+// The big HUD characters for the counters are 16 units wide but
 // their origin is already offset by 2.
 // They are positioned at 0 on the left and at (n * 16)-2 on the right
 // when n is the number of digits you want to display.
@@ -737,16 +750,16 @@ Using xl, just use an origin of 2 to space a string 2 units from the border so i
 // Printing big chars on the left is problematic, they are right-justfied inside their
 // block so printing them on the left will gap them from the edge when the value doesn't
 // fill the full range of digits. Negative signs will probably be clipped if you don't
-// allow an extra space for them. 
+// allow an extra space for them.
 // You should layout for signed values on the right side or midline where negative
-// values aren't a problem. 
-// Layout for unsigned on the left if you don't mind having right-justfied 
+// values aren't a problem.
+// Layout for unsigned on the left if you don't mind having right-justfied
 // blocks there. Allow space only for the number of digits you expect to
 // display to keep the HUD packet as small as possible.
 
 // I think I first saw an integrated HUD as a function in the CTC mod.
 // I took it a little further by integrating the game modes and collecting
-// the stat constants in one place.  
+// the stat constants in one place.
 
 /* //QW//
 Big HUD chars are 24 units tall and conchars are 8 for a total of 32 plus
@@ -756,6 +769,7 @@ below it. This seems to give a nice uniform leading between lines.
 */
 
 // ===================================================================
+
 // This function is executed once in SP_worldspawn
 void CreateStatusBar(void)
 {

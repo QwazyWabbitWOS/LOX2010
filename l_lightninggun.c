@@ -67,6 +67,9 @@ void weapon_lightning_fire (edict_t *ent)
 	vec3_t		start, forward, right, offset;
 	int			damage;
 
+	if (!ent || !ent->client)
+		return;
+	
 	damage = 30;
 	
 	if (is_quad)

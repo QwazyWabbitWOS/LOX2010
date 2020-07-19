@@ -21,6 +21,9 @@ void ExplosiveMachinegun_Fire (edict_t *ent)
 	int			kick = 2;
 	int			mod;
 
+	if (!ent || !ent->client)
+		return;
+
 	if (!(ent->client->buttons & BUTTON_ATTACK) &&
 	((ent->client->burstfire_count > 2) ||
 	(!ent->client->burstfire_count)))

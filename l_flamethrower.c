@@ -53,6 +53,9 @@ void weapon_railgun_fire (edict_t *ent)
 {
 	int		damage;
 
+	if (!ent || !ent->client)
+		return;
+
 	if (deathmatch->value)
 		damage = 10;
 	else

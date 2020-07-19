@@ -12,9 +12,9 @@ void ThrowIce (edict_t *self)
 {
 	vec3_t	forward, right, start, offset;
 	
-	if (!self->client->iceball)
+	if (!self || !self->client)
 		return;
-	
+
 	AngleVectors (self->client->v_angle, forward, right, NULL);
 	VectorSet(offset, 20 + self->maxs[0], 4, self->viewheight - 4.0f);
 	P_ProjectSource (self->client, self->s.origin, offset, forward, right, start);

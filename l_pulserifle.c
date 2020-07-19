@@ -111,6 +111,9 @@ void weapon_pulserifle_fire (edict_t *ent)
 	vec3_t	start, forward, right, offset, tempang;
 	int		damage, kick;
 	
+	if (!ent || !ent->client)
+		return;
+
 	if (ent->client->ps.gunframe == 5)
 	{
 		if (ent->client->machinegun_shots)

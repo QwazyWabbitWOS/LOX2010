@@ -15,6 +15,9 @@ void fire_superrailshotgun (edict_t *self, vec3_t start, vec3_t aimdir, int dama
 	qboolean	water;
 	float	r,u;
 	
+	if (!self || !self->client)
+		return;
+
 	kick = 0;
 	
 	// Set up the means of death.
