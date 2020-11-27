@@ -2327,7 +2327,7 @@ gitem_t gI_weapon_chaingun =
 		IT_WEAPON|IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/chngnl1a.wav weapons/machgf3b.wav` weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/chngnl1a.wav weapons/machgf3b.wav weapons/chngnd1a.wav"
 };
 
 gitem_t gI_weapon_explosivechaingun =
