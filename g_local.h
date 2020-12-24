@@ -2106,7 +2106,7 @@ edict_t	*PlayerTrail_LastSpot (void);
 void respawn (edict_t *ent);
 void SelectSpawnPoint (edict_t *ent, vec3_t origin, vec3_t angles);
 void PutClientInServer (edict_t *ent);
-void InitClientPersistant (gclient_t *client);
+void InitClientPersistent (gclient_t *client);
 void InitClientResp (gclient_t *client);
 void InitBodyQue (void);
 void ClientBeginServerFrame (edict_t *ent);

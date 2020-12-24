@@ -12,15 +12,13 @@
 #include "g_team.h"
 
 /* 
-To use this module:
+To use this module in Quake II:
 
-Add the spawn function pointer to g_spawn.c:
-  
+In the spawn function hash at spawn_t spawns[] in g_spawn.c, add:
+	{"misc_offworld_teleporter", SP_misc_teleporter_offworld},
+
 In the prototype list
 void SP_misc_teleporter_offworld (edict_t *self);	
-	
-In the spawn function hash at spawn_t spawns[], add:
-  {"misc_offworld_teleporter", SP_misc_offworld_teleporter},
 	  
 Everything else in this module is private.
 */

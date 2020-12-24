@@ -353,7 +353,8 @@ void EndDMLevel (void)
 void LogPlayerStats(void)
 {
 	
-	int	i,j[4];
+	int	i;
+	int j[4] = { 0 };
 	int	count = 0;
 	edict_t	*player;
 	int time_in = 0;

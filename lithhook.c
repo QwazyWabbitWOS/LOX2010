@@ -80,7 +80,7 @@ void hook_reset (edict_t *rhook)
 qboolean hook_cond_reset(edict_t *self)
 {
 	if (!self || !self->owner->client)
-		return;
+		return false;
 
 	if (!self->owner || (!self->enemy && self->owner->client && self->owner->client->hookstate == HOOK_ON))
 	{

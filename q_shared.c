@@ -12,13 +12,13 @@ vec3_t vec3_origin = {0,0,0};
 
 void RotatePointAroundVector( vec3_t dst, const vec3_t dir, const vec3_t point, float degrees )
 {
-	float	m[3][3];
+	float	m[3][3] = { 0 };
 	float	im[3][3];
 	float	zrot[3][3];
 	float	tmpmat[3][3];
 	float	rot[3][3];
 	int	i;
-	vec3_t vr, vup, vf;
+	vec3_t vr, vup, vf = { 0 };
 
 	vf[0] = dir[0];
 	vf[1] = dir[1];
@@ -112,7 +112,7 @@ void AngleVectors (vec3_t angles, vec3_t forward, vec3_t right, vec3_t up)
 void ProjectPointOnPlane( vec3_t dst, const vec3_t p, const vec3_t normal )
 {
 	float d;
-	vec3_t n;
+	vec3_t n = { 0 };
 	float inv_denom;
 
 	inv_denom = 1.0F / DotProduct( normal, normal );
@@ -136,7 +136,7 @@ void PerpendicularVector( vec3_t dst, const vec3_t src )
 	int	pos;
 	int i;
 	float minelem = 1.0F;
-	vec3_t tempvec;
+	vec3_t tempvec = { 0 };
 
 	/*
 	** find the smallest magnitude axially aligned vector
@@ -233,7 +233,7 @@ void R_ConcatTransforms (float in1[3][4], float in2[3][4], float out[3][4])
 #if defined _M_IX86 && !defined C_ONLY
 __declspec( naked ) long Q_ftol( float f )
 {
-	static int tmp;
+	static int tmp = { 0 };
 	__asm fld dword ptr [esp+4]
 	__asm fistp tmp
 	__asm mov eax, tmp
@@ -276,7 +276,7 @@ int BoxOnPlaneSide2 (vec3_t emins, vec3_t emaxs, struct cplane_s *p)
 	int		i;
 	float	dist1, dist2;
 	int		sides;
-	vec3_t	corners[2];
+	vec3_t	corners[2] = { 0 };
 
 	for (i=0 ; i<3 ; i++)
 	{

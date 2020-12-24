@@ -738,7 +738,8 @@ char* Info_AntiFlareGun_Text = {
 
 char* Info_Mace_Text = {
 	"\nMace--------------------------------------------\n"
-	"Use this weapon to blind your opponents.\n"
+	"Use this weapon to blind your opponents. Mace can \n"
+	"also be used to push objects when server permits. \n"
 	"------------------------------------------------\n"
 };
 

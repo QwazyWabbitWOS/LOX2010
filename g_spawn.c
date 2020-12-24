@@ -373,17 +373,13 @@ void ED_ParseField (char *key, char *value, edict_t *ent)
 				*(char **)(b+f->ofs) = ED_NewString (value);
 				break;
 			case F_VECTOR:
-				if (sscanf(value, "%f %f %f", &vec[0], &vec[1], &vec[2])) {
-					((float*)(b + f->ofs))[0] = vec[0];
-					((float*)(b + f->ofs))[1] = vec[1];
-					((float*)(b + f->ofs))[2] = vec[2];
-				}
-				else {
-					((float*)(b + f->ofs))[0] = vec[0];	// if we get here, it's an error in the map
-					((float*)(b + f->ofs))[1] = vec[1]; // set all zeroes and log a warning.
-					((float*)(b + f->ofs))[2] = vec[2];
+				if (sscanf(value, "%f %f %f", &vec[0], &vec[1], &vec[2]) != 3) {
 					gi.dprintf("WARNING: Vector field incomplete in %s, map: %s, field: %s\n", __func__, level.mapname, f->name);
+					VectorClear(vec);
 				}
+				((float*)(b + f->ofs))[0] = vec[0];
+				((float*)(b + f->ofs))[1] = vec[1];
+				((float*)(b + f->ofs))[2] = vec[2];
 				break;
 			case F_INT:
 				*(int *)(b+f->ofs) = atoi(value);
@@ -579,7 +575,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	
 	// Phlem - new for entity externally adding (and off-world teleport)
 	if (!custom_ents->value && !ctf->value)
-		entities = LoadEntFile(mapname, entities);/*MrG{DRGN} 10/04/2004*/ 
+		entities = LoadEntFile(mapname, entities);    /*MrG{DRGN} 10/04/2004*/ 
 	// end - new for entity externally adding
 		  
 	// parse ents
@@ -605,7 +601,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 		entities = ED_ParseEdict (entities, ent);
 
 		// yet another map hack
-		if (!Q_stricmp(level.mapname, "command") && 
+		if (ent && !Q_stricmp(level.mapname, "command") && 
 			!Q_stricmp(ent->classname, "trigger_once") && 
 			!Q_stricmp(ent->model, "*27"))
 			ent->spawnflags &= ~SPAWNFLAG_NOT_HARD;
@@ -862,6 +858,7 @@ void CreateStatusBar(void)
 	sprintf(Bar, "if %d xv 60 yv 140 stat_string %d endif ", STAT_LOCATION, STAT_LOCATION);
 	strcat(statusbar, Bar);
 	
+	//DbgPrintf("%s size: %lu\n", statusbar, strlen(statusbar));
 	// Make sure we don't blow anything out of the water
 	s = strlen(statusbar);
 	if ( s > sizeof (statusbar))

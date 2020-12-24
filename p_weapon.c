@@ -35,7 +35,7 @@ void SetSweeperMode(edict_t *ent);
 // the point of the projectile source when fired(?)
 void P_ProjectSource (gclient_t *client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result)
 {
-	vec3_t	_distance;
+	vec3_t	_distance = { 0 };
 
 	VectorCopy (distance, _distance);
 	if (client->pers.hand == LEFT_HANDED)
@@ -1284,13 +1284,8 @@ void Weapon_Generic (edict_t *ent, int FRAME_ACTIVATE_LAST, int FRAME_FIRE_LAST,
 {
 	int		n;
 	
-	if (ent->deadflag || ent->s.modelindex != 255) // ### Hentai ### 
-		return; // not on client, so VWep animations could do wacky things
-	
-	if (ent->client->newweapon && fast_weapon_change->value)		// fast weapon change
-	{
-		ChangeWeapon(ent);
-		return;
+    if (ent->deadflag || ent->s.modelindex != 255) { // VWep animations screw up corpses
+        return;
 	}
 	
 	if (ent->client->weaponstate == WEAPON_DROPPING)
@@ -1322,8 +1317,10 @@ void Weapon_Generic (edict_t *ent, int FRAME_ACTIVATE_LAST, int FRAME_FIRE_LAST,
 		return;
 	}
 	
-	if (ent->client->weaponstate == WEAPON_ACTIVATING)
-	{
+	if (ent->client->weaponstate == WEAPON_ACTIVATING) {
+		if (fast_weapon_change->value) {
+			ent->client->ps.gunframe = FRAME_ACTIVATE_LAST;
+		}
 		if (ent->client->ps.gunframe == FRAME_ACTIVATE_LAST)
 		{
 			ent->client->weaponstate = WEAPON_READY;
@@ -1338,8 +1335,13 @@ void Weapon_Generic (edict_t *ent, int FRAME_ACTIVATE_LAST, int FRAME_FIRE_LAST,
 	if ((ent->client->newweapon) && (ent->client->weaponstate != WEAPON_FIRING))
 	{
 		ent->client->weaponstate = WEAPON_DROPPING;
-		ent->client->ps.gunframe = FRAME_DEACTIVATE_FIRST;
-		// ### Hentai ### BEGIN
+		if (fast_weapon_change->value) {
+			ChangeWeapon(ent);
+			return;
+		}
+		else {
+			ent->client->ps.gunframe = FRAME_DEACTIVATE_FIRST;
+		}
 		if ((FRAME_DEACTIVATE_LAST - FRAME_DEACTIVATE_FIRST) < 4)
 		{
 			ent->client->anim_priority = ANIM_REVERSE;
@@ -1437,8 +1439,19 @@ void Weapon_Generic (edict_t *ent, int FRAME_ACTIVATE_LAST, int FRAME_FIRE_LAST,
 			}
 		}
 		
-		if (!fire_frames[n])
+		if (!fire_frames[n]) {
 			ent->client->ps.gunframe++;
+			if (ent->client->newweapon && fast_weapon_change->value) {
+				ChangeWeapon(ent);
+				return;
+			}
+		}
+		else {
+			if (ent->client->newweapon && fast_weapon_change->value) {
+				ChangeWeapon(ent);
+				return;
+			}
+		}
 		
 		if (ent->client->ps.gunframe == FRAME_IDLE_FIRST+1)
 			ent->client->weaponstate = WEAPON_READY;

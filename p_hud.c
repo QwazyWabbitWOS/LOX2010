@@ -196,8 +196,8 @@ void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 	int		i, k;
 	int		j;
 	int		x, y;
-	int		sorted[MAX_CLIENTS];
-	int		sortedscores[MAX_CLIENTS];
+	int		sorted[MAX_CLIENTS] = { 0 };
+	int		sortedscores[MAX_CLIENTS] = { 0 };
 	int		score, total;
 	//int		picnum;
 	gclient_t	*cl;
@@ -278,8 +278,7 @@ void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 			break;
 		strcpy (string + stringlength, entry);	//safe
 		stringlength += j;
-		//OutputDebugString(entry);
-		//OutputDebugString("\n");
+		DbgPrintf("%s size: %lu\n", entry, stringlength);
 	}
 }
 
@@ -520,7 +519,8 @@ void A_ScoreboardMessage (edict_t *ent, edict_t *killer, char *string)
 	if (ent->client->scoreboardnum == 2)
 	{
 		int total, score, ping;
-		int sortedscores[MAX_CLIENTS], sorted[MAX_CLIENTS];
+		int sortedscores[MAX_CLIENTS] = { 0 };
+		int sorted[MAX_CLIENTS] = { 0 };
 		
 		total = score = 0;
 		
@@ -596,8 +596,7 @@ void A_ScoreboardMessage (edict_t *ent, edict_t *killer, char *string)
 					ping);                  
 			}
 
-			//OutputDebugString(string);
-			//OutputDebugString("\n");
+			DbgPrintf("%s size: %lu\n", string, strlen(string));
 
 			if (strlen(string) > (unsigned)(maxsize - 200) && //RiEvEr was -100 
 				i < (total - 2))
@@ -627,9 +626,7 @@ void A_ScoreboardMessage (edict_t *ent, edict_t *killer, char *string)
 
 void DeathmatchScoreboardMessage (edict_t *ent, edict_t *killer)
 {
-	char	string[1400];	// limited to 1400 bytes by Q2 engine
-		  
-	*string = 0; // if no scoreboard we don't send much
+	char	string[1400] = { 0 };	// limited to 1400 bytes by Q2 engine
 	
 	if (ent->client->showscores || ent->client->showinventory)
 	{
@@ -832,7 +829,9 @@ void G_SetStats (edict_t *ent)
 	short	fph;
 	
 	//  CCH: local variables for rangefinder
-	vec3_t	start, forward, end;
+	vec3_t	start = { 0 };
+	vec3_t	forward;
+	vec3_t	end;
 	trace_t	tr; 
 	
 	//

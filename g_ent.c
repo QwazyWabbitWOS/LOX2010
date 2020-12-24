@@ -10,8 +10,9 @@ static char* ReadEntFile(char* filename)
 
 	while (1)
 	{
-		fp = fopen(filename, "r");
-		if (!fp) break;
+		fp = fopen(filename, "rt");
+		if (!fp)
+			break;
 
 		for (i = 0; (ch = fgetc(fp)) != EOF; i++);
 
@@ -28,13 +29,15 @@ static char* ReadEntFile(char* filename)
 	if (fp) fclose(fp);
 	return(filestring);
 }
-
+/* Look for a .ent file matching the map name.
+   Load it if it exists. 
+ */
 char* LoadEntFile(char* mapname, char* entities)
 {
 	char	entfilename[MAX_QPATH] = "";
 	char*	newentities;
 
-	Com_sprintf(entfilename, sizeof entfilename, "entfiles/%s.ent", mapname);
+	Com_sprintf(entfilename, sizeof entfilename, "%s/entfiles/%s.ent", gamedir->string, mapname);
 	// convert string to all lowercase 
 	for (int i = 0; entfilename[i]; i++)
 		entfilename[i] = (char)tolower(entfilename[i]);

@@ -657,7 +657,7 @@ void Cmd_Turret_f(edict_t *ent)
 void Cmd_LogPlayers_f(edict_t *ent)
 {
 	
-	int	i,j[4];
+	int	i, j[4] = { 0 };
 	
 	edict_t	*player = g_edicts;
 	gi.dprintf("---------------------------------------\n");
@@ -694,7 +694,7 @@ GLJ: modified 6/11/2007 dM_grenades are used when player is holding
 */
 void Cmd_Airstrike_f (edict_t *ent)
 {
-	vec3_t  start, forward, world_up, end;
+	vec3_t  start = { 0 }, forward, world_up = { 0 }, end;
 	trace_t tr;
 	
 	if (!ent->client || ent->health <= 0)
@@ -1399,7 +1399,7 @@ void Cmd_CheckStats_f (edict_t *ent)
 	int		i, j;
 	edict_t	*player;
 	char	stats[500];
-	vec3_t	v;
+	vec3_t	v = { 0 };
 	float	len;
 	
 	if (i_loxfeatureban & LFB_CHECKSTATS)
@@ -1564,7 +1564,7 @@ void Cmd_Explosive(edict_t *ent)
 char *ClientTeam (edict_t *ent)
 {
 	char		*p;
-	static char	value[512];
+	static char	value[512] = { 0 };
 	
 	value[0] = 0;
 	
@@ -3329,8 +3329,8 @@ void Cmd_Players_f (edict_t *ent)
 	int		i;
 	int		count;
 	char	small[64];
-	char	large[1280];
-	int		index[256];
+	char	large[1280] = { 0 };
+	int		index[256] = { 0 };
 
 	count = 0;
 	for (i = 0 ; i < maxclients->value ; i++)
@@ -3369,7 +3369,7 @@ void Cmd_Players_f (edict_t *ent)
 //  =================
 void Cmd_Push_f (edict_t *ent)
 {
-	vec3_t	start;
+	vec3_t	start = { 0 };
 	vec3_t	forward;
 	vec3_t	end;
 	trace_t	tr;
@@ -3439,7 +3439,7 @@ void Cmd_Push_f (edict_t *ent)
 //  =================
 void Cmd_Pull_f (edict_t *ent)
 {
-	vec3_t	start;
+	vec3_t	start = { 0 };
 	vec3_t	forward;
 	vec3_t	end;
 	trace_t	tr;
@@ -3591,7 +3591,7 @@ Cmd_Say_f
 */
 void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
 {
-	int		i,j, cip[4];
+	int		i, j, cip[4] = { 0 };
 	edict_t	*other;
 	char	*p, ip[20];
 	char	text[2048];
@@ -3769,7 +3769,7 @@ void Cmd_PlayerList_f(edict_t *ent)
 {
 	int i;
 	char str[80];
-	char text[1400];
+	char text[1400] = { 0 };
 	edict_t *e2;
 	
 	// connect-time, ping, score, name
