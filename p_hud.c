@@ -21,7 +21,7 @@
 #include "g_local.h"
 #include "g_team.h"
 #include "scanner.h"
-
+#include "performance.h"
 
 //
 //======================================================================

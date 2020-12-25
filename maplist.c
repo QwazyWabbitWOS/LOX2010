@@ -135,7 +135,7 @@ qboolean Maplist_Next (void)
 	FILE *in;
 	char *res_cp;
 	char buffer[MAX_QPATH] = { 0 };
-	qboolean ok;
+	qboolean ok = false;
 	
 	// Make sure we can find the game directory.
 	if (!gamedir || !gamedir->string[0]) {

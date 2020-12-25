@@ -39,7 +39,7 @@ void SP_LaserSight (edict_t *self)
 
 	AngleVectors (self->client->v_angle, forward, right, NULL);
 
-	VectorSet(end,100 , 0, 0);
+	VectorSet(end, 100 , 0, 0);
 	G_ProjectSource (self->s.origin, end, forward, right, start);
 
 	lss = G_Spawn ();

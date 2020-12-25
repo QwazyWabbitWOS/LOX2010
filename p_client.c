@@ -51,7 +51,7 @@ void Create_Ghost(void);
 static void SP_FixCoopSpots (edict_t *self)
 {
 	edict_t	*spot;
-	vec3_t	d;
+	vec3_t	d = { 0 };
 
 	spot = NULL;
 
@@ -902,7 +902,7 @@ void TossClientWeapon (edict_t *self)
 
 void LookAtKiller (edict_t *self, edict_t *inflictor, edict_t *attacker)
 {
-	vec3_t		dir;
+	vec3_t		dir = { 0 };
 
 	if (attacker && attacker != world && attacker != self)
 	{
@@ -1308,7 +1308,7 @@ float	PlayersRangeFromSpot (edict_t *spot)
 {
 	edict_t	*player;
 	float	bestplayerdistance;
-	vec3_t	v;
+	vec3_t	v = { 0 };
 	int		n;
 	float	playerdistance;
 
@@ -1643,7 +1643,8 @@ void PutClientInServer (edict_t *ent)
 	vec3_t	mins = {-16, -16, -24};
 	vec3_t	maxs = {16, 16, 32};
 	int		index;
-	vec3_t	spawn_origin, spawn_angles;
+	vec3_t	spawn_origin = { 0 };
+	vec3_t	spawn_angles = { 0 };
 	gclient_t	*client;
 	int		i;
 	client_persistent_t	saved;
@@ -2264,7 +2265,7 @@ void PrintPmove (pmove_t *pm)
 qboolean FindSmallPoint (edict_t *ent)
 {
 	vec3_t loc = {0,0,0};
-	vec3_t floor;
+	vec3_t floor = { 0 };
 	int i;
 	int j = 0;
 	int k = 0;
@@ -2305,8 +2306,8 @@ qboolean FindSmallPoint (edict_t *ent)
 // FIXME: On small maps, this does not work. There's got to be a better way
 qboolean findspawnpoint (edict_t *ent)
 {
-	vec3_t loc = {0,0,0};
-	vec3_t floor;
+	vec3_t loc = { 0 };
+	vec3_t floor = { 0 };
 	int i;
 	int j = 0;
 	int k = 0;
@@ -2350,7 +2351,7 @@ void AreWeStillInSolidcommaspaceIfYesRespawnUs (edict_t *ent)
 {
 	if (gi.pointcontents(ent->s.origin) & CONTENTS_SOLID)
 	{
-		vec3_t old_origin;
+		vec3_t old_origin = { 0 };
 
 		VectorCopy (ent->s.origin, old_origin);
 		// Crap, we're still in a solid.
@@ -2379,6 +2380,9 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 	edict_t	*other;
 	int		i, j;
 	pmove_t	pm;
+
+	if (!ent || !ent->client)
+		return;
 
 	//	START_PERFORMANCE_TIMER;
 
@@ -2706,9 +2710,9 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		}
 		else
 		{
-			vec3_t dir;
+			vec3_t dir = { 0 };
 			VectorSet (dir, 0, 0, 1);
-			if (ent->client != NULL)
+			if (ent->client)
 				T_Damage (ent, ent, ent->damagecauser, dir, ent->s.origin, vec3_origin, ent->plaguedamagecount, 0, 0, MOD_PLAGUE);
 			ent->plaguedamagecount = (int)(.90*(float)ent->plaguedamagecount);
 		}

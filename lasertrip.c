@@ -36,7 +36,7 @@ static void weapon_lasertrip_think (edict_t *self)
 	
 	if (self->enemy)
 	{
-		VectorCopy (self->movedir, last_movedir);
+		_VectorCopy (self->movedir, last_movedir);
 		VectorMA (self->enemy->absmin, 0.5, self->enemy->size, point);
 		VectorSubtract (point, self->s.origin, self->movedir);
 		VectorNormalize (self->movedir);
@@ -45,7 +45,7 @@ static void weapon_lasertrip_think (edict_t *self)
 	}
 	
 	ignore = self;
-	VectorCopy (self->s.origin, start);
+	_VectorCopy (self->s.origin, start);
 	VectorMA (start, 2048, self->movedir, end);
 	
 	for (;;)
