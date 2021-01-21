@@ -39,7 +39,7 @@ edict_t *medic_FindDeadMonster (edict_t *self)
 			continue;
 		if (ent->health > 0)
 			continue;
-		if (ent->nextthink)
+		if (ent->nextthink && (ent->think != M_FliesOff) && (ent->think != M_FliesOn))
 			continue;
 		if (!visible(self, ent))
 			continue;

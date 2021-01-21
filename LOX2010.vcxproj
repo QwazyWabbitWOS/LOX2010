@@ -63,6 +63,8 @@
       <BrowseInformation>true</BrowseInformation>
       <DisableSpecificWarnings>
       </DisableSpecificWarnings>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <DataExecutionPrevention>
@@ -84,7 +86,7 @@
       <PrecompiledHeader>
       </PrecompiledHeader>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AssemblerOutput>NoListing</AssemblerOutput>
+      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DisableSpecificWarnings>
       </DisableSpecificWarnings>

@@ -988,8 +988,8 @@ extern	edict_t			*g_edicts;
 
 #define FOFS(x)     q_offsetof(edict_t, x)
 #define STOFS(x)    q_offsetof(spawn_temp_t, x)
-#define	LLOFS(x) (size_t)&(((level_locals_t *)0)->x)
-#define	CLOFS(x) (size_t)&(((gclient_t *)0)->x)
+#define	LLOFS(x)    q_offsetof(level_locals_t, x)
+#define	CLOFS(x)    q_offsetof(gclient_t, x)
 
 #define random()	((rand () & 0x7fff) / ((float)0x7fff))
 #define crandom()	(2.0f * (random() - 0.5f))
@@ -2027,6 +2027,8 @@ void AttackFinished (edict_t *self, float time);
 void monster_death_use (edict_t *self);
 void M_CatagorizePosition (edict_t *ent);
 qboolean M_CheckAttack (edict_t *self);
+void M_FliesOff(edict_t* self);
+void M_FliesOn(edict_t* self);
 void M_FlyCheck (edict_t *self);
 void M_CheckGround (edict_t *ent);
 

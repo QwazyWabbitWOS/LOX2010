@@ -127,7 +127,7 @@ void turret_breach_think (edict_t *self)
 			dmax += 360;
 		else if (dmax > 180)
 			dmax -= 360;
-		if (fabs(dmin) < fabsf(dmax))
+		if (fabsf(dmin) < fabs(dmax))
 			self->move_angles[YAW] = self->pos1[YAW];
 		else
 			self->move_angles[YAW] = self->pos2[YAW];

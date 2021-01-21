@@ -579,7 +579,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	// end - new for entity externally adding
 		  
 	// parse ents
-	for (;;)
+	while (1)
 	{
 #ifdef DUMPENTS
 		// keep track of where the entity started.
