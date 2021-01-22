@@ -206,7 +206,7 @@ void InitGame (void)
 	maxspectators = gi.cvar ("maxspectators", "12", CVAR_SERVERINFO);
 	deathmatch = gi.cvar ("deathmatch", "0", CVAR_LATCH);
 	ctf = gi.cvar ("ctf", "0", CVAR_LATCH);
-	coop = gi.cvar ("coop", "0", CVAR_LATCH);
+	coop = gi.cvar ("coop", "0", CVAR_LATCH | CVAR_SERVERINFO);
 	skill = gi.cvar ("skill", "1", CVAR_LATCH);
 	noscore = gi.cvar ("noscore", "0", CVAR_LATCH); // for the new scoreboard logic
 	maxentities = gi.cvar ("maxentities", "1024", CVAR_LATCH);
