@@ -1440,36 +1440,39 @@ edict_t *SelectDeathmatchSpawnPoint (void)
 		return SelectRandomDeathmatchSpawnPoint ();
 }
 
-
-edict_t *SelectCoopSpawnPoint (edict_t *ent)
+edict_t* SelectCoopSpawnPoint(edict_t* ent)
 {
 	int		index;
-	edict_t	*spot = NULL;
-	char	*target;
+	edict_t* spot = NULL;
+	char* target;
 
 	index = ent->client - game.clients;
-	if (!index) 	// player 0 starts in normal player spawn point
-		return spot;
+
+	// player 0 starts in normal player spawn point
+	if (!index)
+		return NULL;
+
+	spot = NULL;
 
 	// assume there are four coop spots at each spawnpoint
-	for (;;)
+	while (1)
 	{
-		spot = G_Find (spot, FOFS(classname), "info_player_coop");
-		if (spot == NULL)
-			return spot;	// we didn't have enough
+		spot = G_Find(spot, FOFS(classname), "info_player_coop");
+		if (!spot)
+			return NULL;	// we didn't have enough...
 
 		target = spot->targetname;
 		if (!target)
 			target = "";
-		if ( Q_stricmp(game.spawnpoint, target) == 0 )
+		if (Q_stricmp(game.spawnpoint, target) == 0)
 		{	// this is a coop spawn point for one of the clients here
 			index--;
 			if (!index)
 				return spot;		// this is it
 		}
 	}
+	return spot;
 }
-
 
 /*
 ===========
@@ -1512,12 +1515,9 @@ void SelectSpawnPoint (edict_t *ent, vec3_t origin, vec3_t angles)
 				gi.error ("Couldn't find spawn point %s\n", game.spawnpoint);
 		}
 	}
-	else
-	{
-		VectorCopy(spot->s.origin, origin);
-		origin[2] += 9;
-		VectorCopy(spot->s.angles, angles);
-	}
+	VectorCopy(spot->s.origin, origin);
+	origin[2] += 9;
+	VectorCopy(spot->s.angles, angles);
 }
 
 
