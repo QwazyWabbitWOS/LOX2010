@@ -67,10 +67,8 @@ void DbgPrintf (char *msg, ...)
 	vsnprintf (text, sizeof(text), msg, argptr);
 	va_end (argptr);
 
-#if defined _DEBUG
 #if defined _WIN32
 	OutputDebugString(text);
-#endif /* _DEBUG */
 #else // Not WIN32
 	  	if(developer->value)
 		gi.dprintf(text);

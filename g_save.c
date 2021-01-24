@@ -213,6 +213,7 @@ void InitGame (void)
 	custom_ents = gi.cvar ("custom_ents", "0", 0);		//QW// allow custom ents in DM
 	ext_devt = gi.cvar ("ext_devt", "0", CVAR_LATCH);	//QW// set this for extinction development
 	staticlights = gi.cvar ("staticlights", "0", CVAR_LATCH);	//QW// 1 = no dynamic map lights.
+	developer = gi.cvar ("developer", "0", CVAR_LATCH);	//QW// 1 = output debug info to console/log
 
 	if (coop->value)
 		gi.cvar_forceset ("gamename", GAMEVERSION_C);	// show coop mode version string
