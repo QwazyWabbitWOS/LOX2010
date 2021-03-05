@@ -381,7 +381,6 @@ void AddPointToBounds (vec3_t v, vec3_t mins, vec3_t maxs)
 	}
 }
 
-/* compare elements of two vectors, return 1 if they match, else return 0 */
 
 int VectorCompare (vec3_t v1, vec3_t v2)
 {
@@ -853,14 +852,15 @@ char *Info_ValueForKey (char *s, char *key)
 	char	*o;
 
 	valueindex ^= 1;
-	if (*s == '\\') s++;
-
-	for (;;)
+	if (*s == '\\')
+		s++;
+	while (1)
 	{
 		o = pkey;
 		while (*s != '\\')
 		{
-			if (!*s) return "";
+			if (!*s)
+				return "";
 			*o++ = *s++;
 		}
 		*o = 0;
@@ -868,13 +868,19 @@ char *Info_ValueForKey (char *s, char *key)
 
 		o = value[valueindex];
 
-		while (*s != '\\' && *s) *o++ = *s++;
+		while (*s != '\\' && *s)
+		{
+			if (!*s)
+				return "";
+			*o++ = *s++;
+		}
 		*o = 0;
 
 		if (!strcmp (key, pkey) )
 			return value[valueindex];
 
-		if (!*s) return "";
+		if (!*s)
+			return "";
 		s++;
 	}
 }
@@ -892,7 +898,7 @@ void Info_RemoveKey (char *s, char *key)
 		return;
 	}
 
-	for (;;)
+	while (1)
 	{
 		start = s;
 		if (*s == '\\')
@@ -943,10 +949,10 @@ can mess up the server's parsing
 qboolean Info_Validate (char *s)
 {
 	if (strstr (s, "\""))
-		return 0;
+		return false;
 	if (strstr (s, ";"))
-		return 0;
-	return 1;
+		return false;
+	return true;
 }
 
 void Info_SetValueForKey (char *s, char *key, char *value)

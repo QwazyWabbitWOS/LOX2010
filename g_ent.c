@@ -1,5 +1,8 @@
 #include "g_local.h" 
 
+/** Read the specified .ent file.
+   Pass back a pointer to the allocated entity block.
+ */
 static char* ReadEntFile(char* filename)
 {
 

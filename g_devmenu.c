@@ -181,7 +181,7 @@ void Cmd_DevMenu_f(char *scmd, edict_t *ent)
 				}
 				p = testmenu[i].text;
 				if (strlen(gi.argv(2)) < 29) // 28 chars plus '\0' per line
-					text = strdup(gi.argv(2)); // copy at most 28 chars to the text location
+					text = G_CopyString(gi.argv(2)); // copy at most 28 chars to the text location
 				else
 				{
 					gi.cprintf (ent, PRINT_HIGH, "Number of characters must be less than 29.\n");
@@ -197,7 +197,7 @@ void Cmd_DevMenu_f(char *scmd, edict_t *ent)
 					align = PMENU_ALIGN_LEFT;
 				
 				hnd = ent->client->menu; // pointer to the dynamic menu
-				hnd->entries[i].text = strdup(text);	// dynamically allocated string
+				hnd->entries[i].text = G_CopyString(text);	// dynamically allocated string
 				hnd->entries[i].align = align;
 			}
 			else
@@ -214,7 +214,7 @@ void Cmd_DevMenu_f(char *scmd, edict_t *ent)
 			hnd = ent->client->menu; // point to the dynamic menu
 			for (i=0; i < (sizeof(testmenu) / sizeof(pmenu_t)); i++) 
 			{
-				hnd->entries[i].text = strdup(""); // blank the line
+				hnd->entries[i].text = G_CopyString(""); // blank the line
 				hnd->entries[i].align = PMENU_ALIGN_CENTER;
 				hnd->entries[i].SelectFunc = NULL;
 				

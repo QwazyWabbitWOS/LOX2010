@@ -55,7 +55,7 @@ static void SP_FixCoopSpots (edict_t *self)
 
 	spot = NULL;
 
-	for (;;)
+	while(1)
 	{
 		spot = G_Find(spot, FOFS(classname), "info_player_start");
 		if (!spot)
@@ -183,7 +183,7 @@ void SP_info_player_coop(edict_t *self)
 The deathmatch intermission point will be at one of these
 Use 'angles' instead of 'angle', so you can set pitch or roll as well as yaw.  'pitch yaw roll'
 */
-void SP_info_player_intermission(void)
+void SP_info_player_intermission(edict_t* ent)
 {
 }
 

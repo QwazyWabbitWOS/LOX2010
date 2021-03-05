@@ -1397,8 +1397,10 @@ void PrecacheItem (gitem_t *it)
 			s++;
 		
 		len = s-start;
-		if (len >= MAX_QPATH - 1 || len < 5)
-			gi.error ("PrecacheItem: %s has bad precache string", it->classname);
+		if (len >= MAX_QPATH || len < 5) {
+			gi.error("PrecacheItem: %s has bad precache string", it->classname);
+			return; //QW// never executes
+		}
 		memcpy (data, start, len);
 		data[len] = 0;
 		if (*s)

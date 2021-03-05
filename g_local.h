@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
   #include <stdlib.h>
   #include <crtdbg.h>
   #ifndef __func__
-    #define __func__ __FUNCTION__
+    #define __func__ __FUNCTION__ // for backward compatibility
   #endif
   _CrtMemState startup1;	// memory diagnostics, link with debug lib (/MDd)
   #include "performance.h"

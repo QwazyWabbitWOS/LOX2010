@@ -34,7 +34,7 @@ void AI_SetSightClient (void)
 		start = level.sight_client - g_edicts;
 
 	check = start;
-	for (;;)
+	while (1)
 	{
 		check++;
 		if (check > game.maxclients)

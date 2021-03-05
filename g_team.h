@@ -68,7 +68,7 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive);
 void CTFCredits(edict_t *ent, pmenu_t *p);
 void CTFCalcScores (void);
 void SetCTFStats (edict_t *ent);
-void CTFScoreboardMessage (edict_t *ent, edict_t *killer, char string[1400]);
+void CTFScoreboardMessage (edict_t *ent, edict_t *killer, char* string);
 void CTFSetTeam (edict_t *ent, int desired_team);
 void CTFTeam_f (edict_t *ent);
 void CTFID_f (edict_t *ent);

@@ -242,7 +242,7 @@ void InfantryMachineGun (edict_t *self)
 {
 	vec3_t	start, target;
 	vec3_t	forward, right;
-	vec3_t	vec;
+	vec3_t	vec = { 0 };
 	int		flash_number;
 
 	if (self->s.frame == FRAME_attak111)
@@ -503,7 +503,7 @@ void infantry_swing (edict_t *self)
 
 void infantry_smack (edict_t *self)
 {
-	vec3_t	aim;
+	vec3_t	aim = { 0 };
 
 	VectorSet (aim, MELEE_DISTANCE, 0, 0);
 	if (fire_hit (self, aim, (5 + (rand() % 5)), 50))

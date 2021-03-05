@@ -119,6 +119,10 @@ void RenameStatsLog(void)
     time_t	long_time;
 	struct	tm	*ltime; 
 	
+	// Only if we are producing logs.
+	if (!logarstats->value)
+		return;
+
 	time(&long_time);
 	ltime = localtime(&long_time); 
 	
@@ -157,6 +161,10 @@ void RenameConsoleLog(void)
 	struct	tm	*ltime; 
 	char	*logval = "  ";
 	
+	// Only if we are producing logs.
+	if (!logfile->value)
+		return;
+
 	time(&long_time);
 	ltime = localtime(&long_time);
 	

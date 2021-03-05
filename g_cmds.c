@@ -380,16 +380,16 @@ void Cmd_Help(edict_t *ent)
 	
 	if (gi.argc() == 1)
 	{
-		gi.cprintf(ent, PRINT_HIGH, "usage: man \"<command, weapon or feature>\"\n");
+		gi.cprintf(ent, PRINT_HIGH, "Usage: man \"<command, weapon or feature>\"\n");
+		gi.cprintf(ent, PRINT_HIGH, "Also: man help for more info\n");
 		return;
 	}
 	
 	query = gi.argv(1);
-	switch(query[0])
+	switch(tolower(query[0]))
 	{
 		
 	case 'a':
-	case 'A':
 		if (Q_stricmp (query, "airstrike") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Airstrike_Text);
 		else if (Q_stricmp (query, "angel") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Angel_Text);			
 		else if (Q_stricmp (query, "angels") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Angel_Text);	
@@ -411,7 +411,6 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'b':
-	case 'B':
 		if (Q_stricmp (query, "banzai grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BanzaiGrenade_Text);
 		else if (Q_stricmp (query, "baton") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Baton_Text);
 		else if (Q_stricmp (query, "bazooka sweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BazookaSweeper_Text);
@@ -422,7 +421,6 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'c':
-	case 'C':
 		if (Q_stricmp (query, "cloak") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Cloak_Text);
 		else if (Q_stricmp (query, "checkstats") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Checkstats_Text);
 		else if (Q_stricmp (query, "chasecam") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Chasecam_Text);
@@ -433,7 +431,6 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'd':
-	case 'D':
 		if (Q_stricmp (query, "drop") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Drop_Text);
 		else if (Q_stricmp (query, "decoy") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Decoy_Text); 
 		else if (Q_stricmp (query, "detonate") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Detonate_Text);
@@ -446,13 +443,11 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'e':
-	case 'E':
 		if (Q_stricmp (query, "explosive") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Explosive_Text);
 		else if (Q_stricmp (query, "energy vortex") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_EnergyVortex_Text);
 		break;
 		
 	case 'f':
-	case 'F':
 		if (Q_stricmp (query, "flashlight") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Flashlight_Text);
 		else if (Q_stricmp(query, "feign") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FeignDeath_Text);
 		else if (Q_stricmp(query, "fph") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FPH_Text);
@@ -470,7 +465,6 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'g':
-	case 'G':
 		if (Q_stricmp (query, "grenadesweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_GrenadeSweeper_Text);
 		else if (Q_stricmp (query, "grapple") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Hook_f_Text);
 		else if (Q_stricmp (query, "grenades") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Grenades_Text);	
@@ -480,7 +474,6 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'h':
-	case 'H':
 		if (Q_stricmp (query, "help") == 0) 
 		{
 			gi.cprintf(ent, PRINT_MEDIUM, Info_Man_Text1);	// help on the man functs split into 
@@ -498,19 +491,16 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'i':
-	case 'I':
 		if (Q_stricmp(query, "id") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlayerID_Text);
 		else if (Q_stricmp(query,"invis") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_NewCloak_Text);
 		else if (Q_stricmp (query, "icecube gun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_IcecubeGun_Text);	
 		break;
 		
 	case 'k':
-	case 'K':
 		if (Q_stricmp (query, "kamikaze") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Kamikaze_Text);
 		break;
 		
 	case 'l':
-	case 'L':
 		if (Q_stricmp (query, "lbind") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LBind_Text);
 		else if (Q_stricmp (query, "lox") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LOX_Text);
 		else if (Q_stricmp (query, "lsight") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LaserSight_Text);
@@ -520,7 +510,6 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'm':
-	case 'M':
 		if (Q_stricmp (query, "mace") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Mace_Text);
 		else if (Q_stricmp (query, "machine rocket gun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_MachineRocketGun_Text);
 		else if (Q_stricmp (query, "machinegun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_MachineGun_Text);
@@ -528,20 +517,17 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'n':
-	case 'N':
 		if (Q_stricmp (query, "nightvision") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Lowlight_Text);
 		else if (Q_stricmp (query, "nailgun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Nailgun_Text);
 		else if (Q_stricmp (query, "napalm grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_NapalmGrenade_Text);
 		break;
 		
 	case 'o':
-	case 'O':
 		if (Q_stricmp(query, "organic") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_OrganicArmor_Text);
 		else if (Q_stricmp(query, "organic armor") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_OrganicArmor_Text);
 		break;			
 		
 	case 'p':
-	case 'P':
 		if (Q_stricmp (query, "push") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Tractor_Text);
 		else if (Q_stricmp (query, "pull") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Tractor_Text);
 		else if (Q_stricmp(query, "playerid") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlayerID_Text);
@@ -553,7 +539,6 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'r':
-	case 'R':
 		if (Q_stricmp (query, "range") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Rangefinder_Text);
 		else if (Q_stricmp(query, "revenge") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Revenge_Text);
 		else if (Q_stricmp (query, "railgun sweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_RailgunSweeper_Text);
@@ -562,7 +547,6 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 's':
-	case 'S':
 		if (Q_stricmp (query, "scanner") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Scanner_Text);
 		else if (Q_stricmp (query, "score") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Score_Text);
 		else if (Q_stricmp (query, "shrapnel grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_ShrapnelGrenade_Text);
@@ -580,7 +564,6 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 't':
-	case 'T':
 		if (Q_stricmp (query, "tracker") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Tracker_Text);
 		else if (Q_stricmp (query, "teleportgrenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_TeleportGrenade_Text);
 		else if (Q_stricmp (query, "time") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Time_Text);
@@ -593,7 +576,6 @@ void Cmd_Help(edict_t *ent)
 		break;
 		
 	case 'v':
-	case 'V':
 		if (Q_stricmp (query, "ver") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Ver_Text);
 		else if (Q_stricmp (query, "vacuummaker") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_VacuumMaker_Text);
 		else if (Q_stricmp (query, "vote") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Voting_Text);
@@ -2968,8 +2950,7 @@ void Cmd_Use_f (edict_t *ent)
 			gi.cprintf (ent, PRINT_MEDIUM, "Fire Grenade Launcher\n");
 		else
 			gi.cprintf (ent, PRINT_MEDIUM, "%s Launcher\n",
-			itemlist[ITEM_INDEX(&gI_ammo_grenades) + ent->client->dM_grenade]
-			->pickup_name);
+			itemlist[ITEM_INDEX(&gI_ammo_grenades) + ent->client->dM_grenade]->pickup_name);
 	}
 	else if (it == &gI_weapon_bazooka)
 	{
@@ -2977,8 +2958,7 @@ void Cmd_Use_f (edict_t *ent)
 			gi.cprintf (ent, PRINT_MEDIUM, "Bazooka\n");
 		else
 			gi.cprintf (ent, PRINT_MEDIUM, "%s Bazooka\n",
-			itemlist[ITEM_INDEX(&gI_ammo_grenades) + ent->client->dM_grenade]
-			->pickup_name);
+			itemlist[ITEM_INDEX(&gI_ammo_grenades) + ent->client->dM_grenade]->pickup_name);
 	}
 	else if (it == &gI_weapon_rocketlauncher)
 	{
@@ -3009,8 +2989,7 @@ void Cmd_Use_f (edict_t *ent)
 			gi.cprintf (ent, PRINT_MEDIUM, "Standard Grenade\n");
 		else
 			gi.cprintf (ent, PRINT_MEDIUM, "%s\n",
-			itemlist[ITEM_INDEX(&gI_ammo_grenades) + ent->client->dM_grenade]
-			->pickup_name);
+			itemlist[ITEM_INDEX(&gI_ammo_grenades) + ent->client->dM_grenade]->pickup_name);
 	}
 	else if (it->pickup_name)
 	{

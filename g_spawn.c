@@ -422,7 +422,7 @@ char *ED_ParseEdict (char *data, edict_t *ent)
 	memset (&st, 0, sizeof(st));
 	
 	// go through all the dictionary pairs
-	for (;;)
+	while (1)
 	{	
 		// parse key
 		com_token = COM_Parse (&data);
@@ -590,9 +590,11 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 		com_token = COM_Parse (&entities);
 		if (!entities)
 			break;
-		if (com_token[0] != '{')
-			gi.error ("%s: found %s when expecting {", __func__, com_token);
-		
+		if (com_token[0] != '{') {
+			gi.error("ED_LoadFromFile: found %s when expecting {", com_token);
+			return; //QW// never executes.
+		}
+
 		if (!ent)
 			ent = g_edicts;
 		else
