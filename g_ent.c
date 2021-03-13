@@ -22,7 +22,7 @@ static char* ReadEntFile(char* filename)
 		filestring = gi.TagMalloc(i + 1, TAG_LEVEL);
 		if (!filestring) break;
 
-		fseek(fp, 0, SEEK_SET);
+		fseek(fp, 0L, SEEK_SET);
 		for (i = 0; (ch = fgetc(fp)) != EOF; i++)
 			filestring[i] = (char)ch;
 		filestring[i] = '\0';
@@ -32,6 +32,7 @@ static char* ReadEntFile(char* filename)
 	if (fp) fclose(fp);
 	return(filestring);
 }
+
 /* Look for a .ent file matching the map name.
    Load it if it exists. 
  */

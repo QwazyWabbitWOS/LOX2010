@@ -182,7 +182,7 @@ qboolean Maplist_Next (void)
 				{
 					i = 0;  // begin at the beginning
 					offset = 1;
-					rewind(in);
+					fseek(in, 0L, SEEK_SET);
 					if (ilp++ < 1)	// infinite loop prevention
 						continue;
 					else

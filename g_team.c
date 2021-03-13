@@ -1616,7 +1616,7 @@ static int getEntityFileSize(const char *filename, FILE *f)
 	int size;
 
 	// Get the size of the file.
-	if (fseek (f, 0, SEEK_END) != 0) {
+	if (fseek (f, 0L, SEEK_END) != 0) {
 		gi.dprintf ("ERROR: %s: fseek %s\n", __func__, filename);
 		return 0;
 	}
@@ -1624,7 +1624,7 @@ static int getEntityFileSize(const char *filename, FILE *f)
 		gi.dprintf ("ERROR: %s: ftell %s (%d)\n", __func__, filename, size);
 		return 0;
 	}
-	else if (fseek (f, 0, SEEK_SET) != 0) {
+	else if (fseek (f, 0L, SEEK_SET) != 0) {
 		gi.dprintf ("ERROR: %s: fseek %s\n", __func__, filename);
 		return 0;
 	}

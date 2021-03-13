@@ -128,7 +128,7 @@ void MatchplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	}
 
 	// Get the size of the file.
-	if (fseek (f, 0, SEEK_END) != 0)
+	if (fseek (f, 0L, SEEK_END) != 0)
 	{
 		gi.dprintf ("%s: fseek %s\n", __func__, szFile);
 		fclose(f);
@@ -143,7 +143,7 @@ void MatchplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 		return;
 	}
 
-	if (fseek (f, 0, SEEK_SET) != 0)
+	if (fseek (f, 0L, SEEK_SET) != 0)
 	{
 		gi.dprintf ("%s: fseek %s\n", __func__, szFile);
 		fclose(f);
