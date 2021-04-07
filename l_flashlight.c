@@ -5,7 +5,7 @@
 
 #include "g_local.h"
 
-//#define FL_IMPROVED	//defined for improved flashlight
+#define FL_IMPROVED	//defined for improved flashlight
 
 void nightmareResetFlashlight (edict_t *self)
 {
