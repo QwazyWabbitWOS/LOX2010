@@ -109,6 +109,7 @@ cvar_t	*max_lasertrips;	// maximum number of laser tripwires allowed
 cvar_t	*max_floatingmines; // maximum number of floating mines allowed
 cvar_t	*kami_frozen;		// allow player to go kamikaze if frozen
 cvar_t	*campertime;		// time allowed for camping if ANTICAMPER is on
+cvar_t	*dumpents;			// create ent files if set
 cvar_t	*custom_ents;		// use custom ent files if available
 cvar_t	*matchplay;			// boolean to decide if we want a match countdown
 cvar_t	*homerseekowner;	// boolean to allow homers to seek owners (default = 1)

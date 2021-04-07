@@ -210,6 +210,7 @@ void InitGame (void)
 	skill = gi.cvar ("skill", "1", CVAR_LATCH);
 	noscore = gi.cvar ("noscore", "0", CVAR_LATCH); // for the new scoreboard logic
 	maxentities = gi.cvar ("maxentities", "1024", CVAR_LATCH);
+	dumpents = gi.cvar ("dumpents", "0", 0);		//QW// create entfiles as we go
 	custom_ents = gi.cvar ("custom_ents", "0", 0);		//QW// allow custom ents in DM
 	ext_devt = gi.cvar ("ext_devt", "0", CVAR_LATCH);	//QW// set this for extinction development
 	staticlights = gi.cvar ("staticlights", "0", CVAR_LATCH);	//QW// 1 = no dynamic map lights.

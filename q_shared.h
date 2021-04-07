@@ -997,13 +997,13 @@ typedef enum temp_event_n
 #define	CS_MAPCHECKSUM		31		// for catching cheater maps
 
 #define	CS_MODELS			32
-#define	CS_SOUNDS			(CS_MODELS + MAX_MODELS)
-#define	CS_IMAGES			(CS_SOUNDS + MAX_SOUNDS)
-#define	CS_LIGHTS			(CS_IMAGES + MAX_IMAGES)
-#define	CS_ITEMS			(CS_LIGHTS + MAX_LIGHTSTYLES)
-#define	CS_PLAYERSKINS		(CS_ITEMS  + MAX_ITEMS)
-#define CS_GENERAL			(CS_PLAYERSKINS + MAX_CLIENTS)	//1568
-#define	MAX_CONFIGSTRINGS	(CS_GENERAL + MAX_GENERAL)		//2080
+#define	CS_SOUNDS           (CS_MODELS + MAX_MODELS)        //288
+#define	CS_IMAGES           (CS_SOUNDS + MAX_SOUNDS)        //544
+#define	CS_LIGHTS           (CS_IMAGES + MAX_IMAGES)        //800
+#define	CS_ITEMS            (CS_LIGHTS + MAX_LIGHTSTYLES)   //1056
+#define	CS_PLAYERSKINS      (CS_ITEMS + MAX_ITEMS)          //1312
+#define CS_GENERAL			(CS_PLAYERSKINS + MAX_CLIENTS)  //1568
+#define	MAX_CONFIGSTRINGS	(CS_GENERAL + MAX_GENERAL)      //2080
 
 //QW// The 2080 magic number comes from q_shared.h of the original game.
 // No game mod can go over this 2080 limit.

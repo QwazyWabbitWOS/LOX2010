@@ -529,24 +529,24 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	char		*com_token;
 	int			i;
 	float		skill_level;
-	
-#ifdef DUMPENTS
-	char *entstart;
-	FILE *f;
+
+	// for the dumpents feature
+	char* entstart = NULL;
+	FILE *f = NULL;
 	char szFile[MAX_QPATH];
-#endif //DUMPENTS
 	
-#ifdef DUMPENTS
-	// Create the pathname to the new entity file.
-	Com_sprintf (szFile, sizeof (szFile), "%s/ent/new-%s.ent",
-		gamedir->string, mapname);
-	
-	// Try to open it.
-	f = fopen (szFile, "wb");
-	if (!f)
-		gi.error ("SpawnEntities DUMPENTS: couldn't open %s for writing\n",
-		szFile);
-#endif //DUMPENTS
+	if (dumpents->value)
+	{
+		// Create the pathname to the new entity file.
+		Com_sprintf(szFile, sizeof(szFile), "%s/ent/new-%s.ent",
+			gamedir->string, mapname);
+
+		// Try to open it.
+		f = fopen(szFile, "wb");
+		if (!f)
+			gi.error("SpawnEntities DUMPENTS: couldn't open %s for writing\n",
+				szFile);
+	}
 	
 	skill_level = floor (skill->value);
 	if (skill_level < 0)
@@ -574,17 +574,15 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	inhibit = 0;
 	
 	// Phlem - new for entity externally adding (and off-world teleport)
-	if (!custom_ents->value && !ctf->value)
+	if (custom_ents->value && !ctf->value)
 		entities = LoadEntFile(mapname, entities);    /*MrG{DRGN} 10/04/2004*/ 
 	// end - new for entity externally adding
 		  
 	// parse ents
 	while (1)
 	{
-#ifdef DUMPENTS
 		// keep track of where the entity started.
 		entstart = entities;
-#endif
 		
 		// parse the opening brace	
 		com_token = COM_Parse (&entities);
@@ -639,9 +637,8 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 		
 		ED_CallSpawn (ent);
 		
-#ifdef DUMPENTS
 		// If this entity survived, print it.
-		if (ent->inuse)
+		if (dumpents->value && ent->inuse)
 		{
 			int entsize, nWritten;
 			
@@ -657,12 +654,10 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 			if (nWritten != entsize)
 				gi.error ("SpawnEntities DUMPENTS: couldn't write to file\n");
 		}
-#endif //DUMPENTS
 	}	
 	
-#ifdef DUMPENTS
-	fclose (f);
-#endif
+	if(dumpents->value)
+		fclose (f);
 	
 	gi.dprintf ("%i entities inhibited\n", inhibit);
 	
