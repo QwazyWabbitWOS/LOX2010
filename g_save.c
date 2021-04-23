@@ -314,7 +314,7 @@ void InitGame (void)
 	revengereward = gi.cvar("revengereward","1", 0);
 	highfraggerreward = gi.cvar("highfraggerreward","2", 0);
 	sv_bestplayer = gi.cvar("sv_bestplayer","1",0); 
-	console_chat = gi.cvar("console_chat", "1", 0);
+	console_chat = gi.cvar("console_chat", "0", 0);
 
 	Maplist_InitVars();	// initialize the maplist management Cvars
 	Voting_InitVars();
