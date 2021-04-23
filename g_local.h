@@ -63,7 +63,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define BUILD	"Debug  "
 #endif
 
-#define VERSION	"1.12.22"	//QW// single instance of version string
+#define VERSION	"1.12.23"	//QW// single instance of version string
 
 // the "gameversion" client command will print this plus compile date
 #define	GAMEVERSION		"WOD:LOX, "VERSION	//deathmatch
@@ -1434,7 +1434,8 @@ typedef struct client_respawn_s
 	int		fph;			//player's FPH
 	int		trackercountactive; // to display HUD tracker count
 	int		turretcountactive; // to display HUD turret count
-	int		locationactive;
+	int		locationactive;		// display current location and bearing
+	int		inspect;		//trace to surface and display its texture name in HUD
 
 } client_respawn_t;
 

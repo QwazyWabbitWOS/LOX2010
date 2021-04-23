@@ -453,6 +453,8 @@ void Cmd_Help(edict_t *ent)
 		else if (Q_stricmp(query, "fph") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FPH_Text);
 		else if (Q_stricmp (query, "firemode") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FireMode_Text);
 		else if (Q_stricmp (query, "flamesweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FlameSweeper_Text);
+		else if (Q_stricmp (query, "floating") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FloatingMines_Text);
+		else if (Q_stricmp (query, "floating mine launcher") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FloatingMines_Text);
 		else if (Q_stricmp (query, "freezersweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezerSweeper_Text);
 		else if (Q_stricmp (query, "freezer") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezeGun_Text);	
 		else if (Q_stricmp (query, "freezegun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezeGun_Text);	
@@ -492,6 +494,7 @@ void Cmd_Help(edict_t *ent)
 		
 	case 'i':
 		if (Q_stricmp(query, "id") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlayerID_Text);
+		else if (Q_stricmp(query,"inspect") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Inspect_Text);
 		else if (Q_stricmp(query,"invis") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_NewCloak_Text);
 		else if (Q_stricmp (query, "icecube gun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_IcecubeGun_Text);	
 		break;
@@ -502,6 +505,7 @@ void Cmd_Help(edict_t *ent)
 		
 	case 'l':
 		if (Q_stricmp (query, "lbind") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LBind_Text);
+		else if (Q_stricmp (query, "location") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Location_Text);
 		else if (Q_stricmp (query, "lox") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LOX_Text);
 		else if (Q_stricmp (query, "lsight") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LaserSight_Text);
 		else if (Q_stricmp (query, "laser") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlaceLaserTripwire_Text);
@@ -821,12 +825,29 @@ void Cmd_Location_f(edict_t *ent)
 	if (ent->client->resp.locationactive == 0)
 	{
 		ent->client->resp.locationactive = 1;
+		ent->client->resp.inspect = 0; // Turn off wall inspection
 		gi.cprintf(ent,PRINT_HIGH, "Location Activated\n");
 	}
 	else if (ent->client->resp.locationactive == 1)
 	{
 		ent->client->resp.locationactive = 0;
 		gi.cprintf(ent,PRINT_HIGH, "Location Deactivated\n");
+	}
+}
+
+void Cmd_Inspect_f(edict_t* ent)
+{
+
+	if (ent->client->resp.inspect == 0)
+	{
+		ent->client->resp.inspect = 1;
+		ent->client->resp.locationactive = 0; // Turn off location data display
+		gi.cprintf(ent, PRINT_HIGH, "Inspect textures Activated\n");
+	}
+	else if (ent->client->resp.inspect == 1)
+	{
+		ent->client->resp.inspect = 0;
+		gi.cprintf(ent, PRINT_HIGH, "Inspect textures Deactivated\n");
 	}
 }
 
@@ -3940,6 +3961,8 @@ void ClientCommand (edict_t *ent)
 	case 'i':
 		if (Q_stricmp (cmd, "id") == 0)
 			Cmd_PlayerID(ent);
+		else if (Q_stricmp(cmd, "inspect") == 0)
+			Cmd_Inspect_f(ent);
 		else if (Q_stricmp(cmd,"invis") == 0)
 			Cmd_Invisible(ent);
 		else if (Q_stricmp (cmd, "inven") == 0)

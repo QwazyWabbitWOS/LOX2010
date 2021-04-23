@@ -16,9 +16,9 @@ char* Info_Man_Text2 = {
 	"freezegun, freeze grenade, flamethrower, fbfg, grapple,\n"
 	"grenade, guided missile, height, hook, homer grenade,\n"
 	"homing rocket launcher, holoquad, holoinvul, holobfg, holoweapon,\n"
-	"invis, icecube gun, kamikaze, lbind, lox, lsight, laser, logplayers,\n"
-	"lightning gun, mace, machine rocket gun, machinegun, midnight grenade,\n"
-	"nightvision, "
+	"inspect, invis, icecube gun, kamikaze, lbind, lox, lsight, laser,\n"
+	"logplayers, lightning gun, mace, machine rocket gun, machinegun,\n"
+	"midnight grenade, nightvision, "
 };
 
 char* Info_Man_Text3 = {
@@ -354,6 +354,15 @@ char* Info_Hook_f_Text = {
 	"------------------------------------------------\n"
 };
 
+char* Info_Inspect_Text = {
+	"\nInspect---------------------------------------\n"
+	"Command: inspect\n"
+	"Use this command to inspect maps for textures.\n"
+	"This toggles the centerprint display of the names\n"
+	"of the textures at the position pointed to by your\n"
+	"crosshairs. See also: location.\n"
+	"------------------------------------------------\n"
+};
 
 char* Info_NewCloak_Text = {
 	"\nInvisibility------------------------------------\n"
@@ -394,6 +403,16 @@ char* Info_LBind_Text = {
 	"-----------------------------------------------\n"
 };
 
+char* Info_Location_Text = {
+	"\nLocation----------------------------------\n"
+	"Command: location\n"
+	"The location command toggles display of your\n"
+	"current location in Quake Units within the map in your HUD.\n"
+	"Format is X Y X theta with X and Y in the center of\n"
+	"the player bounding box and Z at the base of the box.\n"
+	"--------------------------------------------\n"
+};
+
 char* Info_LOX_Text = {
 	"\nLOX-----------------------------------------\n"
 	"LOX - Something that you put on a bagel with\n"
@@ -402,7 +421,7 @@ char* Info_LOX_Text = {
 	"were really blood thirsty. Well all of them\n"
 	"fit the word. LOX is this mod, Lethal Orifice\n"
 	"eXamination. This mod is a derivative of several\n"
-	"mods and is most like WOD.\n"		
+	"mods and is mostly like WOD.\n"		
 	"--------------------------------------------\n"
 };
 
@@ -443,7 +462,6 @@ char* Info_LogPlayers_Text = {
 	"------------------------------------------------\n"
 };
 
-
 char* Info_Lowlight_Text = {
 	"\nNight Vision------------------------------------\n"
 	"Command: nightvision\n"
@@ -472,7 +490,6 @@ char* Info_PlayerID_Text = {
 	"get the name, model and skin they are using.\n"
 	"------------------------------------------------\n"
 };
-
 
 char* Info_Rangefinder_Text = {
 	"\nRangefinder-------------------------------------\n"
@@ -820,14 +837,16 @@ char* Info_ClusterGrenade_Text = {
 	"------------------------------------------------\n"
 };
 
-/* Floating mine launcher:
-Bind a key to 'use floating mine launcher'. 
-This is a bazooka that launches grenades that float in place 
-after flying a certain distance. The grenade type depends on 
-the last grenade type selected. This is a great weapon for 
-mining the entrances of tunnels or traffic choke points. 
-You are immune to your own mines.
-*/
+char* Info_FloatingMines_Text = {
+	"\nFloating Mine Launcher---------------------------------------\n"
+	"Bind a key to 'use floating mine launcher'.\n"
+	"This is a bazooka that launches grenades that float in space\n"
+	"after flying a certain distance. The grenade type depends on\n"
+	"the last grenade type selected. This is a great weapon for\n"
+	"mining the entrances of tunnels or traffic choke points.\n"
+	"You are immune to your own mines.\n"
+	"-------------------------------------------------------------\n"
+};
 
 char* Info_RailBomb_Text = {
 	"\nRail Bomb---------------------------------------\n"

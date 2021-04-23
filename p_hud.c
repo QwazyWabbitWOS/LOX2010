@@ -1083,13 +1083,27 @@ void G_SetStats (edict_t *ent)
 	if (ent->client->resp.turretcountactive == 0) 
 		ent->client->ps.stats[STAT_NUMTURRET] = 0;
 	
-	//QW// show player location in HUD 
+	//QW// Show player location in HUD.
+	//Note: We're re-using the location configstring for wall inspection
+	//so they must be mutually exclusive.
+	//The toggle logic in the command functions set these flags.
 	if (ent->client->resp.locationactive)
 	{
-		gi.configstring(CS_GENERAL + (ent - g_edicts - 1), 
+		gi.configstring(CS_GENERAL + (ent - g_edicts - 1),
 			va("%4.0f %4.0f %4.0f Angle %3.3f", 
 			ent->s.origin[0], ent->s.origin[1], ent->s.origin[2],
 			ent->client->ps.viewangles[1]));
+		ent->client->ps.stats[STAT_LOCATION] = CS_GENERAL + (ent - g_edicts - 1);
+	}
+	//QW// show texture name at crosshair in HUD 
+	else if (ent->client->resp.inspect)
+	{
+		VectorCopy(ent->s.origin, start);
+		start[2] += ent->viewheight;
+		AngleVectors(ent->client->v_angle, forward, NULL, NULL);
+		VectorMA(start, 8192, forward, end);
+		tr = gi.trace(start, NULL, NULL, end, ent, 0xFFFFFFFF & ~(CONTENTS_MONSTER | CONTENTS_DEADMONSTER));
+		gi.configstring(CS_GENERAL + (ent - g_edicts - 1), va("%s", tr.surface->name));
 		ent->client->ps.stats[STAT_LOCATION] = CS_GENERAL + (ent - g_edicts - 1);
 	}
 	else
