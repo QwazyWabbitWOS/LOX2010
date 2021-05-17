@@ -119,10 +119,6 @@ void RenameStatsLog(void)
     time_t	long_time;
 	struct	tm	*ltime; 
 	
-	// Only if we are producing logs.
-	if (!logarstats->value)
-		return;
-
 	time(&long_time);
 	ltime = localtime(&long_time); 
 	
@@ -161,13 +157,9 @@ void RenameConsoleLog(void)
 	struct	tm	*ltime; 
 	char	*logval = "  ";
 	
-	// Only if we are producing logs.
-	if (!logfile->value)
-		return;
-
 	time(&long_time);
 	ltime = localtime(&long_time);
-	
+
 	if ((logfile_rename->value == 1)	// every day
 		|| (logfile_rename->value == 2 && ltime->tm_wday == 0)	// sundays
 		|| (logfile_rename->value == 3 && ltime->tm_mday == 1))	// 1st of month
