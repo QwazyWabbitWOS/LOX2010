@@ -7,6 +7,7 @@
 extern	cvar_t	*logarstats;		// Enable AlteredRealm player stats log (default = 0)
 extern	cvar_t	*statsfile;			// the name of the AlteredRealm stats log file ("stats.log")
 extern	cvar_t	*statsfile_rename;	// how often we rename the file
+extern	cvar_t	*logfile;			// the logfile mode. 0,1,2,3 valid
 extern	cvar_t	*logfile_name;		// the server or qconsole.log file
 extern	cvar_t	*logfile_rename;	// how often we rename the server log file
 

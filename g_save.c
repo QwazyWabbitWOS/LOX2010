@@ -261,6 +261,8 @@ void InitGame (void)
 	logarstats = gi.cvar ("logarstats", "0", 0);	//QW// allow logging Altered Realm player statistics
 	statsfile = gi.cvar ("statsfile", "stats.log", 0); //QW// the name of the AR stats file
 	statsfile_rename = gi.cvar ("statsfile_rename", "1", 0); //QW// 0 = never, 1 = daily, 2 = weekly, 3 = monthly
+	//cvars pertaining to server logs
+	logfile = gi.cvar("logfile", "", 0);			//QW// allow server logging
 	logfile_name = gi.cvar ("logfile_name", "server.log", 0); //QW// the name of the server log file (clients use qconsole.log)
 	logfile_rename = gi.cvar ("logfile_rename", "2", 0); //QW// 0 = never, 1 = daily, 2 = weekly, 3 = monthly
 
