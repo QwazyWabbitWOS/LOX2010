@@ -189,11 +189,11 @@ void SP_misc_teleporter_offworld (edict_t *ent)
 	trig->target = ent->target; // the target game and IP
 	trig->owner = ent;
 	trig->message = ent->message; //the text message to send
-	if (!ent->sounds)
-		ent->sounds = 2;
+	if (!ent->sounds)	// index for multiple sound file selection (not implemented)
+		ent->sounds = 1;	// was 2
 	trig->sounds = ent->sounds;
 	if (!ent->wait)
-		ent->wait = 3;
+		ent->wait = 3.0f;	//if added to map it'll probably be an int.
 	trig->wait = ent->wait;
 	trig->classname = "trigger_multiple";
 	
