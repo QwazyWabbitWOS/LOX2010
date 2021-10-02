@@ -21,7 +21,6 @@
 #include "g_local.h"
 #include "g_team.h"
 #include "scanner.h"
-#include "performance.h"
 
 //
 //======================================================================
@@ -188,7 +187,6 @@ void BeginIntermission (edict_t *targ)
 // and puts the scoreboard message into it.
 // The same 1400 byte array is used to buffer the CTF scoreboard.
 //***********************************************************
-
 void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 {
 	char	entry[1024];
@@ -257,7 +255,7 @@ void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 		{
 			Com_sprintf (entry, sizeof(entry),
 				"xv %i yv %i picn %s ", x+32, y, tag);
-			j = strlen(entry);
+			j = (int)strlen(entry);
 			if (stringlength + j > 1024)
 				break;
 			strcpy (string + stringlength, entry); //safe
@@ -273,12 +271,12 @@ void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 			cl->resp.score,  // his score
 			cl->ping, time_in/600);  // his ping and in-game minutes
 		
-		j = strlen(entry);
+		j = (int)strlen(entry);
 		if (stringlength + j > 1024)
 			break;
 		strcpy (string + stringlength, entry);	//safe
 		stringlength += j;
-		DbgPrintf("%s size: %lu\n", entry, stringlength);
+		//DbgPrintf("%s size: %lu\n", entry, stringlength);
 	}
 }
 
@@ -318,6 +316,7 @@ void A_Scoreboard(edict_t *ent)
 }
 #endif		  
 
+// Simplified DM scoreboard, no dogtags
 void A_ScoreboardMessage (edict_t *ent, edict_t *killer, char *string)
 {
 	//char		damage[50];
@@ -596,10 +595,9 @@ void A_ScoreboardMessage (edict_t *ent, edict_t *killer, char *string)
 					ping);                  
 			}
 
-			DbgPrintf("%s size: %lu\n", string, strlen(string));
+			//DbgPrintf("%s size: %lu\n", string, strlen(string));
 
-			if (strlen(string) > (unsigned)(maxsize - 200) && //RiEvEr was -100 
-				i < (total - 2))
+			if ((int)strlen(string) > (maxsize - 200) && i < (total - 2))
 			{
 				sprintf(string + strlen(string),
 					"xv 0 yv %d string \"..and %d more\" ",
@@ -611,22 +609,19 @@ void A_ScoreboardMessage (edict_t *ent, edict_t *killer, char *string)
 	}
 	
 	if (strlen(string) > 1300)  // for debugging
-		gi.dprintf("Warning: scoreboard string neared or exceeded max length\nDump:\n%s\n---\n", string);
+		gi.dprintf("Warning: scoreboard string exceeded max length\nDump:\n%s\n---\n", string);
 	
 	gi.WriteByte (svc_layout);
 	gi.WriteString (string);
 }
 
 
-//******************************
 //
-//  DeathmatchScoreboardMessage
+//  Call the scoreboard for the mode we're in.
 //	
-//******************************
-
 void DeathmatchScoreboardMessage (edict_t *ent, edict_t *killer)
 {
-	char	string[1400] = { 0 };	// limited to 1400 bytes by Q2 engine
+	char	string[1400] = { 0 };	// limited to 1400 bytes by UDP
 	
 	if (ent->client->showscores || ent->client->showinventory)
 	{

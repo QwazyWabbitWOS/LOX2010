@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -31,6 +31,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif /*_MSC_VER */
 #endif /* _WIN32 */
 
+#include "performance.h" //QW// included here so all modules may use it.
+
 #include <assert.h>
 #include <float.h>
 #include <limits.h>
@@ -43,20 +45,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <ctype.h>
 #include <errno.h>
 
-#if defined _M_IX86 && !defined C_ONLY
-#define id386	1
-#else
-#define id386	0
-#endif
-
-#if defined _M_ALPHA && !defined C_ONLY
-#define idaxp	1
-#else
-#define idaxp	0
-#endif
-
 typedef unsigned char 		byte;
-typedef enum {false, true}	qboolean;
+typedef enum { false, true }	qboolean;
 
 #ifndef NULL
 #define NULL ((void *)0)
@@ -68,11 +58,11 @@ typedef enum {false, true}	qboolean;
 #define	ROLL				2		// fall over
 
 #define	MAX_STRING_CHARS	1024	// max length of a string passed to Cmd_TokenizeString
-#define	MAX_STRING_TOKENS	80		// max tokens resulting from Cmd_TokenizeString
-#define	MAX_TOKEN_CHARS		128		// max length of an individual token
+#define	MAX_STRING_TOKENS	256		// max tokens resulting from Cmd_TokenizeString
+#define	MAX_TOKEN_CHARS		128	// max length of an individual token
 
 #define	MAX_QPATH			64		// max length of a quake game pathname
-#define	MAX_OSPATH			128		// max length of a filesystem pathname
+#define	MAX_OSPATH			256		// max length of a filesystem pathname
 
 //
 // per-level limits
@@ -107,12 +97,12 @@ typedef enum {false, true}	qboolean;
 // destination class for gi.multicast()
 typedef enum multicast_n
 {
-MULTICAST_ALL,	// to everyone
-MULTICAST_PHS,	// potentially hearable
-MULTICAST_PVS,	// potentially visible
-MULTICAST_ALL_R, // reliable versions
-MULTICAST_PHS_R,
-MULTICAST_PVS_R
+	MULTICAST_ALL,	// to everyone
+	MULTICAST_PHS,	// potentially hearable
+	MULTICAST_PVS,	// potentially visible
+	MULTICAST_ALL_R, // reliable versions
+	MULTICAST_PHS_R,
+	MULTICAST_PVS_R
 } multicast_t;
 
 
@@ -159,57 +149,57 @@ extern vec3_t vec3_origin;
 
 
 // just in case you don't want to use the macros
-vec_t _DotProduct (vec3_t v1, vec3_t v2);
-void _VectorSubtract (vec3_t veca, vec3_t vecb, vec3_t out);
-void _VectorAdd (vec3_t veca, vec3_t vecb, vec3_t out);
-void _VectorCopy (vec3_t in, vec3_t out);
-void VectorMA (vec3_t veca, float scale, vec3_t vecb, vec3_t vecc);
+vec_t _DotProduct(vec3_t v1, vec3_t v2);
+void _VectorSubtract(vec3_t veca, vec3_t vecb, vec3_t out);
+void _VectorAdd(vec3_t veca, vec3_t vecb, vec3_t out);
+void _VectorCopy(vec3_t in, vec3_t out);
+void VectorMA(vec3_t veca, float scale, vec3_t vecb, vec3_t vecc);
 
-void ClearBounds (vec3_t mins, vec3_t maxs);
-void AddPointToBounds (vec3_t v, vec3_t mins, vec3_t maxs);
-int VectorCompare (vec3_t v1, vec3_t v2);
-vec_t VectorLength (vec3_t v);
-void CrossProduct (vec3_t v1, vec3_t v2, vec3_t cross);
-vec_t VectorNormalize (vec3_t v);		// returns vector length
-vec_t VectorNormalize2 (vec3_t v, vec3_t out);
-void VectorInverse (vec3_t v);
-void VectorScale (vec3_t in, vec_t scale, vec3_t out);
+void ClearBounds(vec3_t mins, vec3_t maxs);
+void AddPointToBounds(vec3_t v, vec3_t mins, vec3_t maxs);
+int VectorCompare(vec3_t v1, vec3_t v2);
+vec_t VectorLength(vec3_t v);
+void CrossProduct(vec3_t v1, vec3_t v2, vec3_t cross);
+vec_t VectorNormalize(vec3_t v);		// returns vector length
+vec_t VectorNormalize2(vec3_t v, vec3_t out);
+void VectorInverse(vec3_t v);
+void VectorScale(vec3_t in, vec_t scale, vec3_t out);
 int Q_log2(int val);
 
-void R_ConcatRotations (float in1[3][3], float in2[3][3], float out[3][3]);
-void R_ConcatTransforms (float in1[3][4], float in2[3][4], float out[3][4]);
+void R_ConcatRotations(float in1[3][3], float in2[3][3], float out[3][3]);
+void R_ConcatTransforms(float in1[3][4], float in2[3][4], float out[3][4]);
 
-void AngleVectors (vec3_t angles, vec3_t forward, vec3_t right, vec3_t up);
-int BoxOnPlaneSide (vec3_t emins, vec3_t emaxs, struct cplane_s *plane);
+void AngleVectors(vec3_t angles, vec3_t forward, vec3_t right, vec3_t up);
+int BoxOnPlaneSide(vec3_t emins, vec3_t emaxs, struct cplane_s* plane);
 float	anglemod(float a);
-float LerpAngle (float a1, float a2, float frac);
+float LerpAngle(float a1, float a2, float frac);
 
 #define BOX_ON_PLANE_SIDE(emins, emaxs, p) (((p)->type < 3)?(((p)->dist <= (emins)[(p)->type])?1:(((p)->dist >= (emaxs)[(p)->type])?2:3)):BoxOnPlaneSide( (emins), (emaxs), (p)))
 
-void ProjectPointOnPlane( vec3_t dst, const vec3_t p, const vec3_t normal );
-void PerpendicularVector( vec3_t dst, const vec3_t src );
-void RotatePointAroundVector( vec3_t dst, const vec3_t dir, const vec3_t point, float degrees );
+void ProjectPointOnPlane(vec3_t dst, const vec3_t p, const vec3_t normal);
+void PerpendicularVector(vec3_t dst, const vec3_t src);
+void RotatePointAroundVector(vec3_t dst, const vec3_t dir, const vec3_t point, float degrees);
 
 
 //=============================================
 
-char *COM_SkipPath (char *pathname);
-void COM_StripExtension (char *in, char *out);
-void COM_FileBase (char *in, char *out);
-void COM_FilePath (char *in, char *out);
-void COM_DefaultExtension (char *path, char *extension);
+char* COM_SkipPath(char* pathname);
+void COM_StripExtension(char* in, char* out);
+void COM_FileBase(char* in, char* out);
+void COM_FilePath(char* in, char* out);
+void COM_DefaultExtension(char* path, char* extension);
 
-char *COM_Parse (char **data_p);
+char* COM_Parse(char** data_p);
 // data is an in/out parm, returns a parsed out token
 
-void Com_sprintf (char *dest, int size, char *fmt, ...);
+void Com_sprintf(char* dest, int size, char* fmt, ...);
 
-void Com_PageInMemory (byte *buffer, int size);
+void Com_PageInMemory(byte* buffer, int size);
 
 //=============================================
 
 // Case insensitive string compare function
-int Q_stricmp (const char *s1, const char *s2);
+int Q_stricmp(const char* s1, const char* s2);
 //void Q_strncpy(char* pszDest, const char* pszSrc, int nDestSize);
 
 #define Q_strncpy(dst, src, len) \
@@ -220,7 +210,7 @@ do { \
 
 //=============================================
 
-char	*va(char *format, ...);
+char* va(char* format, ...);
 
 //=============================================
 
@@ -231,10 +221,10 @@ char	*va(char *format, ...);
 #define	MAX_INFO_VALUE		64
 #define	MAX_INFO_STRING		512
 
-char *Info_ValueForKey (char *s, char *key);
-void Info_RemoveKey (char *s, char *key);
-void Info_SetValueForKey (char *s, char *key, char *value);
-qboolean Info_Validate (char *s);
+char* Info_ValueForKey(char* s, char* key);
+void Info_RemoveKey(char* s, char* key);
+void Info_SetValueForKey(char* s, char* key, char* value);
+qboolean Info_Validate(char* s);
 
 /*
 ==============================================================
@@ -246,14 +236,14 @@ SYSTEM SPECIFIC
 
 extern	int	curtime;		// time returned by last Sys_Milliseconds
 
-int		Sys_Milliseconds (void);
-void	Sys_Mkdir (char *path);
+int		Sys_Milliseconds(void);
+void	Sys_Mkdir(char* path);
 
 // large block stack allocation routines
-void	*Hunk_Begin (int maxsize);
-void	*Hunk_Alloc (int size);
-void	Hunk_Free (void *buf);
-int		Hunk_End (void);
+void* Hunk_Begin(int maxsize);
+void* Hunk_Alloc(int size);
+void	Hunk_Free(void* buf);
+int		Hunk_End(void);
 
 // directory searching
 #define SFF_ARCH    0x01
@@ -272,7 +262,7 @@ int		Hunk_End (void);
 
 // this is only here so the functions in q_shared.c and q_shwin.c can link
 //QW//void Sys_Error (char *error, ...);
-void Com_Printf (char *msg, ...);
+void Com_Printf(char* msg, ...);
 
 
 /*
@@ -290,28 +280,28 @@ CVARS (console variables)
 #define	CVAR_USERINFO	2	// added to userinfo  when changed
 #define	CVAR_SERVERINFO	4	// added to serverinfo when changed
 #define	CVAR_NOSET		8	// don't allow change from console at all,
-							// but can be set from the command line
+// but can be set from the command line
 #define	CVAR_LATCH		16	// save changes until server restart
 
 // nothing outside the Cvar_*() functions should modify these fields!
 typedef struct cvar_s
 {
-	char		*name;
-	char		*string;
-	char		*latched_string;	// for CVAR_LATCH vars
+	char* name;
+	char* string;
+	char* latched_string;	// for CVAR_LATCH vars
 	int			flags;
 	qboolean	modified;	// set each time the cvar is changed
 	float		value;
-	struct cvar_s *next;
+	struct cvar_s* next;
 
-// r1ch added this to his engine, I don't know how to take advantage of this
-// without requiring servers run his code with LOX. Once I figure out if there is a
-// good reason to have this available we can use it. I solved the intvalue
-// problem months ago with the UpdateBans function.
+	// r1ch added this to his engine, I don't know how to take advantage of this
+	// without requiring servers run his code with LOX. Once I figure out if there is a
+	// good reason to have this available we can use it. I solved the intvalue
+	// problem months ago with the UpdateBans function.
 
-//r1ch: added this to avoid all the if (x->modified) bloat
-//	void		(*changed) (struct cvar_s *self, char *oldValue, char *newValue);
-//	int			intvalue;
+	//r1ch: added this to avoid all the if (x->modified) bloat
+	//	void		(*changed) (struct cvar_s *self, char *oldValue, char *newValue);
+	//	int			intvalue;
 } cvar_t;
 
 #endif		// CVAR
@@ -434,9 +424,9 @@ typedef struct trace_s
 	float		fraction;	// time completed, 1.0 = didn't hit anything
 	vec3_t		endpos;		// final position
 	cplane_t	plane;		// surface normal at impact
-	csurface_t	*surface;	// surface hit
+	csurface_t* surface;	// surface hit
 	int			contents;	// contents on other side of surface hit
-	struct edict_s	*ent;		// not set by CM_*() functions
+	struct edict_s* ent;		// not set by CM_*() functions
 } trace_t;
 
 
@@ -514,19 +504,19 @@ typedef struct pmove_s
 
 	// results (out)
 	int			numtouch;
-	struct edict_s	*touchents[MAXTOUCH];
+	struct edict_s* touchents[MAXTOUCH];
 
 	vec3_t		viewangles;			// clamped
 	float		viewheight;
 
 	vec3_t		mins, maxs;			// bounding box size
 
-	struct edict_s	*groundentity;
+	struct edict_s* groundentity;
 	int			watertype;
 	int			waterlevel;
 
 	// callbacks to test the world
-	trace_t		(*trace) (vec3_t start, vec3_t mins, vec3_t maxs, vec3_t end);
+	trace_t(*trace) (vec3_t start, vec3_t mins, vec3_t maxs, vec3_t end);
 	int			(*pointcontents) (vec3_t point);
 } pmove_t;
 
@@ -774,7 +764,7 @@ typedef struct pmove_s
 #define MZ2_BOSS2_MACHINEGUN_R4			136
 #define MZ2_BOSS2_MACHINEGUN_R5			137
 
-extern	vec3_t monster_flash_offset [];
+extern	vec3_t monster_flash_offset[];
 
 
 // temp entity events
@@ -815,7 +805,7 @@ typedef enum temp_event_n
 	TE_BLUEHYPERBLASTER,
 	TE_PLASMA_EXPLOSION,
 	TE_TUNNEL_SPARKS,
-//ROGUE
+	//ROGUE
 	TE_BLASTER2,
 	TE_RAILTRAIL2,
 	TE_FLAME,
@@ -960,13 +950,13 @@ typedef enum temp_event_n
 // end of original 16 dmflags for vanilla Q2
 
 /*
- * These were added by idSoftware for their CTF and 
- * are defined in g_ctf.h originally.  
+ * These were added by idSoftware for their CTF and
+ * are defined in g_ctf.h originally.
  * LOX uses g_team.h which looks like a renamed g_ctf.h.
-#define DF_CTF_FORCEJOIN	131072	
-#define DF_ARMOR_PROTECT	262144
-#define DF_TEAMREBALANCE	524288
 */
+#define DF_CTF_FORCEJOIN		131072
+#define DF_ARMOR_PROTECT		262144
+#define DF_TEAMREBALANCE		524288
 
 /*
 ==========================================================
@@ -1008,7 +998,7 @@ typedef enum temp_event_n
 //QW// The 2080 magic number comes from q_shared.h of the original game.
 // No game mod can go over this 2080 limit.
 #if (MAX_CONFIGSTRINGS > 2080)
-	#error MAX_CONFIGSTRINGS > 2080
+#error MAX_CONFIGSTRINGS > 2080
 #endif
 
 //==============================================
@@ -1080,7 +1070,7 @@ typedef struct player_state_s
 	int			gunframe;
 
 	float		blend[4];		// rgba full screen effect
-	
+
 	float		fov;			// horizontal field of view
 
 	int			rdflags;		// refdef flags

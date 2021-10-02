@@ -113,7 +113,7 @@ findradius (origin, radius)
 */
 edict_t *findradius (edict_t *from, vec3_t org, float rad)
 {
-	vec3_t	eorg;
+	vec3_t	eorg = { 0 };
 	int		j;
 
 	if (!from)
@@ -154,7 +154,7 @@ edict_t *G_PickTarget (char *targetname)
 {
 	edict_t	*ent = NULL;
 	int		num_choices = 0;
-	edict_t	*choice[MAXCHOICES];
+	edict_t	*choice[MAXCHOICES] = { 0 };
 
 	if (!targetname)
 	{
@@ -423,12 +423,12 @@ void vectoangles (vec3_t value1, vec3_t angles)
 	angles[ROLL] = 0;
 }
 
-char *G_CopyString (char *in)
+char* G_CopyString(char* in)
 {
-	char	*out;
-	
-	out = gi.TagMalloc (strlen(in)+1, TAG_LEVEL);
-	strcpy (out, in);	//safe
+	char* out;
+
+	out = gi.TagMalloc((int)strlen(in) + 1, TAG_LEVEL);
+	strcpy(out, in);	//safe
 	return out;
 }
 
@@ -540,6 +540,9 @@ void G_FreeEdict (edict_t *ed)
 //		gi.dprintf("tried to free special edict\n");
 		return;
 	}
+
+	//DbgPrintf("%s edict count: %d %s index %d, time: %0.1f\n", __func__,
+	//	globals.num_edicts, ed->classname, ed->classnum, level.time);
 
 	memset (ed, 0, sizeof(*ed));
 	ed->classname = "freed";

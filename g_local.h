@@ -20,8 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 // g_local.h -- local definitions for game module
 
-#ifndef G_LOCAL_H
-#define G_LOCAL_H
+#pragma once
 
 #ifdef _WIN32
   #define WIN32_LEAN_AND_MEAN	//non-MFC
@@ -33,7 +32,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
     #define __func__ __FUNCTION__ // for backward compatibility
   #endif
   _CrtMemState startup1;	// memory diagnostics, link with debug lib (/MDd)
-  #include "performance.h"
 #else
   #define OutputDebugString	//not doing Windows
 #endif
@@ -630,30 +628,30 @@ typedef struct gitem_armor_s
 
 typedef struct gitem_s
 {
-	char		*classname;	// spawning name
-	qboolean	(*pickup)(struct edict_s *ent, struct edict_s *other);
-	void		(*use)(struct edict_s *ent, struct gitem_s *item);
-	void		(*drop)(struct edict_s *ent, struct gitem_s *item);
-	void		(*weaponthink)(struct edict_s *ent);
-	char		*pickup_sound;
-	char		*world_model;
+	char* classname;	// spawning name
+	qboolean(*pickup)(struct edict_s* ent, struct edict_s* other);
+	void		(*use)(struct edict_s* ent, struct gitem_s* item);
+	void		(*drop)(struct edict_s* ent, struct gitem_s* item);
+	void		(*weaponthink)(struct edict_s* ent);
+	char*		pickup_sound;
+	char*		world_model;
 	int			world_model_flags;
-	char		*view_model;
+	char*		view_model;
 
 	// client side info
-	char		*icon;
-	char		*pickup_name;		// for printing on pickup
-	int			count_width;		// number of digits to display by icon
+	char*	icon;
+	char*	pickup_name;		// for printing on pickup
+	int		count_width;		// number of digits to display by icon
 
-	const int			quantity;	// for ammo how much, for weapons how much is used per shot
-	struct gitem_s		*ammo;		// for weapons
-	int			flags;				// IT_* flags
+	const int		quantity;	// for ammo how much, for weapons how much is used per shot
+	struct gitem_s* ammo;		// for weapons
+	int		flags;				// IT_* flags
 
-	void		*info;
-	int			tag;
+	void*	info;
+	int		tag;
 
-	char		*precaches;		// string of all models, sounds, and images this item will use
-	
+	char* precaches;		// string of all models, sounds, and images this item will use
+
 	int		item_index;		// where this is in itemlist[]
 } gitem_t;
 
@@ -1003,6 +1001,7 @@ extern	cvar_t	*noscore;
 extern	cvar_t	*fraglimit;
 extern	cvar_t	*timelimit;
 extern	cvar_t	*scoreboardtime;
+extern	cvar_t	*cycle_always;
 extern	cvar_t	*spectator_password;
 extern	cvar_t	*needpass;
 extern	cvar_t	*g_select_empty;
@@ -1073,6 +1072,7 @@ extern	cvar_t  *peak_edicts;		//QW// the max number of edicts used in the game t
 extern	cvar_t	*max_cats;		//QW// maximum cataclysm devices per player per level
 extern	cvar_t	*zbot_check;	//QW// enable/disable internal zbot checking
 extern	cvar_t	*console_chat;
+extern	cvar_t	*flashlightmode; //QW/ mode for flashlight code.
 //QW//
 
 // these contain the conversion of the strings in the corresponding
@@ -2302,5 +2302,5 @@ void MatchplayStartRound2 (void);
 void MatchplayMakeObserver (edict_t *ent);
 void DoMatchCountdown(edict_t *ent);
 
-#endif
+
 

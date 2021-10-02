@@ -1,270 +1,294 @@
-g_ai.o: g_ai.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_chase.o: g_chase.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_cmds.o: g_cmds.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h m_player.h kamikaze.h l_tracker.h l_turret.h l_angels.h \
- l_help.h l_banner.h l_voting.h l_flashlight.h scanner.h l_ar_admin.h \
- lithhook.h oak.h l_dm_grenades.h
-g_combat.o: g_combat.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h
-g_devmenu.o: g_devmenu.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_ent.o: g_ent.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_func.o: g_func.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_items.o: g_items.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_disintegrator.h l_energyvortex.h l_freezegun.h l_kaminit.h \
+g_ai.o: g_ai.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h
+g_chase.o: g_chase.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h
+g_cmds.o: g_cmds.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h g_team.h m_player.h kamikaze.h l_tracker.h l_turret.h \
+ l_angels.h l_help.h l_banner.h l_voting.h l_flashlight.h scanner.h \
+ l_ar_admin.h lithhook.h oak.h l_dm_grenades.h
+g_combat.o: g_combat.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h
+g_devmenu.o: g_devmenu.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h
+g_ent.o: g_ent.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h
+g_func.o: g_func.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h
+g_items.o: g_items.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h l_disintegrator.h l_energyvortex.h l_freezegun.h l_kaminit.h \
  l_lightninggun.h l_nailgun.h l_nuke.h l_nukegrenade.h g_team.h
-g_main.o: g_main.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_voting.h l_ar_admin.h maplist.h g_team.h
-g_misc.o: g_misc.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_monster.o: g_monster.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_offworld.o: g_offworld.c g_local.h q_shared.h game.h g_weapon.h \
+g_main.o: g_main.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h l_voting.h l_ar_admin.h maplist.h g_team.h
+g_misc.o: g_misc.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h
+g_monster.o: g_monster.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h
+g_offworld.o: g_offworld.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h
+g_phys.o: g_phys.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h
+g_save.o: g_save.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h g_team.h l_banner.h maplist.h l_voting.h l_backpack.h \
+ l_ar_admin.h
+g_spawn.o: g_spawn.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h g_team.h scanner.h l_ar_admin.h
+g_svcmds.o: g_svcmds.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h
+g_target.o: g_target.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h
+g_team.o: g_team.c g_local.h q_shared.h performance.h game.h g_weapon.h \
  p_menu.h g_team.h
-g_phys.o: g_phys.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_save.o: g_save.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h l_banner.h maplist.h l_voting.h l_backpack.h l_ar_admin.h
-g_spawn.o: g_spawn.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h scanner.h l_ar_admin.h
-g_svcmds.o: g_svcmds.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h
-g_target.o: g_target.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_team.o: g_team.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h
-g_trigger.o: g_trigger.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_turret.o: g_turret.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_utils.o: g_utils.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-g_weapon.o: g_weapon.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h l_positron.h l_dm_grenades.h
-highscorer.o: highscorer.c g_local.h q_shared.h game.h g_weapon.h \
+g_trigger.o: g_trigger.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h
+g_turret.o: g_turret.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h
+g_utils.o: g_utils.c g_local.h q_shared.h performance.h game.h g_weapon.h \
  p_menu.h
-jetpack.o: jetpack.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-kamikaze.o: kamikaze.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- kamikaze.h
-l_airfist.o: l_airfist.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_angels.h
-l_angelob.o: l_angelob.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h x_fire.h l_angels.h
-l_angeloblind.o: l_angeloblind.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h g_team.h x_fire.h l_angels.h
-l_angelod.o: l_angelod.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- x_fire.h l_angels.h
-l_angeloe.o: l_angeloe.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- x_fire.h l_angels.h l_rockets.h l_nuke.h
-l_angelof.o: l_angelof.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h x_fire.h l_angels.h
-l_angeloh.o: l_angeloh.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h x_fire.h l_angels.h
-l_angelol.o: l_angelol.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- x_fire.h l_angels.h
-l_angelom.o: l_angelom.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- x_fire.h l_angels.h l_rockets.h l_nuke.h
-l_angelop.o: l_angelop.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h x_fire.h l_angels.h
-l_angelor.o: l_angelor.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h x_fire.h l_angels.h
-l_angelou.o: l_angelou.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- x_fire.h l_angels.h
-l_angels.o: l_angels.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- x_fire.h l_angels.h
-l_antiflaregun.o: l_antiflaregun.c g_local.h q_shared.h game.h g_weapon.h \
+g_weapon.o: g_weapon.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h l_positron.h l_dm_grenades.h
+highscorer.o: highscorer.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h
+jetpack.o: jetpack.c g_local.h q_shared.h performance.h game.h g_weapon.h \
  p_menu.h
-l_antimattercannon.o: l_antimattercannon.c g_local.h q_shared.h game.h \
- g_weapon.h p_menu.h l_antimattercannon.h
-l_ar_admin.o: l_ar_admin.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_ar_admin.h
-l_backpack.o: l_backpack.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h g_team.h m_player.h l_backpack.h
-l_bazookasweeper.o: l_bazookasweeper.c g_local.h q_shared.h game.h \
- g_weapon.h p_menu.h m_player.h l_angels.h l_dm_grenades.h
-l_bucky.o: l_bucky.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_bucky.h l_angels.h
-l_chunkgun.o: l_chunkgun.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h m_player.h l_angels.h
-l_daynight.o: l_daynight.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h
-l_disintegrator.o: l_disintegrator.c g_local.h q_shared.h game.h \
- g_weapon.h p_menu.h l_disintegrator.h
-l_dm_grenades.o: l_dm_grenades.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_positron.h l_freezatron.h l_freezegun.h l_kaminit.h \
- l_antiflaregun.h l_dm_grenades.h l_rockets.h
-l_doubleimpact.o: l_doubleimpact.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_angels.h l_doubleimpact.h l_dm_grenades.h
-l_durg.o: l_durg.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_angels.h l_durg.h
-l_durgsweeper.o: l_durgsweeper.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_durg.h l_durgsweeper.h l_angels.h m_player.h
-l_energyvortex.o: l_energyvortex.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_energyvortex.h l_airfist.h
-l_explosivemachinegun.o: l_explosivemachinegun.c g_local.h q_shared.h \
- game.h g_weapon.h p_menu.h m_player.h l_angels.h
-l_fbfg.o: l_fbfg.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h l_angels.h l_fbfg.h
-l_flamesweeper.o: l_flamesweeper.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_angels.h x_fire.h
-l_flamethrower.o: l_flamethrower.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h m_player.h l_angels.h x_fire.h
-l_flaregun.o: l_flaregun.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h g_team.h
-l_flashlight.o: l_flashlight.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h
-l_floatingminelauncher.o: l_floatingminelauncher.c g_local.h q_shared.h \
+kamikaze.o: kamikaze.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h kamikaze.h
+l_airfist.o: l_airfist.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_angels.h
+l_angelob.o: l_angelob.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h x_fire.h l_angels.h
+l_angeloblind.o: l_angeloblind.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h g_team.h x_fire.h l_angels.h
+l_angelod.o: l_angelod.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h x_fire.h l_angels.h
+l_angeloe.o: l_angeloe.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h x_fire.h l_angels.h l_rockets.h l_nuke.h
+l_angelof.o: l_angelof.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h x_fire.h l_angels.h
+l_angeloh.o: l_angeloh.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h x_fire.h l_angels.h
+l_angelol.o: l_angelol.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h x_fire.h l_angels.h
+l_angelom.o: l_angelom.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h x_fire.h l_angels.h l_rockets.h l_nuke.h
+l_angelop.o: l_angelop.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h x_fire.h l_angels.h
+l_angelor.o: l_angelor.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h x_fire.h l_angels.h
+l_angelou.o: l_angelou.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h x_fire.h l_angels.h
+l_angels.o: l_angels.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h x_fire.h l_angels.h
+l_antiflaregun.o: l_antiflaregun.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h
+l_antimattercannon.o: l_antimattercannon.c g_local.h q_shared.h \
+ performance.h game.h g_weapon.h p_menu.h l_antimattercannon.h
+l_ar_admin.o: l_ar_admin.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_ar_admin.h
+l_backpack.o: l_backpack.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h m_player.h l_backpack.h
+l_bazookasweeper.o: l_bazookasweeper.c g_local.h q_shared.h performance.h \
  game.h g_weapon.h p_menu.h m_player.h l_angels.h l_dm_grenades.h
-l_freezatron.o: l_freezatron.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_angels.h l_freezatron.h
-l_freezegun.o: l_freezegun.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_angels.h l_freezegun.h
-l_freezersweeper.o: l_freezersweeper.c g_local.h q_shared.h game.h \
- g_weapon.h p_menu.h m_player.h l_angels.h l_freezegun.h
-l_grenadesweeper.o: l_grenadesweeper.c g_local.h q_shared.h game.h \
- g_weapon.h p_menu.h m_player.h l_angels.h x_fbomb.h
-l_guidednuke.o: l_guidednuke.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_rockets.h x_fire.h l_nuke.h l_positron.h l_angels.h
-l_guidedrocket.o: l_guidedrocket.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_rockets.h x_fire.h l_nuke.h l_positron.h l_angels.h \
- l_dm_grenades.h
-l_help.o: l_help.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_help.h
-l_iceballgun.o: l_iceballgun.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h x_fire.h l_iceballgun.h
-l_kaminit.o: l_kaminit.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_angels.h l_kaminit.h
-l_lightninggun.o: l_lightninggun.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_angels.h m_player.h
-l_mace.o: l_mace.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_airfist.h l_angels.h
-l_matchplay.o: l_matchplay.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h g_team.h
-l_nailgun.o: l_nailgun.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_angels.h m_player.h
-l_nuke.o: l_nuke.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- x_fire.h l_nuke.h
-l_nukegrenade.o: l_nukegrenade.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h m_player.h l_dm_grenades.h l_nukegrenade.h
-l_plasmarifle.o: l_plasmarifle.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h m_player.h l_angels.h
-l_positron.o: l_positron.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_angels.h l_positron.h
-l_pulserifle.o: l_pulserifle.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_angels.h
-l_railgunsweeper.o: l_railgunsweeper.c g_local.h q_shared.h game.h \
+l_bucky.o: l_bucky.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h l_bucky.h l_angels.h
+l_chunkgun.o: l_chunkgun.c g_local.h q_shared.h performance.h game.h \
  g_weapon.h p_menu.h m_player.h l_angels.h
-l_reflectdamage.o: l_reflectdamage.c
-l_rockets.o: l_rockets.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- x_fire.h l_angels.h l_nuke.h l_positron.h l_rockets.h
-l_snipersweeper.o: l_snipersweeper.c g_local.h q_shared.h game.h \
- g_weapon.h p_menu.h m_player.h l_angels.h
-l_spiralrocket.o: l_spiralrocket.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_angels.h l_spiralrocket.h x_fbomb.h
-l_stickinggrenades.o: l_stickinggrenades.c g_local.h q_shared.h game.h \
- g_weapon.h p_menu.h l_dm_grenades.h
-l_stickygrenadesweeper.o: l_stickygrenadesweeper.c g_local.h q_shared.h \
- game.h g_weapon.h p_menu.h m_player.h l_angels.h l_stickinggrenades.h \
+l_daynight.o: l_daynight.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h
+l_disintegrator.o: l_disintegrator.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h l_disintegrator.h
+l_dm_grenades.o: l_dm_grenades.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h l_positron.h l_freezatron.h l_freezegun.h \
+ l_kaminit.h l_antiflaregun.h l_dm_grenades.h l_rockets.h
+l_doubleimpact.o: l_doubleimpact.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h l_angels.h l_doubleimpact.h l_dm_grenades.h
+l_durg.o: l_durg.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h l_angels.h l_durg.h
+l_durgsweeper.o: l_durgsweeper.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h l_durg.h l_durgsweeper.h l_angels.h \
+ m_player.h
+l_energyvortex.o: l_energyvortex.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h l_energyvortex.h l_airfist.h
+l_explosivemachinegun.o: l_explosivemachinegun.c g_local.h q_shared.h \
+ performance.h game.h g_weapon.h p_menu.h m_player.h l_angels.h
+l_fbfg.o: l_fbfg.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h g_team.h l_angels.h l_fbfg.h
+l_flamesweeper.o: l_flamesweeper.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h l_angels.h x_fire.h
+l_flamethrower.o: l_flamethrower.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h m_player.h l_angels.h x_fire.h
+l_flaregun.o: l_flaregun.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h
+l_flashlight.o: l_flashlight.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h
+l_floatingminelauncher.o: l_floatingminelauncher.c g_local.h q_shared.h \
+ performance.h game.h g_weapon.h p_menu.h m_player.h l_angels.h \
  l_dm_grenades.h
-l_superblaster.o: l_superblaster.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h m_player.h l_angels.h
-l_superblastersweeper.o: l_superblastersweeper.c g_local.h q_shared.h \
+l_freezatron.o: l_freezatron.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_angels.h l_freezatron.h
+l_freezegun.o: l_freezegun.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_angels.h l_freezegun.h
+l_freezersweeper.o: l_freezersweeper.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h m_player.h l_angels.h l_freezegun.h
+l_grenadesweeper.o: l_grenadesweeper.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h m_player.h l_angels.h x_fbomb.h
+l_guidednuke.o: l_guidednuke.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_rockets.h x_fire.h l_nuke.h l_positron.h \
+ l_angels.h
+l_guidedrocket.o: l_guidedrocket.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h l_rockets.h x_fire.h l_nuke.h l_positron.h \
+ l_angels.h l_dm_grenades.h
+l_help.o: l_help.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h l_help.h
+l_iceballgun.o: l_iceballgun.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h x_fire.h l_iceballgun.h
+l_kaminit.o: l_kaminit.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_angels.h l_kaminit.h
+l_lightninggun.o: l_lightninggun.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h l_angels.h m_player.h
+l_mace.o: l_mace.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h l_airfist.h l_angels.h
+l_matchplay.o: l_matchplay.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h
+l_nailgun.o: l_nailgun.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_angels.h m_player.h
+l_nuke.o: l_nuke.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h x_fire.h l_nuke.h
+l_nukegrenade.o: l_nukegrenade.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h m_player.h l_dm_grenades.h l_nukegrenade.h
+l_plasmarifle.o: l_plasmarifle.c g_local.h q_shared.h performance.h \
  game.h g_weapon.h p_menu.h m_player.h l_angels.h
-l_superrailshotgun.o: l_superrailshotgun.c g_local.h q_shared.h game.h \
- g_weapon.h p_menu.h l_superrailshotgun.h
-l_sword.o: l_sword.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_sword.h
-l_tracker.o: l_tracker.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_tracker.h l_airfist.h l_bucky.h l_chunkgun.h l_disintegrator.h \
- l_durg.h l_energyvortex.h l_fbfg.h l_flamesweeper.h l_flaregun.h \
- l_freezatron.h l_freezegun.h l_kaminit.h l_lightninggun.h l_mace.h \
- l_nailgun.h l_positron.h l_pulserifle.h l_stickinggrenades.h x_fbomb.h \
- x_fire.h l_dm_grenades.h
-l_turret.o: l_turret.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_turret.h l_airfist.h l_bucky.h l_chunkgun.h l_disintegrator.h l_durg.h \
- l_energyvortex.h l_fbfg.h l_flamesweeper.h l_flaregun.h l_freezatron.h \
- l_freezegun.h l_kaminit.h l_lightninggun.h l_mace.h l_nailgun.h \
- l_positron.h l_pulserifle.h l_stickinggrenades.h x_fbomb.h x_fire.h \
- l_dm_grenades.h
-l_vacuummaker.o: l_vacuummaker.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h l_vacuummaker.h l_airfist.h
-l_voting.o: l_voting.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- l_voting.h maplist.h
-lasertrip.o: lasertrip.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h l_dm_grenades.h
-lithhook.o: lithhook.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_player.h lithhook.h
-lsight.o: lsight.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h
-m_actor.o: m_actor.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_actor.h
-m_berserk.o: m_berserk.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_berserk.h
-m_boss2.o: m_boss2.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_boss2.h
-m_boss3.o: m_boss3.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_boss32.h
-m_boss31.o: m_boss31.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_boss31.h
-m_boss32.o: m_boss32.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_boss32.h
-m_brain.o: m_brain.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_brain.h
-m_chick.o: m_chick.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_chick.h
-m_flash.o: m_flash.c q_shared.h
-m_flipper.o: m_flipper.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_flipper.h
-m_float.o: m_float.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_float.h
-m_flyer.o: m_flyer.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_flyer.h
-m_gladiator.o: m_gladiator.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h m_gladiator.h
-m_gunner.o: m_gunner.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_gunner.h
-m_hover.o: m_hover.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_hover.h
-m_infantry.o: m_infantry.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h m_infantry.h
-m_insane.o: m_insane.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_insane.h
-m_medic.o: m_medic.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_medic.h
-m_move.o: m_move.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-m_mutant.o: m_mutant.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_mutant.h
-m_parasite.o: m_parasite.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h m_parasite.h
-m_soldier.o: m_soldier.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_soldier.h
-m_supertank.o: m_supertank.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h m_supertank.h
-m_tank.o: m_tank.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_tank.h
-maplist.o: maplist.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- maplist.h
-oak.o: oak.c g_local.h q_shared.h game.h g_weapon.h p_menu.h oak.h
-oakai.o: oakai.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_player.h oak.h
-p_client.o: p_client.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h m_player.h l_angels.h scanner.h kamikaze.h l_ar_admin.h \
- l_rockets.h l_backpack.h
-p_hook.o: p_hook.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h lithhook.h
-p_hud.o: p_hud.c g_local.h q_shared.h game.h g_weapon.h p_menu.h g_team.h \
- scanner.h performance.h
-p_menu.o: p_menu.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- scanner.h
-p_trail.o: p_trail.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-p_view.o: p_view.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h m_player.h scanner.h
-p_weapon.o: p_weapon.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- m_player.h l_angels.h l_rockets.h x_fbomb.h l_dm_grenades.h
-performance.o: performance.c g_local.h q_shared.h game.h g_weapon.h \
- p_menu.h performance.h
-q_shared.o: q_shared.c q_shared.h
-s_cam.o: s_cam.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
-scanner.o: scanner.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h scanner.h
-unicast_snd.o: unicast_snd.c g_local.h q_shared.h game.h g_weapon.h \
+l_positron.o: l_positron.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_angels.h l_positron.h
+l_pulserifle.o: l_pulserifle.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_angels.h
+l_railgunsweeper.o: l_railgunsweeper.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h m_player.h l_angels.h
+l_reflectdamage.o: l_reflectdamage.c
+l_rockets.o: l_rockets.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h x_fire.h l_angels.h l_nuke.h l_positron.h \
+ l_rockets.h
+l_snipersweeper.o: l_snipersweeper.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h m_player.h l_angels.h
+l_spiralrocket.o: l_spiralrocket.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h l_angels.h l_spiralrocket.h x_fbomb.h
+l_stickinggrenades.o: l_stickinggrenades.c g_local.h q_shared.h \
+ performance.h game.h g_weapon.h p_menu.h l_dm_grenades.h
+l_stickygrenadesweeper.o: l_stickygrenadesweeper.c g_local.h q_shared.h \
+ performance.h game.h g_weapon.h p_menu.h m_player.h l_angels.h \
+ l_stickinggrenades.h l_dm_grenades.h
+l_superblaster.o: l_superblaster.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h m_player.h l_angels.h
+l_superblastersweeper.o: l_superblastersweeper.c g_local.h q_shared.h \
+ performance.h game.h g_weapon.h p_menu.h m_player.h l_angels.h
+l_superrailshotgun.o: l_superrailshotgun.c g_local.h q_shared.h \
+ performance.h game.h g_weapon.h p_menu.h l_superrailshotgun.h
+l_sword.o: l_sword.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h l_sword.h
+l_tracker.o: l_tracker.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_tracker.h l_airfist.h l_bucky.h l_chunkgun.h \
+ l_disintegrator.h l_durg.h l_energyvortex.h l_fbfg.h l_flamesweeper.h \
+ l_flaregun.h l_freezatron.h l_freezegun.h l_kaminit.h l_lightninggun.h \
+ l_mace.h l_nailgun.h l_positron.h l_pulserifle.h l_stickinggrenades.h \
+ x_fbomb.h x_fire.h l_dm_grenades.h
+l_turret.o: l_turret.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_turret.h l_airfist.h l_bucky.h l_chunkgun.h \
+ l_disintegrator.h l_durg.h l_energyvortex.h l_fbfg.h l_flamesweeper.h \
+ l_flaregun.h l_freezatron.h l_freezegun.h l_kaminit.h l_lightninggun.h \
+ l_mace.h l_nailgun.h l_positron.h l_pulserifle.h l_stickinggrenades.h \
+ x_fbomb.h x_fire.h l_dm_grenades.h
+l_vacuummaker.o: l_vacuummaker.c g_local.h q_shared.h performance.h \
+ game.h g_weapon.h p_menu.h l_vacuummaker.h l_airfist.h
+l_voting.o: l_voting.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_voting.h maplist.h
+lasertrip.o: lasertrip.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h l_dm_grenades.h
+lithhook.o: lithhook.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_player.h lithhook.h
+lsight.o: lsight.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h g_team.h
+m_actor.o: m_actor.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_actor.h
+m_berserk.o: m_berserk.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_berserk.h
+m_boss2.o: m_boss2.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_boss2.h
+m_boss3.o: m_boss3.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_boss32.h
+m_boss31.o: m_boss31.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_boss31.h
+m_boss32.o: m_boss32.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_boss32.h
+m_brain.o: m_brain.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_brain.h
+m_chick.o: m_chick.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_chick.h
+m_flash.o: m_flash.c q_shared.h performance.h
+m_flipper.o: m_flipper.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_flipper.h
+m_float.o: m_float.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_float.h
+m_flyer.o: m_flyer.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_flyer.h
+m_gladiator.o: m_gladiator.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_gladiator.h
+m_gunner.o: m_gunner.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_gunner.h
+m_hover.o: m_hover.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_hover.h
+m_infantry.o: m_infantry.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_infantry.h
+m_insane.o: m_insane.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_insane.h
+m_medic.o: m_medic.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_medic.h
+m_move.o: m_move.c g_local.h q_shared.h performance.h game.h g_weapon.h \
  p_menu.h
-wf_decoy.o: wf_decoy.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h m_player.h
-x_fbomb.o: x_fbomb.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- x_fbomb.h x_fire.h
-x_fire.o: x_fire.c g_local.h q_shared.h game.h g_weapon.h p_menu.h \
- g_team.h x_fire.h
-zbotcheck.o: zbotcheck.c g_local.h q_shared.h game.h g_weapon.h p_menu.h
+m_mutant.o: m_mutant.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_mutant.h
+m_parasite.o: m_parasite.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_parasite.h
+m_soldier.o: m_soldier.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_soldier.h
+m_supertank.o: m_supertank.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_supertank.h
+m_tank.o: m_tank.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_tank.h
+maplist.o: maplist.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h maplist.h
+oak.o: oak.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h oak.h
+oakai.o: oakai.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h m_player.h oak.h
+p_client.o: p_client.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h m_player.h l_angels.h scanner.h kamikaze.h \
+ l_ar_admin.h l_rockets.h l_backpack.h
+p_hook.o: p_hook.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h g_team.h lithhook.h
+p_hud.o: p_hud.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h g_team.h scanner.h
+p_menu.o: p_menu.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h scanner.h
+p_trail.o: p_trail.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h
+p_view.o: p_view.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h g_team.h m_player.h scanner.h
+p_weapon.o: p_weapon.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h m_player.h l_angels.h l_rockets.h x_fbomb.h \
+ l_dm_grenades.h
+performance.o: performance.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h
+q_shared.o: q_shared.c q_shared.h performance.h
+s_cam.o: s_cam.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h
+scanner.o: scanner.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h g_team.h scanner.h
+unicast_snd.o: unicast_snd.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h
+wf_decoy.o: wf_decoy.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h g_team.h m_player.h
+x_fbomb.o: x_fbomb.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h x_fbomb.h x_fire.h
+x_fire.o: x_fire.c g_local.h q_shared.h performance.h game.h g_weapon.h \
+ p_menu.h g_team.h x_fire.h
+zbotcheck.o: zbotcheck.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h

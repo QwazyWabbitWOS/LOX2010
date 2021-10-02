@@ -28,7 +28,6 @@ void Cmd_Explosive(edict_t *ent);
 void Cmd_Detonate_f(edict_t *ent);
 void Cmd_DevMenu_f(char *cmd, edict_t *ent);
 void Cmd_Invisible(edict_t *ent);
-void Cmd_Flashlight(edict_t *ent);
 void Cmd_CheckStats_f (edict_t *ent);
 
 void Cmd_Height(edict_t *ent);
@@ -74,37 +73,28 @@ void Cmd_DropArmor_f(edict_t *ent)
 	ent->client->loxarmor = 0;
 }
 
-// Function name	: stripem
-// Description	    : Strip unwanted characters from a string.
-// copy string p into s stripping out special chars found in string q
-// size of p and s must be large enough to contain the full string
-
-// Argument : char *s pointer to source string
-// Argument : char *d pointer to destination string
-// Argument : char *q pointer to array of characters to filter out
-
-//void stripem(char *s, char *d, char *q)
-//{
-//	char *r;
-//	
-//	r = q;
-//	while (*s)
-//	{
-//		while (*q) 
-//		{
-//			if (*s != *q)
-//				*q++;	//next matcher
-//			else 
-//			{
-//				s++;	//next input
-//				q = r;	//reset and recompare
-//			}
-//		}
-//		q = r;
-//		*d++ = *s++;
-//	}
-//	*d = '\0'; // terminate the filtered string
-//}
+// Strip unwanted characters from a string.
+// Copy string s into d removing the chars found in string q
+// s is pointer to source string
+// d is pointer to destination string
+// q is pointer to array of characters to filter out
+void stripem(char* s, char* d, char* q)
+{
+	char* r = q;	// Everybody remember where we parked.
+	while (*s) {
+		while (*q) {
+			if (*s != *q)
+				q++;
+			else {
+				s++;
+				q = r;	//reset and recompare
+			}
+		}
+		q = r;
+		*d++ = *s++;
+	}
+	*d = '\0';
+}
 
 //LOX binds
 void Cmd_LBind_f(edict_t *ent)
@@ -1429,26 +1419,6 @@ void Cmd_CheckStats_f (edict_t *ent)
 	gi.centerprintf(ent, "%s", stats);
 }
 
-void Cmd_Flashlight(edict_t *ent)
-{
-	
-	if (i_loxfeatureban & LFB_FLASHLIGHT)
-		return;	
-	if (!ent->client || ent->health <= 0)
-		return;
-	
-	if (ent->client->flashlight == NULL)
-	{ 
-		gi.cprintf(ent, PRINT_HIGH, "Flashlight On\n");
-		Use_Flashlight(ent);
-	}
-	else
-	{
-		gi.cprintf(ent, PRINT_HIGH, "Flashlight Off\n");
-		nightmareResetFlashlight(ent->client->flashlight);
-	}
-}
-
 void Cmd_Invisible(edict_t *ent)
 {
 	
@@ -1567,9 +1537,7 @@ void Cmd_Explosive(edict_t *ent)
 char *ClientTeam (edict_t *ent)
 {
 	char		*p;
-	static char	value[512] = { 0 };
-	
-	value[0] = 0;
+	static char	value[MAX_INFO_VALUE] = { 0 };
 	
 	if (!ent->client)
 		return value;
@@ -2038,7 +2006,7 @@ void Cmd_Use_f (edict_t *ent)
 	gitem_t		*it;
 	char		*s;
 	
-//	START_PERFORMANCE_TIMER;
+	//START_PERFORMANCE_TIMER
 
 	s = gi.args();
 	it = FindItem (s);
@@ -3020,7 +2988,7 @@ void Cmd_Use_f (edict_t *ent)
 	
 	// Try to use it.
 	it->use (ent, it);
-//	STOP_PERFORMANCE_TIMER(__func__);
+	//STOP_PERFORMANCE_TIMER
 }
 
 //==================
@@ -3591,10 +3559,11 @@ Cmd_Say_f
 */
 void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
 {
-	int		i, j, cip[4] = { 0 };
+	int		i = 0;
+	int		j, cip[4] = { 0 };
 	edict_t	*other;
-	char	*p, ip[20];
-	char	text[2048];
+	char* p, ip[20] = { 0 };
+	char	text[2048] = { 0 };
 	gclient_t *cl;
 	
 	if (gi.argc () < 2 && !arg0)
@@ -3661,13 +3630,12 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
 			return;
 		}
 		
-		i = (int) (cl->flood_whenhead - flood_msgs->value + 1);
+		i = (cl->flood_whenhead - flood_msgs->value + 1);
 		
 		if (i < 0)
-			i = (sizeof(cl->flood_when)/sizeof(cl->flood_when[0])) + i;
+			i = ((int)sizeof(cl->flood_when)/(int)sizeof(cl->flood_when[0])) + i;
 		
-		if (cl->flood_when[i] 
-			&& level.time - cl->flood_when[i] < flood_persecond->value) 
+		if (cl->flood_when[i] && level.time - cl->flood_when[i] < (int)flood_persecond->value) 
 		{
 			cl->flood_locktill = level.time + flood_waitdelay->value;
 			gi.cprintf(ent, PRINT_CHAT, "Flood protection:  You can't talk for %d seconds.\n",
@@ -3675,8 +3643,7 @@ void Cmd_Say_f (edict_t *ent, qboolean team, qboolean arg0)
 			return;
 		}
 
-		cl->flood_whenhead = (cl->flood_whenhead + 1) %
-			(sizeof(cl->flood_when)/sizeof(cl->flood_when[0]));
+		cl->flood_whenhead = (((size_t)cl->flood_whenhead + 1) % (sizeof(cl->flood_when) / sizeof(cl->flood_when[0])));
 		cl->flood_when[cl->flood_whenhead] = level.time;
 	}
 	

@@ -225,7 +225,7 @@ SV_ListIP_f
 static void SVCmd_ListIP_f (void)
 {
 	int		i, j;
-	byte	b[4];
+	byte	b[4] = { 0 };
 
 	gi.cprintf (NULL, PRINT_HIGH, "Filter list:\n");
 	for (i = 0; i < numipfilters; i++)

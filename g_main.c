@@ -29,6 +29,7 @@ cvar_t	*noscore;
 cvar_t	*fraglimit;
 cvar_t	*timelimit;
 cvar_t	*scoreboardtime;
+cvar_t	*cycle_always;
 
 cvar_t	*spectator_password;
 cvar_t	*needpass;
@@ -98,6 +99,7 @@ cvar_t	*sv_bestplayer;
 cvar_t	*max_cats;		//QW// maximum cataclysm devices per player per level
 cvar_t	*zbot_check;	//QW// enable/disable internal zbot checking
 cvar_t	*console_chat;
+cvar_t	*flashlightmode;
 
 //QW//
 cvar_t	*debugmodels;		// set for model messages in console
@@ -224,17 +226,17 @@ game_export_t *GetGameAPI (game_import_t *import)
 
 #ifndef GAME_HARD_LINKED
 // this is only here so the functions in q_shared.c and q_shwin.c can link
-void Sys_Error (char *error, ...)
-{
-	va_list		argptr;
-	char		text[1024];
-
-	va_start (argptr, error);
-	vsprintf (text, error, argptr);
-	va_end (argptr);
-
-	gi.error (ERR_FATAL, "%s", text);
-}
+//void Sys_Error (char *error, ...)
+//{
+//	va_list		argptr;
+//	char		text[1024];
+//
+//	va_start (argptr, error);
+//	vsprintf (text, error, argptr);
+//	va_end (argptr);
+//
+//	gi.error (ERR_FATAL, "%s", text);
+//}
 
 void Com_Printf (char *msg, ...)
 {
@@ -594,7 +596,7 @@ void G_RunFrame (void)
 	if (level.intermissiontime && (level.intermissiontime < (level.time - scoreboardtime->value)))
 	{
 		// exit intermissions only if we have clients
-		if (CountConnectedClients())
+		if (CountConnectedClients() || cycle_always->value)
 			level.exitintermission = 1;
 	}
 	
@@ -662,7 +664,7 @@ void G_RunFrame (void)
 	// build the playerstate_t structures for all players
 	ClientEndServerFrames ();
 	
-	//_STOP_PERFORMANCE_TIMER(__func__);
+	//STOP_PERFORMANCE_TIMER
 }
 
 // HACK

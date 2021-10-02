@@ -229,6 +229,9 @@ void PBM_BurnDamage (edict_t *victim, edict_t *fire, vec3_t damage)
 	int   chance = (int)damage[2];
 	int	mod;
 
+	if (!fire->owner)
+		return;
+
 	// If the owner of the fire is on the same team as the victim, don't set the
 	// victim on fire.  (Let people set themselves on fire, though.)
 	if (ctf->value && victim->client && fire->owner && fire->owner->client
@@ -734,7 +737,7 @@ void PBM_FlameCloud2(edict_t *attacker, vec3_t start, vec3_t cloud,
 	vec3_t timer, qboolean deadly, vec3_t damage, vec3_t radius_damage, 
 	int rain_chance, int blast_chance)
 {
-	vec3_t  spot;
+	vec3_t	spot = { 0 };
 	edict_t  *smoke;
 	int  quota = (int)cloud[0];
 	int  check = quota * 3;      /* Use correction after this #. */
@@ -757,7 +760,7 @@ void PBM_FlameCloud2(edict_t *attacker, vec3_t start, vec3_t cloud,
 		if ((trials >= check) && (gi.pointcontents(spot) & MASK_SOLID))
 		{
 			trace_t tr;
-			vec3_t dir;
+			vec3_t dir = { 0 };
 
 			tr = gi.trace (start, NULL, NULL, spot, NULL, MASK_SHOT);
 
@@ -814,7 +817,7 @@ void PBM_FlameCloud (edict_t *attacker, vec3_t start, vec3_t cloud,
 	vec3_t damage, vec3_t radius_damage, int rain_chance,
 	int blast_chance)
 {
-	vec3_t  spot;
+	vec3_t  spot = { 0 };
 	edict_t  *smoke;
 	int  quota = (int)cloud[0];
 	int  limit = quota * 4;   /* Max. number of attempts. */
@@ -1102,7 +1105,7 @@ qboolean PBM_ActivePowerArmor (edict_t *ent, vec3_t point)
 	if (power_armor_type == POWER_ARMOR_SCREEN)
 	{
 		vec3_t  forward;
-		vec3_t  v;
+		vec3_t  v = { 0 };
 		float   dot;
 
 		/* Only works if damage point is in front. */
@@ -1205,7 +1208,7 @@ void LPBM_Ignite (edict_t *victim, edict_t *attacker, vec3_t point)
 //------------------------------------------------------------------------*/
 qboolean PBM_CanDamageFromPoint (edict_t *targ, vec3_t point)
 {
-	vec3_t	dest;
+	vec3_t	dest = { 0 };
 	trace_t	trace;
 
 	/* bmodels need special checking because their origin is 0,0,0 */
@@ -1296,8 +1299,8 @@ void PBM_FlashRadius
 {
 	float	points;
 	edict_t	*ent = NULL;
-	vec3_t  spot;
-	vec3_t	dir;
+	vec3_t  spot = { 0 };
+	vec3_t	dir = { 0 };
 	float   dist;
 	float   diameter = radii[1] * 2;
 

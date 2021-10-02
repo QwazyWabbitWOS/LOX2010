@@ -134,16 +134,9 @@ void RenameStatsLog(void)
 			ltime->tm_mday, 
 			statsfile->string); 
 		
-		if (rename(logpath, newname))
+		if (rename(logpath, newname) != 0)
 		{
-			if(errno == EACCES)
-			{
-				gi.dprintf("Error renaming %s to %s, make sure target folder exists.\n", logpath, newname);
-			}
-			else if (errno == ENOENT)
-			{
-				gi.dprintf("Error renaming %s, it doesn't exist.\n", logpath);
-			}
+			gi.dprintf("Error renaming %s to %s, %s.\n", logpath, newname, strerror(errno));
 		}
 	}
 }
@@ -177,18 +170,11 @@ void RenameConsoleLog(void)
 			ltime->tm_mday, 
 			logfile_name->string); 
 		
-		if (rename(logpath, newname))
+		if (rename(logpath, newname) != 0)
 		{
-			if(errno == EACCES)
-			{
-				gi.dprintf("Error renaming %s to %s, make sure target folder exists.\n", logpath, newname);
-			}
-			else if (errno == ENOENT)
-			{
-				gi.dprintf("Error renaming %s, it doesn't exist.\n", logpath);
-			}
+			gi.dprintf("Error renaming %s to %s, %s.\n", logpath, newname, strerror(errno));
 		}
-		
+
 		gi.cvar_forceset("logfile", logval);	// restore previous mode
 		gi.dprintf("Logfile backup complete.\n"); //announce and reopen
 	}

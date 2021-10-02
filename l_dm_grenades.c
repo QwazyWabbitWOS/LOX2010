@@ -63,7 +63,7 @@ void banzai_fire (edict_t *ent)
 	vec3_t		origin;
 	int mod;
 	edict_t *blip = NULL;
-	vec3_t blipdir;
+	vec3_t blipdir = { 0 };
 	// Set up the means of death.
 	mod = MOD_RAILGUN2;
 	
@@ -144,7 +144,7 @@ void freezer_fire (edict_t *ent)
 	vec3_t		origin;
 	int mod;
 	edict_t *blip = NULL;
-	vec3_t blipdir;
+	vec3_t blipdir = { 0 };
 	// Set up the means of death.
 	mod = MOD_RAILGUN2;
 	
@@ -225,8 +225,11 @@ void spinning_rail_fire (edict_t *ent)
 {
 	
 	int n;
-	
-	vec3_t		origin, grenade_angs, forward, right, up;
+	vec3_t	origin;
+	vec3_t	grenade_angs = { 0 };
+	vec3_t	forward;
+	vec3_t	right;
+	vec3_t	up;
 	
 	int mod;
 	
@@ -516,7 +519,11 @@ void Floating_Mine(edict_t *ent)
 
 void Grenade_Explode_dM (edict_t *ent)
 {
-	vec3_t		origin, grenade_angs, forward, right, up;
+	vec3_t	origin;
+	vec3_t	grenade_angs = { 0 };
+	vec3_t	forward;
+	vec3_t	right;
+	vec3_t	up;
 	edict_t		*flame, *head = NULL;
 	int n, mod;
 	
@@ -526,7 +533,7 @@ void Grenade_Explode_dM (edict_t *ent)
 	
 	// If we somehow don't have an owner any more, just die.
 	// (Why wouldn't we have an owner?)
-	if (!(ent->owner))
+	if (!(ent->owner) || !(ent->owner->client))
 	{
 		gi.dprintf ("Oops: dM grenade without an owner (freeing it now)\n");
 		G_FreeEdict (ent);
@@ -1553,7 +1560,7 @@ void fire_grenade_dM (edict_t *self, vec3_t start, vec3_t aimdir, int damage,
 		}
 		else
 		{
-			grenade->nextthink = level.time + 8000/speed;
+			grenade->nextthink = level.time + 8000.0f/speed;
 			grenade->think = G_FreeEdict;
 		}
 	}
@@ -1673,7 +1680,7 @@ void BigBang (edict_t *ent)
 	int		i;
 	edict_t	*ear;
 	float		radius=1024;
-	vec3_t	d;
+	vec3_t	d = { 0 };
 	
 	gi.sound (ent, CHAN_ITEM, gi.soundindex ("weapons/rocklx1a.wav"), 1, ATTN_NORM, 0);
 	
@@ -1707,7 +1714,7 @@ setting DAMAGE_YES will give an orange splash effect.
 void ThrowShrapnel (edict_t *self, char *modelname, float speed, vec3_t origin)
 {
 	edict_t	*chunk;
-	vec3_t	v;
+	vec3_t	v = { 0 };
 	
 	chunk = G_Spawn();
 	VectorCopy (origin, chunk->s.origin);
@@ -1745,7 +1752,7 @@ Less persistent
 void ThrowShrapnel2 (edict_t *self, char *modelname, float speed, vec3_t origin)
 {
 	edict_t	*chunk;
-	vec3_t	v;
+	vec3_t	v = { 0 };
 	
 	chunk = G_Spawn();
 	VectorCopy (origin, chunk->s.origin);
@@ -1783,7 +1790,7 @@ Least persistent
 void ThrowShrapnel3 (edict_t *self, char *modelname, float speed, vec3_t origin)
 {
 	edict_t	*chunk;
-	vec3_t	v;
+	vec3_t	v = { 0 };
 	
 	chunk = G_Spawn();
 	VectorCopy (origin, chunk->s.origin);
@@ -1821,7 +1828,7 @@ Medium persistence with glowing trail effect
 void ThrowShrapnel4 (edict_t *self, char *modelname, float speed, vec3_t origin)
 {
 	edict_t	*chunk;
-	vec3_t	v;
+	vec3_t	v = { 0 };
 	
 	chunk = G_Spawn();
 	VectorCopy (origin, chunk->s.origin);
@@ -1859,7 +1866,8 @@ some ThrowDebris to ThrowShrapnel
 */
 void barrel_explode (edict_t *self)
 {
-	vec3_t	org, save;
+	vec3_t	org = { 0 };
+	vec3_t	save = { 0 };
 	float		spd;
 	int		i;
 	
@@ -1945,8 +1953,9 @@ make_debris
 */
 void make_debris (edict_t *ent)
 {
-	vec3_t	org, origin;
-	float		spd;
+	vec3_t	org = { 0 };
+	vec3_t	origin;
+	float	spd;
 	
 	// calculate position for the explosion entity
 	VectorMA (ent->s.origin, -0.02f, ent->velocity, origin);
@@ -1976,7 +1985,7 @@ void T_ShockWave (edict_t *inflictor, float damage, float radius)
 {
 	float	points;
 	edict_t	*ent = NULL;
-	vec3_t	v;
+	vec3_t	v = { 0 };
 	//vec3_t	dir;
 	
 	float 	SHOCK_TIME = 0.1f;
@@ -2017,12 +2026,14 @@ TODO: Reorient items after coming to rest?
 */
 void T_ShockItems (edict_t *inflictor)
 {
-	float		points;
-	edict_t		*ent = NULL;
-	vec3_t		v, dir, kvel;
-	float		mass;
-	float		radius=255;
-	float		damage=100;
+	float	points;
+	edict_t	*ent = NULL;
+	vec3_t	v = { 0 };
+	vec3_t	dir = { 0 };
+	vec3_t	kvel;
+	float	mass;
+	float	radius=255;
+	float	damage=100;
 	
 	while ((ent = findradius(ent, inflictor->s.origin, radius)) != NULL)
 	{
@@ -2067,7 +2078,8 @@ This is the ai.c visible function
 */
 qboolean isvisible (edict_t *self, edict_t *other)
 {
-	vec3_t	spot1, spot2;
+	vec3_t	spot1 = { 0 };
+	vec3_t	spot2 = { 0 };
 	trace_t	trace;
 	
 	VectorCopy (self->s.origin, spot1);

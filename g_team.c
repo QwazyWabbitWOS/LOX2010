@@ -252,8 +252,7 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive)
 		spot = spot1 = spot2 = NULL;
 		lowRespawnTime = level.time + 1.0;
 
-		while ((spot = G_Find (spot, FOFS(classname), "info_player_deathmatch"))
-			!= NULL)
+		while ((spot = G_Find (spot, FOFS(classname), "info_player_deathmatch")) != NULL)
 		{
 			// If the spawnpoint doesn't belong to this team, skip it.
 			if ((ent->client->resp.ctf_team == CTF_TEAM1
@@ -267,8 +266,9 @@ edict_t *SelectCTFSpawnPoint (edict_t *ent, qboolean *spawnlive)
 			// Find any teammates on this spawnpoint, see how long they've been
 			// there.
 			{
-				trace_t tr;
-				vec3_t startpos, endpos;
+				trace_t	tr;
+				vec3_t	startpos = { 0 };
+				vec3_t	endpos = { 0 };
 
 				// Set up the start/end of the trace, to see if anyone is standing
 				// on the spawnpoint.
@@ -731,13 +731,13 @@ void CTFTeam_f (edict_t *ent)
 //QW// Note: killer is unused here.
 void CTFScoreboardMessage (edict_t *ent, edict_t *killer, char *string)
 {
-	char	entry[1024];
+	char	entry[1024] = { 0 };
 	size_t	len;
 	int		i, j, k, n;
-	int		sorted[2][MAX_CLIENTS];
-	int		sortedscores[2][MAX_CLIENTS];
-	int		score, total[2], totalscore[2];
-	int		last[2];
+	int		sorted[2][MAX_CLIENTS] = { 0 };
+	int		sortedscores[2][MAX_CLIENTS] = { 0 };
+	int		score, total[2] = { 0 }, totalscore[2] = { 0 };
+	int		last[2] = { 0 };
 	gclient_t	*cl;
 	edict_t		*cl_ent;
 	int		team;
@@ -1078,7 +1078,7 @@ pmenu_t joinmenu[] = {
 
 int CTFUpdateJoinMenu(edict_t *ent)
 {
-	static char levelname[32];
+	static char levelname[32] = { 0 };
 	static char team1players[32];
 	static char team2players[32];
 	int num1, num2, i;
@@ -1634,12 +1634,12 @@ static int getEntityFileSize(const char *filename, FILE *f)
 
 void TeamplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 {
-	FILE *f;
-	char filename[MAX_QPATH];
-	int nEntSize = 0;
-	int nRead;
-	char *pszCustomEnt = NULL;
-	int err = 0;
+	FILE	*f;
+	char	filename[MAX_QPATH];
+	int		nEntSize = 0;
+	int		nRead;
+	char	*pszCustomEnt = NULL;
+	int		err = 0;
 
 	if (!custom_ents->value && !ctf->value)
 	{
@@ -1656,7 +1656,7 @@ void TeamplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 			/* if gi.TagMalloc fails it logs the error, aborts process */
 			pszCustomEnt = gi.TagMalloc (nEntSize + 1, TAG_LEVEL);
 
-		nRead = fread (pszCustomEnt, 1, nEntSize, f);
+		nRead = (int)fread (pszCustomEnt, 1, nEntSize, f);
 		if (nRead != nEntSize)
 		{
 			gi.dprintf ("ERROR: %s: fread %s (%d/%d) not all entities were loaded\n",
@@ -1793,7 +1793,7 @@ void TeamplayRebalanceTeams (void)
 {
 	float total1, total2;
 	// The sum of the frag-rates of each new team.
-	int sorted[MAX_CLIENTS];
+	int sorted[MAX_CLIENTS] = { 0 };
 	// The indexes of the clients, sorted by decreasing score.
 	int i, count;
 	edict_t *ent;

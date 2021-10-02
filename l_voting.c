@@ -113,7 +113,7 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 {
 	char *mapname;
 	char mappath[MAX_OSPATH];
-	char msg[256];
+	char msg[256] = { 0 };
 	int time_in;
 	
 	if (electpercentage->value == 0)

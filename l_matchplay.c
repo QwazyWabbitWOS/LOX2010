@@ -102,10 +102,11 @@ void MatchplayDoCountdown (void)
 
 void MatchplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 {
-	FILE *f;
-	char szFile[MAX_QPATH];
-	int nEntSize, nRead;
-	char *pszCustomEnt;
+	FILE	*f;
+	char	szFile[MAX_QPATH];
+	size_t	nEntSize;
+	size_t	nRead;
+	char	*pszCustomEnt;
 
 	// If custom_ents is off in deathmatch and if not ctf, do the normal thing.
 	if (!custom_ents->value && !ctf->value)
@@ -151,7 +152,7 @@ void MatchplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	}
 
 	// Create a buffer and read the custom entity file.
-	pszCustomEnt = gi.TagMalloc (nEntSize + 1, TAG_LEVEL);
+	pszCustomEnt = gi.TagMalloc ((int)nEntSize + 1, TAG_LEVEL);
 	if (!pszCustomEnt)
 	{
 		gi.dprintf ("%s: TagMalloc\n", __func__);

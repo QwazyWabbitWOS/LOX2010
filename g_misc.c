@@ -14,7 +14,7 @@ void Use_Areaportal (edict_t *ent, edict_t *other, edict_t *activator)
 {
 	ent->count ^= 1;		// toggle state
 //	gi.dprintf ("portalstate: %i = %i\n", ent->style, ent->count);
-	gi.SetAreaPortalState (ent->style, (qboolean) ent->count);
+	gi.SetAreaPortalState (ent->style, ent->count);
 }
 
 /*QUAKED func_areaportal (0 0 0) ?
@@ -118,7 +118,7 @@ void ThrowGib (edict_t *self, char *gibname, int damage, int type)
 {
 	edict_t *gib;
 	vec3_t	vd;
-	vec3_t	origin;
+	vec3_t	origin = { 0 };
 	vec3_t	size;
 	float	vscale;
 
@@ -269,7 +269,7 @@ void debris_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 void ThrowDebris (edict_t *self, char *modelname, float speed, vec3_t origin)
 {
 	edict_t	*chunk;
-	vec3_t	v;
+	vec3_t	v = { 0 };
 
 	chunk = G_Spawn();
 	VectorCopy (origin, chunk->s.origin);
@@ -325,7 +325,7 @@ Pathtarget: gets used when an entity that has
 
 void path_corner_touch (edict_t *self, edict_t *other, cplane_t *plane, csurface_t *surf)
 {
-	vec3_t		v;
+	vec3_t		v = { 0 };
 	edict_t		*next;
 
 	if (other->movetarget != self)
@@ -741,8 +741,8 @@ one small chunk per 25 of mass (up to 16).  So 800 gives the most.
 */
 void func_explosive_explode (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, vec3_t point)
 {
-	vec3_t	origin;
-	vec3_t	chunkorigin;
+	vec3_t	origin = { 0 };
+	vec3_t	chunkorigin = { 0 };
 	vec3_t	size;
 	int		count;
 	int		mass;
@@ -871,7 +871,7 @@ void barrel_touch (edict_t *self, edict_t *other, cplane_t *plane, csurface_t *s
 
 {
 	float	ratio;
-	vec3_t	v;
+	vec3_t	v = { 0 };
 
 	if ((!other->groundentity) || (other->groundentity == self))
 		return;
@@ -1515,16 +1515,16 @@ void target_string_use (edict_t *self, edict_t *other, edict_t *activator)
 {
 	edict_t	*e;
 	int		n;
-	int		l;
+	int		len;
 	char	c;
 
-	l = strlen(self->message);
+	len = (int)strlen(self->message);
 	for (e = self->teammaster; e; e = e->teamchain)
 	{
 		if (!e->count)
 			continue;
 		n = e->count - 1;
-		if (n > l)
+		if (n > len)
 		{
 			e->s.frame = 12;
 			continue;

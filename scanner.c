@@ -138,10 +138,7 @@ void ShowScanner(edict_t *ent,char *layout)
 			
 			//			tag = PIC_FARTHESTDOT_TAG;
 			// Set output
-			Com_sprintf (stats, sizeof(stats),"xv %i yv %i picn %s ",
-				sx,
-				sy,
-				tag);
+			Com_sprintf (stats, sizeof stats,"xv %i yv %i picn %s ", sx, sy, tag);
 			
 			SAFE_STRCAT(layout,stats,LAYOUT_MAX_LENGTH);
 			

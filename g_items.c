@@ -13,68 +13,68 @@
 // teamplay definitions
 #include "g_team.h"
 
-void Use_GrenadeWeapon (edict_t *ent, gitem_t *inv);
-void Weapon_Blaster (edict_t *ent);
-void Weapon_Shotgun (edict_t *ent);
-void Weapon_SuperShotgun (edict_t *ent);
-void Weapon_Machinegun (edict_t *ent); // rockets
-void Weapon_Machine (edict_t *ent); // original
-void Weapon_Chaingun (edict_t *ent);
-void Weapon_HyperBlaster (edict_t *ent);
-void Weapon_RocketLauncher (edict_t *ent);
-void Weapon_SuperBlaster (edict_t *ent);
-void Weapon_Grenade (edict_t *ent);
-void Weapon_GrenadeLauncher (edict_t *ent);
-void Weapon_Railgun (edict_t *ent);
-void Weapon_SonicRailgun (edict_t *ent);
-void Weapon_Railgun2 (edict_t *ent);
-void Weapon_Sniper (edict_t *ent);
-void Weapon_BFG (edict_t *ent);
-void Weapon_FBFG (edict_t *ent);
-void Weapon_Plasma (edict_t *ent);
-void Weapon_Homing (edict_t *ent);
-void Weapon_Streetsweeper (edict_t *ent);
-void Weapon_ExplosiveStreetsweeper (edict_t *ent);
-void Weapon_Bazooka (edict_t *ent);
-void Weapon_Railgunsweeper(edict_t *ent);
-void Weapon_Bazookasweeper(edict_t *ent);
-void Weapon_SuperBlastersweeper(edict_t *ent);
-void Weapon_Freezersweeper(edict_t *ent);
-void Weapon_Grenadesweeper(edict_t *ent);
-void Weapon_Flamethrower (edict_t *ent);
-void Weapon_Skipper (edict_t *ent);
-void Weapon_GuidedMissiles(edict_t *ent);
-void Weapon_Freezegun(edict_t *ent);
-void Weapon_Positron(edict_t *ent);
-void Weapon_Freezatron(edict_t *ent);
-void Weapon_Airfist(edict_t *ent);
-void Weapon_PulseRifle (edict_t *ent);
-void Weapon_Sword (edict_t *ent);
-void Weapon_Bucky(edict_t *ent);
-void Weapon_Flaregun (edict_t *ent);
-void Weapon_AntiFlaregun (edict_t *ent);
-void Weapon_StickingGrenadeLauncher (edict_t *ent);
-void Weapon_Freezegun (edict_t *ent);
-void Weapon_Chunkgun (edict_t *ent);
-void Weapon_Mace (edict_t *ent);
-void Weapon_Durg(edict_t *ent);
-void Weapon_DGSuperShotgun (edict_t *ent);
-void Weapon_VacuumMaker (edict_t *ent);
-void Weapon_SpiralRocketLauncher (edict_t *ent);
-void Weapon_Snipersweeper (edict_t *ent);
-void Weapon_ExplosiveSuperShotgun(edict_t *ent);
-void Weapon_ExplosiveChaingun(edict_t *ent);
-void Weapon_ExplosiveShotgun(edict_t *ent);
-void Weapon_ExplosiveMachingun(edict_t *ent);
-void Weapon_StickyGrenadesweeper(edict_t *ent);
+void Use_GrenadeWeapon(edict_t* ent, gitem_t* inv);
+void Weapon_Blaster(edict_t* ent);
+void Weapon_Shotgun(edict_t* ent);
+void Weapon_SuperShotgun(edict_t* ent);
+void Weapon_Machinegun(edict_t* ent); // rockets
+void Weapon_Machine(edict_t* ent); // original
+void Weapon_Chaingun(edict_t* ent);
+void Weapon_HyperBlaster(edict_t* ent);
+void Weapon_RocketLauncher(edict_t* ent);
+void Weapon_SuperBlaster(edict_t* ent);
+void Weapon_Grenade(edict_t* ent);
+void Weapon_GrenadeLauncher(edict_t* ent);
+void Weapon_Railgun(edict_t* ent);
+void Weapon_SonicRailgun(edict_t* ent);
+void Weapon_Railgun2(edict_t* ent);
+void Weapon_Sniper(edict_t* ent);
+void Weapon_BFG(edict_t* ent);
+void Weapon_FBFG(edict_t* ent);
+void Weapon_Plasma(edict_t* ent);
+void Weapon_Homing(edict_t* ent);
+void Weapon_Streetsweeper(edict_t* ent);
+void Weapon_ExplosiveStreetsweeper(edict_t* ent);
+void Weapon_Bazooka(edict_t* ent);
+void Weapon_Railgunsweeper(edict_t* ent);
+void Weapon_Bazookasweeper(edict_t* ent);
+void Weapon_SuperBlastersweeper(edict_t* ent);
+void Weapon_Freezersweeper(edict_t* ent);
+void Weapon_Grenadesweeper(edict_t* ent);
+void Weapon_Flamethrower(edict_t* ent);
+void Weapon_Skipper(edict_t* ent);
+void Weapon_GuidedMissiles(edict_t* ent);
+void Weapon_Freezegun(edict_t* ent);
+void Weapon_Positron(edict_t* ent);
+void Weapon_Freezatron(edict_t* ent);
+void Weapon_Airfist(edict_t* ent);
+void Weapon_PulseRifle(edict_t* ent);
+void Weapon_Sword(edict_t* ent);
+void Weapon_Bucky(edict_t* ent);
+void Weapon_Flaregun(edict_t* ent);
+void Weapon_AntiFlaregun(edict_t* ent);
+void Weapon_StickingGrenadeLauncher(edict_t* ent);
+void Weapon_Freezegun(edict_t* ent);
+void Weapon_Chunkgun(edict_t* ent);
+void Weapon_Mace(edict_t* ent);
+void Weapon_Durg(edict_t* ent);
+void Weapon_DGSuperShotgun(edict_t* ent);
+void Weapon_VacuumMaker(edict_t* ent);
+void Weapon_SpiralRocketLauncher(edict_t* ent);
+void Weapon_Snipersweeper(edict_t* ent);
+void Weapon_ExplosiveSuperShotgun(edict_t* ent);
+void Weapon_ExplosiveChaingun(edict_t* ent);
+void Weapon_ExplosiveShotgun(edict_t* ent);
+void Weapon_ExplosiveMachingun(edict_t* ent);
+void Weapon_StickyGrenadesweeper(edict_t* ent);
 //void Weapon_Kaminit(edict_t *ent);
-void Weapon_FloatingMineLauncher (edict_t *ent);
-void Weapon_AntimatterCannon(edict_t *ent);
-void Weapon_SuperRailShotgun(edict_t *ent);
+void Weapon_FloatingMineLauncher(edict_t* ent);
+void Weapon_AntimatterCannon(edict_t* ent);
+void Weapon_SuperRailShotgun(edict_t* ent);
 
-gitem_armor_t jacketarmor_info	= { 25,  50, .30f, .00f, ARMOR_JACKET};
-gitem_armor_t combatarmor_info	= { 50, 100, .60f, .30f, ARMOR_COMBAT};
-gitem_armor_t bodyarmor_info	= {100, 200, .80f, .60f, ARMOR_BODY};
+gitem_armor_t jacketarmor_info = { 25,  50, .30f, .00f, ARMOR_JACKET };
+gitem_armor_t combatarmor_info = { 50, 100, .60f, .30f, ARMOR_COMBAT };
+gitem_armor_t bodyarmor_info = { 100, 200, .80f, .60f, ARMOR_BODY };
 
 int	jacket_armor_index;
 int	combat_armor_index;
@@ -85,29 +85,29 @@ int	power_shield_index;
 #define HEALTH_IGNORE_MAX	1
 #define HEALTH_TIMED		2
 
-void Use_Quad (edict_t *ent, gitem_t *item);
+void Use_Quad(edict_t* ent, gitem_t* item);
 static float	quad_drop_timeout_hack;
 
-void Use_Jet ( edict_t *ent, gitem_t *item )
+void Use_Jet(edict_t* ent, gitem_t* item)
 {
-	ValidateSelectedItem ( ent );
-	
+	ValidateSelectedItem(ent);
+
 	/*jetpack in inventory but no fuel time? must be one of the give all/give
 	jetpack cheats, so put fuel in*/
-	if ( ent->client->Jet_remaining == 0 )
+	if (ent->client->Jet_remaining == 0)
 		ent->client->Jet_remaining = 700;
-	
-	if ( Jet_Active(ent) ) 
-		ent->client->Jet_framenum = 0; 
+
+	if (Jet_Active(ent))
+		ent->client->Jet_framenum = 0;
 	else
 		ent->client->Jet_framenum = level.framenum + ent->client->Jet_remaining;
-	
+
 	/* The On/Off Sound taken from the invulnerability */
-	gi.sound( ent, CHAN_ITEM, gi.soundindex("items/protect.wav"), 0.8f, ATTN_NORM, 0 );
-	
-	/* this is the sound played when flying. To hear this sound 
+	gi.sound(ent, CHAN_ITEM, gi.soundindex("items/protect.wav"), 0.8f, ATTN_NORM, 0);
+
+	/* this is the sound played when flying. To hear this sound
 	   immediately we play it here the first time */
-	gi.sound ( ent, CHAN_AUTO, gi.soundindex("hover/hovidle1.wav"), 0.8f, ATTN_NORM, 0 );
+	gi.sound(ent, CHAN_AUTO, gi.soundindex("hover/hovidle1.wav"), 0.8f, ATTN_NORM, 0);
 }
 
 
@@ -118,11 +118,11 @@ void Use_Jet ( edict_t *ent, gitem_t *item )
 GetItemByIndex
 ===============
 */
-gitem_t	*GetItemByIndex (int index)
+gitem_t* GetItemByIndex(int index)
 {
 	if (index == 0 || index >= game.num_items)
 		return NULL;
-	
+
 	return itemlist[index];
 }
 
@@ -133,12 +133,12 @@ FindItemByClassname
 
   ===============
 */
-gitem_t	*FindItemByClassname (char *classname)
+gitem_t* FindItemByClassname(char* classname)
 {
 	int		i;
-	gitem_t	*it;
-	
-	for (i=0 ; i<game.num_items ; i++)
+	gitem_t* it;
+
+	for (i = 0; i < game.num_items; i++)
 	{
 		it = itemlist[i];
 		if (!it->classname)
@@ -146,7 +146,7 @@ gitem_t	*FindItemByClassname (char *classname)
 		if (!Q_stricmp(it->classname, classname))
 			return it;
 	}
-	
+
 	return NULL;
 }
 
@@ -154,11 +154,8 @@ gitem_t	*FindItemByClassname (char *classname)
 
 void DoRespawn(edict_t* ent)
 {
-	if (ent == NULL)
-	{
-		gi.dprintf("WARNING: NULL ent passed to %s\n", __func__);
+	if (!ent)
 		return;
-	}
 
 	if (ent->team)
 	{
@@ -203,108 +200,108 @@ void DoRespawn(edict_t* ent)
 	}
 }
 
-void SetRespawn (edict_t *ent, float delay)
+void SetRespawn(edict_t* ent, float delay)
 {
 	ent->flags |= FL_RESPAWN;
 	ent->svflags |= SVF_NOCLIENT;
 	ent->solid = SOLID_NOT;
 	ent->nextthink = level.time + delay;
+	//VectorCopy(ent->pos1, ent->s.origin);		// Restore origin/angles (if item
+	//VectorCopy(ent->pos2, ent->s.angles);		// got knocked around)
 	ent->think = DoRespawn;
-	VectorCopy (ent->pos1, ent->s.origin);		// Restore origin/angles (if item
-	VectorCopy (ent->pos2, ent->s.angles);		// got knocked around)
-	gi.linkentity (ent);
+	gi.linkentity(ent);
 }
 
 
 //======================================================================
 
-qboolean Pickup_Powerup (edict_t *ent, edict_t *other)
+qboolean Pickup_Powerup(edict_t* ent, edict_t* other)
 {
 	int		quantity;
-	
+
 	quantity = other->client->pers.inventory[ITEM_INDEX(ent->item)];
 	if ((skill->value == 1 && quantity >= 2) || (skill->value >= 2 && quantity >= 1))
 		return false;
-	
+
 	if ((coop->value) && (ent->item->flags & IT_STAY_COOP) && (quantity > 0))
 		return false;
-	
+
 	other->client->pers.inventory[ITEM_INDEX(ent->item)]++;
-	
-	/*ATTILA begin*/ 
-	if  (ent->item == &gI_item_jetpack)  
+
+	/*ATTILA begin*/
+	if (ent->item == &gI_item_jetpack)
 	{
 		other->client->pers.inventory[ITEM_INDEX(ent->item)] = 1;
 		other->client->Jet_remaining = 700;
-		
+
 		/* if deathmatch-flag instant use is set, switch off the jetpack, the
 		item->use function will turn it on again immediately */
-		if ( (int)dmflags->value & DF_INSTANT_ITEMS )
+		if ((int)dmflags->value & DF_INSTANT_ITEMS)
 			other->client->Jet_framenum = 0;
-		
-		/* otherwise update the burn out time if jetpack is activated */    
-		else if ( Jet_Active(other) )
+
+		/* otherwise update the burn out time if jetpack is activated */
+		else if (Jet_Active(other))
 			other->client->Jet_framenum = level.framenum
 			+ other->client->Jet_remaining;
-	} 
+	}
 	/*ATTILA end*/
-	
+
 	if (deathmatch->value)
 	{
-		if (!(ent->spawnflags & DROPPED_ITEM) )
-			SetRespawn (ent, ent->item->quantity);
+		if (!(ent->spawnflags & DROPPED_ITEM))
+			SetRespawn(ent, ent->item->quantity);
 		if (((int)dmflags->value & DF_INSTANT_ITEMS)
 			|| ((ent->item->use == Use_Quad)
-			&& (ent->spawnflags & DROPPED_PLAYER_ITEM)))
+				&& (ent->spawnflags & DROPPED_PLAYER_ITEM)))
 		{
 			if ((ent->item->use == Use_Quad) && (ent->spawnflags & DROPPED_PLAYER_ITEM))
 				quad_drop_timeout_hack = (ent->nextthink - level.time) / FRAMETIME;
-			ent->item->use (other, ent->item);
+			ent->item->use(other, ent->item);
 		}
 	}
-	
+
 	return true;
 }
 
-void Drop_General (edict_t *ent, gitem_t *item)
+void Drop_General(edict_t* ent, gitem_t* item)
 {
-	Drop_Item (ent, item);
+	Drop_Item(ent, item);
 	ent->client->pers.inventory[ITEM_INDEX(item)]--;
-	
-	ValidateSelectedItem (ent);
+
+	ValidateSelectedItem(ent);
 }
 
 
 //======================================================================
-qboolean Pickup_Adrenaline (edict_t *ent, edict_t *other)
+qboolean Pickup_Adrenaline(edict_t* ent, edict_t* other)
 {
 	if (!deathmatch->value)
 		other->max_health += 1;
-	
+
 	if (other->health < other->max_health)
 		other->health = other->max_health;
-	
+
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
-		SetRespawn (ent, ent->item->quantity);
-	
+		SetRespawn(ent, ent->item->quantity);
+
 	return true;
 }
 
-qboolean Pickup_AncientHead (edict_t *ent, edict_t *other)
+qboolean Pickup_AncientHead(edict_t* ent, edict_t* other)
 {
 	other->max_health += 2;
-	
+
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
-		SetRespawn (ent, ent->item->quantity);
-	
+		SetRespawn(ent, ent->item->quantity);
+
 	return true;
 }
 
-qboolean Pickup_Bandolier (edict_t *ent, edict_t *other)
+qboolean Pickup_Bandolier(edict_t* ent, edict_t* other)
 {
-	gitem_t	*item;
+	gitem_t* item;
 	int		index;
-	
+
 	if (other->client->pers.max_bullets < 250)
 		other->client->pers.max_bullets = 250;
 	if (other->client->pers.max_shells < 150)
@@ -313,7 +310,7 @@ qboolean Pickup_Bandolier (edict_t *ent, edict_t *other)
 		other->client->pers.max_cells = 250;
 	if (other->client->pers.max_slugs < 400)
 		other->client->pers.max_slugs = 400;
-	
+
 	item = &gI_ammo_bullets;
 	if (item)
 	{
@@ -322,7 +319,7 @@ qboolean Pickup_Bandolier (edict_t *ent, edict_t *other)
 		if (other->client->pers.inventory[index] > other->client->pers.max_bullets)
 			other->client->pers.inventory[index] = other->client->pers.max_bullets;
 	}
-	
+
 	item = &gI_ammo_shells;
 	if (item)
 	{
@@ -331,18 +328,18 @@ qboolean Pickup_Bandolier (edict_t *ent, edict_t *other)
 		if (other->client->pers.inventory[index] > other->client->pers.max_shells)
 			other->client->pers.inventory[index] = other->client->pers.max_shells;
 	}
-	
+
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
-		SetRespawn (ent, ent->item->quantity);
-	
+		SetRespawn(ent, ent->item->quantity);
+
 	return true;
 }
 
-qboolean Pickup_Pack (edict_t *ent, edict_t *other)
+qboolean Pickup_Pack(edict_t* ent, edict_t* other)
 {
-	gitem_t	*item;
+	gitem_t* item;
 	int		index;
-	
+
 	if (other->client->pers.max_bullets < 300)
 		other->client->pers.max_bullets = 300;
 	if (other->client->pers.max_shells < 200)
@@ -355,7 +352,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 		other->client->pers.max_cells = 300;
 	if (other->client->pers.max_slugs < 100)
 		other->client->pers.max_slugs = 100;
-	
+
 	item = &gI_ammo_bullets;
 	if (item)
 	{
@@ -364,7 +361,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 		if (other->client->pers.inventory[index] > other->client->pers.max_bullets)
 			other->client->pers.inventory[index] = other->client->pers.max_bullets;
 	}
-	
+
 	item = &gI_ammo_shells;
 	if (item)
 	{
@@ -373,7 +370,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 		if (other->client->pers.inventory[index] > other->client->pers.max_shells)
 			other->client->pers.inventory[index] = other->client->pers.max_shells;
 	}
-	
+
 	item = &gI_ammo_cells;
 	if (item)
 	{
@@ -382,7 +379,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 		if (other->client->pers.inventory[index] > other->client->pers.max_cells)
 			other->client->pers.inventory[index] = other->client->pers.max_cells;
 	}
-	
+
 	item = &gI_ammo_grenades;
 	if (item && !(i_weaponban & WB_GRENADE))
 	{
@@ -391,7 +388,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 		if (other->client->pers.inventory[index] > other->client->pers.max_grenades)
 			other->client->pers.inventory[index] = other->client->pers.max_grenades;
 	}
-	
+
 	item = &gI_ammo_rockets;
 	if (item)
 	{
@@ -400,7 +397,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 		if (other->client->pers.inventory[index] > other->client->pers.max_rockets)
 			other->client->pers.inventory[index] = other->client->pers.max_rockets;
 	}
-	
+
 	item = &gI_ammo_slugs;
 	if (item)
 	{
@@ -409,22 +406,22 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 		if (other->client->pers.inventory[index] > other->client->pers.max_slugs)
 			other->client->pers.inventory[index] = other->client->pers.max_slugs;
 	}
-	
+
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
-		SetRespawn (ent, ent->item->quantity);
-	
+		SetRespawn(ent, ent->item->quantity);
+
 	return true;
 }
 
 //======================================================================
 
-void Use_Quad (edict_t *ent, gitem_t *item)
+void Use_Quad(edict_t* ent, gitem_t* item)
 {
 	float		timeout;
-	
+
 	ent->client->pers.inventory[ITEM_INDEX(item)]--;
-	ValidateSelectedItem (ent);
-	
+	ValidateSelectedItem(ent);
+
 	if (quad_drop_timeout_hack)
 	{
 		timeout = quad_drop_timeout_hack;
@@ -434,80 +431,80 @@ void Use_Quad (edict_t *ent, gitem_t *item)
 	{
 		timeout = 300;
 	}
-	
+
 	if (ent->client->quad_framenum > level.framenum)
 		ent->client->quad_framenum += timeout;
 	else
 		ent->client->quad_framenum = level.framenum + timeout;
-	
+
 	gi.sound(ent, CHAN_ITEM, gi.soundindex("items/damage.wav"), 1, ATTN_NORM, 0);
 }
 
 //======================================================================
 
-void Use_Breather (edict_t *ent, gitem_t *item)
+void Use_Breather(edict_t* ent, gitem_t* item)
 {
 	ent->client->pers.inventory[ITEM_INDEX(item)]--;
-	ValidateSelectedItem (ent);
-	
+	ValidateSelectedItem(ent);
+
 	if (ent->client->breather_framenum > level.framenum)
 		ent->client->breather_framenum += 300.0;
 	else
 		ent->client->breather_framenum = level.framenum + 300.0;
-	
+
 	//	gi.sound(ent, CHAN_ITEM, gi.soundindex("items/damage.wav"), 1, ATTN_NORM, 0);
 }
 
 //======================================================================
 
-void Use_Envirosuit (edict_t *ent, gitem_t *item)
+void Use_Envirosuit(edict_t* ent, gitem_t* item)
 {
 	ent->client->pers.inventory[ITEM_INDEX(item)]--;
-	ValidateSelectedItem (ent);
-	
+	ValidateSelectedItem(ent);
+
 	if (ent->client->enviro_framenum > level.framenum)
 		ent->client->enviro_framenum += 300;
 	else
 		ent->client->enviro_framenum = level.framenum + 300.0;
-	
+
 	//	gi.sound(ent, CHAN_ITEM, gi.soundindex("items/damage.wav"), 1, ATTN_NORM, 0);
 }
 
 //======================================================================
 
-void Use_Invulnerability (edict_t *ent, gitem_t *item)
+void Use_Invulnerability(edict_t* ent, gitem_t* item)
 {
 	ent->client->pers.inventory[ITEM_INDEX(item)]--;
-	ValidateSelectedItem (ent);
-	
+	ValidateSelectedItem(ent);
+
 	if (ent->client->invincible_framenum > level.framenum)
 		ent->client->invincible_framenum += 300;	// use for 30 seconds
 	else
 		ent->client->invincible_framenum = level.framenum + 300.0;
-	
+
 	gi.sound(ent, CHAN_ITEM, gi.soundindex("items/protect.wav"), 1, ATTN_NORM, 0);
 }
 
 //======================================================================
 
-void Use_Silencer (edict_t *ent, gitem_t *item)
+void Use_Silencer(edict_t* ent, gitem_t* item)
 {
 	ent->client->pers.inventory[ITEM_INDEX(item)]--;
-	ValidateSelectedItem (ent);
+	ValidateSelectedItem(ent);
 	ent->client->silencer_shots += 30;
-	
+
 	//	gi.sound(ent, CHAN_ITEM, gi.soundindex("items/damage.wav"), 1, ATTN_NORM, 0);
 }
 
 //======================================================================
 
-qboolean Pickup_Key (edict_t *ent, edict_t *other)
+qboolean Pickup_Key(edict_t* ent, edict_t* other)
 {
 	if (coop->value)
 	{
 		if (strcmp(ent->classname, "key_power_cube") == 0)
 		{
-			if (other->client->pers.power_cubes & ((ent->spawnflags & 0x0000ff00)>> 8))
+			if (other->client->pers.power_cubes & ((ent->spawnflags & 0x0000ff00) >> 8))
 				return false;
 			other->client->pers.inventory[ITEM_INDEX(ent->item)]++;
 			other->client->pers.power_cubes |= ((ent->spawnflags & 0x0000ff00) >> 8);
@@ -526,14 +523,14 @@ qboolean Pickup_Key (edict_t *ent, edict_t *other)
 
 //======================================================================
 
-qboolean Add_Ammo (edict_t *ent, gitem_t *item, int count)
+qboolean Add_Ammo(edict_t* ent, gitem_t* item, int count)
 {
 	int			index;
 	int			max;
-	
+
 	if (!ent->client)
 		return false;
-	
+
 	if (item->tag == AMMO_BULLETS)
 		max = ent->client->pers.max_bullets;
 	else if (item->tag == AMMO_SHELLS)
@@ -543,7 +540,7 @@ qboolean Add_Ammo (edict_t *ent, gitem_t *item, int count)
 	else if (item->tag == AMMO_GRENADES)
 	{
 		max = ent->client->pers.max_grenades;
-		
+
 		// Make sure they have the "launcher" for all the different types,
 		// except the ones that have been banned.
 		if (!(i_weaponban & WB_GRENADE))
@@ -590,89 +587,89 @@ qboolean Add_Ammo (edict_t *ent, gitem_t *item, int count)
 		max = ent->client->pers.max_slugs;
 	else
 		return false;
-	
+
 	index = ITEM_INDEX(item);
-	
+
 	if (ent->client->pers.inventory[index] == max)
 		return false;
-	
+
 	ent->client->pers.inventory[index] += count;
-	
+
 	if (ent->client->pers.inventory[index] > max)
 		ent->client->pers.inventory[index] = max;
-	
+
 	return true;
 }
 
-qboolean Pickup_Ammo (edict_t *ent, edict_t *other)
+qboolean Pickup_Ammo(edict_t* ent, edict_t* other)
 {
 	//int			oldcount;
 	int			count;
 	qboolean	weapon;
-	
+
 	weapon = (ent->item->flags & IT_WEAPON);
-	if ( (weapon) && ( (int)dmflags->value & DF_INFINITE_AMMO ) )
+	if ((weapon) && ((int)dmflags->value & DF_INFINITE_AMMO))
 		count = 1000;
 	else if (ent->count)
 		count = ent->count;
 	else
 		count = ent->item->quantity;
-	
+
 	//oldcount = other->client->pers.inventory[ITEM_INDEX(ent->item)];
-	
-	if (!Add_Ammo (other, ent->item, count))
+
+	if (!Add_Ammo(other, ent->item, count))
 		return false;
-	
-		/*
-		This, apparently, is the source of that fucking "switch to grenades every
-		goddamn time you run over them, whether or not you're holding a superior
-		weapon" bug.
-		if (weapon && !oldcount)
-		{
-		if (other->client->pers.weapon != ent->item
-		&& (!deathmatch->value
-		|| other->client->pers.weapon == &gI_weapon_blaster))
-		{
-		other->client->newweapon = ent->item;
-		}
-		}
-	*/
-	
+
+	/*
+	This, apparently, is the source of that fucking "switch to grenades every
+	goddamn time you run over them, whether or not you're holding a superior
+	weapon" bug.
+	if (weapon && !oldcount)
+	{
+	if (other->client->pers.weapon != ent->item
+	&& (!deathmatch->value
+	|| other->client->pers.weapon == &gI_weapon_blaster))
+	{
+	other->client->newweapon = ent->item;
+	}
+	}
+*/
+
 	if (!(ent->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM)) && (deathmatch->value))
-		SetRespawn (ent, 30);
+		SetRespawn(ent, 30);
 	return true;
 }
 
-void Drop_Ammo (edict_t *ent, gitem_t *item)
+void Drop_Ammo(edict_t* ent, gitem_t* item)
 {
-	edict_t	*dropped;
+	edict_t* dropped;
 	int		index;
-	
+
 	index = ITEM_INDEX(item);
-	dropped = Drop_Item (ent, item);
+	dropped = Drop_Item(ent, item);
 	if (ent->client->pers.inventory[index] >= item->quantity)
 		dropped->count = item->quantity;
 	else
 		dropped->count = ent->client->pers.inventory[index];
-	
-	if (ent->client->pers.weapon && 
+
+	if (ent->client->pers.weapon &&
 		ent->client->pers.weapon->tag == AMMO_GRENADES &&
 		item->tag == AMMO_GRENADES &&
 		ent->client->pers.inventory[index] - dropped->count <= 0)
 	{
-		gi.cprintf (ent, PRINT_HIGH, "Can't drop current weapon\n");
+		gi.cprintf(ent, PRINT_HIGH, "Can't drop current weapon\n");
 		G_FreeEdict(dropped);
 		return;
 	}
-	
+
 	ent->client->pers.inventory[index] -= dropped->count;
-	ValidateSelectedItem (ent);
+	ValidateSelectedItem(ent);
 }
 
 
 //======================================================================
 
-void MegaHealth_think (edict_t *self)
+void MegaHealth_think(edict_t* self)
 {
 	if (self->owner->health > self->owner->max_health)
 	{
@@ -680,16 +677,16 @@ void MegaHealth_think (edict_t *self)
 		self->owner->health -= 1;
 		return;
 	}
-	
+
 	if (!(self->spawnflags & DROPPED_ITEM) && (deathmatch->value))
-		SetRespawn (self, 20);
+		SetRespawn(self, 20);
 	else
-		G_FreeEdict (self);
+		G_FreeEdict(self);
 }
 
 // returns true if we picked up a health item.
 // here, ent is the item touched and other is the player
-qboolean Pickup_Health (edict_t *ent, edict_t *other)
+qboolean Pickup_Health(edict_t* ent, edict_t* other)
 {
 	// if already maxed out we don't pick up
 	if (!(ent->style & HEALTH_IGNORE_MAX))
@@ -731,7 +728,7 @@ qboolean Pickup_Health (edict_t *ent, edict_t *other)
 	else
 	{
 		if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
-			SetRespawn (ent, 30);
+			SetRespawn(ent, 30);
 	}
 
 	// we picked up the item
@@ -740,37 +737,37 @@ qboolean Pickup_Health (edict_t *ent, edict_t *other)
 
 //======================================================================
 
-int ArmorIndex (edict_t *ent)
+int ArmorIndex(edict_t* ent)
 {
 	if (!ent->client)
 		return 0;
-	
+
 	if (ent->client->pers.inventory[jacket_armor_index] > 0)
 		return jacket_armor_index;
-	
+
 	if (ent->client->pers.inventory[combat_armor_index] > 0)
 		return combat_armor_index;
-	
+
 	if (ent->client->pers.inventory[body_armor_index] > 0)
 		return body_armor_index;
-	
+
 	return 0;
 }
 
-qboolean Pickup_Armor (edict_t *ent, edict_t *other)
+qboolean Pickup_Armor(edict_t* ent, edict_t* other)
 {
 	int				old_armor_index;
-	gitem_armor_t	*oldinfo;
-	gitem_armor_t	*newinfo;
+	gitem_armor_t* oldinfo;
+	gitem_armor_t* newinfo;
 	int				newcount;
 	float			salvage;
 	int				salvagecount;
-	
+
 	// get info on new armor
-	newinfo = (gitem_armor_t *)ent->item->info;
-	
-	old_armor_index = ArmorIndex (other);
-	
+	newinfo = (gitem_armor_t*)ent->item->info;
+
+	old_armor_index = ArmorIndex(other);
+
 	// handle armor shards specially
 	if (ent->item->tag == ARMOR_SHARD)
 	{
@@ -779,7 +776,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 		else
 			other->client->pers.inventory[old_armor_index] += 2;
 	}
-	
+
 	// if player has no armor, just use it
 	else if (!old_armor_index)
 	{
@@ -792,11 +789,11 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				other->client->organicarmor = 1;
 				other->client->loxarmor = 1;
 				gi.cprintf(other, PRINT_HIGH, "Organic Armor Picked up\n");
-				
+
 			}
 		}
-		
-		if (!(i_loxarmorban & LAB_SLUGARMOR) && other->client->loxarmor != 1 )
+
+		if (!(i_loxarmorban & LAB_SLUGARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
 			if (num < (int)p_pickup_slug_armor->value && other->client->slugarmor != 1)
@@ -806,7 +803,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				gi.cprintf(other, PRINT_HIGH, "Slug Armor Picked up\n");
 			}
 		}
-		
+
 		if (!(i_loxarmorban & LAB_CELLARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
@@ -817,7 +814,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				gi.cprintf(other, PRINT_HIGH, "Cell Armor Picked up\n");
 			}
 		}
-		
+
 		if (!(i_loxarmorban & LAB_SHELLARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
@@ -828,7 +825,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				gi.cprintf(other, PRINT_HIGH, "Shell Armor Picked up\n");
 			}
 		}
-		
+
 		if (!(i_loxarmorban & LAB_BULLETARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
@@ -839,7 +836,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				gi.cprintf(other, PRINT_HIGH, "Bullet Armor Picked up\n");
 			}
 		}
-		
+
 		if (!(i_loxarmorban & LAB_ROCKETARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
@@ -850,7 +847,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				gi.cprintf(other, PRINT_HIGH, "Rocket Armor Picked up\n");
 			}
 		}
-		
+
 		if (!(i_loxarmorban & LAB_GRENADEARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
@@ -861,10 +858,10 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				gi.cprintf(other, PRINT_HIGH, "Grenade Armor Picked up\n");
 			}
 		}
-		
+
 		other->client->pers.inventory[ITEM_INDEX(ent->item)] = newinfo->base_count;
 	}
-	
+
 	// use the better armor
 	else
 	{
@@ -876,11 +873,11 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				other->client->organicarmor = 1;
 				other->client->loxarmor = 1;
 				gi.cprintf(other, PRINT_HIGH, "Organic Armor Picked up\n");
-				
+
 			}
 		}
-		
-		if (!(i_loxarmorban & LAB_SLUGARMOR) && other->client->loxarmor != 1 )
+
+		if (!(i_loxarmorban & LAB_SLUGARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
 			if (num < (int)p_pickup_slug_armor->value && other->client->slugarmor != 1)
@@ -890,7 +887,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				gi.cprintf(other, PRINT_HIGH, "Slug Armor Picked up\n");
 			}
 		}
-		
+
 		if (!(i_loxarmorban & LAB_CELLARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
@@ -901,7 +898,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				gi.cprintf(other, PRINT_HIGH, "Cell Armor Picked up\n");
 			}
 		}
-		
+
 		if (!(i_loxarmorban & LAB_SHELLARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
@@ -922,7 +919,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				gi.cprintf(other, PRINT_HIGH, "Bullet Armor Picked up\n");
 			}
 		}
-		
+
 		if (!(i_loxarmorban & LAB_ROCKETARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
@@ -933,7 +930,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 				gi.cprintf(other, PRINT_HIGH, "Rocket Armor Picked up\n");
 			}
 		}
-		
+
 		if (!(i_loxarmorban & LAB_GRENADEARMOR) && other->client->loxarmor != 1)
 		{
 			int num = abs((int)(crandom() * 10000.0));
@@ -945,7 +942,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 			}
 		}
 		//		other->client->pers.inventory[ITEM_INDEX(ent->item)] = newinfo->base_count;
-		
+
 		// get info on old armor
 		if (old_armor_index == jacket_armor_index)
 			oldinfo = &jacketarmor_info;
@@ -953,7 +950,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 			oldinfo = &combatarmor_info;
 		else // (old_armor_index == body_armor_index)
 			oldinfo = &bodyarmor_info;
-		
+
 		if (newinfo->normal_protection > oldinfo->normal_protection)
 		{
 			// calc new armor values
@@ -962,10 +959,10 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 			newcount = newinfo->base_count + salvagecount;
 			if (newcount > newinfo->max_count)
 				newcount = newinfo->max_count;
-			
+
 			// zero count of old armor so it goes away
 			other->client->pers.inventory[old_armor_index] = 0;
-			
+
 			// change armor to new item with computed value
 			other->client->pers.inventory[ITEM_INDEX(ent->item)] = newcount;
 		}
@@ -977,45 +974,45 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 			newcount = other->client->pers.inventory[old_armor_index] + salvagecount;
 			if (newcount > oldinfo->max_count)
 				newcount = oldinfo->max_count;
-			
+
 			// if we're already maxed out then we don't need the new armor
 			if (other->client->pers.inventory[old_armor_index] >= newcount)
 				return false;
-			
+
 			// update current armor value
 			other->client->pers.inventory[old_armor_index] = newcount;
 		}
 	}
-	
+
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
-		SetRespawn (ent, 20);
-	
+		SetRespawn(ent, 20);
+
 	return true;
 }
 
 //======================================================================
 
-int PowerArmorType (edict_t *ent)
+int PowerArmorType(edict_t* ent)
 {
 	if (!ent->client)
 		return POWER_ARMOR_NONE;
-	
+
 	if (!(ent->flags & FL_POWER_ARMOR))
 		return POWER_ARMOR_NONE;
-	
+
 	if (ent->client->pers.inventory[power_shield_index] > 0)
 		return POWER_ARMOR_SHIELD;
-	
+
 	if (ent->client->pers.inventory[power_screen_index] > 0)
 		return POWER_ARMOR_SCREEN;
-	
+
 	return POWER_ARMOR_NONE;
 }
 
-void Use_PowerArmor (edict_t *ent, gitem_t *item)
+void Use_PowerArmor(edict_t* ent, gitem_t* item)
 {
 	int		index;
-	
+
 	if (ent->flags & FL_POWER_ARMOR)
 	{
 		ent->flags &= ~FL_POWER_ARMOR;
@@ -1026,7 +1023,7 @@ void Use_PowerArmor (edict_t *ent, gitem_t *item)
 		index = ITEM_INDEX(&gI_ammo_cells);
 		if (!ent->client->pers.inventory[index])
 		{
-			gi.cprintf (ent, PRINT_HIGH, "No cells for power armor.\n");
+			gi.cprintf(ent, PRINT_HIGH, "No cells for power armor.\n");
 			return;
 		}
 		ent->flags |= FL_POWER_ARMOR;
@@ -1034,33 +1031,33 @@ void Use_PowerArmor (edict_t *ent, gitem_t *item)
 	}
 }
 
-qboolean Pickup_PowerArmor (edict_t *ent, edict_t *other)
+qboolean Pickup_PowerArmor(edict_t* ent, edict_t* other)
 {
 	int		quantity;
-	
+
 	quantity = other->client->pers.inventory[ITEM_INDEX(ent->item)];
-	
+
 	other->client->pers.inventory[ITEM_INDEX(ent->item)]++;
-	
+
 	if (deathmatch->value)
 	{
-		if (!(ent->spawnflags & DROPPED_ITEM) )
-			SetRespawn (ent, ent->item->quantity);
+		if (!(ent->spawnflags & DROPPED_ITEM))
+			SetRespawn(ent, ent->item->quantity);
 		// auto-use for DM only if we didn't already have one
 		if (!quantity)
-			ent->item->use (other, ent->item);
+			ent->item->use(other, ent->item);
 	}
-	
+
 	return true;
 }
 
-void Drop_PowerArmor (edict_t *ent, gitem_t *item)
+void Drop_PowerArmor(edict_t* ent, gitem_t* item)
 {
-	
+
 	if ((ent->flags & FL_POWER_ARMOR) && (ent->client->pers.inventory[ITEM_INDEX(item)] == 1))
-		Use_PowerArmor (ent, item);
-	
-	Drop_General (ent, item);
+		Use_PowerArmor(ent, item);
+
+	Drop_General(ent, item);
 }
 
 //======================================================================
@@ -1071,10 +1068,10 @@ Touch_Item
 ===============
 */
 // ent is item touched, other is player
-void Touch_Item (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
+void Touch_Item(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	qboolean	taken;
-	
+
 	if (!other->client)
 		return;
 	if (other->health < 1)
@@ -1088,12 +1085,12 @@ void Touch_Item (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf
 	if (ent->holo == 1)
 	{
 		ent->owner->client->holo = NULL;
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
-	
+
 	taken = ent->item->pickup(ent, other);
-	
+
 	if (taken)
 	{
 		if (ent->item->pickup == Pickup_Health) // we picked it up
@@ -1103,9 +1100,9 @@ void Touch_Item (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf
 			// give them a chance to get regen or vampiric health. 
 			if (other->client != NULL && other->client->loxhealth == 0 && ent->count > 9)
 			{
-				if (other->client->loxhealth != 1 
+				if (other->client->loxhealth != 1
 					&& !(i_loxfeatureban & LFB_REGENHEALTH)
-					&& other->client->regenhealth == 0 
+					&& other->client->regenhealth == 0
 					&& other->client->vampihealth == 0)
 				{
 					int num = abs((int)(crandom() * 10000.0));
@@ -1118,12 +1115,12 @@ void Touch_Item (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf
 						gi.cprintf(other, PRINT_HIGH, "Regeneration Health Box Picked up\n");
 					}
 				}
-				if (other->client->loxhealth != 1 
+				if (other->client->loxhealth != 1
 					&& !(i_loxfeatureban & LFB_VAMPIHEALTH)
-					&& other->client->vampihealth == 0 
+					&& other->client->vampihealth == 0
 					&& other->client->regenhealth == 0)
 				{
-					int num = abs((int) (crandom() * 10000.0));
+					int num = abs((int)(crandom() * 10000.0));
 					//gi.cprintf(other, PRINT_HIGH, "Computed random number for vampiric: %i\n", num);
 					if (num < (int)p_pickup_vampiric->value && other->client->vampihealth == 0)
 					{
@@ -1136,20 +1133,20 @@ void Touch_Item (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf
 			}
 		}
 		// flash the screen
-		other->client->bonus_alpha = 0.25;	
-		
+		other->client->bonus_alpha = 0.25;
+
 		// show icon and name on status bar
 		other->client->ps.stats[STAT_PICKUP_ICON] = gi.imageindex(ent->item->icon);
-		other->client->ps.stats[STAT_PICKUP_STRING] = CS_ITEMS+ITEM_INDEX(ent->item);
+		other->client->ps.stats[STAT_PICKUP_STRING] = CS_ITEMS + ITEM_INDEX(ent->item);
 		other->client->pickup_msg_time = level.time + 3.0;
-		
+
 		// change selected item
 		if (ent->item->use)
 			other->client->pers.selected_item = other->client->ps.stats[STAT_SELECTED_ITEM] = ITEM_INDEX(ent->item);
-		
+
 		if (ent->item->pickup == Pickup_Health)
 		{
-			
+
 			if (ent->count == 2)
 				gi.sound(other, CHAN_ITEM, gi.soundindex("items/s_health.wav"), 1, ATTN_NORM, 0);
 			else if (ent->count == 10)
@@ -1164,36 +1161,36 @@ void Touch_Item (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf
 			gi.sound(other, CHAN_ITEM, gi.soundindex(ent->item->pickup_sound), 1, ATTN_NORM, 0);
 		}
 	}
-	
+
 	if (!(ent->spawnflags & ITEM_TARGETS_USED))
 	{
-		G_UseTargets (ent, other);
+		G_UseTargets(ent, other);
 		ent->spawnflags |= ITEM_TARGETS_USED;
 	}
-	
+
 	if (!taken)
 		return;
-	
-	if (!((coop->value) &&  (ent->item->flags & IT_STAY_COOP)) || (ent->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM)))
+
+	if (!((coop->value) && (ent->item->flags & IT_STAY_COOP)) || (ent->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM)))
 	{
 		if (ent->flags & FL_RESPAWN)
 			ent->flags &= ~FL_RESPAWN;
 		else
-			G_FreeEdict (ent);
+			G_FreeEdict(ent);
 	}
 }
 
 //======================================================================
 
-void Drop_Temp_Touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
+void Drop_Temp_Touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	if (other == ent->owner)
 		return;
-	
-	Touch_Item (ent, other, plane, surf);
+
+	Touch_Item(ent, other, plane, surf);
 }
 
-static void drop_make_touchable (edict_t *ent)
+static void drop_make_touchable(edict_t* ent)
 {
 	ent->touch = Touch_Item;
 	if (deathmatch->value)
@@ -1203,60 +1200,60 @@ static void drop_make_touchable (edict_t *ent)
 	}
 }
 
-edict_t *Drop_Item (edict_t *ent, gitem_t *item)
+edict_t* Drop_Item(edict_t* ent, gitem_t* item)
 {
-	edict_t	*dropped;
+	edict_t* dropped;
 	vec3_t	forward, right;
 	vec3_t	offset;
-	
+
 	dropped = G_Spawn();
-	
+
 	dropped->classname = item->classname;
 	dropped->item = item;
 	dropped->spawnflags = DROPPED_ITEM;
 	dropped->s.effects = item->world_model_flags;
 	dropped->s.renderfx = RF_GLOW;
-	VectorSet (dropped->mins, -15, -15, -15);
-	VectorSet (dropped->maxs, 15, 15, 15);
-	gi.setmodel (dropped, dropped->item->world_model);
+	VectorSet(dropped->mins, -15, -15, -15);
+	VectorSet(dropped->maxs, 15, 15, 15);
+	gi.setmodel(dropped, dropped->item->world_model);
 	dropped->solid = SOLID_TRIGGER;
-	dropped->movetype = MOVETYPE_TOSS;  
+	dropped->movetype = MOVETYPE_TOSS;
 	dropped->touch = Drop_Temp_Touch;
 	dropped->owner = ent;
-	
+
 	if (ent->client)
 	{
 		trace_t	trace;
-		
-		AngleVectors (ent->client->v_angle, forward, right, NULL);
+
+		AngleVectors(ent->client->v_angle, forward, right, NULL);
 		VectorSet(offset, 24, 0, -16);
-		G_ProjectSource (ent->s.origin, offset, forward, right, dropped->s.origin);
-		trace = gi.trace (ent->s.origin, dropped->mins, dropped->maxs,
+		G_ProjectSource(ent->s.origin, offset, forward, right, dropped->s.origin);
+		trace = gi.trace(ent->s.origin, dropped->mins, dropped->maxs,
 			dropped->s.origin, ent, CONTENTS_SOLID);
-		VectorCopy (trace.endpos, dropped->s.origin);
+		VectorCopy(trace.endpos, dropped->s.origin);
 	}
 	else
 	{
-		AngleVectors (ent->s.angles, forward, right, NULL);
-		VectorCopy (ent->s.origin, dropped->s.origin);
+		AngleVectors(ent->s.angles, forward, right, NULL);
+		VectorCopy(ent->s.origin, dropped->s.origin);
 	}
-	
-	VectorScale (forward, 100, dropped->velocity);
+
+	VectorScale(forward, 100, dropped->velocity);
 	dropped->velocity[2] = 300;
-	
+
 	dropped->think = drop_make_touchable;
 	dropped->nextthink = level.time + 1;
-	
-	gi.linkentity (dropped);
-	
+
+	gi.linkentity(dropped);
+
 	return dropped;
 }
 
-void Use_Item (edict_t *ent, edict_t *other, edict_t *activator)
+void Use_Item(edict_t* ent, edict_t* other, edict_t* activator)
 {
 	ent->svflags &= ~SVF_NOCLIENT;
 	ent->use = NULL;
-	
+
 	if (ent->spawnflags & ITEM_NO_TOUCH)
 	{
 		ent->solid = SOLID_BBOX;
@@ -1267,60 +1264,57 @@ void Use_Item (edict_t *ent, edict_t *other, edict_t *activator)
 		ent->solid = SOLID_TRIGGER;
 		ent->touch = Touch_Item;
 	}
-	
-	gi.linkentity (ent);
+
+	gi.linkentity(ent);
 }
 
 //======================================================================
 
 /*
 ================
-Drop_To_Floor
+Items drop to floor on spawn
 ================
 */
-void Drop_To_Floor (edict_t *ent)
+void droptofloor(edict_t* ent)
 {
 	trace_t		tr;
 	vec3_t		dest;
-	float		*v;
-	
-	v = tv(-15,-15,-15);
-	VectorCopy (v, ent->mins);
-	v = tv(15,15,15);
-	VectorCopy (v, ent->maxs);
-	
+	float* v;
+
+	v = tv(-15, -15, -15);
+	VectorCopy(v, ent->mins);
+	v = tv(15, 15, 15);
+	VectorCopy(v, ent->maxs);
+
 	if (ent->model)
-		gi.setmodel (ent, ent->model);
+		gi.setmodel(ent, ent->model);
 	else
-		gi.setmodel (ent, ent->item->world_model);
+		gi.setmodel(ent, ent->item->world_model);
 	ent->solid = SOLID_TRIGGER;
-	ent->movetype = MOVETYPE_TOSS;  
+
+	ent->movetype = MOVETYPE_TOSS;
+
 	ent->touch = Touch_Item;
-	
-	v = tv(0,0,-128);
-	VectorAdd (ent->s.origin, v, dest);
-	
-	tr = gi.trace (ent->s.origin, ent->mins, ent->maxs, dest, ent, MASK_SOLID);
+
+	v = tv(0, 0, -128);
+	VectorAdd(ent->s.origin, v, dest);
+
+	tr = gi.trace(ent->s.origin, ent->mins, ent->maxs, dest, ent, MASK_SOLID);
 	if (tr.startsolid)
 	{
-		gi.dprintf ("droptofloor: %s startsolid at %s\n", ent->classname, vtos(ent->s.origin));
-		G_FreeEdict (ent);
+		gi.dprintf("droptofloor: %s startsolid at %s\n", ent->classname, vtos(ent->s.origin));
+		G_FreeEdict(ent);
 		return;
 	}
-	
-	VectorCopy (tr.endpos, ent->s.origin);
-	
-	// Save the item's origin/angles, so they can be restored if it gets
-	// knocked around.
-	VectorCopy (ent->s.origin, ent->pos1);
-	VectorCopy (ent->s.angles, ent->pos2);
-	
+
+	VectorCopy(tr.endpos, ent->s.origin);
+
 	if (ent->team)
 	{
 		ent->flags &= ~FL_TEAMSLAVE;
 		ent->chain = ent->teamchain;
 		ent->teamchain = NULL;
-		
+
 		ent->svflags |= SVF_NOCLIENT;
 		ent->solid = SOLID_NOT;
 		if (ent == ent->teammaster)
@@ -1329,7 +1323,7 @@ void Drop_To_Floor (edict_t *ent)
 			ent->think = DoRespawn;
 		}
 	}
-	
+
 	if (ent->spawnflags & ITEM_NO_TOUCH)
 	{
 		ent->solid = SOLID_BBOX;
@@ -1337,15 +1331,20 @@ void Drop_To_Floor (edict_t *ent)
 		ent->s.effects &= ~EF_ROTATE;
 		ent->s.renderfx &= ~RF_GLOW;
 	}
-	
+
 	if (ent->spawnflags & ITEM_TRIGGER_SPAWN)
 	{
 		ent->svflags |= SVF_NOCLIENT;
 		ent->solid = SOLID_NOT;
 		ent->use = Use_Item;
 	}
-	
-	gi.linkentity (ent);
+
+	// Save the item's origin/angles, so they can be restored if it gets
+	// knocked around.
+	//VectorCopy(ent->s.origin, ent->pos1);
+	//VectorCopy(ent->s.angles, ent->pos2);
+
+	gi.linkentity(ent);
 }
 
 
@@ -1358,63 +1357,63 @@ PrecacheItem
   and for each item in each client's inventory.
   ===============
 */
-void PrecacheItem (gitem_t *it)
+void PrecacheItem(gitem_t* it)
 {
-	char	*s, *start;
+	char* s, * start;
 	char	data[MAX_QPATH];
 	int		len;
-	gitem_t	*ammo;
-	
+	gitem_t* ammo;
+
 	if (!it)
 		return;
-	
+
 	if (it->pickup_sound)
-		gi.soundindex (it->pickup_sound);
+		gi.soundindex(it->pickup_sound);
 	if (it->world_model)
-		gi.modelindex (it->world_model);
+		gi.modelindex(it->world_model);
 	if (it->view_model)
-		gi.modelindex (it->view_model);
+		gi.modelindex(it->view_model);
 	if (it->icon)
-		gi.imageindex (it->icon);
-	
+		gi.imageindex(it->icon);
+
 	// parse everything for its ammo
 	if (it->ammo)
 	{
 		ammo = it->ammo;
 		if (ammo != it)
-			PrecacheItem (ammo);
+			PrecacheItem(ammo);
 	}
-	
+
 	// parse the space seperated precache string for other items
 	s = it->precaches;
 	if (!s || !s[0])
 		return;
-	
+
 	while (*s)
 	{
 		start = s;
 		while (*s && *s != ' ')
 			s++;
-		
-		len = s-start;
+
+		len = s - start;
 		if (len >= MAX_QPATH || len < 5) {
 			gi.error("PrecacheItem: %s has bad precache string", it->classname);
 			return; //QW// never executes
 		}
-		memcpy (data, start, len);
+		memcpy(data, start, len);
 		data[len] = 0;
 		if (*s)
 			s++;
-		
+
 		// determine type based on extension
-		if (!strcmp(data+len-3, "md2"))
-			gi.modelindex (data);
-		else if (!strcmp(data+len-3, "sp2"))
-			gi.modelindex (data);
-		else if (!strcmp(data+len-3, "wav"))
-			gi.soundindex (data);
-		if (!strcmp(data+len-3, "pcx"))
-			gi.imageindex (data);
+		if (!strcmp(data + len - 3, "md2"))
+			gi.modelindex(data);
+		else if (!strcmp(data + len - 3, "sp2"))
+			gi.modelindex(data);
+		else if (!strcmp(data + len - 3, "wav"))
+			gi.soundindex(data);
+		if (!strcmp(data + len - 3, "pcx"))
+			gi.imageindex(data);
 	}
 }
 
@@ -1423,75 +1422,75 @@ void PrecacheItem (gitem_t *it)
 SpawnItem
 
   Sets the clipping size and plants the object on the floor.
-  
+
 	Items can't be immediately dropped to floor, because they might
 	be on an entity that hasn't spawned yet.
 	============
 */
-void SpawnItem (edict_t *ent, gitem_t *item)
+void SpawnItem(edict_t* ent, gitem_t* item)
 {
 
 	UpdateBans();	//make sure all the i_vars are current
-	
+
 	// Some items have been banned.
 	if (item == &gI_item_bandolier
 		&& (i_featureban & FB_BANDOLIER))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_item_pack
 		&& (i_featureban & FB_AMMOPACK))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_item_silencer
 		&& (i_featureban & FB_SILENCER))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_item_breather
 		&& (i_featureban & FB_REBREATHER))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_item_enviro
 		&& (i_featureban & FB_ENVIROSUIT))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_item_adrenaline
 		&& (i_featureban & FB_ADRENALINE))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_item_health && ent->count == 100
 		&& (i_featureban & FB_MEGAHEALTH))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if ((item == &gI_item_power_screen || item == &gI_item_power_shield)
 		&& (i_featureban & FB_POWERARMOR))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_item_invulnerability
 		&& (i_featureban & FB_INVULNERABILITY))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_item_jetpack
 		&& (i_featureban & FB_JETPACK))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_weapon_shotgun
@@ -1501,7 +1500,7 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_loxweaponban & LWB_AIRFIST)
 		&& (i_loxweaponban & LWB_SWORD))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_weapon_supershotgun
@@ -1510,7 +1509,7 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_loxweaponban & LWB_EXPLOSIVESUPERSHOTGUN)
 		&& (i_loxweaponban & LWB_SUPERRAILSHOTGUN))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_weapon_machinegun
@@ -1521,7 +1520,7 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_loxweaponban & LWB_NAILGUN)
 		&& (i_loxweaponban & LWB_EXPLOSIVEMACHINEGUN))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_weapon_chaingun
@@ -1539,19 +1538,19 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_loxsweeperban & LSB_EXPLOSIVESTREETSWEEPER)
 		&& (i_loxsweeperban & LSB_STICKYGRENADESWEEPER))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_weapon_grenadelauncher
 		&& ((i_weaponban & WB_GRENADE)
-		|| ((i_weaponban & WB_GRENADELAUNCHER)
-		&& (i_weaponban & WB_BAZOOKA) 
-		&& (i_loxweaponban & LWB_BUCKY)
-		&& (i_loxweaponban & LWB_STICKGRENADELAUNCHER)
-		&& (i_loxweaponban & LWB_DOUBLEIMPACT)
-		&& (i_loxweaponban & LWB_FLOATINGMINELAUNCHER) )))
+			|| ((i_weaponban & WB_GRENADELAUNCHER)
+				&& (i_weaponban & WB_BAZOOKA)
+				&& (i_loxweaponban & LWB_BUCKY)
+				&& (i_loxweaponban & LWB_STICKGRENADELAUNCHER)
+				&& (i_loxweaponban & LWB_DOUBLEIMPACT)
+				&& (i_loxweaponban & LWB_FLOATINGMINELAUNCHER))))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_weapon_rocketlauncher
@@ -1562,7 +1561,7 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_loxweaponban & LWB_SPIRALROCKETLAUNCHER)
 		&& (i_loxweaponban & LWB_GUIDEDNUKE))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_weapon_hyperblaster
@@ -1573,7 +1572,7 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_loxweaponban & LWB_LIGHTNINGGUN)
 		&& (i_loxweaponban & LWB_ICECUBEGUN))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_weapon_railgun
@@ -1586,7 +1585,7 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_loxweaponban & LWB_ANTIMATTERCANNON)
 		&& (i_loxweaponban & LWB_NUKE))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_weapon_bfg
@@ -1595,7 +1594,7 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_loxweaponban & LWB_VACUUMMAKER)
 		&& (i_loxweaponban & LWB_ENERGYVORTEX))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_ammo_shells
@@ -1604,7 +1603,7 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_weaponban & WB_SUPERSHOTGUN)
 		&& (i_weaponban & WB_STREETSWEEPER))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_ammo_bullets
@@ -1613,13 +1612,13 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_weaponban & WB_BURSTMACHINEGUN)
 		&& (i_weaponban & WB_CHAINGUN))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_ammo_grenades
 		&& (i_weaponban & WB_GRENADE))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_ammo_cells
@@ -1630,14 +1629,14 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_weaponban & WB_BFG10K)
 		&& (i_featureban & FB_TRIPLASER))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_ammo_rockets
 		&& (i_weaponban & WB_ROCKETLAUNCHER)
 		&& (i_weaponban & WB_HOMINGROCKETLAUNCHER))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 	else if (item == &gI_ammo_slugs
@@ -1645,10 +1644,10 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 		&& (i_weaponban & WB_RAILGUN)
 		&& (i_loxweaponban & LWB_DURG))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
-	
+
 	if (ent->spawnflags)
 	{
 		if (strcmp(ent->classname, "key_power_cube") != 0)
@@ -1657,65 +1656,65 @@ void SpawnItem (edict_t *ent, gitem_t *item)
 			gi.dprintf("%s at %s has invalid spawnflags set\n", ent->classname, vtos(ent->s.origin));
 		}
 	}
-	
+
 	// some items will be prevented in deathmatch
 	if (deathmatch->value)
 	{
-		if ( (int)dmflags->value & DF_NO_ARMOR )
+		if ((int)dmflags->value & DF_NO_ARMOR)
 		{
 			if (item->pickup == Pickup_Armor || item->pickup == Pickup_PowerArmor)
 			{
-				G_FreeEdict (ent);
+				G_FreeEdict(ent);
 				return;
 			}
 		}
-		if ( (int)dmflags->value & DF_NO_ITEMS )
+		if ((int)dmflags->value & DF_NO_ITEMS)
 		{
 			if (item->pickup == Pickup_Powerup)
 			{
-				G_FreeEdict (ent);
+				G_FreeEdict(ent);
 				return;
 			}
 		}
-		if ( (int)dmflags->value & DF_NO_HEALTH )
+		if ((int)dmflags->value & DF_NO_HEALTH)
 		{
 			if (item->pickup == Pickup_Health || item->pickup == Pickup_Adrenaline || item->pickup == Pickup_AncientHead)
 			{
-				G_FreeEdict (ent);
+				G_FreeEdict(ent);
 				return;
 			}
 		}
-		if ( (int)dmflags->value & DF_INFINITE_AMMO )
+		if ((int)dmflags->value & DF_INFINITE_AMMO)
 		{
-			if  (item->flags == IT_AMMO)
+			if (item->flags == IT_AMMO)
 			{
-				G_FreeEdict (ent);
+				G_FreeEdict(ent);
 				return;
 			}
 		}
 	}
-	
-	PrecacheItem (item);
-	
+
+	PrecacheItem(item);
+
 	if (coop->value && (strcmp(ent->classname, "key_power_cube") == 0))
 	{
 		ent->spawnflags |= (1 << (8 + level.power_cubes));
 		level.power_cubes++;
 	}
-	
+
 	// don't let them drop items that stay in a coop game
 	if ((coop->value) && (item->flags & IT_STAY_COOP))
 	{
 		item->drop = NULL;
 	}
-	
+
 	ent->item = item;
 	ent->nextthink = level.time + 2 * FRAMETIME;    // items start after other solids
-	ent->think = Drop_To_Floor;
+	ent->think = droptofloor;
 	ent->s.effects = item->world_model_flags;
 	ent->s.renderfx = RF_GLOW;
 	if (ent->model)
-		gi.modelindex (ent->model);
+		gi.modelindex(ent->model);
 }
 
 //======================================================================
@@ -1733,7 +1732,7 @@ gitem_t gI_item_null1 =
 */
 gitem_t gI_item_armor_body =
 {
-	"item_armor_body", 
+	"item_armor_body",
 		Pickup_Armor,
 		NULL,
 		NULL,
@@ -1756,7 +1755,7 @@ gitem_t gI_item_armor_body =
 */
 gitem_t gI_item_armor_combat =
 {
-	"item_armor_combat", 
+	"item_armor_combat",
 		Pickup_Armor,
 		NULL,
 		NULL,
@@ -1779,7 +1778,7 @@ gitem_t gI_item_armor_combat =
 */
 gitem_t gI_item_armor_jacket =
 {
-	"item_armor_jacket", 
+	"item_armor_jacket",
 		Pickup_Armor,
 		NULL,
 		NULL,
@@ -1802,7 +1801,7 @@ gitem_t gI_item_armor_jacket =
 */
 gitem_t gI_item_armor_shard =
 {
-	"item_armor_shard", 
+	"item_armor_shard",
 		Pickup_Armor,
 		NULL,
 		NULL,
@@ -1826,7 +1825,7 @@ gitem_t gI_item_armor_shard =
 */
 gitem_t gI_item_power_screen =
 {
-	"item_power_screen", 
+	"item_power_screen",
 		Pickup_PowerArmor,
 		Use_PowerArmor,
 		Drop_PowerArmor,
@@ -1878,7 +1877,7 @@ always owned, never in the world
 */
 gitem_t gI_weapon_blaster =
 {
-	"weapon_blaster", 
+	"weapon_blaster",
 		NULL,
 		Use_Weapon,
 		NULL,
@@ -1891,7 +1890,7 @@ gitem_t gI_weapon_blaster =
 		0,
 		0,
 		NULL,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav"
@@ -1902,7 +1901,7 @@ always owned, never in the world
 */
 gitem_t gI_weapon_mace =
 {
-	"weapon_mace", 
+	"weapon_mace",
 		NULL,
 		Use_Weapon,
 		NULL,
@@ -1915,7 +1914,7 @@ gitem_t gI_weapon_mace =
 		0,
 		0,
 		NULL,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav"
@@ -1924,8 +1923,8 @@ gitem_t gI_weapon_mace =
 /* weapon_flaregun (.3 .3 1) (-16 -16 -16) (16 16 16)
 always owned, never in the world
 */
-gitem_t gI_weapon_flaregun	= {
-	"weapon_flaregun", 
+gitem_t gI_weapon_flaregun = {
+	"weapon_flaregun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -1938,7 +1937,7 @@ gitem_t gI_weapon_flaregun	= {
 		0,
 		0,
 		NULL,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav"
@@ -1947,8 +1946,8 @@ gitem_t gI_weapon_flaregun	= {
 /* weapon_antiflaregun (.3 .3 1) (-16 -16 -16) (16 16 16)
 always owned, never in the world
 */
-gitem_t gI_weapon_antiflaregun	= {
-	"weapon_antiflaregun", 
+gitem_t gI_weapon_antiflaregun = {
+	"weapon_antiflaregun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -1961,7 +1960,7 @@ gitem_t gI_weapon_antiflaregun	= {
 		0,
 		0,
 		NULL,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav"
@@ -1970,9 +1969,9 @@ gitem_t gI_weapon_antiflaregun	= {
 
 /*QUAKED weapon_airfist (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-gitem_t gI_weapon_airfist = 
-{ 
-	"weapon_airfist", 
+gitem_t gI_weapon_airfist =
+{
+	"weapon_airfist",
 		NULL,
 		Use_Weapon,
 		NULL,
@@ -1985,7 +1984,7 @@ gitem_t gI_weapon_airfist =
 		0,
 		1,
 		&gI_ammo_shells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav"
@@ -1995,7 +1994,7 @@ gitem_t gI_weapon_airfist =
 */
 gitem_t gI_weapon_shotgun =
 {
-	"weapon_shotgun", 
+	"weapon_shotgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2008,7 +2007,7 @@ gitem_t gI_weapon_shotgun =
 		0,
 		1,
 		&gI_ammo_shells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav"
@@ -2016,7 +2015,7 @@ gitem_t gI_weapon_shotgun =
 
 gitem_t gI_weapon_explosiveshotgun =
 {
-	"weapon_explosiveshotgun", 
+	"weapon_explosiveshotgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2029,14 +2028,14 @@ gitem_t gI_weapon_explosiveshotgun =
 		0,
 		1,
 		&gI_ammo_shells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav"
 };
 
-gitem_t gI_weapon_sword = 
-{		
+gitem_t gI_weapon_sword =
+{
 	"weapon_sword",
 		NULL,
 		Use_Weapon,                             //How to use
@@ -2047,7 +2046,7 @@ gitem_t gI_weapon_sword =
 		"models/weapons/v_sword/tris.md2",      //The models stuff
 		"w_blaster",                                    //Icon to be used
 		"Sword",                                        //Pickup name
-		0,		
+		0,
 		0,
 		NULL,
 		IT_WEAPON,
@@ -2061,7 +2060,7 @@ gitem_t gI_weapon_sword =
 */
 gitem_t gI_weapon_supershotgun =
 {
-	"weapon_supershotgun", 
+	"weapon_supershotgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2074,7 +2073,7 @@ gitem_t gI_weapon_supershotgun =
 		0,
 		2,
 		&gI_ammo_shells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/sshotf1b.wav"
@@ -2085,7 +2084,7 @@ gitem_t gI_weapon_supershotgun =
 */
 gitem_t gI_weapon_superrailshotgun =
 {
-	"weapon_superrailshotgun", 
+	"weapon_superrailshotgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2098,7 +2097,7 @@ gitem_t gI_weapon_superrailshotgun =
 		0,
 		10, //ammo cost
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/sshotf1b.wav"
@@ -2106,7 +2105,7 @@ gitem_t gI_weapon_superrailshotgun =
 
 gitem_t gI_weapon_explosivesupershotgun =
 {
-	"weapon_explosivesupershotgun", 
+	"weapon_explosivesupershotgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2119,14 +2118,14 @@ gitem_t gI_weapon_explosivesupershotgun =
 		0,
 		2,
 		&gI_ammo_shells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/sshotf1b.wav"
 };
 
 /*gitem_t gI_weapon_egggun = {
-"weapon_egggun", 
+"weapon_egggun",
 Pickup_Weapon,
 Use_Weapon,
 Drop_Weapon,
@@ -2149,7 +2148,7 @@ NULL,
 */
 gitem_t gI_weapon_machine =
 {
-	"weapon_machine", 
+	"weapon_machine",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2162,7 +2161,7 @@ gitem_t gI_weapon_machine =
 		0,
 		1,
 		&gI_ammo_bullets,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav"
@@ -2172,7 +2171,7 @@ gitem_t gI_weapon_machine =
 */
 gitem_t gI_weapon_machinerocketgun =
 {
-	"weapon_machinerocketgun", 
+	"weapon_machinerocketgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2185,7 +2184,7 @@ gitem_t gI_weapon_machinerocketgun =
 		0,
 		1,
 		&gI_ammo_bullets,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav"
@@ -2193,12 +2192,12 @@ gitem_t gI_weapon_machinerocketgun =
 
 /*QUAKED weapon_nailgun (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-gitem_t gI_weapon_nailgun =	{
-	"weapon_nailgun", 
+gitem_t gI_weapon_nailgun = {
+	"weapon_nailgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
-        Weapon_Nailgun,
+		Weapon_Nailgun,
 		"misc/w_pkup.wav",
 		"models/weapons/g_machn/tris.md2", EF_ROTATE,
 		"models/weapons/v_machn/tris.md2",
@@ -2207,7 +2206,7 @@ gitem_t gI_weapon_nailgun =	{
 		0,
 		1,
 		&gI_ammo_bullets,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/nail/tris.md2 weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav",
@@ -2215,12 +2214,12 @@ gitem_t gI_weapon_nailgun =	{
 
 /*QUAKED weapon_explosivemachinegun (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-gitem_t gI_weapon_explosivemachinegun =	{
-	"weapon_explosivemachinegun", 
+gitem_t gI_weapon_explosivemachinegun = {
+	"weapon_explosivemachinegun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
-        Weapon_ExplosiveMachingun,
+		Weapon_ExplosiveMachingun,
 		"misc/w_pkup.wav",
 		"models/weapons/g_machn/tris.md2", EF_ROTATE,
 		"models/weapons/v_machn/tris.md2",
@@ -2229,19 +2228,19 @@ gitem_t gI_weapon_explosivemachinegun =	{
 		0,
 		1,
 		&gI_ammo_bullets,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav",
-		
-		
+
+
 };
 //Wyrm: new weapon from rogue
 /*QUAKED weapon_pulserifle (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 gitem_t gI_weapon_pulserifle =
 {
-	"weapon_pulserifle", 
+	"weapon_pulserifle",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2256,7 +2255,7 @@ gitem_t gI_weapon_pulserifle =
 		0,
 		2,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav weapons/pulse1.wav",
@@ -2266,7 +2265,7 @@ gitem_t gI_weapon_pulserifle =
 */
 gitem_t gI_weapon_machinegun =
 {
-	"weapon_machinegun", 
+	"weapon_machinegun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2279,7 +2278,7 @@ gitem_t gI_weapon_machinegun =
 		0,
 		2,
 		&gI_ammo_bullets,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav"
@@ -2289,7 +2288,7 @@ gitem_t gI_weapon_machinegun =
 */
 gitem_t gI_weapon_freezer =
 {
-	"weapon_freezer", 
+	"weapon_freezer",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2302,7 +2301,7 @@ gitem_t gI_weapon_freezer =
 		0,
 		10,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav sound/weapons/frozen.wav"
@@ -2313,7 +2312,7 @@ gitem_t gI_weapon_freezer =
 */
 gitem_t gI_weapon_chaingun =
 {
-	"weapon_chaingun", 
+	"weapon_chaingun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2326,7 +2325,7 @@ gitem_t gI_weapon_chaingun =
 		0,
 		1,
 		&gI_ammo_bullets,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/chngnl1a.wav weapons/machgf3b.wav weapons/chngnd1a.wav"
@@ -2334,7 +2333,7 @@ gitem_t gI_weapon_chaingun =
 
 gitem_t gI_weapon_explosivechaingun =
 {
-	"weapon_explosivechaingun", 
+	"weapon_explosivechaingun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2347,7 +2346,7 @@ gitem_t gI_weapon_explosivechaingun =
 		0,
 		1,
 		&gI_ammo_bullets,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/chngnl1a.wav weapons/machgf3b.wav` weapons/chngnd1a.wav"
@@ -2358,7 +2357,7 @@ gitem_t gI_weapon_explosivechaingun =
 */
 gitem_t gI_weapon_streetsweeper =
 {
-	"weapon_streetsweeper", 
+	"weapon_streetsweeper",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2371,7 +2370,7 @@ gitem_t gI_weapon_streetsweeper =
 		0,
 		1,
 		&gI_ammo_shells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2380,7 +2379,7 @@ gitem_t gI_weapon_streetsweeper =
 */
 gitem_t gI_weapon_explosivestreetsweeper =
 {
-	"weapon_explosivestreetsweeper", 
+	"weapon_explosivestreetsweeper",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2393,7 +2392,7 @@ gitem_t gI_weapon_explosivestreetsweeper =
 		0,
 		1,
 		&gI_ammo_shells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2403,7 +2402,7 @@ gitem_t gI_weapon_explosivestreetsweeper =
 */
 gitem_t gI_weapon_stickygrenadesweeper =
 {
-	"weapon_stickygrenadesweeper", 
+	"weapon_stickygrenadesweeper",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2416,7 +2415,7 @@ gitem_t gI_weapon_stickygrenadesweeper =
 		0,
 		1,
 		&gI_ammo_grenades,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2427,7 +2426,7 @@ gitem_t gI_weapon_stickygrenadesweeper =
 */
 gitem_t gI_weapon_superblastersweeper =
 {
-	"weapon_superblastersweeper", 
+	"weapon_superblastersweeper",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2440,7 +2439,7 @@ gitem_t gI_weapon_superblastersweeper =
 		0,
 		1,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2448,7 +2447,7 @@ gitem_t gI_weapon_superblastersweeper =
 
 gitem_t gI_weapon_grenadesweeper =
 {
-	"weapon_grenadesweeper", 
+	"weapon_grenadesweeper",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2461,7 +2460,7 @@ gitem_t gI_weapon_grenadesweeper =
 		0,
 		1,
 		&gI_ammo_grenades,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2469,7 +2468,7 @@ gitem_t gI_weapon_grenadesweeper =
 
 gitem_t gI_weapon_chunkgun =
 {
-	"weapon_chunkgun", 
+	"weapon_chunkgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2482,7 +2481,7 @@ gitem_t gI_weapon_chunkgun =
 		0,
 		1,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2490,7 +2489,7 @@ gitem_t gI_weapon_chunkgun =
 
 gitem_t gI_weapon_freezersweeper =
 {
-	"weapon_freezersweeper", 
+	"weapon_freezersweeper",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2503,7 +2502,7 @@ gitem_t gI_weapon_freezersweeper =
 		0,
 		1,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2512,7 +2511,7 @@ gitem_t gI_weapon_freezersweeper =
 
 gitem_t gI_weapon_flamesweeper =
 {
-	"weapon_flamesweeper", 
+	"weapon_flamesweeper",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2525,7 +2524,7 @@ gitem_t gI_weapon_flamesweeper =
 		0,
 		1,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2535,7 +2534,7 @@ gitem_t gI_weapon_flamesweeper =
 */
 gitem_t gI_weapon_bazookasweeper =
 {
-	"weapon_bazookasweeper", 
+	"weapon_bazookasweeper",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2548,7 +2547,7 @@ gitem_t gI_weapon_bazookasweeper =
 		0,
 		1,
 		&gI_ammo_grenades,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2559,7 +2558,7 @@ gitem_t gI_weapon_bazookasweeper =
 */
 gitem_t gI_weapon_railgunsweeper =
 {
-	"weapon_railgunsweeper", 
+	"weapon_railgunsweeper",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2572,7 +2571,7 @@ gitem_t gI_weapon_railgunsweeper =
 		0,
 		1,
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2582,7 +2581,7 @@ gitem_t gI_weapon_railgunsweeper =
 */
 gitem_t gI_weapon_snipersweeper =
 {
-	"weapon_snipersweeper", 
+	"weapon_snipersweeper",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -2595,7 +2594,7 @@ gitem_t gI_weapon_snipersweeper =
 		0,
 		5,
 		&gI_ammo_shells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
@@ -2619,7 +2618,7 @@ gitem_t gI_ammo_grenades =
 		/* width */		3,
 		5 /* 1 */,
 		&gI_ammo_grenades,
-		IT_AMMO|IT_WEAPON,
+		IT_AMMO | IT_WEAPON,
 		NULL,
 		AMMO_GRENADES,
 		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
@@ -3035,7 +3034,7 @@ gitem_t gI_weapon_nukegrenades =
 		/* width */		3,
 		1,
 		&gI_ammo_grenades,
-		IT_AMMO|IT_WEAPON,
+		IT_AMMO | IT_WEAPON,
 		NULL,
 		0,
 		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav misc/bigtele.wav",
@@ -3058,7 +3057,7 @@ gitem_t gI_weapon_grenadelauncher =
 		0,
 		1,
 		&gI_ammo_grenades,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav"
@@ -3066,7 +3065,7 @@ gitem_t gI_weapon_grenadelauncher =
 
 /*QUAKED weapon_stickinggrenadelauncher (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-gitem_t gI_weapon_stickinggrenadelauncher = 	{
+gitem_t gI_weapon_stickinggrenadelauncher = {
 	"weapon_stickinggrenadelauncher",
 		Pickup_Weapon,
 		Use_Weapon,
@@ -3080,7 +3079,7 @@ gitem_t gI_weapon_stickinggrenadelauncher = 	{
 		0,
 		1,
 		&gI_ammo_grenades,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/hgproxy/tris.md2 sound/misc/giggle1.wav sound/misc/giggle2.wav sound/misc/giggle3.wav sound/misc/giggle4.wav sound/misc/giggle5.wav sound/misc/giggle6.wav sound/misc/giggle10.wav sound/misc/giggle7.wav sound/misc/giggle8.wav sound/misc/giggle9.wav sound/misc/giggle10.wav"
@@ -3091,7 +3090,7 @@ always owned, never in the world
 */
 gitem_t gI_weapon_bucky =
 {
-    "weapon_bucky", 
+	"weapon_bucky",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3104,7 +3103,7 @@ gitem_t gI_weapon_bucky =
 		0,
 		1,
 		&gI_ammo_grenades,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/hgproxy/tris.md2 sound/misc/giggle1.wav sound/misc/giggle2.wav sound/misc/giggle3.wav sound/misc/giggle4.wav sound/misc/giggle5.wav sound/misc/giggle6.wav sound/misc/giggle10.wav sound/misc/giggle7.wav sound/misc/giggle8.wav sound/misc/giggle9.wav sound/misc/giggle10.wav"
@@ -3128,7 +3127,7 @@ gitem_t gI_weapon_floatingminelauncher =
 		0,
 		3,
 		&gI_ammo_grenades,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav sound/flyer/flyidle1.wav"
@@ -3151,7 +3150,7 @@ gitem_t gI_weapon_bazooka =
 		0,
 		1,
 		&gI_ammo_grenades,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav sound/flyer/flyidle1.wav"
@@ -3159,12 +3158,12 @@ gitem_t gI_weapon_bazooka =
 
 /*QUAKED weapon_doubleimpact (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-gitem_t gI_weapon_doubleimpact =	{
-	"weapon_doubleimpact", 
+gitem_t gI_weapon_doubleimpact = {
+	"weapon_doubleimpact",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
-        Weapon_DGSuperShotgun,
+		Weapon_DGSuperShotgun,
 		"misc/w_pkup.wav",
 		"models/weapons/g_shotg2/tris.md2", EF_ROTATE,
 		"models/weapons/v_shotg2/tris.md2",
@@ -3172,8 +3171,8 @@ gitem_t gI_weapon_doubleimpact =	{
 		/* pickup */    "Double Impact",
 		0,
 		2,
-        &gI_ammo_grenades,
-		IT_WEAPON|IT_STAY_COOP,
+		&gI_ammo_grenades,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/sshotf1b.wav"
@@ -3196,7 +3195,7 @@ gitem_t gI_weapon_rocketlauncher =
 		0,
 		1,
 		&gI_ammo_rockets,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
@@ -3217,7 +3216,7 @@ gitem_t gI_weapon_spiralrocketlauncher =
 		0,
 		3,
 		&gI_ammo_rockets,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
@@ -3239,7 +3238,7 @@ gitem_t gI_weapon_homing = {
 		0,
 		1,
 		&gI_ammo_rockets,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
@@ -3262,7 +3261,7 @@ gitem_t gI_weapon_skipper =
 		0,
 		1,
 		&gI_ammo_rockets,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
@@ -3285,7 +3284,7 @@ gitem_t gI_weapon_guided =
 		0,
 		1,
 		&gI_ammo_rockets,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
@@ -3309,7 +3308,7 @@ gitem_t gI_weapon_guidednuke =
 		0,
 		10,
 		&gI_ammo_rockets,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
@@ -3317,7 +3316,7 @@ gitem_t gI_weapon_guidednuke =
 
 /*QUAKED weapon_lightninggun (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-gitem_t gI_weapon_lightninggun =	{
+gitem_t gI_weapon_lightninggun = {
 	"weapon_lightninggun",
 		Pickup_Weapon,
 		Use_Weapon,
@@ -3331,7 +3330,7 @@ gitem_t gI_weapon_lightninggun =	{
 		0,
 		5,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "light/lhit.wav light/lstart.wav models/proj/lightning/tris.md2"
@@ -3339,7 +3338,7 @@ gitem_t gI_weapon_lightninggun =	{
 
 /*QUAKED weapon_antimattercannon (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-gitem_t gI_weapon_antimattercannon =	{
+gitem_t gI_weapon_antimattercannon = {
 	"weapon_antimattercannon",
 		Pickup_Weapon,
 		Use_Weapon,
@@ -3353,7 +3352,7 @@ gitem_t gI_weapon_antimattercannon =	{
 		0,
 		10,
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "light/lhit.wav light/lstart.wav",
@@ -3362,7 +3361,7 @@ gitem_t gI_weapon_antimattercannon =	{
 /*QUAKED weapon_positron (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 gitem_t gI_weapon_positron = {
-	"weapon_positron", 
+	"weapon_positron",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3375,7 +3374,7 @@ gitem_t gI_weapon_positron = {
 		0,
 		5,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav"
@@ -3384,7 +3383,7 @@ gitem_t gI_weapon_positron = {
 /*QUAKED weapon_freezatron (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 gitem_t gI_weapon_freezatron = {
-	"weapon_freezatron", 
+	"weapon_freezatron",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3397,7 +3396,7 @@ gitem_t gI_weapon_freezatron = {
 		0,
 		5,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav"
@@ -3406,7 +3405,7 @@ gitem_t gI_weapon_freezatron = {
 /*QUAKED weapon_hyperblaster (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 gitem_t gI_weapon_hyperblaster = {
-	"weapon_hyperblaster", 
+	"weapon_hyperblaster",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3419,7 +3418,7 @@ gitem_t gI_weapon_hyperblaster = {
 		0,
 		1,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav"
@@ -3428,7 +3427,7 @@ gitem_t gI_weapon_hyperblaster = {
 /*QUAKED weapon_icecubegun (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 gitem_t gI_weapon_icecubegun = {
-	"weapon_icecubegun", 
+	"weapon_icecubegun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3441,7 +3440,7 @@ gitem_t gI_weapon_icecubegun = {
 		0,
 		1,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav"
@@ -3465,18 +3464,18 @@ gitem_t gI_weapon_superblaster =
 		0,
 		5,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2 sound/weapons/tris.md2"
 };
 // end 4.8 super blaster
 
-/* weapon_railgun [this is the flamethrower] 
+/* weapon_railgun [this is the flamethrower]
 */
 gitem_t gI_weapon_railgun =
 {
-	"weapon_railgun", 
+	"weapon_railgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3489,7 +3488,7 @@ gitem_t gI_weapon_railgun =
 		0,
 		1,
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/rg_hum.wav"
@@ -3497,7 +3496,7 @@ gitem_t gI_weapon_railgun =
 
 gitem_t gI_weapon_kaminit =
 {
-	"weapon_kaminit", 
+	"weapon_kaminit",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3510,7 +3509,7 @@ gitem_t gI_weapon_kaminit =
 		0,
 		1,
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/rg_hum.wav"
@@ -3518,7 +3517,7 @@ gitem_t gI_weapon_kaminit =
 
 gitem_t gI_weapon_wallpiercingrailgun =
 {
-	"weapon_wallpiercingrailgun", 
+	"weapon_wallpiercingrailgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3531,7 +3530,7 @@ gitem_t gI_weapon_wallpiercingrailgun =
 		0,
 		1,
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/rg_hum.wav"
@@ -3541,7 +3540,7 @@ gitem_t gI_weapon_wallpiercingrailgun =
 
 gitem_t gI_weapon_sonicrailgun =
 {
-	"weapon_sonicrailgun", 
+	"weapon_sonicrailgun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3554,7 +3553,7 @@ gitem_t gI_weapon_sonicrailgun =
 		0,
 		4,
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/rg_hum.wav"
@@ -3567,7 +3566,7 @@ gitem_t gI_weapon_sonicrailgun =
 // untangle this mess between the railgun and flamethrower
 gitem_t gI_weapon_railgun2 =
 {
-	"weapon_railgun2", 
+	"weapon_railgun2",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3580,7 +3579,7 @@ gitem_t gI_weapon_railgun2 =
 		0,
 		4,
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/rg_hum.wav"
@@ -3590,7 +3589,7 @@ gitem_t gI_weapon_railgun2 =
 /*QUAKED weapon_disintegrator (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 gitem_t gI_weapon_disintegrator = {
-	"weapon_disintegrator", 
+	"weapon_disintegrator",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3603,7 +3602,7 @@ gitem_t gI_weapon_disintegrator = {
 		0,
 		4,
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav",
@@ -3611,7 +3610,7 @@ gitem_t gI_weapon_disintegrator = {
 
 gitem_t gI_weapon_durg =
 {
-	"weapon_durg", 
+	"weapon_durg",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3624,7 +3623,7 @@ gitem_t gI_weapon_durg =
 		0,
 		4,
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/rg_hum.wav"
@@ -3632,7 +3631,7 @@ gitem_t gI_weapon_durg =
 
 /*QUAKED weapon_nuke (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-gitem_t gI_weapon_nuke = 	{
+gitem_t gI_weapon_nuke = {
 	"weapon_nuke",
 		Pickup_Weapon,
 		Use_Weapon,
@@ -3646,7 +3645,7 @@ gitem_t gI_weapon_nuke = 	{
 		0,
 		20,
 		&gI_ammo_slugs,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/bfg__f1y.wav weapons/bfg__l1a.wav weapons/bfg__x1b.wav weapons/bfg_hum.wav",
@@ -3660,16 +3659,16 @@ gitem_t gI_weapon_energyvortex =
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
-        Weapon_EnergyVortex,
+		Weapon_EnergyVortex,
 		"misc/w_pkup.wav",
 		"models/weapons/g_bfg/tris.md2", EF_ROTATE,
 		"models/weapons/v_bfg/tris.md2",
 		/* icon */		"w_bfg",
 		/* pickup */    "Energy Vortex",
-        0,                  
-        100,
+		0,
+		100,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "models/items/keys/pyramid/tris.md2 grav_new.wav ",
@@ -3677,13 +3676,13 @@ gitem_t gI_weapon_energyvortex =
 
 /*QUAKED weapon_vacuummaker (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-gitem_t gI_weapon_vacuummaker =	
+gitem_t gI_weapon_vacuummaker =
 {
 	"weapon_vacuummaker",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
-        Weapon_VacuumMaker,
+		Weapon_VacuumMaker,
 		"misc/w_pkup.wav",
 		"models/weapons/g_bfg/tris.md2", EF_ROTATE,
 		"models/weapons/v_bfg/tris.md2",
@@ -3692,7 +3691,7 @@ gitem_t gI_weapon_vacuummaker =
 		0,
 		1,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "",
@@ -3715,7 +3714,7 @@ gitem_t gI_weapon_bfg =
 		0,
 		50,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/bfg__f1y.wav weapons/bfg__l1a.wav weapons/bfg__x1b.wav weapons/bfg_hum.wav"
@@ -3738,7 +3737,7 @@ gitem_t gI_weapon_fbfg =
 		0,
 		50,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/bfg__f1y.wav weapons/bfg__l1a.wav weapons/bfg__x1b.wav weapons/bfg_hum.wav"
@@ -3748,7 +3747,7 @@ gitem_t gI_weapon_fbfg =
 */
 gitem_t gI_weapon_sniper =
 {
-	"weapon_snipergun", 
+	"weapon_snipergun",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3761,7 +3760,7 @@ gitem_t gI_weapon_sniper =
 		0,
 		5,
 		&gI_ammo_shells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/rg_hum.wav models/monsters/parasite/tip/tris.md2"
@@ -3771,7 +3770,7 @@ gitem_t gI_weapon_sniper =
 */
 gitem_t gI_weapon_plasma =
 {
-	"weapon_plasmarifle", 
+	"weapon_plasmarifle",
 		Pickup_Weapon,
 		Use_Weapon,
 		Drop_Weapon,
@@ -3784,7 +3783,7 @@ gitem_t gI_weapon_plasma =
 		0,
 		1,
 		&gI_ammo_cells,
-		IT_WEAPON|IT_ALTWEAPON|IT_STAY_COOP,
+		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
 		/* precache */ "weapons/rg_hum.wav"
@@ -3915,7 +3914,7 @@ gitem_t gI_ammo_slugs =
 //
 /*QUAKED item_jetpack (.3 .3 1) (-16 -16 -16) (16 16 16) */
 gitem_t gI_item_jetpack =
-{ 
+{
 	"item_quad",
 		Pickup_Powerup,
 		Use_Jet,
@@ -3943,7 +3942,7 @@ gitem_t gI_item_jetpack =
 */
 gitem_t gI_item_quad =
 {
-	"item_oldquad", 
+	"item_oldquad",
 		Pickup_Powerup,
 		Use_Quad,
 		Drop_General,
@@ -4025,7 +4024,7 @@ gitem_t gI_item_breather =
 		/* width */		2,
 		60,
 		NULL,
-		IT_STAY_COOP|IT_POWERUP,
+		IT_STAY_COOP | IT_POWERUP,
 		NULL,
 		0,
 		/* precache */ "items/airout.wav"
@@ -4048,7 +4047,7 @@ gitem_t gI_item_enviro =
 		/* width */		2,
 		60,
 		NULL,
-		IT_STAY_COOP|IT_POWERUP,
+		IT_STAY_COOP | IT_POWERUP,
 		NULL,
 		0,
 		/* precache */ "items/airout.wav"
@@ -4169,7 +4168,7 @@ gitem_t gI_key_data_cd =
 		2,
 		0,
 		NULL,
-		IT_STAY_COOP|IT_KEY|IT_NOT_DM,
+		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
 		/* precache */ ""
@@ -4193,7 +4192,7 @@ gitem_t gI_key_power_cube =
 		2,
 		0,
 		NULL,
-		IT_STAY_COOP|IT_KEY|IT_NOT_DM,
+		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
 		/* precache */ ""
@@ -4217,7 +4216,7 @@ gitem_t gI_key_pyramid =
 		2,
 		0,
 		NULL,
-		IT_STAY_COOP|IT_KEY|IT_NOT_DM,
+		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
 		/* precache */ ""
@@ -4241,7 +4240,7 @@ gitem_t gI_key_data_spinner =
 		2,
 		0,
 		NULL,
-		IT_STAY_COOP|IT_KEY|IT_NOT_DM,
+		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
 		/* precache */ ""
@@ -4265,7 +4264,7 @@ gitem_t gI_key_pass =
 		2,
 		0,
 		NULL,
-		IT_STAY_COOP|IT_KEY|IT_NOT_DM,
+		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
 		/* precache */ ""
@@ -4289,7 +4288,7 @@ gitem_t gI_key_blue_key =
 		2,
 		0,
 		NULL,
-		IT_STAY_COOP|IT_KEY|IT_NOT_DM,
+		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
 		/* precache */ ""
@@ -4313,7 +4312,7 @@ gitem_t gI_key_red_key =
 		2,
 		0,
 		NULL,
-		IT_STAY_COOP|IT_KEY|IT_NOT_DM,
+		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
 		/* precache */ ""
@@ -4337,7 +4336,7 @@ gitem_t gI_key_commander_head =
 		/* width */		2,
 		0,
 		NULL,
-		IT_STAY_COOP|IT_KEY|IT_NOT_DM,
+		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
 		/* precache */ ""
@@ -4361,7 +4360,7 @@ gitem_t gI_key_airstrike_target =
 		/* width */		2,
 		0,
 		NULL,
-		IT_STAY_COOP|IT_KEY|IT_NOT_DM,
+		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
 		/* precache */ ""
@@ -4395,17 +4394,17 @@ gitem_t gI_item_null2 =
 
 // Note: if you modify itemlist[], be sure to update itemlistSorted[], below.
 // I apologize for the extra effort.
-gitem_t *itemlist[] = 
+gitem_t* itemlist[] =
 {
 	&gI_item_null1,
-		
+
 		&gI_item_armor_body,
 		&gI_item_armor_combat,
 		&gI_item_armor_jacket,
 		&gI_item_armor_shard,
 		&gI_item_power_screen,
 		&gI_item_power_shield,
-		
+
 		&gI_weapon_blaster,
 		&gI_weapon_flaregun,
 		&gI_weapon_antiflaregun,
@@ -4430,7 +4429,7 @@ gitem_t *itemlist[] =
 		&gI_weapon_stickygrenadesweeper,
 		&gI_weapon_grenadesweeper,
 		&gI_weapon_superblastersweeper,
-		&gI_weapon_freezersweeper,	
+		&gI_weapon_freezersweeper,
 		&gI_weapon_flamesweeper,
 		&gI_weapon_snipersweeper,
 		&gI_weapon_chunkgun,
@@ -4492,13 +4491,13 @@ gitem_t *itemlist[] =
 		&gI_weapon_fbfg,
 		&gI_weapon_vacuummaker,
 		&gI_weapon_energyvortex,
-		
+
 		&gI_ammo_shells,
 		&gI_ammo_bullets,
 		&gI_ammo_cells,
 		&gI_ammo_rockets,
 		&gI_ammo_slugs,
-		
+
 		&gI_item_jetpack,
 		&gI_item_quad,
 		&gI_item_invulnerability,
@@ -4509,7 +4508,7 @@ gitem_t *itemlist[] =
 		&gI_item_adrenaline,
 		&gI_item_bandolier,
 		&gI_item_pack,
-		
+
 		&gI_key_data_cd,
 		&gI_key_power_cube,
 		&gI_key_pyramid,
@@ -4520,12 +4519,12 @@ gitem_t *itemlist[] =
 		&gI_key_commander_head,
 		&gI_key_airstrike_target,
 		&gI_item_health,
-		
+
 		&gI_item_null2
 };
 
 // A copy of itemlist[], except it gets qsort()ed on Q_stricmp (pickup_name)
-gitem_t *itemlistSorted[] = 
+gitem_t* itemlistSorted[] =
 {
 	&gI_item_armor_body,
 		&gI_item_armor_combat,
@@ -4533,7 +4532,7 @@ gitem_t *itemlistSorted[] =
 		&gI_item_armor_shard,
 		&gI_item_power_screen,
 		&gI_item_power_shield,
-		
+
 		&gI_weapon_blaster,
 		&gI_weapon_mace,
 		&gI_weapon_flaregun,
@@ -4616,13 +4615,13 @@ gitem_t *itemlistSorted[] =
 		&gI_weapon_vacuummaker,
 		&gI_weapon_energyvortex,
 		&gI_weapon_sniper,
-		
+
 		&gI_ammo_shells,
 		&gI_ammo_bullets,
 		&gI_ammo_cells,
 		&gI_ammo_rockets,
 		&gI_ammo_slugs,
-		
+
 		&gI_item_jetpack,
 		&gI_item_quad,
 		&gI_item_invulnerability,
@@ -4633,7 +4632,7 @@ gitem_t *itemlistSorted[] =
 		&gI_item_adrenaline,
 		&gI_item_bandolier,
 		&gI_item_pack,
-		
+
 		&gI_key_data_cd,
 		&gI_key_power_cube,
 		&gI_key_pyramid,
@@ -4649,92 +4648,92 @@ gitem_t *itemlistSorted[] =
 
 /*QUAKED item_health (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-void SP_item_health (edict_t *self)
+void SP_item_health(edict_t* self)
 {
-	if ( deathmatch->value && ((int)dmflags->value & DF_NO_HEALTH) )
+	if (deathmatch->value && ((int)dmflags->value & DF_NO_HEALTH))
 	{
-		G_FreeEdict (self);
+		G_FreeEdict(self);
 		return;
 	}
-	
+
 	self->model = "models/items/healing/medium/tris.md2";
 	self->count = 10;
-	SpawnItem (self, &gI_item_health);
-	gi.soundindex ("items/n_health.wav");
+	SpawnItem(self, &gI_item_health);
+	gi.soundindex("items/n_health.wav");
 }
 
 /*QUAKED item_health_small (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-void SP_item_health_small (edict_t *self)
+void SP_item_health_small(edict_t* self)
 {
-	if ( deathmatch->value && ((int)dmflags->value & DF_NO_HEALTH) )
+	if (deathmatch->value && ((int)dmflags->value & DF_NO_HEALTH))
 	{
-		G_FreeEdict (self);
+		G_FreeEdict(self);
 		return;
 	}
-	
+
 	self->model = "models/items/healing/stimpack/tris.md2";
 	self->count = 2;
-	SpawnItem (self, &gI_item_health);
+	SpawnItem(self, &gI_item_health);
 	self->style = HEALTH_IGNORE_MAX;
-	gi.soundindex ("items/s_health.wav");
+	gi.soundindex("items/s_health.wav");
 }
 
 /*QUAKED item_health_large (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-void SP_item_health_large (edict_t *self)
+void SP_item_health_large(edict_t* self)
 {
-	if ( deathmatch->value && ((int)dmflags->value & DF_NO_HEALTH) )
+	if (deathmatch->value && ((int)dmflags->value & DF_NO_HEALTH))
 	{
-		G_FreeEdict (self);
+		G_FreeEdict(self);
 		return;
 	}
-	
+
 	self->model = "models/items/healing/large/tris.md2";
 	self->count = 25;
-	SpawnItem (self, &gI_item_health);
-	gi.soundindex ("items/l_health.wav");
+	SpawnItem(self, &gI_item_health);
+	gi.soundindex("items/l_health.wav");
 }
 
 /*QUAKED item_health_mega (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
-void SP_item_health_mega (edict_t *self)
+void SP_item_health_mega(edict_t* self)
 {
-	if ( deathmatch->value && ((int)dmflags->value & DF_NO_HEALTH) )
+	if (deathmatch->value && ((int)dmflags->value & DF_NO_HEALTH))
 	{
-		G_FreeEdict (self);
+		G_FreeEdict(self);
 		return;
 	}
-	
+
 	self->model = "models/items/mega_h/tris.md2";
 	self->count = 100;
-	SpawnItem (self, &gI_item_health);
-	gi.soundindex ("items/m_health.wav");
-	self->style = HEALTH_IGNORE_MAX|HEALTH_TIMED;
+	SpawnItem(self, &gI_item_health);
+	gi.soundindex("items/m_health.wav");
+	self->style = HEALTH_IGNORE_MAX | HEALTH_TIMED;
 }
 
-int CompareItemsByPickup (const void *a, const void *b)
+int CompareItemsByPickup(const void* a, const void* b)
 {
-	return Q_stricmp ((*(gitem_t **)a)->pickup_name,
-		(*(gitem_t **)b)->pickup_name);
+	return Q_stricmp((*(gitem_t**)a)->pickup_name,
+		(*(gitem_t**)b)->pickup_name);
 }
 
 
-void InitItems (void)
+void InitItems(void)
 {
 	int i;
-	
+
 	// set the # of items
-	game.num_items = sizeof(itemlist)/sizeof(itemlist[0]) - 1;
-	
+	game.num_items = sizeof(itemlist) / sizeof(itemlist[0]) - 1;
+
 	// set each item's index
 	for (i = 0; i <= game.num_items; i++)
 		itemlist[i]->item_index = i;
-	
+
 	// sort the items, so they can be found quickly
-	qsort ((void *)itemlistSorted,
-		sizeof (itemlistSorted) / sizeof (itemlistSorted[0]),
-		sizeof (itemlistSorted[0]), CompareItemsByPickup);
+	qsort((void*)itemlistSorted,
+		sizeof(itemlistSorted) / sizeof(itemlistSorted[0]),
+		sizeof(itemlistSorted[0]), CompareItemsByPickup);
 }
 
 
@@ -4744,19 +4743,19 @@ void InitItems (void)
 *
 * ===============
 */
-gitem_t	*FindItem (char *pickup_name)
+gitem_t* FindItem(char* pickup_name)
 {
 	int low, high, curr, icmp;
-	gitem_t *it;
-	
+	gitem_t* it;
+
 	// Do a binary search.
 	low = 0;
-	high = sizeof (itemlistSorted) / sizeof (itemlistSorted[0]);
+	high = sizeof(itemlistSorted) / sizeof(itemlistSorted[0]);
 	while (low < high)
 	{
 		curr = (low + high) >> 1;
 		it = itemlistSorted[curr];
-		icmp = Q_stricmp (it->pickup_name, pickup_name);
+		icmp = Q_stricmp(it->pickup_name, pickup_name);
 		if (icmp > 0)
 			high = curr;
 		else if (icmp < 0)
@@ -4764,7 +4763,7 @@ gitem_t	*FindItem (char *pickup_name)
 		else
 			return it;
 	}
-	
+
 	// We didn't find it.
 	return NULL;
 }
@@ -4778,22 +4777,22 @@ gitem_t	*FindItem (char *pickup_name)
 *  Called by SP_worldspawn()
 * ===============
 */
-void SetItemNames (void)
+void SetItemNames(void)
 {
 	int		i;
-	gitem_t	*it;
-	
-	for (i=1 ; i < game.num_items ; i++)
+	gitem_t* it;
+
+	for (i = 1; i < game.num_items; i++)
 	{
 		it = itemlist[i];
 		if (!(deathmatch->value) || !(it->flags & IT_NOT_DM))
-			gi.configstring (CS_ITEMS + i, it->pickup_name);
+			gi.configstring(CS_ITEMS + i, it->pickup_name);
 	}
-	
-	jacket_armor_index = ITEM_INDEX (&gI_item_armor_jacket);
-	combat_armor_index = ITEM_INDEX (&gI_item_armor_combat);
-	body_armor_index   = ITEM_INDEX (&gI_item_armor_body);
-	power_screen_index = ITEM_INDEX (&gI_item_power_screen);
-	power_shield_index = ITEM_INDEX (&gI_item_power_shield);
+
+	jacket_armor_index = ITEM_INDEX(&gI_item_armor_jacket);
+	combat_armor_index = ITEM_INDEX(&gI_item_armor_combat);
+	body_armor_index = ITEM_INDEX(&gI_item_armor_body);
+	power_screen_index = ITEM_INDEX(&gI_item_power_screen);
+	power_shield_index = ITEM_INDEX(&gI_item_power_shield);
 }
 

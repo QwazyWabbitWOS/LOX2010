@@ -5,93 +5,93 @@ edict_t	*LeaderMan;
 // this function buggy, not finished
 void HighScorer(void) 
 {
-	int	i;
-	int	count = 0;
-	edict_t	*ent = NULL;
-	edict_t	*newleader = NULL;
-	edict_t	*oldleader = NULL;
-	
-	// establish old leader
-	for (i=0; i < game.maxclients; i++) 
-	{
-		ent = g_edicts + 1 + i;
-		if (!ent->inuse)
-			continue;
-		
-		count++;
-	}
+	//int	i;
+	//int	count = 0;
+	//edict_t	*ent = NULL;
+	//edict_t	*newleader = NULL;
+	//edict_t	*oldleader = NULL;
+	//
+	//// establish old leader
+	//for (i=0; i < game.maxclients; i++) 
+	//{
+	//	ent = g_edicts + 1 + i;
+	//	if (!ent->inuse)
+	//		continue;
+	//	
+	//	count++;
+	//}
 
-	if (count == 1) // only 1 player so he's our first leader
-	{
-		ent->client->leader = 1;
-		LeaderMan = ent;
-	}
+	//if (count == 1) // only 1 player so he's our first leader
+	//{
+	//	ent->client->leader = 1;
+	//	LeaderMan = ent;
+	//}
 
-	// find current leader
-	for (i=0; i < game.maxclients; i++) 
-	{
-		ent = g_edicts + 1 + i;
-		if (!ent->inuse)
-			continue;
-		
-		if (ent->client->leader)
-			oldleader = ent;
+	//// find current leader
+	//for (i=0; i < game.maxclients; i++) 
+	//{
+	//	ent = g_edicts + 1 + i;
+	//	if (!ent->inuse)
+	//		continue;
+	//	
+	//	if (ent->client->leader)
+	//		oldleader = ent;
 
-		if (ent->client->resp.score > LeaderMan->client->resp.score && ent->client->leader == 0)
-		{
-			newleader = ent;		 // we have a new leader
-			oldleader->client->leader = 0;
-			newleader->client->leader = 1;
-			gi.bprintf (PRINT_MEDIUM,"%s has taken the lead!\n", newleader->client->pers.netname);
-			gi.sound(newleader, CHAN_AUTO, gi.soundindex("misc/comp_up.wav"), 1, ATTN_NORM, 0);
+	//	if (ent->client->resp.score > LeaderMan->client->resp.score && ent->client->leader == 0)
+	//	{
+	//		newleader = ent;		 // we have a new leader
+	//		oldleader->client->leader = 0;
+	//		newleader->client->leader = 1;
+	//		gi.bprintf (PRINT_MEDIUM,"%s has taken the lead!\n", newleader->client->pers.netname);
+	//		gi.sound(newleader, CHAN_AUTO, gi.soundindex("misc/comp_up.wav"), 1, ATTN_NORM, 0);
 
-		}
-	}
+	//	}
+	//}
 }
 
-void HighScorerOld(void) 
-{
-	
-	int	i;
-	int	topscore = -999;
-	int	count1 = 0;
-	edict_t	*ent1 = NULL;
-	edict_t	*ent2 = NULL;
-	
-	for (i=0; i < game.maxclients; i++) 
-	{
-		ent1 = g_edicts + 1 + i;
-		if (!ent1->inuse)
-			continue;
-
-		// clear the current leader as we go
-		ent1->client->leader = 0;
-		count1++;
-		
-		if (ent1->client->resp.score > topscore) 
-		{
-			topscore = ent1->client->resp.score;
-			ent2 = ent1;	
-		}
-	}
-	
-	// only one player
-	if (count1 == 1) 
-		ent2 = NULL;
-	
-	if (ent2 != NULL) // mark the leader
-		ent2->client->leader = 1;
-	
-	if (LeaderMan != ent2) 
-	{
-		LeaderMan = ent2;
-		if (LeaderMan != NULL)
-		{
-			gi.bprintf (PRINT_MEDIUM,"%s has taken the lead!\n", LeaderMan->client->pers.netname);
-			gi.sound(LeaderMan, CHAN_AUTO, gi.soundindex("misc/comp_up.wav"), 1, ATTN_NORM, 0);
-		}
-	}
-}
+//void HighScorerOld(void) 
+//{
+//	
+//	int	i;
+//	int	topscore = -999;
+//	int	count1 = 0;
+//	edict_t	*ent1 = NULL;
+//	edict_t	*ent2 = NULL;
+//	
+//	for (i=0; i < game.maxclients; i++) 
+//	{
+//		ent1 = g_edicts + 1 + i;
+//		if (!ent1->inuse)
+//			continue;
+//
+//		// clear the current leader as we go
+//		ent1->client->leader = 0;
+//		count1++;
+//		
+//		if (ent1->client->resp.score > topscore) 
+//		{
+//			topscore = ent1->client->resp.score;
+//			ent2 = ent1;	
+//		}
+//	}
+//	
+//	// only one player
+//	if (count1 == 1) 
+//		ent2 = NULL;
+//	
+//	if (ent2 != NULL) // mark the leader
+//		ent2->client->leader = 1;
+//	
+//	if (LeaderMan != ent2) 
+//	{
+//		LeaderMan = ent2;
+//		if (LeaderMan != NULL)
+//		{
+//			gi.bprintf (PRINT_MEDIUM,"%s has taken the lead!\n", LeaderMan->client->pers.netname);
+//			gi.sound(LeaderMan, CHAN_AUTO, gi.soundindex("misc/comp_up.wav"), 1, ATTN_NORM, 0);
+//		}
+//	}
+//}
 
 #if 0
 

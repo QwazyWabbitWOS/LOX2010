@@ -315,9 +315,9 @@ ED_NewString
 char *ED_NewString (char *string)
 {
 	char	*newb, *new_p;
-	int		i,length;
+	int		i, length;
 	
-	length = strlen(string) + 1;
+	length = (int)strlen(string) + 1;
 	
 	newb = gi.TagMalloc (length, TAG_LEVEL);
 	
@@ -639,7 +639,8 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 		// If this entity survived, print it.
 		if (dumpents->value && ent->inuse)
 		{
-			int entsize, nWritten;
+			int entsize;
+			int nWritten;
 			
 			// Move past the end of the line.
 			while (*entities == 12 || *entities == 15)
@@ -649,7 +650,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 			entsize = entities - entstart;
 			
 			// Write it.
-			nWritten = fwrite (entstart, sizeof (char), entsize, f);
+			nWritten = (int)fwrite (entstart, sizeof (char), entsize, f);
 			if (nWritten != entsize)
 				gi.error ("SpawnEntities DUMPENTS: couldn't write to file\n");
 		}

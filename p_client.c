@@ -1481,19 +1481,19 @@ SelectSpawnPoint
 Chooses a player start, deathmatch start, coop start, etc
 ============
 */
-void SelectSpawnPoint (edict_t *ent, vec3_t origin, vec3_t angles)
+void SelectSpawnPoint(edict_t* ent, vec3_t origin, vec3_t angles)
 {
-	edict_t	*spot = NULL;
+	edict_t* spot = NULL;
 
 	if (deathmatch->value)
-		spot = SelectDeathmatchSpawnPoint ();
+		spot = SelectDeathmatchSpawnPoint();
 	else if (coop->value)
-		spot = SelectCoopSpawnPoint (ent);
+		spot = SelectCoopSpawnPoint(ent);
 
 	// find a single player start spot
 	if (!spot)
 	{
-		while ((spot = G_Find (spot, FOFS(classname), "info_player_start")) != NULL)
+		while ((spot = G_Find(spot, FOFS(classname), "info_player_start")) != NULL)
 		{
 			if (!game.spawnpoint[0] && !spot->targetname)
 				break;
@@ -1509,10 +1509,12 @@ void SelectSpawnPoint (edict_t *ent, vec3_t origin, vec3_t angles)
 		{
 			if (!game.spawnpoint[0])
 			{	// there wasn't a spawnpoint without a target, so use any
-				spot = G_Find (spot, FOFS(classname), "info_player_start");
+				spot = G_Find(spot, FOFS(classname), "info_player_start");
 			}
-			if (!spot)
-				gi.error ("Couldn't find spawn point %s\n", game.spawnpoint);
+			if (!spot) {
+				gi.error("Couldn't find spawn point %s\n", game.spawnpoint);
+				return;
+			}
 		}
 	}
 	VectorCopy(spot->s.origin, origin);
@@ -1746,9 +1748,7 @@ void PutClientInServer (edict_t *ent)
 	// start invulnerable for variable seconds in DM, but not teamplay.
 	if (deathmatch->value && !ctf->value)
 	{
-		int spawntime;
-		spawntime = (int) (respawn_protect->value * 10);
-		ent->client->invincible_framenum = level.framenum + spawntime;
+		ent->client->invincible_framenum = level.framenum + respawn_protect->value * 10;
 	}
 
 	// *********************
@@ -2204,6 +2204,8 @@ void ClientDisconnect (edict_t *ent)
 		SP_LaserSight (ent);
 
 	gi.bprintf (PRINT_HIGH, "%s disconnected\n", ent->client->pers.netname);
+	gi.dprintf("%s disconnected ", ent->client->pers.netname);
+	Log_Time();
 	ARLog_Stats("OUT: %s\n",ent->client->pers.netname);
 
 	// send effect
@@ -2252,13 +2254,14 @@ unsigned CheckBlock (void *b, int c)
 		v+= ((byte *)b)[i];
 	return v;
 }
-void PrintPmove (pmove_t *pm)
+
+void PrintPmove(pmove_t* pm)
 {
 	unsigned	c1, c2;
 
-	c1 = CheckBlock (&pm->s, sizeof(pm->s));
-	c2 = CheckBlock (&pm->cmd, sizeof(pm->cmd));
-	Com_Printf ("sv %3i:%i %i\n", pm->cmd.impulse, c1, c2);
+	c1 = CheckBlock(&pm->s, sizeof(pm->s));
+	c2 = CheckBlock(&pm->cmd, sizeof(pm->cmd));
+	gi.dprintf("sv %3i:%i %i\n", pm->cmd.impulse, c1, c2);
 }
 
 // MEFIXED: Muhahaha. Came up with a fix!
@@ -2737,7 +2740,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 	else
 		ent->client->curr_heat = 0;
 
-	//_STOP_PERFORMANCE_TIMER(__func__);
+	//STOP_PERFORMANCE_TIMER
 }
 
 

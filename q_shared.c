@@ -775,7 +775,7 @@ void Com_PageInMemory (byte *buffer, int size)
 ============================================================================
 */
 
-static	char	bigbuffer[0x10000]; // for Com_Sprintf
+static	char	bigbuffer[0x1000]; // for Com_Sprintf
 
 /**
  Safer, uses large buffer.  
@@ -794,7 +794,7 @@ void Com_sprintf(char* dest, int size, char* fmt, ...)
 	len = vsprintf(bigbuffer, fmt, argptr);
 	va_end(argptr);
 	if (len < size)
-		strncpy(dest, bigbuffer, size - 1);
+		strncpy(dest, bigbuffer, (size_t)size - 1);
 	else
 	{
 		Com_Printf("ERROR! %s: destination buffer overflow of len %i, size %i\n"

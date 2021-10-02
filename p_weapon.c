@@ -32,7 +32,6 @@ void SetSweeperMode(edict_t *ent);
 #define DEFAULT_EXBULLET_HSPREAD  500
 #define DEFAULT_EXBULLET_VSPREAD  600
 
-// the point of the projectile source when fired(?)
 void P_ProjectSource (gclient_t *client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result)
 {
 	vec3_t	_distance = { 0 };
@@ -118,7 +117,8 @@ void PlayerNoise(edict_t *who, vec3_t where, int type)
 
 void Weapon_Recoil(edict_t* self, float recoil)
 {
-	vec3_t	end, forward, dir;
+	vec3_t	end, forward;
+	vec3_t	dir = { 0 };
 	trace_t tr;
 
 	if (self->client) // only players get recoil
@@ -441,11 +441,14 @@ qboolean Pickup_Weapon (edict_t *ent, edict_t *other)
 
 	if (!(ent->spawnflags & DROPPED_ITEM))
 	{
-		// give them some ammo with it
-		if ((int)dmflags->value & DF_INFINITE_AMMO)
-			Add_Ammo (other, ammo, 1000);
-		else
-			Add_Ammo (other, ammo, ammo->quantity * 2);
+		if (ammo)
+		{
+			// give them some ammo with it
+			if ((int)dmflags->value & DF_INFINITE_AMMO)
+				Add_Ammo(other, ammo, 1000);
+			else
+				Add_Ammo(other, ammo, ammo->quantity * 2);
+		}
 
 		if (! (ent->spawnflags & DROPPED_PLAYER_ITEM))
 		{
@@ -511,7 +514,7 @@ void ShowGun(edict_t *ent)
 	n = (gi.modelindex(heldmodel) - vwep_index) << 8;
 	ent->s.skinnum &= 0xFF;
 	ent->s.skinnum |= n;
-	//gi.dprintf ("ShowGun: %s index %0xh\n", heldmodel, n);
+	//DbgPrintf("ShowGun: %s index 0x%x\n", heldmodel, n);
 }
 // ### Hentai ### END
 
@@ -1120,7 +1123,8 @@ Drop_Weapon
 void Drop_Weapon (edict_t *ent, gitem_t *item)
 {
 	gitem_t *altitem = NULL;
-	int index, altindex;
+	int index;
+	int altindex = 0;
 
 	if ((int)(dmflags->value) & DF_WEAPONS_STAY)
 		return;
@@ -1242,7 +1246,8 @@ void Drop_Weapon (edict_t *ent, gitem_t *item)
 		altitem = &gI_weapon_fbfg;
 	// Get their indexes.
 	index = ITEM_INDEX (item);
-	altindex = ITEM_INDEX (altitem);
+	if (altitem)
+		altindex = ITEM_INDEX(altitem);
 
 	// Decrease their inventory of the dropped weapon.  If they have an equal
 	// number of the counterpart weapon, decrease that too.
@@ -1473,7 +1478,7 @@ GRENADES
 
 void weapon_grenade_fire (edict_t *ent, qboolean held)
 {
-	vec3_t	offset;
+	vec3_t	offset = { 0 };
 	vec3_t	forward, right;
 	vec3_t	start;
 	int		damage = 125;
@@ -1704,7 +1709,7 @@ GRENADE LAUNCHER
 
 void weapon_grenadelauncher_fire (edict_t *ent)
 {
-	vec3_t	offset;
+	vec3_t	offset = { 0 };
 	vec3_t	forward, right;
 	vec3_t	start;
 	int		damage = 120;
@@ -1792,7 +1797,7 @@ void Weapon_GrenadeLauncher (edict_t *ent)
 
 void weapon_bazooka_fire (edict_t *ent)
 {
-	vec3_t	offset;
+	vec3_t	offset = { 0 };
 	vec3_t	forward, right;
 	vec3_t	start;
 	int		damage = 120;
@@ -1897,7 +1902,8 @@ ROCKET
 
 void Weapon_RocketLauncher_Fire (edict_t *ent)
 {
-	vec3_t	offset, start;
+	vec3_t	offset = { 0 };
+	vec3_t	start;
 	vec3_t	forward, right;
 	int		damage;
 	float	damage_radius = 120;
@@ -1969,7 +1975,7 @@ void Blaster_Fire (edict_t *ent, vec3_t g_offset, int damage, qboolean hyper, in
 {
 	vec3_t	forward, right;
 	vec3_t	start;
-	vec3_t	offset;
+	vec3_t	offset = { 0 };
 
 	if (is_quad)
 		damage *= 4;
@@ -2039,7 +2045,7 @@ void Weapon_Blaster (edict_t *ent)
 void Weapon_HyperBlaster_Fire (edict_t *ent)
 {
 	float	rotation;
-	vec3_t	offset;
+	vec3_t	offset = { 0 };
 	int		effect;
 	int		damage;
 
@@ -2136,11 +2142,14 @@ void Machine_Fire (edict_t *ent)
 	int	i;
 	vec3_t		start;
 	vec3_t		forward, right;
-	vec3_t		angles;
+	vec3_t		angles = { 0 };
 	int			damage = 8;
 	int			kick = 2;
-	vec3_t		offset;
+	vec3_t		offset = { 0 };
 	int			mod;
+
+	if (!ent->client)
+		return;
 
 	if (!(ent->client->buttons & BUTTON_ATTACK) &&
 	((ent->client->burstfire_count > 2) ||
@@ -2260,7 +2269,6 @@ void Machine_Fire (edict_t *ent)
 	if (!ent->deadflag && ent->s.modelindex == 255)
 	{
 		// ### Hentai ### BEGIN
-
 		ent->client->anim_priority = ANIM_ATTACK;
 		if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
 		{
@@ -2272,7 +2280,6 @@ void Machine_Fire (edict_t *ent)
 			ent->s.frame = FRAME_attack1 - (int) (random()+0.25);
 			ent->client->anim_end = FRAME_attack8;
 		}
-
 		// ### Hentai ### END
 	}
 }
@@ -2287,11 +2294,15 @@ void Weapon_Machine (edict_t *ent)
 
 void Machinegun_Fire (edict_t *ent)
 {
-	vec3_t	offset, start;
+	vec3_t	offset = { 0 };
+	vec3_t	start;
 	vec3_t	forward, right;
 	int		damage;
 	float	damage_radius;
 	int		radius_damage;
+
+	if (!ent->client)
+		return;
 
 	damage = 15 + (int)(random() * 10.0);
 	radius_damage = 15 + (int)(random() * 10.0);
@@ -2377,10 +2388,13 @@ void Chaingun_Fire (edict_t *ent)
 	vec3_t		start;
 	vec3_t		forward, right, up;
 	float		r, u;
-	vec3_t		offset;
+	vec3_t		offset = { 0 };
 	int			damage;
 	int			kick = 2;
 	int			mod;
+
+	if (!ent->client)
+		return;
 
 	if (deathmatch->value)
 		damage = 6;
@@ -2543,10 +2557,13 @@ void ExplosiveChaingun_Fire (edict_t *ent)
 	vec3_t		start;
 	vec3_t		forward, right, up;
 	float		r, u;
-	vec3_t		offset;
+	vec3_t		offset = { 0 };
 	int			damage;
 	int			kick = 2;
 	int			mod;
+
+	if (!ent->client)
+		return;
 
 	if (deathmatch->value)
 		damage = 6;
@@ -2711,7 +2728,7 @@ void weapon_streetsweeper_fire (edict_t *ent)
 {
 	vec3_t		start;
 	vec3_t		forward, right;
-	vec3_t		offset;
+	vec3_t		offset = { 0 };
 	int			damage = 4;
 	int			kick = 8;
 	int			mod;
@@ -2874,7 +2891,7 @@ void weapon_explosivestreetsweeper_fire (edict_t *ent)
 {
 	vec3_t		start;
 	vec3_t		forward, right;
-	vec3_t		offset;
+	vec3_t		offset = { 0 };
 	int			damage = 4;
 	int			kick = 8;
 	int			mod;
@@ -3050,10 +3067,13 @@ void weapon_shotgun_fire (edict_t *ent)
 {
 	vec3_t		start;
 	vec3_t		forward, right;
-	vec3_t		offset;
+	vec3_t		offset = { 0 };
 	int			damage = 4;
 	int			kick = 8;
 	int			mod;
+
+	if (!ent->client)
+		return;
 
 	if (ent->client->ps.gunframe == 9)
 	{
@@ -3125,10 +3145,13 @@ void weapon_explosiveshotgun_fire (edict_t *ent)
 {
 	vec3_t		start;
 	vec3_t		forward, right;
-	vec3_t		offset;
+	vec3_t		offset = { 0 };
 	int			damage = 4;
 	int			kick = 8;
 	int			mod;
+
+	if (!ent->client)
+		return;
 
 	if (ent->client->ps.gunframe == 9)
 	{
@@ -3200,8 +3223,8 @@ void weapon_supershotgun_fire (edict_t *ent)
 {
 	vec3_t		start;
 	vec3_t		forward, right;
-	vec3_t		offset;
-	vec3_t		v;
+	vec3_t		offset = { 0 };
+	vec3_t		v = { 0 };
 	int			damage = 6;
 	int			kick = 100;
 	int			mod;
@@ -3265,8 +3288,8 @@ void weapon_explosivesupershotgun_fire (edict_t *ent)
 {
 	vec3_t		start;
 	vec3_t		forward, right;
-	vec3_t		offset;
-	vec3_t		v;
+	vec3_t		offset = { 0 };
+	vec3_t		v = { 0 };
 	int			damage = 6;
 	int			kick = 100;
 	int			mod;
@@ -3342,7 +3365,7 @@ void Sniper_Fire (edict_t *ent, vec3_t g_offset, int damage, qboolean hyper, int
 {
 	vec3_t	forward, right;
 	vec3_t	start;
-	vec3_t	offset;
+	vec3_t	offset = { 0 };
 
 	if (is_quad)
 		damage *= 4;
@@ -3408,7 +3431,7 @@ void weapon_railgun2_fire (edict_t *ent)
 {
 	vec3_t		start;
 	vec3_t		forward, right;
-	vec3_t		offset;
+	vec3_t		offset = { 0 };
 	int			damage;
 	int			kick;
 
@@ -3461,7 +3484,7 @@ void weapon_sonicrailgun_fire (edict_t *ent)
 {
 	vec3_t		start;
 	vec3_t		forward, right;
-	vec3_t		offset;
+	vec3_t		offset = { 0 };
 	int			kick = 0;
 
 	AngleVectors (ent->client->v_angle, forward, right, NULL);
@@ -3536,10 +3559,14 @@ BFG10K
 
 void weapon_bfg_fire (edict_t *ent)
 {
-	vec3_t	offset, start;
+	vec3_t	offset = { 0 };
+	vec3_t	start = { 0 };
 	vec3_t	forward, right;
 	int		damage;
 	float	damage_radius = 1000;
+
+	if (!ent->client)
+		return;
 
 	if (deathmatch->value)
 		damage = 200;
@@ -3611,8 +3638,10 @@ JDB: Modified 5/4/98 Called by ClientThink =================*/
 void Think_Airstrike (edict_t *ent)
 { 
 	
-	vec3_t  start, forward;
-	vec3_t  end, targetdir;//, finalTargetdir;   
+	vec3_t	start = { 0 };
+	vec3_t  forward;
+	vec3_t  end;
+	vec3_t	targetdir = { 0 };
 	trace_t tr;
 	trace_t tr_2;       // find the target point
 	int		i, j;

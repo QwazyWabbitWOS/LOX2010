@@ -169,7 +169,7 @@ void InitGame (void)
 	_CrtMemCheckpoint(&startup1);
 #endif
 
-	gi.dprintf ("==== InitGame (LOX "VERSION" "__DATE__") ====\n");
+	gi.dprintf ("==== InitGame (LOX %s %s %s) ====\n", VERSION, BUILD, __DATE__);
 	gi.dprintf (loxbanner);
 	version = gi.cvar ("version", "", CVAR_NOSET);
 	if (version)
@@ -230,6 +230,7 @@ void InitGame (void)
 	needpass = gi.cvar ("needpass", "0", CVAR_SERVERINFO);
 	filterban = gi.cvar ("filterban", "1", 0);
 	scoreboardtime = gi.cvar ("scoreboardtime", "15", 0);
+	cycle_always = gi.cvar("cycle_always", "0", 0);
 
 	g_select_empty = gi.cvar ("g_select_empty", "0", CVAR_ARCHIVE);
 
@@ -327,6 +328,8 @@ void InitGame (void)
 
 	// items
 	InitItems();
+
+	flashlightmode = gi.cvar("flashlightmode", "0", 0);
 
 	Com_sprintf (game.helpmessage1, sizeof(game.helpmessage1), "");
 	Com_sprintf (game.helpmessage2, sizeof(game.helpmessage2), "");
@@ -492,7 +495,7 @@ void UpdateBans (void)
 		respawn_protect->modified = false;
 	}
 
-//	STOP_PERFORMANCE_TIMER(__func__);
+	//STOP_PERFORMANCE_TIMER
 }
 
 //=========================================================

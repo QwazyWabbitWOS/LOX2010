@@ -379,7 +379,7 @@ void Turret_Think (edict_t *ent)
 	if (ent->enemy == NULL && owner != NULL)
 		ent->enemy = owner;
 
-	//	STOP_PERFORMANCE_TIMER(__func__);
+		//STOP_PERFORMANCE_TIMER
 }
 
 void Turret_Fire (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int speed, float damage_radius)

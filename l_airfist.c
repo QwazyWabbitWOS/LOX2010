@@ -206,6 +206,9 @@ void weapon_airfist_fire(edict_t* ent)
 	int		kick = 8;
 	//int	num_traces;
 
+	if (!ent || !ent->client)
+		return;
+
 	if (ent->client->ps.gunframe == 12)
 	{
 		if (ent->client->buttons & BUTTON_ATTACK)

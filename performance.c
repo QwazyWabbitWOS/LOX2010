@@ -21,12 +21,12 @@
 LARGE_INTEGER start;
 double totalTime = 0;
 
-void _START_PERFORMANCE_TIMER (void)
+void _START_PERFORMANCE_TIMER(void)
 {
-	QueryPerformanceCounter (&start);
+	QueryPerformanceCounter(&start);
 }
 
-void _STOP_PERFORMANCE_TIMER (char* str)
+void _STOP_PERFORMANCE_TIMER(char* str)
 {
 	double res;
 	LARGE_INTEGER stop;
@@ -34,12 +34,12 @@ void _STOP_PERFORMANCE_TIMER (char* str)
 	LARGE_INTEGER freq;
 	char string[64];
 
-	QueryPerformanceCounter (&stop);
-	QueryPerformanceFrequency (&freq);
+	QueryPerformanceCounter(&stop);
+	QueryPerformanceFrequency(&freq);
 	diff = stop.QuadPart - start.QuadPart;
 	res = ((double)((double)diff / (double)freq.QuadPart));
 	Com_sprintf(string, sizeof string,
-		"%s executed in %.6f secs.\n", str, res);
+		"%s executed in %.9f secs.\n", str, res);
 	OutputDebugString(string);
 	//	Com_Printf (string);
 	totalTime += res;
@@ -49,28 +49,29 @@ void _STOP_PERFORMANCE_TIMER (char* str)
 
 
 //QW//
-/* Use this function to trace execution or whatever.
- This improves upon OutputDebugString a bit
- to allow var_args instead of static text.
- Outputs to the debugger and allows
- us to write: DbgPrintf("%s was called.\n", __func__);
- Use Quake 2's gi.dprintf to output to the Quake 2 console.
- In Linux, this function becomes a call to gi.dprintf but
- it outputs only if developer cvar is set.
- */
-void DbgPrintf (char *msg, ...)
+/*
+Use this function to trace execution or whatever.
+This improves upon OutputDebugString a bit to allow var_args instead of static text.
+Outputs to the debugger. WinDbg or VS.
+Uses Quake 2's gi.dprintf to output to the Quake 2 console.
+*/
+void DbgPrintf(char* msg, ...)
 {
-	va_list	argptr;
-	char	text[1024];
+	//To use: DbgPrintf("%s was called.\n", __func__);
+	//In Linux, this function becomes a call to gi.dprintf but
+	//it outputs only if developer cvar is set.
 
-	va_start (argptr, msg);
-	vsnprintf (text, sizeof(text), msg, argptr);
-	va_end (argptr);
+	va_list	argptr;
+	char	text[1024];//QW// keep within protocol limits
+
+	va_start(argptr, msg);
+	vsnprintf(text, sizeof(text), msg, argptr);
+	va_end(argptr);
 
 #if defined _WIN32
 	OutputDebugString(text);
 #else // Not WIN32
-	  	if(developer->value)
+	if (developer->value)
 		gi.dprintf(text);
 #endif /* _WIN32 */
 }

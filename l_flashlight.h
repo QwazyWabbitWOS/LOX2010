@@ -1,11 +1,9 @@
 //
-// Public declarations for flashlight functions
+// Public declarations of flashlight functions
 //
-#ifndef FLASHLIGHT_H
-#define FLASHLIGHT_H
+#pragma once
 
+void Cmd_Flashlight(edict_t* ent);
 void Use_Flashlight (edict_t *player);
 void flashlight_think (edict_t *self);
-void nightmareResetFlashlight (edict_t *self);
-
-#endif
+void FlashlightReset (edict_t *self);
