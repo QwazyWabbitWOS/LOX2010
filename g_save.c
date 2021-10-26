@@ -366,8 +366,6 @@ void InitGame (void)
 * The original game only used 16 bits or so of integer values for bitmasks like dmflags.
 * Larger mods like LOX extended the idea to 32 bits but floats break fidelity
 * at 25 bits, a float of 16777216.000000 or int value of 16777217 (0x01000001).
-* Using double for values would have been a wiser choice in the long
-* run but when Q2 was designed I don't think the hardware was up for it.
 * 
 * Large values of floats don't map properly to bitmap banning so we convert the strings
 * to unsigned long here so we can use them later.
@@ -391,7 +389,7 @@ void InitGame (void)
 void UpdateBans (void)
 {
 
-//	START_PERFORMANCE_TIMER;
+	//START_PERFORMANCE_TIMER;
 
 	if (weaponban->modified || initialization) 
 	{

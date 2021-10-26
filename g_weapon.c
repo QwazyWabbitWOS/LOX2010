@@ -287,15 +287,16 @@ void check_dodge (edict_t *self, vec3_t start, vec3_t dir, int speed)
 
 
 //=================
-// fire_hit //
-//
 // Used for all impact (hit/punch/slash) attacks
 //=================
 qboolean fire_hit (edict_t *self, vec3_t aim, int damage, int kick)
 {
 	trace_t		tr;
-	vec3_t		forward, right, up, v, point, dir;
-	float		range;
+	vec3_t		forward, right, up;
+	vec3_t		v = { 0 };
+	vec3_t		point;
+	float		range = 0;
+	vec3_t		dir = { 0 };
 	
 	//see if enemy is in range
 	VectorSubtract (self->enemy->s.origin, self->s.origin, dir);
@@ -1558,7 +1559,7 @@ void bfg_think (edict_t *self)
 				gi.WriteByte (4);
 				gi.WritePosition (tr.endpos);
 				gi.WriteDir (tr.plane.normal);
-				gi.WriteByte (self->s.skinnum);
+				gi.WriteByte (self->s.skinnum & 255);
 				gi.multicast (tr.endpos, MULTICAST_PVS);
 				break;
 			}

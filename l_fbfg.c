@@ -184,7 +184,7 @@ void fbfg_think (edict_t *self)
 				gi.WriteByte (4);
 				gi.WritePosition (tr.endpos);
 				gi.WriteDir (tr.plane.normal);
-				gi.WriteByte (self->s.skinnum);
+				gi.WriteByte (self->s.skinnum & 255);
 				gi.multicast (tr.endpos, MULTICAST_PVS);
 				break;
 			}

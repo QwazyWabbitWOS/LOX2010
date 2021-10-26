@@ -73,8 +73,6 @@ void SV_CheckVelocity (edict_t *ent)
 
 /*
 =============
-SV_RunThink
-
 Runs thinking code for this frame if necessary
 =============
 */
@@ -391,8 +389,6 @@ edict_t	*obstacle;
 
 /*
 ============
-SV_Push
-
 Objects need to be moved back on a failed push,
 otherwise riders would continue to slide.
 ============
@@ -553,8 +549,6 @@ qboolean SV_Push (edict_t *pusher, vec3_t move, vec3_t amove)
 
 /*
 ================
-SV_Physics_Pusher
-
 Bmodel objects don't interact with each other, but
 push all box objects
 ================
@@ -680,6 +674,8 @@ void SV_Physics_Toss (edict_t *ent)
 
 	// regular thinking
 	SV_RunThink (ent);
+	if (!ent->inuse)
+		return;
 
 	// if not a team captain, so movement will be handled elsewhere
 	if ( ent->flags & FL_TEAMSLAVE)

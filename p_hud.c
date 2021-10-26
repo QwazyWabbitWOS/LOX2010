@@ -201,7 +201,6 @@ void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 	gclient_t	*cl;
 	edict_t		*cl_ent;
 	char	*tag;
-	int		time_in;
 	
 	// sort the clients by score
 	total = 0;
@@ -240,18 +239,18 @@ void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 		cl = &game.clients[sorted[i]];
 		cl_ent = g_edicts + 1 + sorted[i];
 		//picnum = gi.imageindex ("i_fixme");
-		x = (i >= 6) ? 160 : 0;
-		y = 32 + 32 * (i % 6); // dogtag is 32 units high
+		x = (i >= 6) ? 160 : 0; // column selector
+		y = 32 + 32 * (i % 6);  // dogtag is 32 units high
 		
 		// add a dogtag
 		if (cl_ent == ent)
-			tag = "tag1";
+			tag = "tag1"; // victim
 		else if (cl_ent == killer)
-			tag = "tag2";
+			tag = "tag2"; // victor
 		else
-			tag = NULL;
+			tag = NULL; // transparent for others
 		
-		if (tag)
+		if (tag)// they're tagged so show the plates
 		{
 			Com_sprintf (entry, sizeof(entry),
 				"xv %i yv %i picn %s ", x+32, y, tag);
@@ -262,7 +261,7 @@ void DM_CreateScoreboard(edict_t *ent, edict_t *killer, char *string)
 			stringlength += j;
 		}
 		
-		time_in = level.framenum - cl->resp.enterframe;
+		 int time_in = level.framenum - cl->resp.enterframe;
 		
 		// send the layout
 		Com_sprintf (entry, sizeof(entry),
