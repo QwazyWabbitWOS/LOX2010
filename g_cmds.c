@@ -3297,8 +3297,8 @@ void Cmd_Players_f (edict_t *ent)
 	int		i;
 	int		count;
 	char	small[64];
-	char	large[1280] = { 0 };
-	int		index[256] = { 0 };
+	char	large[1280] = { 0 }; //QW appears to be an arbitrary max message size
+	int		index[MAX_CLIENTS] = { 0 };
 
 	count = 0;
 	for (i = 0 ; i < maxclients->value ; i++)
