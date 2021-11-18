@@ -2251,7 +2251,7 @@ qboolean isvisible (edict_t *self, edict_t *other);
 
 
 qboolean Pickup_Health (edict_t *ent, edict_t *other);
-qboolean	Pickup_Weapon (edict_t *ent, edict_t *other);
+qboolean Pickup_Weapon (edict_t *ent, edict_t *other);
 qboolean Pickup_Powerup (edict_t *ent, edict_t *other);
 qboolean Pickup_Adrenaline (edict_t *ent, edict_t *other);
 qboolean Pickup_AncientHead (edict_t *ent, edict_t *other);
@@ -2260,6 +2260,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other);
 qboolean Pickup_Key (edict_t *ent, edict_t *other);
 qboolean Pickup_Ammo (edict_t *ent, edict_t *other);
 qboolean Pickup_Armor (edict_t *ent, edict_t *other);
+qboolean ZbotCheck(edict_t* ent, usercmd_t* ucmd);
 void SpawnDamage (int type, vec3_t origin, vec3_t normal, int damage);
 void NoAmmoWeaponChange (edict_t *ent);
 void Cmd_Kill_f(edict_t *ent);
@@ -2268,7 +2269,6 @@ void Cmd_Rangefinder(edict_t *ent);
 void Cmd_Height(edict_t *ent);
 void SV_AddBlend (float r, float g, float b, float a, float *v_blend);
 void Cmd_FeignDeath(edict_t *self);
-qboolean ZbotCheck(edict_t *ent, usercmd_t *ucmd);
 
 // CCH: new prototype for function called when airstrike arrives
 void Think_Airstrike (edict_t *ent);
