@@ -97,8 +97,8 @@ void turret_breach_fire (edict_t *self)
 void turret_breach_think (edict_t *self)
 {
 	edict_t	*ent;
-	vec3_t	current_angles;
-	vec3_t	delta;
+	vec3_t	current_angles = { 0 };
+	vec3_t	delta = { 0 };
 
 	VectorCopy (self->s.angles, current_angles);
 	AnglesNormalize(current_angles);
@@ -166,8 +166,8 @@ void turret_breach_think (edict_t *self)
 		float	angle;
 		float	target_z;
 		float	diff;
-		vec3_t	target;
-		vec3_t	dir;
+		vec3_t	target = { 0 };
+		vec3_t	dir = { 0 };
 
 		// angular is easy, just copy ours
 		self->owner->avelocity[0] = self->avelocity[0];
@@ -300,8 +300,8 @@ qboolean FindTarget (edict_t *self);
 
 void turret_driver_think (edict_t *self)
 {
-	vec3_t	target;
-	vec3_t	dir;
+	vec3_t	target = { 0 };
+	vec3_t	dir = { 0 };
 	float	reaction_time;
 
 	self->nextthink = level.time + FRAMETIME;
@@ -356,7 +356,7 @@ void turret_driver_think (edict_t *self)
 
 void turret_driver_link (edict_t *self)
 {
-	vec3_t	vec;
+	vec3_t	vec = { 0 };
 	edict_t	*ent;
 
 	self->think = turret_driver_think;

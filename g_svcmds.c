@@ -2,25 +2,25 @@
 #include "g_local.h"
 #include "g_team.h"
 
-void Svcmd_Survey_f (void);
+void Svcmd_Survey_f(void);
 
-void	Svcmd_Test_f (void)
+void	Svcmd_Test_f(void)
 {
-	gi.cprintf (NULL, PRINT_HIGH, "Svcmd_Test_f()\n");
+	gi.cprintf(NULL, PRINT_HIGH, "Svcmd_Test_f()\n");
 }
 
-void SVCmd_Stifle_f (void);
+void SVCmd_Stifle_f(void);
 
-void	SVCmd_Stifle_f (void)
+void	SVCmd_Stifle_f(void)
 {
-	gi.cprintf (NULL, PRINT_HIGH, "SVCmd_Stifle_f()\n");
+	gi.cprintf(NULL, PRINT_HIGH, "SVCmd_Stifle_f()\n");
 }
 
 /*
 ==============================================================================
 
 PACKET FILTERING
- 
+
 
 You can add or remove addresses from the filter list with:
 
@@ -38,8 +38,8 @@ listip
 Prints the current list of filters.
 
 writeip
-Dumps "addip <ip>" commands to listip.cfg so it can be execed at a later date.  
-The filter lists are not saved and restored by default, because I 
+Dumps "addip <ip>" commands to listip.cfg so it can be execed at a later date.
+The filter lists are not saved and restored by default, because I
 believe it would cause too much confusion.
 
 filterban <0 or 1>
@@ -74,13 +74,13 @@ x.x.x.x/y
 Omitting digits in the addr or mask automatically implies 0 there.
 =================
 */
-qboolean StringToFilter (char *s, ipfilter_t *f)
+qboolean StringToFilter(char* s, ipfilter_t* f)
 {
-	char	num[128];
+	char	num[128] = { 0 };
 	int		i, j;
 	byte	b[4] = { 0 };
 	byte	m[4] = { 255 };
-	
+
 	for (i = 0; i < 4; i++)
 	{
 		if (*s < '0' || *s > '9')
@@ -88,7 +88,7 @@ qboolean StringToFilter (char *s, ipfilter_t *f)
 			gi.cprintf(NULL, PRINT_HIGH, "Bad filter address: %s\n", s);
 			return false;
 		}
-		
+
 		j = 0;
 		while (*s >= '0' && *s <= '9')
 		{
@@ -105,7 +105,7 @@ qboolean StringToFilter (char *s, ipfilter_t *f)
 		}
 		s++;
 	}
-	
+
 	memcpy(&f->mask, m, sizeof f->mask);
 	memcpy(&f->compare, b, sizeof f->compare);
 
@@ -117,12 +117,12 @@ qboolean StringToFilter (char *s, ipfilter_t *f)
 SV_FilterPacket
 =================
 */
-qboolean SV_FilterPacket (char *from)
+qboolean SV_FilterPacket(char* from)
 {
 	int		i;
 	unsigned	in;
 	byte m[4] = { 0 };
-	char *p;
+	char* p;
 
 	i = 0;
 	p = from;
@@ -131,7 +131,7 @@ qboolean SV_FilterPacket (char *from)
 		m[i] = 0;
 		while (*p >= '0' && *p <= '9')
 		{
-			m[i] = m[i]*10 + (*p - '0');
+			m[i] = m[i] * 10 + (*p - '0');
 			p++;
 		}
 		if (!*p || *p == ':')
@@ -139,7 +139,7 @@ qboolean SV_FilterPacket (char *from)
 		i++;
 		p++;
 	}
-	
+
 	memcpy(&in, m, sizeof in);
 
 	for (i = 0; i < numipfilters; i++)
@@ -155,19 +155,19 @@ qboolean SV_FilterPacket (char *from)
 SV_AddIP_f
 =================
 */
-static void addIP (ipfilter_t ip)
+static void addIP(ipfilter_t ip)
 {
 	if (numipfilters == MAX_IPFILTERS)
 	{
-		gi.cprintf (NULL, PRINT_HIGH, "IP filter list is full\n");
+		gi.cprintf(NULL, PRINT_HIGH, "IP filter list is full\n");
 		return;
 	}
-	
+
 	ipfilters[numipfilters] = ip;
 	numipfilters++;
 }
 
-static void SVCmd_AddIP_f (void)
+static void SVCmd_AddIP_f(void)
 {
 	int i;
 	ipfilter_t ipAddr;
@@ -179,8 +179,8 @@ static void SVCmd_AddIP_f (void)
 	}
 
 	for (i = 2; i < gi.argc(); i++)
-		if (StringToFilter (gi.argv (i), &ipAddr))
-			addIP (ipAddr);
+		if (StringToFilter(gi.argv(i), &ipAddr))
+			addIP(ipAddr);
 }
 
 /*
@@ -188,21 +188,21 @@ static void SVCmd_AddIP_f (void)
 SV_RemoveIP_f
 =================
 */
-static void SVCmd_RemoveIP_f (void)
+static void SVCmd_RemoveIP_f(void)
 {
 	ipfilter_t	f;
 	int			i;
-	
+
 	if (gi.argc() < 3)
 	{
 		gi.cprintf(NULL, PRINT_HIGH, "Usage:  sv removeip <ip-mask>\n");
 		return;
 	}
-	
-	if (!StringToFilter (gi.argv(2), &f))
+
+	if (!StringToFilter(gi.argv(2), &f))
 		return;
-	
-	for (i=0 ; i<numipfilters ; i++)
+
+	for (i = 0; i < numipfilters; i++)
 	{
 		if (ipfilters[i].mask == f.mask
 			&& ipfilters[i].compare == f.compare)
@@ -210,11 +210,11 @@ static void SVCmd_RemoveIP_f (void)
 			if (numipfilters > 0)
 				ipfilters[i] = ipfilters[numipfilters - 1];
 			numipfilters--;
-			gi.cprintf (NULL, PRINT_HIGH, "Removed.\n");
+			gi.cprintf(NULL, PRINT_HIGH, "Removed.\n");
 			return;
 		}
 	}
-	gi.cprintf (NULL, PRINT_HIGH, "Didn't find %s.\n", gi.argv(2));
+	gi.cprintf(NULL, PRINT_HIGH, "Didn't find %s.\n", gi.argv(2));
 }
 
 /*
@@ -222,19 +222,19 @@ static void SVCmd_RemoveIP_f (void)
 SV_ListIP_f
 =================
 */
-static void SVCmd_ListIP_f (void)
+static void SVCmd_ListIP_f(void)
 {
 	int		i, j;
 	byte	b[4] = { 0 };
 
-	gi.cprintf (NULL, PRINT_HIGH, "Filter list:\n");
+	gi.cprintf(NULL, PRINT_HIGH, "Filter list:\n");
 	for (i = 0; i < numipfilters; i++)
 	{
 		for (j = 0; j < sizeof b; j++)
-		{	
+		{
 			b[j] = (ipfilters[i].compare >> (j * 8)) & 0xff;
 		}
-		gi.cprintf (NULL, PRINT_HIGH, "%3i.%3i.%3i.%3i\n", b[0], b[1], b[2], b[3]);
+		gi.cprintf(NULL, PRINT_HIGH, "%3i.%3i.%3i.%3i\n", b[0], b[1], b[2], b[3]);
 	}
 }
 
@@ -243,86 +243,86 @@ static void SVCmd_ListIP_f (void)
 SV_WriteIP_f
 =================
 */
-static void SVCmd_WriteIP_f (void)
+static void SVCmd_WriteIP_f(void)
 {
-	FILE	*f;
+	FILE* f;
 	char	name[MAX_OSPATH];
-	byte	b[4];
+	byte	b[4] = { 0 };
 	int		i, j;
 
 	if (gamedir->string && gamedir->string[0])
-		sprintf (name, "./%s/listip.cfg", gamedir->string);
+		sprintf(name, "./%s/listip.cfg", gamedir->string);
 	else
-		sprintf (name, "./listip.cfg");
+		sprintf(name, "./listip.cfg");
 
-	gi.cprintf (NULL, PRINT_HIGH, "Writing %s.\n", name);
+	gi.cprintf(NULL, PRINT_HIGH, "Writing %s.\n", name);
 
-	f = fopen (name, "wb");
+	f = fopen(name, "wb");
 	if (!f)
 	{
-		gi.cprintf (NULL, PRINT_HIGH, "Couldn't open %s\n", name);
+		gi.cprintf(NULL, PRINT_HIGH, "Couldn't open %s\n", name);
 		return;
 	}
-	
+
 	fprintf(f, "set filterban %d\n", (int)filterban->value);
 
 	for (i = 0; i < numipfilters; i++)
 	{
 		for (j = 0; j < sizeof b; j++)
-		{	
+		{
 			b[j] = (ipfilters[i].compare >> (j * 8)) & 0xff;
 		}
-		fprintf (f, "sv addip %u.%u.%u.%u\n", b[0], b[1], b[2], b[3]);
+		fprintf(f, "sv addip %u.%u.%u.%u\n", b[0], b[1], b[2], b[3]);
 	}
-	
-	fclose (f);
+
+	fclose(f);
 }
 
 
 // Used to survey parts of the map (usually bases).
-void Svcmd_Survey_f (void)
+void Svcmd_Survey_f(void)
 {
 	int x, y;
 	trace_t tr;
-	vec3_t mins, maxs;
-	FILE *out;
-	vec3_t start, end;
-	vec3_t lookto, lookvec, lookangs;
+	vec3_t mins = { 0 }, maxs = { 0 };
+	FILE* out;
+	vec3_t start = { 0 }, end = { 0 };
+	vec3_t lookto = { 0 }, lookvec = { 0 }, lookangs;
 
-	out = fopen ("survey.txt", "wt");
+	out = fopen("survey.txt", "wt");
 	if (!out)
 	{
-		gi.cprintf (NULL, PRINT_HIGH, "Couldn't open survey.txt\n");
+		gi.cprintf(NULL, PRINT_HIGH, "Couldn't open survey.txt\n");
 		return;
 	}
 
-	VectorSet (mins, -32, -32, -24);
-	VectorSet (maxs, 32, 32, -24);
+	VectorSet(mins, -32, -32, -24);
+	VectorSet(maxs, 32, 32, -24);
 
 	for (y = -319; y <= 127; y += 50)
 	{
 		for (x = -511; x <= 319; x += 50)
 		{
-			VectorSet (start, x, y, (126 + 24));
-			VectorSet (end, x, y, -1);
-			VectorSet (lookto, -127,-352, 0);
+			VectorSet(start, x, y, (126 + 24));
+			VectorSet(end, x, y, -1);
+			VectorSet(lookto, -127, -352, 0);
 
-			tr = gi.trace (start, mins, maxs, end, NULL, MASK_SOLID);
+			tr = gi.trace(start, mins, maxs, end, NULL, MASK_SOLID);
 
 			if (tr.allsolid || tr.startsolid)
 				continue;
 			if ((int)tr.endpos[2] != 24)
 				continue;
 
-			VectorSubtract (lookto, tr.endpos, lookvec);
-			vectoangles (lookvec, lookangs);
+			VectorSubtract(lookto, tr.endpos, lookvec);
+			vectoangles(lookvec, lookangs);
 
-			fprintf (out, "{\n");
-			fprintf (out, "\"classname\" \"info_player_team1\"\n");
-			fprintf (out, "\"origin\" \"%i %i %i\"\n",
+			fprintf(out, "{\n");
+			fprintf(out, "\"classname\" \"info_player_team1\"\n");
+			fprintf(out, "\"origin\" \"%i %i %i\"\n",
 				(int)tr.endpos[0], (int)tr.endpos[1], (int)tr.endpos[2]);
-			fprintf (out, "\"angle\" \"%i\"\n", (int)lookangs[YAW]);
-			fprintf (out, "}\n");
+			fprintf(out, "\"angle\" \"%i\"\n", (int)lookangs[YAW]);
+			fprintf(out, "}\n");
 		}
 	}
 
@@ -330,31 +330,31 @@ void Svcmd_Survey_f (void)
 	{
 		for (x = 1920; x <= 2687; x += 50)
 		{
-			VectorSet (start, x, y, (-65 + 24));
-			VectorSet (end, x, y, -256);
-			VectorSet (lookto, 2112, 1503, -255);
+			VectorSet(start, x, y, (-65 + 24));
+			VectorSet(end, x, y, -256);
+			VectorSet(lookto, 2112, 1503, -255);
 
-			tr = gi.trace (start, mins, maxs, end, NULL, MASK_SOLID);
+			tr = gi.trace(start, mins, maxs, end, NULL, MASK_SOLID);
 
 			if (tr.allsolid || tr.startsolid)
 				continue;
 			if ((int)tr.endpos[2] != -231)
 				continue;
 
-			VectorSubtract (lookto, tr.endpos, lookvec);
-			vectoangles (lookvec, lookangs);
+			VectorSubtract(lookto, tr.endpos, lookvec);
+			vectoangles(lookvec, lookangs);
 
-			fprintf (out, "{\n");
-			fprintf (out, "\"classname\" \"info_player_team2\"\n");
-			fprintf (out, "\"origin\" \"%i %i %i\"\n",
+			fprintf(out, "{\n");
+			fprintf(out, "\"classname\" \"info_player_team2\"\n");
+			fprintf(out, "\"origin\" \"%i %i %i\"\n",
 				(int)tr.endpos[0], (int)tr.endpos[1], (int)tr.endpos[2]);
-			fprintf (out, "\"angle\" \"%i\"\n", (int)lookangs[YAW]);
-			fprintf (out, "}\n");
+			fprintf(out, "\"angle\" \"%i\"\n", (int)lookangs[YAW]);
+			fprintf(out, "}\n");
 		}
 	}
 
-	gi.cprintf (NULL, PRINT_HIGH, "Survey done.\n");
-	fclose (out);
+	gi.cprintf(NULL, PRINT_HIGH, "Survey done.\n");
+	fclose(out);
 }
 
 
@@ -363,18 +363,18 @@ void Svcmd_Survey_f (void)
 SVCmd_KickBan_f
 =================
 */
-static void SVCmd_KickBan_f (void)
+static void SVCmd_KickBan_f(void)
 {
 	int i;
-	edict_t *ent;
-	
+	edict_t* ent;
+
 	if (gi.argc() != 3)
 	{
-		gi.cprintf (NULL, PRINT_HIGH, "Usage: kickban <player#>\n");
+		gi.cprintf(NULL, PRINT_HIGH, "Usage: kickban <player#>\n");
 		return;
 	}
 
-	i = atoi (gi.argv (2));
+	i = atoi(gi.argv(2));
 	if (i >= 0 && i < (int)maxclients->value)
 	{
 		ent = g_edicts + i + 1;
@@ -385,11 +385,11 @@ static void SVCmd_KickBan_f (void)
 			// Ban them from the server.
 			ipAddr.compare = ent->client->pers.ipAddr;
 			ipAddr.mask = 0xffffffff;
-			addIP (ipAddr);
+			addIP(ipAddr);
 
 			// Now kick them.
-			gi.AddCommandString (va ("kick %d\n", i));
-			stuffcmd (ent, "disconnect\n");
+			gi.AddCommandString(va("kick %d\n", i));
+			stuffcmd(ent, "disconnect\n");
 		}
 	}
 }
@@ -400,57 +400,57 @@ static void SVCmd_KickBan_f (void)
 SVCmd_Team_f
 =================
 */
-static void SVCmd_Team_f (void)
+static void SVCmd_Team_f(void)
 {
 	int team;
 	int i;
-	edict_t *ent;
+	edict_t* ent;
 
 	if (!ctf->value)
 		return;
-	
+
 	if (gi.argc() != 4)
 	{
-		gi.cprintf (NULL, PRINT_HIGH, "Usage: team <red/blue/none> <player#>\n");
+		gi.cprintf(NULL, PRINT_HIGH, "Usage: team <red/blue/none> <player#>\n");
 		return;
 	}
 
-	if (Q_stricmp (gi.argv (2), "red") == 0)
+	if (Q_stricmp(gi.argv(2), "red") == 0)
 		team = CTF_TEAM1;
-	else if (Q_stricmp (gi.argv (2), "blue") == 0)
+	else if (Q_stricmp(gi.argv(2), "blue") == 0)
 		team = CTF_TEAM2;
-	else if (Q_stricmp (gi.argv (2), "none") == 0)
+	else if (Q_stricmp(gi.argv(2), "none") == 0)
 		team = CTF_NOTEAM;
 	else
 	{
-		gi.cprintf (NULL, PRINT_HIGH, "Unknown team: %s\n", gi.argv (2));
+		gi.cprintf(NULL, PRINT_HIGH, "Unknown team: %s\n", gi.argv(2));
 		return;
 	}
 
-	i = atoi (gi.argv (3));
+	i = atoi(gi.argv(3));
 	if (i >= 0 && i < (int)maxclients->value)
 	{
 		ent = g_edicts + i + 1;
 		if (ent->inuse && ent->client)
 		{
 			// Forcibly alter their team.
-			CTFSetTeam (ent, team);
+			CTFSetTeam(ent, team);
 		}
 	}
 }
 
 
-static void SVCmd_PlaySound_f (void)
+static void SVCmd_PlaySound_f(void)
 {
 	if (gi.argc() != 3)
 	{
-		gi.cprintf (NULL, PRINT_HIGH, "Usage: playsound <filename>\n");
+		gi.cprintf(NULL, PRINT_HIGH, "Usage: playsound <filename>\n");
 		return;
 	}
 
 	// Play the sound they want.
-	gi.sound (world, CHAN_SONG+CHAN_RELIABLE+CHAN_NO_PHS_ADD,
-		gi.soundindex (gi.argv (2)), 1, ATTN_NONE, 0);
+	gi.sound(world, CHAN_SONG + CHAN_RELIABLE + CHAN_NO_PHS_ADD,
+		gi.soundindex(gi.argv(2)), 1, ATTN_NONE, 0);
 }
 
 /*
@@ -462,32 +462,32 @@ The game can issue gi.argc() / gi.argv() commands to get the rest
 of the parameters
 =================
 */
-void	ServerCommand (void)
+void	ServerCommand(void)
 {
-	char	*cmd;
+	char* cmd;
 
 	cmd = gi.argv(1);
-	if (Q_stricmp (cmd, "addip") == 0)
-		SVCmd_AddIP_f ();
-	else if (Q_stricmp (cmd, "kickban") == 0)
-		SVCmd_KickBan_f ();
-	else if (Q_stricmp (cmd, "listip") == 0)
-		SVCmd_ListIP_f ();
-	else if (Q_stricmp (cmd, "playsound") == 0)
+	if (Q_stricmp(cmd, "addip") == 0)
+		SVCmd_AddIP_f();
+	else if (Q_stricmp(cmd, "kickban") == 0)
+		SVCmd_KickBan_f();
+	else if (Q_stricmp(cmd, "listip") == 0)
+		SVCmd_ListIP_f();
+	else if (Q_stricmp(cmd, "playsound") == 0)
 		SVCmd_PlaySound_f();
-	else if (Q_stricmp (cmd, "removeip") == 0)
-		SVCmd_RemoveIP_f ();
-	else if (Q_stricmp (cmd, "stifle") == 0)
-		SVCmd_Stifle_f ();
-	else if (Q_stricmp (cmd, "survey") == 0)
+	else if (Q_stricmp(cmd, "removeip") == 0)
+		SVCmd_RemoveIP_f();
+	else if (Q_stricmp(cmd, "stifle") == 0)
+		SVCmd_Stifle_f();
+	else if (Q_stricmp(cmd, "survey") == 0)
 		Svcmd_Survey_f();
-	else if (Q_stricmp (cmd, "team") == 0)
+	else if (Q_stricmp(cmd, "team") == 0)
 		SVCmd_Team_f();
-	else if (Q_stricmp (cmd, "test") == 0)
+	else if (Q_stricmp(cmd, "test") == 0)
 		Svcmd_Test_f();
-	else if (Q_stricmp (cmd, "writeip") == 0)
-		SVCmd_WriteIP_f ();
+	else if (Q_stricmp(cmd, "writeip") == 0)
+		SVCmd_WriteIP_f();
 	else
-		gi.cprintf (NULL, PRINT_HIGH, "Unknown server command \"%s\"\n", cmd);
+		gi.cprintf(NULL, PRINT_HIGH, "Unknown server command \"%s\"\n", cmd);
 }
 

@@ -6,8 +6,8 @@
 static char* ReadEntFile(char* filename)
 {
 
-	FILE*	fp;
-	char*	filestring = NULL;
+	FILE* fp;
+	char* filestring = NULL;
 	long int	i = 0;
 	int		ch;
 
@@ -34,12 +34,12 @@ static char* ReadEntFile(char* filename)
 }
 
 /* Look for a .ent file matching the map name.
-   Load it if it exists. 
+   Load it if it exists.
  */
 char* LoadEntFile(char* mapname, char* entities)
 {
 	char	entfilename[MAX_QPATH] = "";
-	char*	newentities;
+	char* newentities;
 
 	Com_sprintf(entfilename, sizeof entfilename, "%s/entfiles/%s.ent", gamedir->string, mapname);
 	// convert string to all lowercase 

@@ -36,10 +36,10 @@ return true once, following returns will be false.
 #define ZBOT_JITTERTIME	10
 #define ZBOT_JITTERMOVE 500
 
-qboolean ZbotCheck(edict_t *ent, usercmd_t *ucmd)
+qboolean ZbotCheck(edict_t* ent, usercmd_t* ucmd)
 {
 	int tog0, tog1;
-	client_respawn_t *resp = &ent->client->resp;
+	client_respawn_t* resp = &ent->client->resp;
 
 	if (!zbot_check->value)
 	{

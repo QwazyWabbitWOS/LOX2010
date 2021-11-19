@@ -15,7 +15,7 @@
 // darKMajick definitions
 #include "l_dm_grenades.h"
 
-void RemoveGuided(edict_t *ent)
+void RemoveGuided(edict_t* ent)
 {
 	ent->client->guidedMissileFired = 0;
 	if (!ent->client->missile)
@@ -34,14 +34,14 @@ void RemoveGuided(edict_t *ent)
 
 // wrapper for RemoveGuided 
 /* When guided rockets can take damage they need a die function. */
-void guided_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, vec3_t point)
+void guided_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage, vec3_t point)
 {
 	RemoveGuided(self);
 }
 
 
 //Explode rocket without touching anything
-void GuidedRocket_Explode (edict_t *ent)
+void GuidedRocket_Explode(edict_t* ent)
 {
 	if (ent->owner != NULL && ent->owner->client)
 	{
@@ -54,16 +54,16 @@ void GuidedRocket_Explode (edict_t *ent)
 
 
 // When a rocket 'dies', it blows up next frame
-void GuidedRocket_Think (edict_t *self)
+void GuidedRocket_Think(edict_t* self)
 {
 	VectorClear(self->velocity);
-//	self->takedamage = DAMAGE_NO;
+	//	self->takedamage = DAMAGE_NO;
 	self->nextthink = level.time + FRAMETIME;
 	self->think = GuidedRocket_Explode;
 }
 
 
-void guidedrocket_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
+void guidedrocket_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	if (other == ent->owner)
 		return;
@@ -71,8 +71,8 @@ void guidedrocket_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface
 	if (surf && (surf->flags & SURF_SKY))
 	{
 		if (ent->owner->client)
-		RemoveGuided(ent->owner);
-		G_FreeEdict (ent);
+			RemoveGuided(ent->owner);
+		G_FreeEdict(ent);
 		return;
 	}
 
@@ -80,15 +80,15 @@ void guidedrocket_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface
 	return;
 }
 
-void fire_guidedrocket (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage, int dM_Type)
+void fire_guidedrocket(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage, int dM_Type)
 {
-	edict_t *rocket;
+	edict_t* rocket;
 
 	rocket = G_Spawn();
-	VectorCopy (start, rocket->s.origin);
-	VectorCopy (dir, rocket->movedir);
-	vectoangles (dir, rocket->s.angles);
-	VectorScale (dir, (float) speed, rocket->velocity);
+	VectorCopy(start, rocket->s.origin);
+	VectorCopy(dir, rocket->movedir);
+	vectoangles(dir, rocket->s.angles);
+	VectorScale(dir, (float)speed, rocket->velocity);
 	rocket->movetype = MOVETYPE_FLYMISSILE;
 
 	// David Martin - 06/30/05
@@ -111,9 +111,9 @@ void fire_guidedrocket (edict_t *self, vec3_t start, vec3_t dir, int damage, int
 	SetGrenadeEffects(rocket, dM_Type); // the dM_grenade type
 	rocket->dm_type = dM_Type;
 	rocket->s.effects |= EF_ROCKET;
-	VectorClear (rocket->mins);
-	VectorClear (rocket->maxs);
-	rocket->s.modelindex = gi.modelindex ("models/objects/grenade/tris.md2"); //the piloted grenaded
+	VectorClear(rocket->mins);
+	VectorClear(rocket->maxs);
+	rocket->s.modelindex = gi.modelindex("models/objects/grenade/tris.md2"); //the piloted grenaded
 	rocket->owner = self;
 	rocket->client = self->client;
 	rocket->touch = guidedrocket_touch;
@@ -123,7 +123,7 @@ void fire_guidedrocket (edict_t *self, vec3_t start, vec3_t dir, int damage, int
 	rocket->die = guided_die;
 	rocket->radius_dmg = radius_damage;
 	rocket->dmg_radius = damage_radius;
-	rocket->s.sound = gi.soundindex ("weapons/rockfly.wav");
+	rocket->s.sound = gi.soundindex("weapons/rockfly.wav");
 	rocket->classname = "guided rocket";
 	rocket->classnum = CN_GUIDEDROCKET;
 
@@ -137,19 +137,19 @@ void fire_guidedrocket (edict_t *self, vec3_t start, vec3_t dir, int damage, int
 		if (!self->client->chasetoggle) self->client->oldplayer = G_Spawn();
 		self->client->ps.pmove.pm_flags |= PMF_NO_PREDICTION;
 
-		check_dodge (self, rocket->s.origin, dir, speed);
+		check_dodge(self, rocket->s.origin, dir, speed);
 	}
 
-	gi.linkentity (rocket);
+	gi.linkentity(rocket);
 }
 
 
-void Weapon_GuidedMissile_Fire (edict_t *ent)
+void Weapon_GuidedMissile_Fire(edict_t* ent)
 {
-	vec3_t	offset, start, forward, right;
+	vec3_t	offset = { 0 }, start, forward, right;
 	int		damage;
 	int		radius_damage;
-	
+
 	damage = 400 + (int)(random() * 20.0);
 	radius_damage = 300;
 	if (is_quad)
@@ -157,55 +157,55 @@ void Weapon_GuidedMissile_Fire (edict_t *ent)
 		damage *= 4;
 		radius_damage *= 4;
 	}
-	
-	AngleVectors (ent->client->v_angle, forward, right, NULL);
-	
-	VectorScale (forward, -2, ent->client->kick_origin);
+
+	AngleVectors(ent->client->v_angle, forward, right, NULL);
+
+	VectorScale(forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -1;
-	
+
 	VectorSet(offset, 8, 8, ent->viewheight - 8.0f);	// the origin of the fire point
-	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
-	
+	P_ProjectSource(ent->client, ent->s.origin, offset, forward, right, start);
+
 	//QW//
 	//Re-invent guided grenades.
 	//Pick up last grenade selected and pass it in the damage argument
 	//for application at the target of the guided missile.
-	
-	fire_guidedrocket (ent, start, forward,
+
+	fire_guidedrocket(ent, start, forward,
 		damage,
 		650,		//speed
 		200,		//damage radius
 		200,		//radius damage
 		ent->client->dM_grenade); // grenade type
-	
-	
+
+
 	// send muzzle flash
-	gi.WriteByte (svc_muzzleflash);
-	gi.WriteShort (ent-g_edicts);
-	gi.WriteByte (MZ_ROCKET | is_silenced);
-	gi.multicast (ent->s.origin, MULTICAST_PVS);
-	
+	gi.WriteByte(svc_muzzleflash);
+	gi.WriteShort(ent - g_edicts);
+	gi.WriteByte(MZ_ROCKET | is_silenced);
+	gi.multicast(ent->s.origin, MULTICAST_PVS);
+
 	ent->client->ps.gunframe++;
-	
+
 	PlayerNoise(ent, start, PNOISE_WEAPON);
-	
-	if ((! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		&&(ent->client->ammo_index))
+
+	if ((!((int)dmflags->value & DF_INFINITE_AMMO))
+		&& (ent->client->ammo_index))
 	{
-		ent->client->pers.inventory[ent->client->ammo_index]-=1;
-		ent->client->pers.inventory[ent->client->ammo2_index]-=4;
+		ent->client->pers.inventory[ent->client->ammo_index] -= 1;
+		ent->client->pers.inventory[ent->client->ammo2_index] -= 4;
 	}
-	
+
 	ent->client->guidedMissileFired = 1;
 }
 
-void Weapon_GuidedMissiles (edict_t *ent)
+void Weapon_GuidedMissiles(edict_t* ent)
 {
-	static int	pause_frames[]	= {25, 33, 42, 50, 0};
-	static int	fire_frames[]	= {5, 0};
+	static int	pause_frames[] = { 25, 33, 42, 50, 0 };
+	static int	fire_frames[] = { 5, 0 };
 
 	if (ent->client->guidedMissileFired == 1)
 		return;
-	Weapon_Generic (ent, 4, 12, 50, 54, pause_frames, fire_frames, Weapon_GuidedMissile_Fire);
+	Weapon_Generic(ent, 4, 12, 50, 54, pause_frames, fire_frames, Weapon_GuidedMissile_Fire);
 }
 

@@ -40,7 +40,7 @@
 
 /************************************************
 *
-* Think Functions 
+* Think Functions
 *
 ************************************************/
 /************************************************
@@ -51,16 +51,16 @@
 *			   or when no targets.
 *
 * Arguments:
-* self  
+* self
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void oak_stand(edict_t *self)
+void oak_stand(edict_t* self)
 {
-	edict_t	*target;
+	edict_t* target;
 
 	self->enemy = NULL;
 
@@ -83,11 +83,11 @@ void oak_stand(edict_t *self)
 		// next taget
 		target = findradius(target, self->s.origin, OAK_FIND_RANGE);
 	}
-	
+
 	if (self->enemy != NULL)
 	{
 		if (!(self->monsterinfo.aiflags & AI_SOUND_TARGET) && (self->monsterinfo.sight))
-			self->monsterinfo.sight (self, self->enemy);
+			self->monsterinfo.sight(self, self->enemy);
 
 		//gi.bprintf(PRINT_HIGH, "Oak: in oak_stand turning to face you\n");	
 		OakAI_FaceEnemy(self);
@@ -108,15 +108,15 @@ void oak_stand(edict_t *self)
 *
 * Description: the general runaround think function
 *
-* Arguments:	
-* self 
+* Arguments:
+* self
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void oak_run(edict_t *self)
+void oak_run(edict_t* self)
 {
 	OakAI_RunFrames(self, FRAME_run1, FRAME_run6);
 
@@ -133,24 +133,24 @@ void oak_run(edict_t *self)
 *
 * Description: what to do when hurt
 *
-* Arguments:	
+* Arguments:
 * self
 * other - who hurt you
-* kick 
-* damage 
+* kick
+* damage
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void oak_pain (edict_t *self, edict_t *other, float kick, int damage)
+void oak_pain(edict_t* self, edict_t* other, float kick, int damage)
 {
 	if (level.time < self->pain_debounce_time)
 		return;
-	
+
 	self->pain_debounce_time = level.time + 3;
-	gi.sound (self, CHAN_VOICE, oak_sound_pain, 1, ATTN_NORM, 0);
+	gi.sound(self, CHAN_VOICE, oak_sound_pain, 1, ATTN_NORM, 0);
 
 	//gi.bprintf(PRINT_HIGH, "Oak: in oak_pain ouch!\n");
 	OakAI_RunFrames(self, FRAME_pain101, FRAME_pain104);
@@ -160,7 +160,7 @@ void oak_pain (edict_t *self, edict_t *other, float kick, int damage)
 	self->monsterinfo.idle_time = level.time + 0.3;
 }
 
-void oak_painthink(edict_t *self)
+void oak_painthink(edict_t* self)
 {
 	gi.bprintf(PRINT_HIGH, "Oak: in oak_painthink running anim\n");
 	if (self->monsterinfo.idle_time >= level.time)
@@ -177,12 +177,12 @@ void oak_painthink(edict_t *self)
 //
 // SIGHT frames
 //
-void oak_sight(edict_t *self, edict_t *other)
+void oak_sight(edict_t* self, edict_t* other)
 {
 	if (random() < 0.5)
-		gi.sound (self, CHAN_VOICE, oak_sound_sight1, 1, ATTN_NORM, 0);
+		gi.sound(self, CHAN_VOICE, oak_sound_sight1, 1, ATTN_NORM, 0);
 	else
-		gi.sound (self, CHAN_VOICE, oak_sound_sight2, 1, ATTN_NORM, 0);
+		gi.sound(self, CHAN_VOICE, oak_sound_sight2, 1, ATTN_NORM, 0);
 }
 
 /************************************************
@@ -191,40 +191,40 @@ void oak_sight(edict_t *self, edict_t *other)
 *
 * Description: how to die
 *
-* Arguments:	
+* Arguments:
 * self
 * inflictor
 * attacker
 * damage
-* point 
+* point
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void oak_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, vec3_t point)
+void oak_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage, vec3_t point)
 {
 	int i;
 
 	// throw the weapon
-	
+
 //	if (self->health < self.gib_health)
 //	{	// gib
-		gi.sound (self, CHAN_BODY, gi.soundindex ("misc/udeath.wav"), 1, ATTN_NORM, 0);
-		for (i= 0; i < 4; i++)
-			ThrowGib (self, "models/objects/gibs/sm_meat/tris.md2", damage, GIB_ORGANIC);
+	gi.sound(self, CHAN_BODY, gi.soundindex("misc/udeath.wav"), 1, ATTN_NORM, 0);
+	for (i = 0; i < 4; i++)
+		ThrowGib(self, "models/objects/gibs/sm_meat/tris.md2", damage, GIB_ORGANIC);
 
-		self->takedamage = DAMAGE_NO;
+	self->takedamage = DAMAGE_NO;
 
-		// respawn the bot
-		OAK_Respawn(self);
-//	}
-//	else
-//	{	// normal death
+	// respawn the bot
+	OAK_Respawn(self);
+	//	}
+	//	else
+	//	{	// normal death
 
 
-//	}
+	//	}
 }
 
 /************************************************
@@ -233,21 +233,21 @@ void oak_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, 
 *
 * Description: turn to face a enemy
 *
-* Arguments:	
-* self 
+* Arguments:
+* self
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void OakAI_FaceEnemy(edict_t *self)
+void OakAI_FaceEnemy(edict_t* self)
 {
-	vec3_t	v;
+	vec3_t	v = { 0 };
 
-	VectorSubtract (self->enemy->s.origin, self->s.origin, v);
+	VectorSubtract(self->enemy->s.origin, self->s.origin, v);
 	self->ideal_yaw = vectoyaw(v);
-	M_ChangeYaw (self);
+	M_ChangeYaw(self);
 }
 
 /************************************************
@@ -256,7 +256,7 @@ void OakAI_FaceEnemy(edict_t *self)
 *
 * Description: moves bot towards an enemy. assumes enemy dead ahead
 *
-* Arguments:	
+* Arguments:
 * self
 * dist
 *
@@ -265,17 +265,17 @@ void OakAI_FaceEnemy(edict_t *self)
 *
 *************************************************/
 
-void OakAI_MoveToEnemy(edict_t *self, float dist)
+void OakAI_MoveToEnemy(edict_t* self, float dist)
 {
 	OakAI_MoveToGoal(self, dist);
 }
 
-void OakAI_MoveToGoal (edict_t *ent, float dist)
+void OakAI_MoveToGoal(edict_t* ent, float dist)
 {
-	if (!ent->groundentity && !(ent->flags & (FL_FLY|FL_SWIM)))
+	if (!ent->groundentity && !(ent->flags & (FL_FLY | FL_SWIM)))
 		return;
 
-	if (ent->enemy &&  SV_CloseEnough (ent, ent->enemy, dist) )
+	if (ent->enemy && SV_CloseEnough(ent, ent->enemy, dist))
 	{
 		ent->think = oak_standclose;
 		ent->nextthink = level.time + 0.1;
@@ -284,11 +284,11 @@ void OakAI_MoveToGoal (edict_t *ent, float dist)
 	M_walkmove(ent, ent->ideal_yaw, dist);
 }
 
-void oak_standclose(edict_t *self)
+void oak_standclose(edict_t* self)
 {
 	float i;
 
-	if (self->enemy &&  SV_CloseEnough (self, self->enemy, OAK_RUN) )
+	if (self->enemy && SV_CloseEnough(self, self->enemy, OAK_RUN))
 	{
 		if (((i = random()) < 0.9) && (self->monsterinfo.idle_time < level.time))
 		{
@@ -312,7 +312,7 @@ void oak_standclose(edict_t *self)
 
 /************************************************
 *
-* Animation Functions 
+* Animation Functions
 *
 ************************************************/
 /************************************************
@@ -321,22 +321,22 @@ void oak_standclose(edict_t *self)
 *
 * Description: runs the animation frames
 *
-* Arguments:	
+* Arguments:
 * start
-* end 
+* end
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void OakAI_RunFrames(edict_t *self, int start, int end)
+void OakAI_RunFrames(edict_t* self, int start, int end)
 {
 	if ((self->s.frame < end) && (self->s.frame >= start))
 	{
 		self->s.frame++;
 	}
-	else 
+	else
 	{
 		self->s.frame = start;
 	}
@@ -349,18 +349,18 @@ void OakAI_RunFrames(edict_t *self, int start, int end)
 *
 * Description: runs the anim frames
 *
-* Arguments:	
+* Arguments:
 * start
-* end 
+* end
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void OakAI_Finger(edict_t *self)
+void OakAI_Finger(edict_t* self)
 {
-	OakAI_RunFrames(self, FRAME_flip01, FRAME_flip12);	
+	OakAI_RunFrames(self, FRAME_flip01, FRAME_flip12);
 }
 
 /************************************************
@@ -369,18 +369,18 @@ void OakAI_Finger(edict_t *self)
 *
 * Description: runs the anim frames
 *
-* Arguments:	
+* Arguments:
 * start
-* end 
+* end
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void OakAI_Taunt(edict_t *self)
+void OakAI_Taunt(edict_t* self)
 {
-	OakAI_RunFrames(self, FRAME_taunt01, FRAME_taunt17);	
+	OakAI_RunFrames(self, FRAME_taunt01, FRAME_taunt17);
 }
 
 /************************************************
@@ -389,18 +389,18 @@ void OakAI_Taunt(edict_t *self)
 *
 * Description: runs the anim frames
 *
-* Arguments:	
+* Arguments:
 * start
-* end 
+* end
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void OakAI_Wave(edict_t *self)
+void OakAI_Wave(edict_t* self)
 {
-	OakAI_RunFrames(self, FRAME_wave01, FRAME_wave11);	
+	OakAI_RunFrames(self, FRAME_wave01, FRAME_wave11);
 }
 
 /************************************************
@@ -409,18 +409,18 @@ void OakAI_Wave(edict_t *self)
 *
 * Description: runs the anim frames
 *
-* Arguments:	
+* Arguments:
 * start
-* end 
+* end
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void OakAI_Salute(edict_t *self)
+void OakAI_Salute(edict_t* self)
 {
-	OakAI_RunFrames(self, FRAME_salute01, FRAME_salute11);	
+	OakAI_RunFrames(self, FRAME_salute01, FRAME_salute11);
 }
 
 /************************************************
@@ -429,85 +429,85 @@ void OakAI_Salute(edict_t *self)
 *
 * Description: runs the anim frames
 *
-* Arguments:	
+* Arguments:
 * start
-* end 
+* end
 *
 * Returns:
 * void
 *
 *************************************************/
 
-void OakAI_Point(edict_t *self)
+void OakAI_Point(edict_t* self)
 {
-	OakAI_RunFrames(self, FRAME_point01, FRAME_point12);	
+	OakAI_RunFrames(self, FRAME_point01, FRAME_point12);
 }
 
 //
 // begin the attack methods
 //QW//
 // copied from wf_decoy.c in LOX
-static int shotgun_flash [] = 
+static int shotgun_flash[] =
 {
-	MZ2_SOLDIER_SHOTGUN_1, 
-	MZ2_SOLDIER_SHOTGUN_2, 
-	MZ2_SOLDIER_SHOTGUN_3, 
-	MZ2_SOLDIER_SHOTGUN_4, 
-	MZ2_SOLDIER_SHOTGUN_5, 
-	MZ2_SOLDIER_SHOTGUN_6, 
-	MZ2_SOLDIER_SHOTGUN_7, 
+	MZ2_SOLDIER_SHOTGUN_1,
+	MZ2_SOLDIER_SHOTGUN_2,
+	MZ2_SOLDIER_SHOTGUN_3,
+	MZ2_SOLDIER_SHOTGUN_4,
+	MZ2_SOLDIER_SHOTGUN_5,
+	MZ2_SOLDIER_SHOTGUN_6,
+	MZ2_SOLDIER_SHOTGUN_7,
 	MZ2_SOLDIER_SHOTGUN_8
 };
 
-void oak_fire (edict_t *self, int flash_number)
+void oak_fire(edict_t* self, int flash_number)
 {
 	vec3_t	start;
 	vec3_t	forward, right, up;
-	vec3_t	aim;
+	vec3_t	aim = { 0 };
 	vec3_t	dir;
-	vec3_t	end;
+	vec3_t	end = { 0 };
 	float	r, u;
 	int		flash_index;
-	
+
 	flash_index = shotgun_flash[flash_number];
-	
-	AngleVectors (self->s.angles, forward, right, NULL);
-	G_ProjectSource (self->s.origin, monster_flash_offset[flash_index], forward, right, start);
-	
+
+	AngleVectors(self->s.angles, forward, right, NULL);
+	G_ProjectSource(self->s.origin, monster_flash_offset[flash_index], forward, right, start);
+
 	if (flash_number == 5 || flash_number == 6)
-		VectorCopy (forward, aim);
+		VectorCopy(forward, aim);
 	else
 	{
-		VectorCopy (self->enemy->s.origin, end);
+		VectorCopy(self->enemy->s.origin, end);
 		end[2] += self->enemy->viewheight;
-		VectorSubtract (end, start, aim);
-		vectoangles (aim, dir);
-		AngleVectors (dir, forward, right, up);
-		
-		r = (float)crandom()*1000;
-		u = (float)crandom()*500;
-		VectorMA (start, 8192, forward, end);
-		VectorMA (end, r, right, end);
-		VectorMA (end, u, up, end);
-		
-		VectorSubtract (end, start, aim);
-		VectorNormalize (aim);
+		VectorSubtract(end, start, aim);
+		vectoangles(aim, dir);
+		AngleVectors(dir, forward, right, up);
+
+		r = (float)crandom() * 1000;
+		u = (float)crandom() * 500;
+		VectorMA(start, 8192, forward, end);
+		VectorMA(end, r, right, end);
+		VectorMA(end, u, up, end);
+
+		VectorSubtract(end, start, aim);
+		VectorNormalize(aim);
 	}
-	
-	monster_fire_shotgun (self, start, aim, 2, 1, 
-		DEFAULT_SHOTGUN_HSPREAD, 
-		DEFAULT_SHOTGUN_VSPREAD, 
-		DEFAULT_SHOTGUN_COUNT, 
+
+	monster_fire_shotgun(self, start, aim, 2, 1,
+		DEFAULT_SHOTGUN_HSPREAD,
+		DEFAULT_SHOTGUN_VSPREAD,
+		DEFAULT_SHOTGUN_COUNT,
 		flash_index);
 }
 
 // Fire weapon
-void oak_fire1 (edict_t *self)
+void oak_fire1(edict_t* self)
 {
-	oak_fire (self, 0);
+	oak_fire(self, 0);
 }
 
-mframe_t oak_frames_attack1 [] =
+mframe_t oak_frames_attack1[] =
 {
 	{ai_charge, 0,  NULL},
 	{ai_charge, 0,  NULL},
@@ -519,15 +519,15 @@ mframe_t oak_frames_attack1 [] =
 	{ai_charge, 0,  NULL}
 };
 
-mmove_t oak_move_attack1 = 
+mmove_t oak_move_attack1 =
 {
-	FRAME_attack1, 
-	FRAME_attack8, 
-	oak_frames_attack1, 
+	FRAME_attack1,
+	FRAME_attack8,
+	oak_frames_attack1,
 	oak_run
 };
 
-void oak_attack(edict_t *self)
+void oak_attack(edict_t* self)
 {
-    self->monsterinfo.currentmove = &oak_move_attack1;
+	self->monsterinfo.currentmove = &oak_move_attack1;
 }

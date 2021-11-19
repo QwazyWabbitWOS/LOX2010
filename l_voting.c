@@ -13,16 +13,16 @@
 *
 * This program is distributed in the hope that it will be useful,
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 *
 * See the GNU General Public License for more details.
-* 
+*
 * You should have received a copy of the GNU General Public License
 * along with this program; if not, write to the Free Software
 * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 *
 * You may freely use and alter this code so long as this banner
-* remains and credit is given for its source. 
+* remains and credit is given for its source.
 */
 
 /**********************************************************
@@ -81,7 +81,7 @@ void Voting_InitVars(void)
 	electallowveto = gi.cvar("electallowveto", "1", 0); //QW// boolean whether a NO vote vetoes the election
 	electstarts = gi.cvar("electstarts", "2", 0);		//QW// the number of times a player can start an election
 	electautoyes = gi.cvar("electautoyes", "0", 0);		//QW// whether the initiator automatically votes yes or not
-	basedir = gi.cvar ("basedir", "", CVAR_NOSET);		// expose this cvar but mod can't change it
+	basedir = gi.cvar("basedir", "", CVAR_NOSET);		// expose this cvar but mod can't change it
 	return;
 }
 
@@ -109,84 +109,84 @@ void Voting_InitVars(void)
 // called from ClientCommand()
 // ent is player who started the vote
 // type is set for different vote categories:
-int Voting_BeginElection(edict_t *ent, elect_t type)
+int Voting_BeginElection(edict_t* ent, elect_t type)
 {
-	char *mapname;
+	char* mapname;
 	char mappath[MAX_OSPATH];
 	char msg[256] = { 0 };
 	int time_in;
-	
+
 	if (electpercentage->value == 0)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Elections are disabled.\n");
 		return false;
 	}
-	
+
 	if (voting.election != ELECT_NONE)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Election already in progress.\n");
 		return false;
 	}
-	
+
 	// prevent vote cheating after a level change
 	if (level.time < 10.0)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Too soon to start a vote, %0.0f seconds left.\n", 10.0 - level.time);
 		return false;
 	}
-	
+
 	// count players (preliminary count)
 	voting.count = Voting_CountPlayers();
-	
+
 	// prevent new players from coming in and starting a vote right away
 	// use prelim. count to decide if solo player can vote himself a new map
 	time_in = level.framenum - ent->client->resp.enterframe;
 	if (time_in < 450 && voting.count > 1) // use the preliminary count (450 frames: 45 seconds)
 	{
-		gi.cprintf(ent, PRINT_HIGH, 
-			"New players can't start an election. You have %i seconds to wait.\n", 
-			(450 - time_in)/10);
+		gi.cprintf(ent, PRINT_HIGH,
+			"New players can't start an election. You have %i seconds to wait.\n",
+			(450 - time_in) / 10);
 		return false;
 	}
-	
+
 	// Time enough to rejoin all clients, clear votes & re-count players
 	voting.count = Voting_CountPlayers();
-	
+
 	if (voting.count < MIN_VOTERS)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Not enough players for election.\n");
 		return false;
 	}
-	
+
 	//
 	// map voting stuff starts here
 	//
 	mapname = gi.argv(2);	// argv(0) is vote, argv(1) is map, argv(2) is mapname
-	
-	if (type == ELECT_MAP) 
+
+	if (type == ELECT_MAP)
 	{
 		if (strlen(mapname) > 64)
 		{
 			gi.cprintf(ent, PRINT_HIGH, "Map name too long.\n");
 			return false;
 		}
-		
+
 		if (strstr(mapname, ".")) // no dots allowed
 		{
 			gi.cprintf(ent, PRINT_HIGH, "Do not use an extension in the map name.\n");
 			return false;
 		}
-		
+
 		// if argv[2] is missing or contains invalid filename characters
-		if (mapname[0] == 0 || strstr(mapname, "\\") 
-			|| strstr(mapname, "/") 
+		if (mapname[0] == 0 || strstr(mapname, "\\")
+			|| strstr(mapname, "/")
 			|| strstr(mapname, ";")
 			|| strstr(mapname, ","))
 		{
 			gi.cprintf(ent, PRINT_HIGH, "Invalid input.\n");
 			return false;
 		}
-		
+
 		// a user wants next map in rotation
 		// we hope there are no maps named 'next' :)
 		// don't care about dmflags value, just that it's not zero.
@@ -195,11 +195,11 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 		{
 			if (Voting_PeekMaplist())
 			{
-				strcpy (mapname, level.nextmap);
+				strcpy(mapname, level.nextmap);
 				type = ELECT_NEXTMAP;
 			}
 		}
-		
+
 		// if item isn't a stock map, check for the existence of a map file (bsp)
 		if (!Maplist_CheckStockmaps(mapname) && !Maplist_CheckFileExists(mapname))
 		{
@@ -213,32 +213,32 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 			gi.cprintf(ent, PRINT_HIGH, "You can't start another vote yet.\n");
 			return false;
 		}
-		
+
 		strncpy(voting.elevel, mapname, sizeof(voting.elevel) - 1);
-		sprintf (mappath, "%s.bsp", voting.elevel);
+		sprintf(mappath, "%s.bsp", voting.elevel);
 	}
-	
+
 	// end of map vote preliminaries
-	
+
 	/* other vote modes would be done here. */
-	
+
 	// catch undefined election setup codes (stub)
 	else if (type > ELECT_NEXTMAP) // last supported mode
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Other vote modes not implemented.\n");
 		return false;
 	}
-	
+
 	//proceed with election
 	voting.etarget = ent;
 	voting.election = type;
 	voting.evotes = voting.yesvotes = voting.novotes = 0;
 	ent->client->resp.votes_started++;	// count how many times this player started a vote
-	
+
 	// initial announcement of a map vote
 	if (voting.election == ELECT_MAP || voting.election == ELECT_NEXTMAP)
 		sprintf(msg, "%s started a vote to change the map to ", ent->client->pers.netname);
-	
+
 	//bounds checks for cvars used in the voting functions
 	if (electpercentage->value < 0) gi.cvar_set("electpercentage", "0"); // 0 means never run elections
 	if (electpercentage->value > 100) gi.cvar_set("electpercentage", "100"); // unanimous
@@ -248,28 +248,28 @@ int Voting_BeginElection(edict_t *ent, elect_t type)
 	if (electreminders->value > 6) gi.cvar_set("electreminders", "6");
 	if (electstarts->value < 1) gi.cvar_set("electstarts", "1");
 	if (electstarts->value > 6) gi.cvar_set("electstarts", "6");
-	
+
 	voting.needvotes = (int)(voting.count * electpercentage->value) / 100 + 1;
 	voting.electstarttime = level.time;
 	voting.electtime = level.time + electduration->value; // duration of an election
-	voting.remindtime = level.time + electduration->value/electreminders->value; // reminders for election votes
+	voting.remindtime = level.time + electduration->value / electreminders->value; // reminders for election votes
 	Q_strncpy(voting.emsg, msg, sizeof(voting.emsg) - 1);
-	
+
 	if (electautoyes->value)
-		Voting_CmdVote_f (ent, YES);	// register initiator's yes vote
-	
+		Voting_CmdVote_f(ent, YES);	// register initiator's yes vote
+
 	// tell everyone a map vote is in progress
 	if (voting.election == ELECT_MAP || voting.election == ELECT_NEXTMAP)
 		gi.bprintf(PRINT_CHAT, "%s%s\n", voting.emsg, mapname);
-	
+
 	// other initial messages here
-	
+
 	// Initial voting message
 	gi.bprintf(PRINT_HIGH, "Type YES or NO in the console to vote on this request.\n");
-	gi.bprintf(PRINT_CHAT, "Votes: Yes: %d No: %d Needed: %d  Time left: %ds\n", 
+	gi.bprintf(PRINT_CHAT, "Votes: Yes: %d No: %d Needed: %d  Time left: %ds\n",
 		voting.yesvotes, voting.novotes, voting.needvotes,
 		(int)(voting.electtime - level.time));
-	
+
 	return true;
 }
 
@@ -281,7 +281,7 @@ void Voting_CheckVoting(void) // called by CheckDMRules()
 		gi.bprintf(PRINT_CHAT, "Election timed out.\n");
 		voting.election = ELECT_NONE;
 	}
-	
+
 	// we changed levels before election finished (e.g., rcon gamemap)
 	if (voting.election != ELECT_NONE && 2.0 >= level.time)
 	{
@@ -295,25 +295,25 @@ void Voting_CheckVoting(void) // called by CheckDMRules()
 		gi.bprintf(PRINT_CHAT, "Election was defeated.\n");
 		voting.election = ELECT_NONE;
 	}
-	
+
 	// a win is mathematically impossible, terminate election
-	if (voting.election != ELECT_NONE 
+	if (voting.election != ELECT_NONE
 		&& (voting.needvotes - voting.yesvotes) > voting.count - (voting.yesvotes + voting.novotes))
 	{
 		gi.bprintf(PRINT_CHAT, "Election was defeated. %d YES to %d NO\n", voting.yesvotes, voting.novotes);
 		voting.election = ELECT_NONE;
 	}
-	
+
 	// if in progress, post a reminder to vote in case anyone missed it
 	if ((voting.election == ELECT_MAP || voting.election == ELECT_NEXTMAP)
 		&& voting.remindtime <= level.time)
 	{
 		gi.bprintf(PRINT_CHAT, "%s%s\n", voting.emsg, voting.elevel);
 		gi.bprintf(PRINT_HIGH, "Type YES or NO in the console to vote on this request.\n");
-		gi.bprintf(PRINT_CHAT, "Votes: Yes: %d No: %d Needed: %d  Time left: %ds\n", 
+		gi.bprintf(PRINT_CHAT, "Votes: Yes: %d No: %d Needed: %d  Time left: %ds\n",
 			voting.yesvotes, voting.novotes, voting.needvotes,
 			(int)(voting.electtime - level.time));
-		voting.remindtime = level.time + electduration->value/electreminders->value;
+		voting.remindtime = level.time + electduration->value / electreminders->value;
 	}
 }
 
@@ -330,31 +330,31 @@ void Voting_KillVoting()
 // The actual vote command function
 // Called from ClientCommand
 //
-void Voting_CmdVote_f(edict_t *ent, int choice)
+void Voting_CmdVote_f(edict_t* ent, int choice)
 {
-	
+
 	if (voting.election == ELECT_NONE)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "No election is in progress.\n");
 		return;
 	}
-	
+
 	if (ent->client->resp.voted)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "You already voted.\n");
 		return;
 	}
-	
+
 	// prevent new players from voting in an election in progress unless they are only player
 	if ((voting.electstarttime < ent->client->resp.entertime) && voting.count > 1)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "New players can't vote in this election.\n");
 		return;
 	}
-	
-	switch (choice) 
+
+	switch (choice)
 	{
-	case YES: 
+	case YES:
 		voting.evotes++;
 		voting.yesvotes++;
 		ent->client->resp.voted = true;
@@ -364,12 +364,12 @@ void Voting_CmdVote_f(edict_t *ent, int choice)
 			Voting_WinElection();
 		}
 		break;
-		
+
 	case NO:
 		voting.novotes++;
 		ent->client->resp.voted = true;
 		break;
-		
+
 	default:
 		break;
 	}
@@ -382,33 +382,33 @@ static void Voting_WinElection(void)
 	char command[MAX_OSPATH];
 	long n;
 	char s[64];
-	
+
 	switch (voting.election)
 	{
-		
+
 	case ELECT_MAP:	// vote map mapname
-		
-		gi.bprintf(PRINT_CHAT, "Map vote passed, %i YES to %i NO. Map is changing to %s.\n", 
-			voting.yesvotes, 
-			voting.novotes, 
+
+		gi.bprintf(PRINT_CHAT, "Map vote passed, %i YES to %i NO. Map is changing to %s.\n",
+			voting.yesvotes,
+			voting.novotes,
 			voting.elevel);
 		sprintf(command, "gamemap %s", voting.elevel);
-		gi.AddCommandString (command);
+		gi.AddCommandString(command);
 		break;
-		
+
 	case ELECT_NEXTMAP:	// from vote map next
-		
-		gi.bprintf(PRINT_CHAT, "Map vote passed, %i YES to %i NO. Map is changing to %s.\n", 
-			voting.yesvotes, 
-			voting.novotes, 
+
+		gi.bprintf(PRINT_CHAT, "Map vote passed, %i YES to %i NO. Map is changing to %s.\n",
+			voting.yesvotes,
+			voting.novotes,
 			voting.elevel);
 		sprintf(command, "gamemap %s", voting.elevel);
-		gi.AddCommandString (command);
-		n = (long) maplist->value;
-		sprintf (s, "%ld", ++n);
-		maplist = gi.cvar_set (maplist->name, s);
+		gi.AddCommandString(command);
+		n = (long)maplist->value;
+		sprintf(s, "%ld", ++n);
+		maplist = gi.cvar_set(maplist->name, s);
 		break;
-		
+
 	default:
 		break;
 	}
@@ -418,8 +418,8 @@ static void Voting_WinElection(void)
 static int Voting_CountPlayers(void)
 {
 	int i, count;
-	edict_t *ent;
-	
+	edict_t* ent;
+
 	count = 0;
 	for (i = 1; i <= maxclients->value; i++)
 	{
@@ -439,14 +439,14 @@ static qboolean Voting_PeekMaplist(void)
 {
 	long n;
 	char s[32];
-	
+
 	if (Maplist_Next())
 	{
 		// Maplist_Next increments the list pointer so we set it
 		// back in case the vote fails
-		n = (long) maplist->value;
-		sprintf (s, "%ld", --n);
-		maplist = gi.cvar_set (maplist->name, s);
+		n = (long)maplist->value;
+		sprintf(s, "%ld", --n);
+		maplist = gi.cvar_set(maplist->name, s);
 		return 1;
 	}
 	else

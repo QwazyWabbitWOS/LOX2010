@@ -7,24 +7,24 @@
 #include "l_dm_grenades.h"
 #include "l_nukegrenade.h"
 
-void Weapon_NukeGrenade (edict_t *ent)
+void Weapon_NukeGrenade(edict_t* ent)
 {
 	if ((ent->client->newweapon) && (ent->client->weaponstate == WEAPON_READY))
 	{
-		ChangeWeapon (ent);
+		ChangeWeapon(ent);
 		return;
 	}
-	
+
 	if (ent->client->weaponstate == WEAPON_ACTIVATING)
 	{
 		ent->client->weaponstate = WEAPON_READY;
 		ent->client->ps.gunframe = 16;
 		return;
 	}
-	
+
 	if (ent->client->weaponstate == WEAPON_READY)
 	{
-		if ( ((ent->client->latched_buttons|ent->client->buttons) & BUTTON_ATTACK) )
+		if (((ent->client->latched_buttons | ent->client->buttons) & BUTTON_ATTACK))
 		{
 			ent->client->latched_buttons &= ~BUTTON_ATTACK;
 			if (ent->client->pers.inventory[ent->client->ammo_index])
@@ -40,27 +40,27 @@ void Weapon_NukeGrenade (edict_t *ent)
 					gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/noammo.wav"), 1, ATTN_NORM, 0);
 					ent->pain_debounce_time = level.time + 1;
 				}
-				NoAmmoWeaponChange (ent);
+				NoAmmoWeaponChange(ent);
 			}
 			return;
 		}
-		
+
 		if ((ent->client->ps.gunframe == 29) || (ent->client->ps.gunframe == 34) || (ent->client->ps.gunframe == 39) || (ent->client->ps.gunframe == 48))
 		{
-			if (rand()&15)
+			if (rand() & 15)
 				return;
 		}
-		
+
 		if (++ent->client->ps.gunframe > 48)
 			ent->client->ps.gunframe = 16;
 		return;
 	}
-	
+
 	if (ent->client->weaponstate == WEAPON_FIRING)
 	{
 		if (ent->client->ps.gunframe == 5)
 			gi.sound(ent, CHAN_WEAPON, gi.soundindex("weapons/hgrena1b.wav"), 1, ATTN_NORM, 0);
-		
+
 		if (ent->client->ps.gunframe == 11)
 		{
 			if (!ent->client->grenade_time)
@@ -68,18 +68,18 @@ void Weapon_NukeGrenade (edict_t *ent)
 				ent->client->grenade_time = level.time + 30 + 0.2f;
 				ent->client->weapon_sound = gi.soundindex("weapons/hgrenc1b.wav");
 			}
-			
+
 			// they waited too long, detonate it in their hand
 			if (!ent->client->grenade_blew_up && level.time >= ent->client->grenade_time)
 			{
 				ent->client->weapon_sound = 0;
-				weapon_nukegrenade_fire (ent, true);
+				weapon_nukegrenade_fire(ent, true);
 				ent->client->grenade_blew_up = true;
 			}
-			
+
 			if (ent->client->buttons & BUTTON_ATTACK)
 				return;
-			
+
 			if (ent->client->grenade_blew_up)
 			{
 				if (level.time >= ent->client->grenade_time)
@@ -93,18 +93,18 @@ void Weapon_NukeGrenade (edict_t *ent)
 				}
 			}
 		}
-		
+
 		if (ent->client->ps.gunframe == 12)
 		{
 			ent->client->weapon_sound = 0;
-			weapon_nukegrenade_fire (ent, false);
+			weapon_nukegrenade_fire(ent, false);
 		}
-		
+
 		if ((ent->client->ps.gunframe == 15) && (level.time < ent->client->grenade_time))
 			return;
-		
+
 		ent->client->ps.gunframe++;
-		
+
 		if (ent->client->ps.gunframe == 16)
 		{
 			ent->client->grenade_time = 0;
@@ -113,9 +113,9 @@ void Weapon_NukeGrenade (edict_t *ent)
 	}
 }
 
-void weapon_nukegrenade_fire (edict_t *ent, qboolean held)
+void weapon_nukegrenade_fire(edict_t* ent, qboolean held)
 {
-	vec3_t	offset;
+	vec3_t	offset = { 0 };
 	vec3_t	forward, right;
 	vec3_t	start;
 	int		damage = 5000;
@@ -124,18 +124,18 @@ void weapon_nukegrenade_fire (edict_t *ent, qboolean held)
 	float	radius;
 
 	radius = 1000;
-/*	if (is_quad)
-		damage *= 4;*/
+	/*	if (is_quad)
+			damage *= 4;*/
 
-	VectorSet(offset, 8, 8, ent->viewheight-8.0f);
-	AngleVectors (ent->client->v_angle, forward, right, NULL);
-	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
+	VectorSet(offset, 8, 8, ent->viewheight - 8.0f);
+	AngleVectors(ent->client->v_angle, forward, right, NULL);
+	P_ProjectSource(ent->client, ent->s.origin, offset, forward, right, start);
 
 	timer = ent->client->grenade_time - level.time;
 	speed = 500;
-	fire_nukegrenade2 (ent, start, forward, damage, speed, timer, radius, held);
+	fire_nukegrenade2(ent, start, forward, damage, speed, timer, radius, held);
 
-	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
+	if (!((int)dmflags->value & DF_INFINITE_AMMO))
 		ent->client->pers.inventory[ent->client->ammo_index]--;
 
 	ent->client->grenade_time = level.time + 1.0f;
@@ -151,7 +151,7 @@ void weapon_nukegrenade_fire (edict_t *ent, qboolean held)
 	if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
 	{
 		ent->client->anim_priority = ANIM_ATTACK;
-		ent->s.frame = FRAME_crattak1-1;
+		ent->s.frame = FRAME_crattak1 - 1;
 		ent->client->anim_end = FRAME_crattak3;
 	}
 	else
@@ -162,29 +162,29 @@ void weapon_nukegrenade_fire (edict_t *ent, qboolean held)
 	}
 }
 
-void fire_nukegrenade2 (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int speed, float timer, float damage_radius, qboolean held)
+void fire_nukegrenade2(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int speed, float timer, float damage_radius, qboolean held)
 {
-	edict_t	*grenade;
+	edict_t* grenade;
 	vec3_t	dir;
 	vec3_t	forward, right, up;
 
-	vectoangles (aimdir, dir);
-	AngleVectors (dir, forward, right, up);
+	vectoangles(aimdir, dir);
+	AngleVectors(dir, forward, right, up);
 
 	grenade = G_Spawn();
-	VectorCopy (start, grenade->s.origin);
-	VectorScale (aimdir, (float)speed, grenade->velocity);
-	VectorMA (grenade->velocity, 200 + crandom() * 10.0f, up, grenade->velocity);
-	VectorMA (grenade->velocity, crandom() * 10.0f, right, grenade->velocity);
-	VectorSet (grenade->avelocity, 300, 300, 300);
+	VectorCopy(start, grenade->s.origin);
+	VectorScale(aimdir, (float)speed, grenade->velocity);
+	VectorMA(grenade->velocity, 200 + crandom() * 10.0f, up, grenade->velocity);
+	VectorMA(grenade->velocity, crandom() * 10.0f, right, grenade->velocity);
+	VectorSet(grenade->avelocity, 300, 300, 300);
 	grenade->movetype = MOVETYPE_BOUNCE;
 	grenade->clipmask = MASK_SHOT;
 	grenade->solid = SOLID_BBOX;
 	grenade->s.effects = EF_GRENADE | EF_SPINNINGLIGHTS | EF_PENT;
 	//grenade->s.renderfx |= RF_SHELL_RED;
-	VectorClear (grenade->mins);
-	VectorClear (grenade->maxs);
-	grenade->s.modelindex = gi.modelindex ("models/objects/grenade2/tris.md2");
+	VectorClear(grenade->mins);
+	VectorClear(grenade->maxs);
+	grenade->s.modelindex = gi.modelindex("models/objects/grenade2/tris.md2");
 	grenade->owner = self;
 	grenade->touch = NukeGrenade_Touch;
 	grenade->nextthink = level.time + timer;
@@ -199,39 +199,39 @@ void fire_nukegrenade2 (edict_t *self, vec3_t start, vec3_t aimdir, int damage, 
 	grenade->s.sound = gi.soundindex("weapons/nuketick.wav");
 
 	if (timer <= 0.0)
-		NukeGrenade_Explode (grenade);
+		NukeGrenade_Explode(grenade);
 	else
 	{
-		gi.sound (self, CHAN_WEAPON, gi.soundindex ("weapons/hgrent1a.wav"), 1, ATTN_NORM, 0);
-		gi.linkentity (grenade);
+		gi.sound(self, CHAN_WEAPON, gi.soundindex("weapons/hgrent1a.wav"), 1, ATTN_NORM, 0);
+		gi.linkentity(grenade);
 	}
 }
 
 //EARTHQUAKE GENERATOR
-static void SpawnQuake(edict_t *ent, int counts, int speeds)
+static void SpawnQuake(edict_t* ent, int counts, int speeds)
 {
-	edict_t		*EarthQuake;
+	edict_t* EarthQuake;
 
 	EarthQuake = G_Spawn();
 	EarthQuake->svflags |= SVF_NOCLIENT;
 	EarthQuake->think = target_earthquake_think;
 	EarthQuake->nextthink = level.time + 0.1f;
 	EarthQuake->use = target_earthquake_use;
-	EarthQuake->noise_index = gi.soundindex ("world/quake.wav");
+	EarthQuake->noise_index = gi.soundindex("world/quake.wav");
 	EarthQuake->count = 10;
 	EarthQuake->speed = (float)speeds;
-	target_earthquake_use(EarthQuake,ent->owner,ent->owner);
+	target_earthquake_use(EarthQuake, ent->owner, ent->owner);
 }
 
 
 //************************
 //  NUKE GRENADE EXPLODE
 //************************
-void NukeGrenade_Explode (edict_t *ent)
+void NukeGrenade_Explode(edict_t* ent)
 {
 	vec3_t		origin;
 	int			mod;
-	edict_t		*LightMesser;
+	edict_t* LightMesser;
 	int			i;
 
 
@@ -245,28 +245,28 @@ void NukeGrenade_Explode (edict_t *ent)
 
 	T_RadiusDamage(ent, ent->owner, (float)ent->dmg, ent->enemy, ent->dmg_radius, mod);
 
-	VectorMA (ent->s.origin, -0.02f, ent->velocity, origin);
-	gi.WriteByte (svc_temp_entity);
-	gi.WriteByte (TE_BOSSTPORT);
-	gi.WritePosition (origin);
-	gi.multicast (ent->s.origin, MULTICAST_PHS);
+	VectorMA(ent->s.origin, -0.02f, ent->velocity, origin);
+	gi.WriteByte(svc_temp_entity);
+	gi.WriteByte(TE_BOSSTPORT);
+	gi.WritePosition(origin);
+	gi.multicast(ent->s.origin, MULTICAST_PHS);
 
-		for (i = 0;i < 4;i++)
-		{
-			ThrowShrapnel4(ent,"models/objects/debris2/tris.md2",crandom() * 10,ent->s.origin);
-			ThrowShrapnel3(ent,"models/objects/debris2/tris.md2",crandom() * 10,ent->s.origin);
-		}
-
-		
-		/*
-	EarthQuake->classname="target_earthquake";
-	EarthQuake->think = target_earthquake_use;
-	EarthQuake->nextthink = level.time + .1;*/
+	for (i = 0; i < 4; i++)
+	{
+		ThrowShrapnel4(ent, "models/objects/debris2/tris.md2", crandom() * 10, ent->s.origin);
+		ThrowShrapnel3(ent, "models/objects/debris2/tris.md2", crandom() * 10, ent->s.origin);
+	}
 
 
-	//for (i = 0;i < 5;i++)
-	//{
-	SpawnQuake(ent,(int)random()*7+2,150);
+	/*
+EarthQuake->classname="target_earthquake";
+EarthQuake->think = target_earthquake_use;
+EarthQuake->nextthink = level.time + .1;*/
+
+
+//for (i = 0;i < 5;i++)
+//{
+	SpawnQuake(ent, (int)random() * 7 + 2, 150);
 	//}
 
 	LightMesser = G_Spawn();
@@ -274,50 +274,50 @@ void NukeGrenade_Explode (edict_t *ent)
 	LightMesser->think = WeirdLights;
 	LightMesser->nextthink = level.time + 0.1f;
 
-	G_FreeEdict (ent);
+	G_FreeEdict(ent);
 }
 
 //*************
 // LAUNCH FIRE
 //*************
 
-void fire_fire (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int speed, float timer, float damage_radius, qboolean held)
+void fire_fire(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int speed, float timer, float damage_radius, qboolean held)
 {
-	edict_t	*grenade;
+	edict_t* grenade;
 	vec3_t	dir;
 	vec3_t	forward, right, up;
 
-	vectoangles (aimdir, dir);
-	AngleVectors (dir, forward, right, up);
+	vectoangles(aimdir, dir);
+	AngleVectors(dir, forward, right, up);
 
 	grenade = G_Spawn();
-	VectorCopy (start, grenade->s.origin);
-	VectorScale (aimdir, (float)speed, grenade->velocity);
-	VectorMA (grenade->velocity, 200 + crandom() * 10.0f, up, grenade->velocity);
-	VectorMA (grenade->velocity, crandom() * 10.0f, right, grenade->velocity);
-	VectorSet (grenade->avelocity, 300, 300, 300);
+	VectorCopy(start, grenade->s.origin);
+	VectorScale(aimdir, (float)speed, grenade->velocity);
+	VectorMA(grenade->velocity, 200 + crandom() * 10.0f, up, grenade->velocity);
+	VectorMA(grenade->velocity, crandom() * 10.0f, right, grenade->velocity);
+	VectorSet(grenade->avelocity, 300, 300, 300);
 	grenade->movetype = MOVETYPE_BOUNCE;
 	grenade->clipmask = MASK_SHOT;
 	grenade->solid = SOLID_BBOX;
 	grenade->s.effects = EF_FLAG1; //EF_GRENADE | EF_BLASTER;
-	VectorClear (grenade->mins);
-	VectorClear (grenade->maxs);
-	grenade->s.modelindex = gi.modelindex ("models/fire/tris.md2");
+	VectorClear(grenade->mins);
+	VectorClear(grenade->maxs);
+	grenade->s.modelindex = gi.modelindex("models/fire/tris.md2");
 	grenade->owner = self;
 	grenade->touch = Fire_Touch;
 	grenade->nextthink = level.time + timer;
 	grenade->think = Fire_Explode;
-//	grenade->nextthink2 = level.time + .3;
-//	grenade->think2 = Fire_Burn_U;
+	//	grenade->nextthink2 = level.time + .3;
+	//	grenade->think2 = Fire_Burn_U;
 	grenade->dmg = damage;
 	grenade->dmg_radius = damage_radius;
 	grenade->classname = "fire";
 
 	if (timer <= 0.0)
-		Fire_Explode (grenade);
+		Fire_Explode(grenade);
 	else
 	{
-		gi.linkentity (grenade);
+		gi.linkentity(grenade);
 	}
 }
 
@@ -327,7 +327,7 @@ void fire_fire (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int spee
 
 void Fire_Touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
-	vec3_t   grenade1;
+	vec3_t   grenade1 = { 0 };
 
 	if (surf && (surf->flags & SURF_SKY))
 	{
@@ -353,7 +353,7 @@ void Fire_Touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 // FIRE (NOT GRENADE)
 //********************
 
-void Fire_Explode (edict_t *ent)
+void Fire_Explode(edict_t* ent)
 {
 	vec3_t		origin;
 	int			mod;
@@ -363,25 +363,25 @@ void Fire_Explode (edict_t *ent)
 	if (ent->enemy)
 	{
 		float	points;
-		vec3_t	v;
-		vec3_t	dir;
+		vec3_t	v = { 0 };
+		vec3_t	dir = { 0 };
 
-		VectorAdd (ent->enemy->mins, ent->enemy->maxs, v);
-		VectorMA (ent->enemy->s.origin, 0.5f, v, v);
-		VectorSubtract (ent->s.origin, v, v);
-		points = ent->dmg - 0.5f * VectorLength (v);
-		VectorSubtract (ent->enemy->s.origin, ent->s.origin, dir);
-		T_Damage (ent->enemy, ent, ent->owner, dir, ent->s.origin, vec3_origin, (int)points, (int)points, DAMAGE_RADIUS, mod);
+		VectorAdd(ent->enemy->mins, ent->enemy->maxs, v);
+		VectorMA(ent->enemy->s.origin, 0.5f, v, v);
+		VectorSubtract(ent->s.origin, v, v);
+		points = ent->dmg - 0.5f * VectorLength(v);
+		VectorSubtract(ent->enemy->s.origin, ent->s.origin, dir);
+		T_Damage(ent->enemy, ent, ent->owner, dir, ent->s.origin, vec3_origin, (int)points, (int)points, DAMAGE_RADIUS, mod);
 	}
 	T_RadiusDamage(ent, ent->owner, (float)ent->dmg, ent->enemy, ent->dmg_radius, mod);
 
-	VectorMA (ent->s.origin, -0.02f, ent->velocity, origin);
-	gi.WriteByte (svc_temp_entity);
-	gi.WriteByte (TE_EXPLOSION2);
-	gi.WritePosition (origin);
-	gi.multicast (ent->s.origin, MULTICAST_PHS);
+	VectorMA(ent->s.origin, -0.02f, ent->velocity, origin);
+	gi.WriteByte(svc_temp_entity);
+	gi.WriteByte(TE_EXPLOSION2);
+	gi.WritePosition(origin);
+	gi.multicast(ent->s.origin, MULTICAST_PHS);
 
-	G_FreeEdict (ent);
+	G_FreeEdict(ent);
 }
 
 //**********************
@@ -495,14 +495,14 @@ void Flashbang_Hurt (edict_t *self)
 }
 */
 
-void NukeGrenade_Touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
+void NukeGrenade_Touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	if (other == ent->owner)
 		return;
 
 	if (surf && (surf->flags & SURF_SKY))
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
 
@@ -511,99 +511,99 @@ void NukeGrenade_Touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_
 		if (ent->spawnflags & 1)
 		{
 			if (random() > 0.5)
-				gi.sound (ent, CHAN_VOICE, gi.soundindex ("weapons/hgrenb1a.wav"), 1, ATTN_NORM, 0);
+				gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/hgrenb1a.wav"), 1, ATTN_NORM, 0);
 			else
-				gi.sound (ent, CHAN_VOICE, gi.soundindex ("weapons/hgrenb2a.wav"), 1, ATTN_NORM, 0);
+				gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/hgrenb2a.wav"), 1, ATTN_NORM, 0);
 		}
 		else
 		{
-			gi.sound (ent, CHAN_VOICE, gi.soundindex ("weapons/grenlb1b.wav"), 1, ATTN_NORM, 0);
+			gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/grenlb1b.wav"), 1, ATTN_NORM, 0);
 		}
 		return;
 	}
 
 }
 
-void WeirdLights(edict_t *ent)
+void WeirdLights(edict_t* ent)
 {
-	       // 0 normal
-        //gi.configstring(CS_LIGHTS+0, "alzmzmciduauqwjdnianzznian");
-		gi.configstring(CS_LIGHTS+0, "zzzzzzzzzzzzzzzzzzzzzzzzzz");
-		        
-        // 1 FLICKER (first variety)
-        gi.configstring(CS_LIGHTS+1, "lainfusuaodnwjuauznsiufima");
-        
-        // 2 SLOW STRONG PULSE
-        gi.configstring(CS_LIGHTS+2, "znfisuypaiqmainvbusifnzjdu");
-        
-        // 3 CANDLE (first variety)
-        gi.configstring(CS_LIGHTS+3, "rkdldisuemanxjzurkoamdiogu");
-        
-        // 4 FAST STROBE
-        gi.configstring(CS_LIGHTS+4, "ahsbexcbkxerswaibldcwersxa");
-        
-        // 5 GENTLE PULSE 1
-        gi.configstring(CS_LIGHTS+5, "disoerodmditusndifiwismdso");
-        
-        // 6 FLICKER (second variety)
-        gi.configstring(CS_LIGHTS+6, "sjigibuieminzzunaiqaainfem");
-        
-        // 7 CANDLE (second variety)
-        gi.configstring(CS_LIGHTS+7, "alzmzmciduauqwjdnianzznian");
-        
-        // 8 CANDLE (third variety)
-        gi.configstring(CS_LIGHTS+8, "aaunxumdmzuiznianianunfsoi");
-        
-        // 9 SLOW STROBE (fourth variety)
-        gi.configstring(CS_LIGHTS+9, "adeiamzmzwimfoaoncsonasuvi");
-        
-        // 10 FLUORESCENT FLICKER
-        gi.configstring(CS_LIGHTS+10, "ahsbexcbkxerswaibldcwersxa");
+	// 0 normal
+ //gi.configstring(CS_LIGHTS+0, "alzmzmciduauqwjdnianzznian");
+	gi.configstring(CS_LIGHTS + 0, "zzzzzzzzzzzzzzzzzzzzzzzzzz");
 
-        // 11 SLOW PULSE NOT FADE TO BLACK
-        gi.configstring(CS_LIGHTS+11, "ahsbexcbkxerswaibldcwersxa");
-        
-		ent->nextthink = level.time + 10;
-		ent->think = NormalLights;
-}
-
-void NormalLights(edict_t *ent)
-{
-		// 0 normal
-	gi.configstring(CS_LIGHTS+0, "m");
-	
 	// 1 FLICKER (first variety)
-	gi.configstring(CS_LIGHTS+1, "mmnmmommommnonmmonqnmmo");
-	
+	gi.configstring(CS_LIGHTS + 1, "lainfusuaodnwjuauznsiufima");
+
 	// 2 SLOW STRONG PULSE
-	gi.configstring(CS_LIGHTS+2, "abcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihgfedcba");
-	
+	gi.configstring(CS_LIGHTS + 2, "znfisuypaiqmainvbusifnzjdu");
+
 	// 3 CANDLE (first variety)
-	gi.configstring(CS_LIGHTS+3, "mmmmmaaaaammmmmaaaaaabcdefgabcdefg");
-	
+	gi.configstring(CS_LIGHTS + 3, "rkdldisuemanxjzurkoamdiogu");
+
 	// 4 FAST STROBE
-	gi.configstring(CS_LIGHTS+4, "mamamamamama");
-	
+	gi.configstring(CS_LIGHTS + 4, "ahsbexcbkxerswaibldcwersxa");
+
 	// 5 GENTLE PULSE 1
-	gi.configstring(CS_LIGHTS+5,"jklmnopqrstuvwxyzyxwvutsrqponmlkj");
-	
+	gi.configstring(CS_LIGHTS + 5, "disoerodmditusndifiwismdso");
+
 	// 6 FLICKER (second variety)
-	gi.configstring(CS_LIGHTS+6, "nmonqnmomnmomomno");
-	
+	gi.configstring(CS_LIGHTS + 6, "sjigibuieminzzunaiqaainfem");
+
 	// 7 CANDLE (second variety)
-	gi.configstring(CS_LIGHTS+7, "mmmaaaabcdefgmmmmaaaammmaamm");
-	
+	gi.configstring(CS_LIGHTS + 7, "alzmzmciduauqwjdnianzznian");
+
 	// 8 CANDLE (third variety)
-	gi.configstring(CS_LIGHTS+8, "mmmaaammmaaammmabcdefaaaammmmabcdefmmmaaaa");
-	
+	gi.configstring(CS_LIGHTS + 8, "aaunxumdmzuiznianianunfsoi");
+
 	// 9 SLOW STROBE (fourth variety)
-	gi.configstring(CS_LIGHTS+9, "aaaaaaaazzzzzzzz");
-	
+	gi.configstring(CS_LIGHTS + 9, "adeiamzmzwimfoaoncsonasuvi");
+
 	// 10 FLUORESCENT FLICKER
-	gi.configstring(CS_LIGHTS+10, "mmamammmmammamamaaamammma");
+	gi.configstring(CS_LIGHTS + 10, "ahsbexcbkxerswaibldcwersxa");
 
 	// 11 SLOW PULSE NOT FADE TO BLACK
-	gi.configstring(CS_LIGHTS+11, "abcdefghijklmnopqrrqponmlkjihgfedcba");
-	
+	gi.configstring(CS_LIGHTS + 11, "ahsbexcbkxerswaibldcwersxa");
+
+	ent->nextthink = level.time + 10;
+	ent->think = NormalLights;
+}
+
+void NormalLights(edict_t* ent)
+{
+	// 0 normal
+	gi.configstring(CS_LIGHTS + 0, "m");
+
+	// 1 FLICKER (first variety)
+	gi.configstring(CS_LIGHTS + 1, "mmnmmommommnonmmonqnmmo");
+
+	// 2 SLOW STRONG PULSE
+	gi.configstring(CS_LIGHTS + 2, "abcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihgfedcba");
+
+	// 3 CANDLE (first variety)
+	gi.configstring(CS_LIGHTS + 3, "mmmmmaaaaammmmmaaaaaabcdefgabcdefg");
+
+	// 4 FAST STROBE
+	gi.configstring(CS_LIGHTS + 4, "mamamamamama");
+
+	// 5 GENTLE PULSE 1
+	gi.configstring(CS_LIGHTS + 5, "jklmnopqrstuvwxyzyxwvutsrqponmlkj");
+
+	// 6 FLICKER (second variety)
+	gi.configstring(CS_LIGHTS + 6, "nmonqnmomnmomomno");
+
+	// 7 CANDLE (second variety)
+	gi.configstring(CS_LIGHTS + 7, "mmmaaaabcdefgmmmmaaaammmaamm");
+
+	// 8 CANDLE (third variety)
+	gi.configstring(CS_LIGHTS + 8, "mmmaaammmaaammmabcdefaaaammmmabcdefmmmaaaa");
+
+	// 9 SLOW STROBE (fourth variety)
+	gi.configstring(CS_LIGHTS + 9, "aaaaaaaazzzzzzzz");
+
+	// 10 FLUORESCENT FLICKER
+	gi.configstring(CS_LIGHTS + 10, "mmamammmmammamamaaamammma");
+
+	// 11 SLOW PULSE NOT FADE TO BLACK
+	gi.configstring(CS_LIGHTS + 11, "abcdefghijklmnopqrrqponmlkjihgfedcba");
+
 	G_FreeEdict(ent);
 }

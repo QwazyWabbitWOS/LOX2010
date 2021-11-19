@@ -1,9 +1,9 @@
 #include "g_local.h"
 
-edict_t	*LeaderMan;
+edict_t* LeaderMan;
 
 // this function buggy, not finished
-void HighScorer(void) 
+void HighScorer(void)
 {
 	//int	i;
 	//int	count = 0;
@@ -105,14 +105,14 @@ void HighScorer(void)
 // FIXME: Technically, the ->inLead flag is not needed here, but it will be needed
 // if you want to add effects to him or something
 //#define USE_INLEAD_FLAG
-edict_t   *pLeader = NULL, *pOldLeader = NULL;
+edict_t* pLeader = NULL, * pOldLeader = NULL;
 
 void HighScorer()
 {
 	int   i;
-	edict_t   *ent = NULL;
-	edict_t *players[MAX_CLIENTS];
-	int	*scores[MAX_CLIENTS]; // [MAX_CLIENTS]
+	edict_t* ent = NULL;
+	edict_t* players[MAX_CLIENTS];
+	int* scores[MAX_CLIENTS]; // [MAX_CLIENTS]
 	int numPlayers = 0;
 
 	pOldLeader = pLeader; // Store this for now.
@@ -138,12 +138,12 @@ void HighScorer()
 	// and find someone who has a higher score than the lowest score on the board.
 	if (!pLeader)
 	{
-		edict_t *tempLeader = NULL;
+		edict_t* tempLeader = NULL;
 		struct
 		{
 			int score;
 			int index;
-		} lowestScore = {9999,-1}, highestScore = {-9999, -1};
+		} lowestScore = { 9999,-1 }, highestScore = { -9999, -1 };
 
 		// Find the lowest score
 		for (i = 0; i < numPlayers; i++)
@@ -163,7 +163,7 @@ void HighScorer()
 			if (*scores[i] > lowestScore.score && *scores[i] > highestScore.score)
 			{
 				// Store the current person that we think has the highest score
-				tempLeader = &g_edicts[i+1];
+				tempLeader = &g_edicts[i + 1];
 				highestScore.score = *scores[i];
 			}
 		}
@@ -192,7 +192,7 @@ void HighScorer()
 				pLeader->client->inLead = true;
 				pOldLeader->client->inLead = false;
 #endif
-				gi.bprintf (PRINT_MEDIUM, "%s has taken the lead!\n", pLeader->client->pers.netname);
+				gi.bprintf(PRINT_MEDIUM, "%s has taken the lead!\n", pLeader->client->pers.netname);
 				gi.sound(pLeader, CHAN_AUTO, gi.soundindex("misc/comp_up.wav"), 1, ATTN_NORM, 0);
 			}
 		}
@@ -205,13 +205,13 @@ void HighScorer()
 		// due to a tie.. however if anyone goes ahead of this guy (double kill in the same frame) then
 		// they get to steal the lead right away.
 		// This is basically a copy of the entire block above with some minor changes.
-		edict_t *tempLeader = NULL;
+		edict_t* tempLeader = NULL;
 		int myNumber = (short)(pLeader - g_edicts);
 		struct
 		{
 			int score;
 			int index;
-		} highestScore = {pLeader->client->resp.score, myNumber};
+		} highestScore = { pLeader->client->resp.score, myNumber };
 		// FIXME: Check if the index here is valid..
 		// not like it matters in the code below but I like to be right :)
 
@@ -256,11 +256,11 @@ void HighScorer()
 				pLeader->client->inLead = true;
 				pOldLeader->client->inLead = false;
 #endif
-				gi.bprintf (PRINT_MEDIUM, "%s is no longer in the lead!\n%s has taken the lead!\n", 
+				gi.bprintf(PRINT_MEDIUM, "%s is no longer in the lead!\n%s has taken the lead!\n",
 					pOldLeader->client->pers.netname,
 					pLeader->client->pers.netname);
 				gi.sound(pLeader, CHAN_AUTO, gi.soundindex("misc/comp_up.wav"), 1, ATTN_NORM, 0);
-			}			
+			}
 		}
 		else
 		{
@@ -281,7 +281,7 @@ void HighScorer()
 #ifdef USE_INLEAD_FLAG
 					pOldLeader->client->inLead = false;
 #endif
-					gi.bprintf (PRINT_MEDIUM, "%s is no longer in the lead! The spot is up for grabs!\n", 
+					gi.bprintf(PRINT_MEDIUM, "%s is no longer in the lead! The spot is up for grabs!\n",
 						pOldLeader->client->pers.netname);
 				}
 			}

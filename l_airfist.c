@@ -19,7 +19,7 @@ findradius (origin, radius)
 */
 edict_t* horn_findradius(edict_t* from, vec3_t org, float rad)
 {
-	vec3_t	eorg;
+	vec3_t	eorg = { 0 };
 	int		j;
 
 	if (!from)
@@ -43,7 +43,7 @@ edict_t* horn_findradius(edict_t* from, vec3_t org, float rad)
 
 qboolean horn_infront(edict_t* self, edict_t* other)
 {
-	vec3_t	vec;
+	vec3_t	vec = { 0 };
 	float	dot;
 	vec3_t	forward;
 
@@ -59,7 +59,7 @@ qboolean horn_infront(edict_t* self, edict_t* other)
 
 void fire_airfist(edict_t* self, vec3_t start, vec3_t aimdir, int inDamage, int strength, float inRange, float recoil)
 {
-	vec3_t end, delta;
+	vec3_t end, delta = { 0 };
 	vec3_t forward, right, up;
 	float percent, distance;
 	float max_mass = 800; //max mass that can be moved...
@@ -68,7 +68,7 @@ void fire_airfist(edict_t* self, vec3_t start, vec3_t aimdir, int inDamage, int 
 	float eSpeed;
 	//recoil!
 	trace_t tr;
-	vec3_t dir;
+	vec3_t dir = { 0 };
 	int ldmg;
 	int num_traces;
 
@@ -201,7 +201,7 @@ void weapon_airfist_fire(edict_t* ent)
 {
 	vec3_t	start;
 	vec3_t	up, forward, right;
-	vec3_t	offset;
+	vec3_t	offset = { 0 };
 	int		damage = 2;
 	int		kick = 8;
 	//int	num_traces;

@@ -9,7 +9,7 @@ typedef struct match_s
 	int total1, total2;
 
 	// Where to spawn the ghost player.
-	edict_t *spawnHere;
+	edict_t* spawnHere;
 
 	// When to start the match.  (0 == start immediately.)
 	int matchStartFrame;
@@ -27,10 +27,10 @@ This sets a 40 second countdown timer.
 void MatchInit(void)
 {
 	// Reset the teamplay game status.
-	memset (&matchgame, 0, sizeof (matchgame));
+	memset(&matchgame, 0, sizeof(matchgame));
 
 	// See if we're doing teamplay.
-	matchplay = gi.cvar ("matchplay", "0", 0);
+	matchplay = gi.cvar("matchplay", "0", 0);
 	//	ctf_forcejoin = gi.cvar ("ctf_forcejoin", "", 0);
 
 	// If we are, set up a few things.
@@ -49,18 +49,18 @@ void MatchInit(void)
 
 // Play the countdown sound, and spawn players into the game (when the time
 // comes).
-void MatchplayDoCountdown (void)
+void MatchplayDoCountdown(void)
 {
 	// Doing a countdown?
 	if (matchgame.matchStartFrame)
 	{
 		// 10 seconds remaining?
-		if (level.framenum == matchgame.matchStartFrame - 11*10)
+		if (level.framenum == matchgame.matchStartFrame - 11 * 10)
 		{
 			// Play 10 to 1 countdown file.
-			gi.sound (g_edicts,
-				CHAN_RELIABLE+CHAN_AUTO+CHAN_NO_PHS_ADD,
-				gi.soundindex ("world/10_0.wav"), 1, ATTN_NONE, 0);
+			gi.sound(g_edicts,
+				CHAN_RELIABLE + CHAN_AUTO + CHAN_NO_PHS_ADD,
+				gi.soundindex("world/10_0.wav"), 1, ATTN_NONE, 0);
 		}
 		else if (level.framenum == matchgame.matchStartFrame)
 		{
@@ -77,7 +77,7 @@ void MatchplayDoCountdown (void)
 				// Put all team members into the game.
 				for (i = 1; i <= maxclients->value; i++)
 				{
-					edict_t *ent;
+					edict_t* ent;
 
 					// Fetch the team player.
 					ent = g_edicts + i;
@@ -90,7 +90,7 @@ void MatchplayDoCountdown (void)
 						continue;
 
 					// Spawn them into the game.
-					respawn (ent);
+					respawn(ent);
 				}
 			}
 			// No more countdown.
@@ -100,72 +100,72 @@ void MatchplayDoCountdown (void)
 }
 
 
-void MatchplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
+void MatchplaySpawnEntities(char* mapname, char* entities, char* spawnpoint)
 {
-	FILE	*f;
+	FILE* f;
 	char	szFile[MAX_QPATH];
 	size_t	nEntSize;
 	size_t	nRead;
-	char	*pszCustomEnt;
+	char* pszCustomEnt;
 
 	// If custom_ents is off in deathmatch and if not ctf, do the normal thing.
 	if (!custom_ents->value && !ctf->value)
 	{
-		SpawnEntities (mapname, entities, spawnpoint);
+		SpawnEntities(mapname, entities, spawnpoint);
 		return;
 	}
 
 	// Create the pathname to the entity file.
-	Com_sprintf (szFile, sizeof (szFile), "%s/ent/%s.ent",
+	Com_sprintf(szFile, sizeof(szFile), "%s/ent/%s.ent",
 		gamedir->string, mapname);
 
 	// Try to open it.
-	f = fopen (szFile, "rb");
+	f = fopen(szFile, "rb");
 	if (!f)
 	{
 		// No custom entity file, so just use the default.
-		SpawnEntities (mapname, entities, spawnpoint);
+		SpawnEntities(mapname, entities, spawnpoint);
 		return;
 	}
 
 	// Get the size of the file.
-	if (fseek (f, 0L, SEEK_END) != 0)
+	if (fseek(f, 0L, SEEK_END) != 0)
 	{
-		gi.dprintf ("%s: fseek %s\n", __func__, szFile);
+		gi.dprintf("%s: fseek %s\n", __func__, szFile);
 		fclose(f);
 		return;
 	}
 
-	nEntSize = ftell (f);
+	nEntSize = ftell(f);
 	if (nEntSize < 0)
 	{
-		gi.dprintf ("%s: ftell %s (%d)\n", __func__, szFile, nEntSize);
+		gi.dprintf("%s: ftell %s (%d)\n", __func__, szFile, nEntSize);
 		fclose(f);
 		return;
 	}
 
-	if (fseek (f, 0L, SEEK_SET) != 0)
+	if (fseek(f, 0L, SEEK_SET) != 0)
 	{
-		gi.dprintf ("%s: fseek %s\n", __func__, szFile);
+		gi.dprintf("%s: fseek %s\n", __func__, szFile);
 		fclose(f);
 		return;
 	}
 
 	// Create a buffer and read the custom entity file.
-	pszCustomEnt = gi.TagMalloc ((int)nEntSize + 1, TAG_LEVEL);
+	pszCustomEnt = gi.TagMalloc((int)nEntSize + 1, TAG_LEVEL);
 	if (!pszCustomEnt)
 	{
-		gi.dprintf ("%s: TagMalloc\n", __func__);
+		gi.dprintf("%s: TagMalloc\n", __func__);
 		fclose(f);
 		return;
 	}
-	nRead = fread (pszCustomEnt, 1, nEntSize, f);
+	nRead = fread(pszCustomEnt, 1, nEntSize, f);
 	if (nRead != nEntSize)
 	{
-		gi.dprintf ("%s: fread %s (%d/%d)\n",
+		gi.dprintf("%s: fread %s (%d/%d)\n",
 			__func__, szFile, nRead, nEntSize);
-		gi.TagFree (pszCustomEnt);
-		fclose (f);
+		gi.TagFree(pszCustomEnt);
+		fclose(f);
 		return;
 	}
 
@@ -173,32 +173,32 @@ void MatchplaySpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	pszCustomEnt[nEntSize] = '\0';
 
 	// Now spawn *these* entities!
-	SpawnEntities (mapname, pszCustomEnt, spawnpoint);
+	SpawnEntities(mapname, pszCustomEnt, spawnpoint);
 
 	// Clean up.
-	gi.TagFree (pszCustomEnt);
-	fclose (f);
+	gi.TagFree(pszCustomEnt);
+	fclose(f);
 	return;
 }
 
 
 // Return whether we're in round 1.
-qboolean MatchplayCheckRound1 (void)
+qboolean MatchplayCheckRound1(void)
 {
 	return (ctf->value && matchgame.round == 1);
 }
 
 // Return whether we're in round 2.
-qboolean MatchplayCheckRound2 (void)
+qboolean MatchplayCheckRound2(void)
 {
 	return (ctf->value && matchgame.round == 2);
 }
 
 
 // Start round 2.
-void MatchplayStartRound2 (void)
+void MatchplayStartRound2(void)
 {
-	edict_t *ent, *spot;
+	edict_t* ent, * spot;
 	int i;
 
 	// Calculate the score so far.
@@ -217,12 +217,12 @@ void MatchplayStartRound2 (void)
 	// Remember the max frags from this level.
 	if (fraglimit->value)
 	{
-		gclient_t *cl;
+		gclient_t* cl;
 
 		for (i = 0; i < maxclients->value; i++)
 		{
 			cl = game.clients + i;
-			if (!g_edicts[i+1].inuse)
+			if (!g_edicts[i + 1].inuse)
 				continue;
 
 			if (level.roundFraglimit < cl->resp.score)
@@ -233,29 +233,29 @@ void MatchplayStartRound2 (void)
 	// Reset the spawnpoints.  (The score doesn't get reset until the beginning
 	// of round 2.)
 	ent = NULL;
-	while ((ent = G_Find (ent, FOFS (classname), "info_player_deathmatch"))
+	while ((ent = G_Find(ent, FOFS(classname), "info_player_deathmatch"))
 		!= NULL)
 	{
-		ent->s.renderfx &= ~(RF_SHELL_RED|RF_SHELL_BLUE);
+		ent->s.renderfx &= ~(RF_SHELL_RED | RF_SHELL_BLUE);
 		ent->s.renderfx |= RF_SHELL_GREEN;
 	}
 
 	// Find an intermission spot.
-	spot = G_Find (NULL, FOFS(classname), "info_player_intermission");
+	spot = G_Find(NULL, FOFS(classname), "info_player_intermission");
 	if (!spot)
 	{	// the map creator forgot to put in an intermission point
-		spot = G_Find (NULL, FOFS(classname), "info_player_start");
+		spot = G_Find(NULL, FOFS(classname), "info_player_start");
 		if (!spot)
-			spot = G_Find (NULL, FOFS(classname), "info_player_deathmatch");
+			spot = G_Find(NULL, FOFS(classname), "info_player_deathmatch");
 	}
 	else
 	{	// chose one of four spots
 		i = rand() & 3;
 		while (i--)
 		{
-			spot = G_Find (spot, FOFS(classname), "info_player_intermission");
+			spot = G_Find(spot, FOFS(classname), "info_player_intermission");
 			if (!spot)	// wrap around the list
-				spot = G_Find (spot, FOFS(classname), "info_player_intermission");
+				spot = G_Find(spot, FOFS(classname), "info_player_intermission");
 		}
 	}
 
@@ -267,19 +267,19 @@ void MatchplayStartRound2 (void)
 			continue;
 
 		// Make them a spectator at the intermission point.
-		VectorCopy (spot->s.origin, ent->s.origin);
-		VectorCopy (spot->s.angles, ent->s.angles);
-		MatchplayMakeObserver (ent);
+		VectorCopy(spot->s.origin, ent->s.origin);
+		VectorCopy(spot->s.angles, ent->s.angles);
+		MatchplayMakeObserver(ent);
 
 		// Show them the scoreboard.
 		ent->client->showscores = true;
-		DeathmatchScoreboardMessage (ent, NULL);
-		gi.unicast (ent, true);
+		DeathmatchScoreboardMessage(ent, NULL);
+		gi.unicast(ent, true);
 	}
 }
 
 
-void MatchplayMakeObserver (edict_t *ent)
+void MatchplayMakeObserver(edict_t* ent)
 {
 	ent->movetype = MOVETYPE_NOCLIP;
 	//ent->deadflag = DEAD_DEAD;
@@ -288,33 +288,33 @@ void MatchplayMakeObserver (edict_t *ent)
 	ent->svflags |= SVF_NOCLIENT;
 	ent->client->ps.pmove.pm_type = PM_NORMAL;
 	ent->client->ps.gunindex = 0;
-	gi.linkentity (ent);
+	gi.linkentity(ent);
 }
 
-void DoMatchCountdown(edict_t *ent)
+void DoMatchCountdown(edict_t* ent)
 {
 	int p1, p2;
 
-	p1 = gi.imageindex ("i_ctf1");
-	p2 = gi.imageindex ("i_ctf2");
+	p1 = gi.imageindex("i_ctf1");
+	p2 = gi.imageindex("i_ctf2");
 
 	if (matchgame.matchStartFrame)
 	{
 		if (level.framenum & 4)
 		{
 			if (ent->client->resp.ctf_team == CTF_TEAM1)
-				ent->client->ps.stats[STAT_TIMER_ICON] = (short) p1;
+				ent->client->ps.stats[STAT_TIMER_ICON] = (short)p1;
 			else if (ent->client->resp.ctf_team == CTF_TEAM2)
-				ent->client->ps.stats[STAT_TIMER_ICON] = (short) p2;
+				ent->client->ps.stats[STAT_TIMER_ICON] = (short)p2;
 		}
 		else
 		{
 			if (ent->client->resp.ctf_team == CTF_TEAM1)
-				ent->client->ps.stats[STAT_TIMER_ICON] = (short) gi.imageindex ("i_ctf1t");
+				ent->client->ps.stats[STAT_TIMER_ICON] = (short)gi.imageindex("i_ctf1t");
 			else if (ent->client->resp.ctf_team == CTF_TEAM2)
-				ent->client->ps.stats[STAT_TIMER_ICON] = (short) gi.imageindex ("i_ctf2t");
+				ent->client->ps.stats[STAT_TIMER_ICON] = (short)gi.imageindex("i_ctf2t");
 		}
 		ent->client->ps.stats[STAT_TIMER]
-		= (short) ((matchgame.matchStartFrame + 3 - level.framenum)/10);
+			= (short)((matchgame.matchStartFrame + 3 - level.framenum) / 10);
 	}
 }

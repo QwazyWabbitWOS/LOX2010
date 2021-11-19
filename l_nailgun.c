@@ -98,7 +98,7 @@ void fire_nail(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, i
 void SuperNailgun_Fire(edict_t* ent)
 {
 	int			i;
-	vec3_t		start, forward, right, up, offset;
+	vec3_t		start, forward, right, up, offset = { 0 };
 	float		r, u;
 	int			damage = 18;
 	int			kick = 2;
@@ -210,7 +210,7 @@ void Weapon_SuperNailgun(edict_t* ent)
 void Nailgun_Fire(edict_t* ent)
 {
 	int	i;
-	vec3_t	start, forward, right, angles, offset;
+	vec3_t	start, forward, right, angles = { 0 }, offset = { 0 };
 	int		damage = 18;
 	int		kick = 2;
 

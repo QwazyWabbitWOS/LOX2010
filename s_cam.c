@@ -5,29 +5,29 @@
 
 #include "g_local.h"
 
-void ChasecamTrack (edict_t *ent);
+void ChasecamTrack(edict_t* ent);
 
 /* The ent is the owner of the chasecam */
 
-static void ChasecamStart (edict_t *ent)
+static void ChasecamStart(edict_t* ent)
 {
-/* This creates a temporary entity we can manipulate within this
-	* function */
-	
-	edict_t *chasecam;
-	
+	/* This creates a temporary entity we can manipulate within this
+		* function */
+
+	edict_t* chasecam;
+
 	/* Tell everything that looks at the toggle that our chasecam is on
 	* and working */
-	
+
 	ent->client->chasetoggle = 1;
-	
+
 	/* Make our gun model "non-existent" so it's more realistic to the
 	* player using the chasecam */
 	ent->client->ps.gunindex = 0;
 
 	//QW// use visible weapons
 //	ent->client->ps.gunindex = gi.modelindex(ent->client->pers.weapon->view_model);
-	
+
 	//QW// Remove player ghosts
 	ent->s.effects = EF_NONE;
 	ent->s.renderfx = 0;
@@ -35,163 +35,164 @@ static void ChasecamStart (edict_t *ent)
 	ent->s.event = 0;
 	ent->s.modelindex = 0;
 	//QW//
-	
-	
-	chasecam = G_Spawn ();
+
+
+	chasecam = G_Spawn();
 	chasecam->owner = ent;
 	chasecam->solid = SOLID_NOT;
-	
+
 	// chasecam->movetype = MOVETYPE_FLYMISSILE;
 	chasecam->movetype = MOVETYPE_NOCLIP;
-	
+
 	// chasecam->clipmask = MASK_OPAQUE;
-	
+
 	chasecam->chasedist1 = 20;
-	
+
 	// Added by WarZone - Begin
 	// this turns off Quake2's inclination to predict where the camera is going, making a much smoother ride
 	ent->client->ps.pmove.pm_flags |= PMF_NO_PREDICTION;
-	
+
 	// this line tells Quake2 not to send the unnecessary info about the camera to other players
 	chasecam->svflags |= SVF_NOCLIENT;
 	// Added by WarZone - End
-	
+
 	/* Now, make the angles of the player model, (!NOT THE HUMAN VIEW!) be
 	* copied to the same angle of the chasecam entity */
-	
-	VectorCopy (ent->s.angles, chasecam->s.angles);
-	
+
+	VectorCopy(ent->s.angles, chasecam->s.angles);
+
 	/* Clear the size of the entity, so it DOES technically have a size,
 	* but that of '0 0 0'-'0 0 0'. (xyz, xyz). mins = Minimum size,
 	* maxs = Maximum size */
-	
-	VectorClear (chasecam->mins);
-	VectorClear (chasecam->maxs);
-	
-	
+
+	VectorClear(chasecam->mins);
+	VectorClear(chasecam->maxs);
+
+
 	/* Make the chasecam's origin (position) be the same as the player
 	* entity's because as the camera starts, it will force itself out
 	* slowly backwards from the player model */
-	
-	VectorCopy (ent->s.origin, chasecam->s.origin);
-	
+
+	VectorCopy(ent->s.origin, chasecam->s.origin);
+
 	chasecam->classname = "chasecam";
 	chasecam->classnum = CN_CHASECAM;
 	chasecam->prethink = ChasecamTrack;
 	//chasecam->think = ChasecamTrack;
-	
+
 	ent->client->chasecam = chasecam;
 	ent->client->oldplayer = G_Spawn();
-	
+
 	//execute the routine only once
 	chasecam->prethink(chasecam);
 }
 
 
-void ChasecamRestart (edict_t *ent)
+void ChasecamRestart(edict_t* ent)
 {
 	/*Keep thinking this function to check all the time whether the player is out of the water */
 	/* if the player is dead, the camera is not wanted. Kill me and stop the function */
-	
+
 	if (ent->owner->health <= 0)
 	{
-		G_FreeEdict (ent);
+		G_FreeEdict(ent);
 		return;
 	}
-	
+
 	/* If the player is still underwater, break the routine */
-	
+
 	if (ent->owner->waterlevel)
 		return;
-	
-		/*
-		If the player is NOT under water, and not dead, then he is going to
-        want his camera back. Create a new camera, then remove the old one
-        that's not doing anything. We could quite easily 're-instate' the
-		old camera, but I'm lazy :) 
-	*/
-	
-	ChasecamStart (ent->owner);
+
+	/*
+	If the player is NOT under water, and not dead, then he is going to
+	want his camera back. Create a new camera, then remove the old one
+	that's not doing anything. We could quite easily 're-instate' the
+	old camera, but I'm lazy :)
+*/
+
+	ChasecamStart(ent->owner);
 	G_FreeEdict(ent);
 }
 
-void ChasecamRemove(edict_t *ent)
+void ChasecamRemove(edict_t* ent)
 {
 	if (ent->client->missile)
 		return;
-	
+
 	if (!ent->client->chasetoggle)
 		return;
-	
+
 	VectorClear(ent->client->chasecam->velocity);
-	
+
 	if (!ent->client->onturret && !ent->client->missile)
 	{
 		ent->client->ps.gunindex = gi.modelindex(ent->client->pers.weapon->view_model);
 		ent->client->ps.pmove.pm_flags &= ~PMF_NO_PREDICTION;
 	}
-	
+
 	ent->s.modelindex = ent->client->oldplayer->s.modelindex;
-	
+
 	//        ent->svflags &= ~SVF_NOCLIENT;
-	
+
 	if (ent->client->chasetoggle)
 	{
-		gi.TagFree (ent->client->oldplayer->client); //needed?
+		gi.TagFree(ent->client->oldplayer->client); //needed?
 		G_FreeEdict(ent->client->oldplayer);
 	}
 	ent->client->chasetoggle = 0;
 	G_FreeEdict(ent->client->chasecam);
-	
+
 }
 
 
-void ChasecamTrack (edict_t *ent)
+void ChasecamTrack(edict_t* ent)
 {
-	
-	trace_t      tr;
-	vec3_t       spot1, spot2, spot3, spot4, spot5, dir;
-	vec3_t       forward, right, up;
-	vec3_t       size1, size2;
+
+	trace_t	tr;
+	vec3_t	spot1 = { 0 }, spot2 = { 0 }, spot3 = { 0 };
+	vec3_t	spot4 = { 0 }, spot5 = { 0 }, dir = { 0 };
+	vec3_t	forward, right, up;
+	vec3_t	size1 = { 0 }, size2 = { 0 };
 	float distance, tot;
 	//   vec3_t       owner_origin;
 	//   int          dist;
 	//   int          cap;
-	
-	
+
+
 	VectorSet(size1, -4, -4, -4);
 	VectorSet(size2, 4, 4, 4);
-	
+
 	ent->nextthink = level.time + 0.1f;
-	
-	AngleVectors (ent->owner->client->v_angle, forward, right, up);
-	
+
+	AngleVectors(ent->owner->client->v_angle, forward, right, up);
+
 	VectorCopy(up, dir);
-	VectorNegate(dir,dir);
+	VectorNegate(dir, dir);
 	if (!(ent->owner->client->ps.pmove.pm_flags & PMF_DUCKED))
 		VectorMA(dir, 2, forward, dir);
 	else
 		VectorMA(dir, 4, forward, dir);
-	
+
 	VectorNormalize(dir);
-	
+
 	//spot1 is the owner origin
-	VectorCopy (ent->owner->s.origin, spot1);
+	VectorCopy(ent->owner->s.origin, spot1);
 	//   spot1[2] += ent->owner->viewheight;
-	
-	VectorMA (spot1, (float)(-ent->chasedist1), dir, spot2);
-	
-	tr = gi.trace (spot1, size1, size2, spot2, ent->owner, MASK_OPAQUE);
-	
+
+	VectorMA(spot1, (float)(-ent->chasedist1), dir, spot2);
+
+	tr = gi.trace(spot1, size1, size2, spot2, ent->owner, MASK_OPAQUE);
+
 	VectorCopy(tr.endpos, spot3);
-	
-	tr = gi.trace (spot1, NULL, NULL, spot2, ent->owner, MASK_OPAQUE);
-	
+
+	tr = gi.trace(spot1, NULL, NULL, spot2, ent->owner, MASK_OPAQUE);
+
 	VectorCopy(tr.endpos, spot2);
-	
+
 	VectorSubtract(spot3, spot1, spot4);
 	VectorSubtract(spot2, spot1, spot5);
-	
+
 	if (VectorLength(spot4) > VectorLength(spot5))
 	{
 		//           VectorMA(spot2, 4, dir, spot2);
@@ -199,17 +200,17 @@ void ChasecamTrack (edict_t *ent)
 	}
 	else
 		VectorCopy(spot3, spot2);
-	
-		/*
-		if (tr.fraction != 1)
-		{
-		VectorSubtract(spot2, ent->owner->s.origin, spot1);
-		ent->chasedist1 = VectorLength(spot1);
-		}
-	*/
-	tr = gi.trace (ent->s.origin, size1, size2, spot2, ent->owner,  MASK_OPAQUE);
-	
-	if ((tr.fraction != 1)|| !visible(ent, ent->owner))
+
+	/*
+	if (tr.fraction != 1)
+	{
+	VectorSubtract(spot2, ent->owner->s.origin, spot1);
+	ent->chasedist1 = VectorLength(spot1);
+	}
+*/
+	tr = gi.trace(ent->s.origin, size1, size2, spot2, ent->owner, MASK_OPAQUE);
+
+	if ((tr.fraction != 1) || !visible(ent, ent->owner))
 	{
 		VectorCopy(spot2, ent->s.origin);
 		VectorClear(ent->velocity);
@@ -220,54 +221,54 @@ void ChasecamTrack (edict_t *ent)
 		distance = VectorLength(spot1);
 		VectorNormalize(spot1);
 		VectorCopy(spot1, dir);
-		
+
 		tot = 0.4f * distance;
-		
+
 		/* if we're going too fast, make us top speed */
-		
+
 		if (tot > 5.2f)
 			VectorScale(dir, distance * 5.2f, ent->velocity);
 		else
 		{
-		/* if we're NOT going top speed, but we're going faster than
-			* 1, relative to the total, make us as fast as we're going */
-			
+			/* if we're NOT going top speed, but we're going faster than
+				* 1, relative to the total, make us as fast as we're going */
+
 			if (tot > 1)
 				VectorScale(dir, distance * tot, ent->velocity);
 			else
 			{
-			/* if we're not going faster than one, don't accelerate our
-				* speed at all, make us go slow to our destination */
+				/* if we're not going faster than one, don't accelerate our
+					* speed at all, make us go slow to our destination */
 				VectorScale(dir, distance, ent->velocity);
 			}
 		}
-		
+
 		/* subtract endpos;player position, from chasecam position to get
 		* a length to determine whether we should accelerate faster from
 		* the player or not */
-		
+
 		if (distance < 20)
-			VectorScale (ent->velocity, 2, ent->velocity);
-		
+			VectorScale(ent->velocity, 2, ent->velocity);
+
 	}
-	
+
 	/* add to the distance between the player and the camera */
 	ent->chasedist1 += 2;
-	
+
 	/* if we're too far away, give us a maximum distance */
 	if (ent->chasedist1 > 90)
-        ent->chasedist1 = 90;
-	
+		ent->chasedist1 = 90;
+
 }
 
-void Cmd_Chasecam_Toggle (edict_t *ent)
+void Cmd_Chasecam_Toggle(edict_t* ent)
 {
 	if (ent->movetype == MOVETYPE_NOCLIP)
 	{
-		gi.cprintf (ent, PRINT_HIGH, "You must join the game before using the Chasecam.\n");
+		gi.cprintf(ent, PRINT_HIGH, "You must join the game before using the Chasecam.\n");
 		return;
 	}
-	
+
 	if (!ent->deadflag)
 	{
 		if (ent->client->chasetoggle)
@@ -277,32 +278,32 @@ void Cmd_Chasecam_Toggle (edict_t *ent)
 	}
 }
 
-void CheckChasecam_Viewent(edict_t *ent)
+void CheckChasecam_Viewent(edict_t* ent)
 {
-	gclient_t *cl;
-	
+	gclient_t* cl;
+
 	if (!ent->client->oldplayer->client)
 	{
-		cl = (gclient_t *) gi.TagMalloc(sizeof(gclient_t), TAG_LEVEL);
+		cl = (gclient_t*)gi.TagMalloc(sizeof(gclient_t), TAG_LEVEL);
 		ent->client->oldplayer->client = cl;
 	}
-	
-	if ((ent->client->chasetoggle == 1 || ent->client->missile)&&(ent->client->oldplayer))
+
+	if ((ent->client->chasetoggle == 1 || ent->client->missile) && (ent->client->oldplayer))
 	{
 		ent->client->oldplayer->s.frame = ent->s.frame;
 		VectorCopy(ent->s.origin, ent->client->oldplayer->s.origin);
 		VectorCopy(ent->velocity, ent->client->oldplayer->velocity);
 		VectorCopy(ent->s.angles, ent->client->oldplayer->s.angles);
-		
+
 		ent->client->oldplayer->s = ent->s;
 		ent->client->oldplayer->mass = ent->mass;
 		if (ent->svflags & SVF_NOCLIENT)
 			ent->client->oldplayer->svflags |= SVF_NOCLIENT;
 		else
 			ent->client->oldplayer->svflags &= ~SVF_NOCLIENT;
-		
+
 		gi.linkentity(ent->client->oldplayer);
 	}
-	
+
 }
 

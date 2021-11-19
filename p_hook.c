@@ -19,101 +19,101 @@
 
 // this is the same as function P_ProjectSource in p_weapons.c except it projects
 // the offset distance in reverse since hook is launched with player's free hand
-void P_ProjectSource_Reverse (gclient_t *client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result)
+void P_ProjectSource_Reverse(gclient_t* client, vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result)
 {
-	vec3_t	_distance;
+	vec3_t	_distance = { 0 };
 
-	VectorCopy (distance, _distance);
+	VectorCopy(distance, _distance);
 	if (client->pers.hand == RIGHT_HANDED)
 		_distance[1] *= -1;
 	else if (client->pers.hand == CENTER_HANDED)
 		_distance[1] = 0;
-	G_ProjectSource (point, _distance, forward, right, result);
+	G_ProjectSource(point, _distance, forward, right, result);
 }
 
 
-void DropHook (edict_t *ent)
+void DropHook(edict_t* ent)
 {
 	// remove all hook flags
 	ent->owner->client->hookstate = HOOK_READY;
 	ent->owner->client->num_hooks = 0;
 
-	gi.sound (ent->owner, CHAN_AUTO, gi.soundindex("weapons/sshotr1b.wav"), 1, ATTN_IDLE, 0);
-	
+	gi.sound(ent->owner, CHAN_AUTO, gi.soundindex("weapons/sshotr1b.wav"), 1, ATTN_IDLE, 0);
+
 	// removes hook
-	G_FreeEdict (ent);
+	G_FreeEdict(ent);
 }
 
 
-void MaintainLinks (edict_t *ent)
+void MaintainLinks(edict_t* ent)
 {
 	vec3_t pred_hookpos;	// predicted future hook origin
 	float multiplier;		// prediction multiplier
-	vec3_t norm_hookvel;	// normalized hook velocity
+	vec3_t norm_hookvel = { 0 };	// normalized hook velocity
 
-	vec3_t	offset, start;
+	vec3_t	offset = { 0 }, start;
 	vec3_t	forward, right;
 
-// FIXME: add this and use it to make chain not clip in players view
-//	vec3_t chainvec;		// vector of the chain 
-//	vec3_t chainunit; 		// vector of chain with distance of 1
-//	float chainlen;			// length of chain
+	// FIXME: add this and use it to make chain not clip in players view
+	//	vec3_t chainvec;		// vector of the chain 
+	//	vec3_t chainunit; 		// vector of chain with distance of 1
+	//	float chainlen;			// length of chain
 
-	// predicts hook's future position since chain links fall behind
-	VectorClear (norm_hookvel);
+		// predicts hook's future position since chain links fall behind
+	VectorClear(norm_hookvel);
 	multiplier = VectorLength(ent->velocity) / 22;
-	VectorNormalize2 (ent->velocity, norm_hookvel); 
-	VectorMA (ent->s.origin, multiplier, norm_hookvel, pred_hookpos);
+	VectorNormalize2(ent->velocity, norm_hookvel);
+	VectorMA(ent->s.origin, multiplier, norm_hookvel, pred_hookpos);
 
 	// derive start point of chain
-	AngleVectors (ent->owner->client->v_angle, forward, right, NULL);
-	VectorSet (offset, 8, 8, ent->owner->viewheight - 8.0f);
-	P_ProjectSource_Reverse (ent->owner->client, ent->owner->s.origin, offset, forward, right, start);
+	AngleVectors(ent->owner->client->v_angle, forward, right, NULL);
+	VectorSet(offset, 8, 8, ent->owner->viewheight - 8.0f);
+	P_ProjectSource_Reverse(ent->owner->client, ent->owner->s.origin, offset, forward, right, start);
 
-// FIXME: add this and use it to make chain not clip in players view
-	// get info about chain
-//	_VectorSubtract (pred_hookpos,start,chainvec);
-//	VectorNormalize2 (chainvec, chainunit);
-//	VectorMA (chainvec, -18, chainunit, chainvec);
-//	chainlen = VectorLength (chainvec);
+	// FIXME: add this and use it to make chain not clip in players view
+		// get info about chain
+	//	_VectorSubtract (pred_hookpos,start,chainvec);
+	//	VectorNormalize2 (chainvec, chainunit);
+	//	VectorMA (chainvec, -18, chainunit, chainvec);
+	//	chainlen = VectorLength (chainvec);
 
-	// create temp entity chain
-	gi.WriteByte (svc_temp_entity);
-	gi.WriteByte (TE_MEDIC_CABLE_ATTACK);
-	gi.WriteShort (ent - g_edicts);
-	gi.WritePosition (pred_hookpos);
-	gi.WritePosition (start);
-	gi.multicast (ent->s.origin, MULTICAST_PVS);
+		// create temp entity chain
+	gi.WriteByte(svc_temp_entity);
+	gi.WriteByte(TE_MEDIC_CABLE_ATTACK);
+	gi.WriteShort(ent - g_edicts);
+	gi.WritePosition(pred_hookpos);
+	gi.WritePosition(start);
+	gi.multicast(ent->s.origin, MULTICAST_PVS);
 }
 
 
-void Hook_Think(edict_t *ent)
+void Hook_Think(edict_t* ent)
 {
-	vec3_t	offset, start;
+	vec3_t	offset = { 0 }, start;
 	vec3_t	forward, right;
-	vec3_t	chainvec;		// chain's vector
+	vec3_t	chainvec = { 0 };		// chain's vector
 	float chainlen;			// length of extended chain
 	vec3_t velpart;			// player's velocity component moving to or away from hook
 	float f1, f2;			// restrainment forces
 	float framestep;		// grow or shrink step per frame
-		
+
 	// decide when to disconnect hook
-	if ( (!(ent->owner->client->hookstate & HOOK_ON)) ||// if hook has been retracted
-	     (ent->enemy->solid == SOLID_NOT) ||			// if target is no longer solid (i.e. hook broke glass; exploded barrels, gibs) 
-	     (ent->owner->deadflag) ||	// if player died 
-		 (!ent->owner->inuse) ||	// or disconnected unexpectedly //QW//
-	     (ent->owner->s.event == EV_PLAYER_TELEPORT) )	// if player goes through teleport
+	if ((!(ent->owner->client->hookstate & HOOK_ON)) ||// if hook has been retracted
+		(ent->enemy->solid == SOLID_NOT) ||			// if target is no longer solid (i.e. hook broke glass; exploded barrels, gibs) 
+		(ent->owner->deadflag) ||	// if player died 
+		(!ent->owner->inuse) ||	// or disconnected unexpectedly //QW//
+		(ent->owner->s.event == EV_PLAYER_TELEPORT))	// if player goes through teleport
 	{
 		DropHook(ent);
 		return;
 	}
 
 	// gives hook same velocity as the entity it is stuck in
-	VectorCopy (ent->enemy->velocity,ent->velocity);
+	VectorCopy(ent->enemy->velocity, ent->velocity);
 
-// chain sizing 
+	// chain sizing 
 
-	// grow the length of the chain
+		// grow the length of the chain
 	if ((ent->owner->client->hookstate & GROW_ON) && (ent->angle < MAX_CHAIN_LEN))
 	{
 		if (level.time - ent->wait > 0.1f) ent->wait = level.time - 0.1f;
@@ -125,12 +125,12 @@ void Hook_Think(edict_t *ent)
 		// trigger climb sound
 		if (level.time - ent->delay >= 0.1f)
 		{
-			gi.sound (ent->owner, CHAN_AUTO, gi.soundindex("world/turbine1.wav"), 0.8f, ATTN_IDLE, 0);
+			gi.sound(ent->owner, CHAN_AUTO, gi.soundindex("world/turbine1.wav"), 0.8f, ATTN_IDLE, 0);
 			ent->delay = level.time;
 		}
 	}
 
-    if ((ent->owner->client->hookstate & SHRINK_ON) && (ent->angle > MIN_CHAIN_LEN))
+	if ((ent->owner->client->hookstate & SHRINK_ON) && (ent->angle > MIN_CHAIN_LEN))
 	{
 		if (level.time - ent->wait > 0.1f) ent->wait = level.time - 0.1f;
 		framestep = 10 * (level.time - ent->wait) * GROW_SHRINK_RATE;
@@ -139,35 +139,35 @@ void Hook_Think(edict_t *ent)
 		ent->wait = level.time;
 
 		// trigger slide sound
-		if (level.time - ent->delay >= 0.1f)		
+		if (level.time - ent->delay >= 0.1f)
 		{
-			gi.sound (ent->owner, CHAN_AUTO, gi.soundindex("world/turbine1.wav"), 0.8f, ATTN_IDLE, 0);
+			gi.sound(ent->owner, CHAN_AUTO, gi.soundindex("world/turbine1.wav"), 0.8f, ATTN_IDLE, 0);
 			ent->delay = level.time;
 		}
 	}
 
-// chain physics
+	// chain physics
 
-	// derive start point of chain
-	AngleVectors (ent->owner->client->v_angle, forward, right, NULL);
+		// derive start point of chain
+	AngleVectors(ent->owner->client->v_angle, forward, right, NULL);
 	VectorSet(offset, 8, 8, ent->owner->viewheight - 8.0f);
-	P_ProjectSource_Reverse (ent->owner->client, ent->owner->s.origin, offset, forward, right, start);
+	P_ProjectSource_Reverse(ent->owner->client, ent->owner->s.origin, offset, forward, right, start);
 
 	// get info about chain
-	VectorSubtract (ent->s.origin, start, chainvec);
-	chainlen = VectorLength (chainvec);
+	VectorSubtract(ent->s.origin, start, chainvec);
+	chainlen = VectorLength(chainvec);
 
 	// if player's location is beyond the chain's reach
-	if (chainlen > ent->angle)	
-	{	 
+	if (chainlen > ent->angle)
+	{
 		// determine player's velocity component of chain vector
-		VectorScale (chainvec, _DotProduct (ent->owner->velocity, chainvec) / _DotProduct (chainvec, chainvec), velpart);
-		
+		VectorScale(chainvec, _DotProduct(ent->owner->velocity, chainvec) / _DotProduct(chainvec, chainvec), velpart);
+
 		// restrainment default force 
 		f2 = (chainlen - ent->angle) * 5;
 
 		// if player's velocity heading is away from the hook
-		if (_DotProduct (ent->owner->velocity, chainvec) < 0)
+		if (_DotProduct(ent->owner->velocity, chainvec) < 0)
 		{
 			// if chain has stretched for 25 units
 			if (chainlen > ent->angle + 25)
@@ -177,45 +177,45 @@ void Hook_Think(edict_t *ent)
 		}
 		else  // if player's velocity heading is towards the hook
 		{
-			if (VectorLength (velpart) < f2)
-				f1 = f2 - VectorLength (velpart);
-			else		
+			if (VectorLength(velpart) < f2)
+				f1 = f2 - VectorLength(velpart);
+			else
 				f1 = 0;
 		}
 	}
 	else
 		f1 = 0;
-	
-    // applys chain restrainment 
-	VectorNormalize (chainvec);
-	VectorMA (ent->owner->velocity, f1, chainvec, ent->owner->velocity);
-	
-	MaintainLinks (ent);
+
+	// applys chain restrainment 
+	VectorNormalize(chainvec);
+	VectorMA(ent->owner->velocity, f1, chainvec, ent->owner->velocity);
+
+	MaintainLinks(ent);
 
 	// prep for next think
 	ent->nextthink = level.time + FRAMETIME;
 }
 
 
-void HookTouch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
+void HookTouch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
-	vec3_t	offset, start;
+	vec3_t	offset = { 0 }, start;
 	vec3_t	forward, right;
-	vec3_t	chainvec;		// chain's vector
+	vec3_t	chainvec = { 0 };		// chain's vector
 
 	// derive start point of chain
-	AngleVectors (ent->owner->client->v_angle, forward, right, NULL);
+	AngleVectors(ent->owner->client->v_angle, forward, right, NULL);
 	VectorSet(offset, 8, 8, ent->owner->viewheight - 8.0f);
-	P_ProjectSource_Reverse (ent->owner->client, ent->owner->s.origin, offset, forward, right, start);
+	P_ProjectSource_Reverse(ent->owner->client, ent->owner->s.origin, offset, forward, right, start);
 
 	// member angle is used to store the length of the chain
-	VectorSubtract(ent->s.origin,start,chainvec);
-	ent->angle = VectorLength (chainvec);	
+	VectorSubtract(ent->s.origin, start, chainvec);
+	ent->angle = VectorLength(chainvec);
 
 	// don't attach hook to sky
 	if (surf && (surf->flags & SURF_SKY))
 	{
-		DropHook (ent);
+		DropHook(ent);
 		return;
 	}
 
@@ -229,7 +229,7 @@ void HookTouch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
 		if (i_fragban & WFB_HOOK)
 			mod |= MOD_NOFRAG;
 
-		T_Damage (other, ent, ent->owner, ent->velocity, ent->s.origin,
+		T_Damage(other, ent, ent->owner, ent->velocity, ent->s.origin,
 			plane->normal, ent->dmg, 100, 0, mod);
 	}
 
@@ -242,30 +242,30 @@ void HookTouch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
 		return;*/
 		ent->other = other;
 	}
-	
+
 	if (other->solid == SOLID_BSP)
 	{
 		// create puff of smoke
-		gi.WriteByte (svc_temp_entity);
-		gi.WriteByte (TE_SHOTGUN);
-		gi.WritePosition (ent->s.origin);
+		gi.WriteByte(svc_temp_entity);
+		gi.WriteByte(TE_SHOTGUN);
+		gi.WritePosition(ent->s.origin);
 		if (!plane)
-			gi.WriteDir (vec3_origin);
+			gi.WriteDir(vec3_origin);
 		else
-			gi.WriteDir (plane->normal);
-		gi.multicast (ent->s.origin, MULTICAST_PVS);
+			gi.WriteDir(plane->normal);
+		gi.multicast(ent->s.origin, MULTICAST_PVS);
 
-		gi.sound (ent, CHAN_VOICE, gi.soundindex("flyer/flyatck1.wav"), 1, ATTN_IDLE, 0);
-		VectorClear (ent->avelocity);
+		gi.sound(ent, CHAN_VOICE, gi.soundindex("flyer/flyatck1.wav"), 1, ATTN_IDLE, 0);
+		VectorClear(ent->avelocity);
 	}
 	else if (other->solid == SOLID_TRIGGER)
 	{
 		// debugging line; don't know if this will ever happen 
-		gi.cprintf (ent->owner, PRINT_HIGH, "Hook touched a SOLID_TRIGGER\n");
+		gi.cprintf(ent->owner, PRINT_HIGH, "Hook touched a SOLID_TRIGGER\n");
 	}
-	
+
 	// hook gets the same velocity as the item it attached to
-	VectorCopy (other->velocity,ent->velocity);
+	VectorCopy(other->velocity, ent->velocity);
 
 	// flags hook as being attached to something
 	ent->owner->client->hookstate |= HOOK_IN;
@@ -277,38 +277,38 @@ void HookTouch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf)
 }
 
 
-void HookAirborne (edict_t *ent)
+void HookAirborne(edict_t* ent)
 {
-    vec3_t chainvec;		// chain's vector
+	vec3_t chainvec = { 0 };		// chain's vector
 	float chainlen;			// length of extended chain
-	
+
 	// get info about chain
-	VectorSubtract (ent->s.origin, ent->owner->s.origin, chainvec);
-	chainlen = VectorLength (chainvec);
-	
-	if ( (!(ent->owner->client->hookstate & HOOK_ON)) || (chainlen > MAX_CHAIN_LEN) )
+	VectorSubtract(ent->s.origin, ent->owner->s.origin, chainvec);
+	chainlen = VectorLength(chainvec);
+
+	if ((!(ent->owner->client->hookstate & HOOK_ON)) || (chainlen > MAX_CHAIN_LEN))
 	{
 		DropHook(ent);
 		return;
 	}
-	
-	MaintainLinks (ent);	
+
+	MaintainLinks(ent);
 
 	ent->nextthink = level.time + FRAMETIME;
 }
 
 
-void FireHook (edict_t *ent)
+void FireHook(edict_t* ent)
 {
-	edict_t *newhook;
-	vec3_t	offset, start;
+	edict_t* newhook;
+	vec3_t	offset = { 0 }, start;
 	vec3_t	forward, right;
 	int		damage;
 
 	//QW// limit the number of multi-hooks deployed
 	if (ent->client->num_hooks >= MAX_HOOKS)
 	{
-		gi.cprintf(ent,PRINT_HIGH, "Too many hooks activated\n");
+		gi.cprintf(ent, PRINT_HIGH, "Too many hooks activated\n");
 		return;
 	}
 
@@ -316,71 +316,71 @@ void FireHook (edict_t *ent)
 	damage = 10;
 	if (ent->client->quad_framenum > level.framenum)
 		damage *= 4;
-	
+
 	// derive point of hook origin
-	AngleVectors (ent->client->v_angle, forward, right, NULL);
+	AngleVectors(ent->client->v_angle, forward, right, NULL);
 	VectorSet(offset, 8, 8, ent->viewheight - 8.0f);
-	P_ProjectSource_Reverse (ent->client, ent->s.origin, offset, forward, right, start);
+	P_ProjectSource_Reverse(ent->client, ent->s.origin, offset, forward, right, start);
 
 	// spawn hook
 	newhook = G_Spawn();
-	VectorCopy (start, newhook->s.origin);
-	VectorCopy (forward, newhook->movedir);
-	vectoangles (forward, newhook->s.angles);
-	VectorScale (forward, 1000, newhook->velocity);
-	VectorSet(newhook->avelocity,0,0,-800);
+	VectorCopy(start, newhook->s.origin);
+	VectorCopy(forward, newhook->movedir);
+	vectoangles(forward, newhook->s.angles);
+	VectorScale(forward, 1000, newhook->velocity);
+	VectorSet(newhook->avelocity, 0, 0, -800);
 	newhook->movetype = MOVETYPE_FLYMISSILE;
 	newhook->clipmask = MASK_SHOT;
 	newhook->solid = SOLID_BBOX;
-	VectorClear (newhook->mins);
-	VectorClear (newhook->maxs);
+	VectorClear(newhook->mins);
+	VectorClear(newhook->maxs);
 	if (ctf->value)
-		newhook->s.modelindex = gi.modelindex ("models/weapons/grapple/hook/tris.md2");
+		newhook->s.modelindex = gi.modelindex("models/weapons/grapple/hook/tris.md2");
 	else
-		newhook->s.modelindex = gi.modelindex ("models/weapons/grapple/hook/tris.md2");
-		//newhook->s.modelindex = gi.modelindex ("models/objects/debris2/tris.md2");
+		newhook->s.modelindex = gi.modelindex("models/weapons/grapple/hook/tris.md2");
+	//newhook->s.modelindex = gi.modelindex ("models/objects/debris2/tris.md2");
 	newhook->owner = ent;
 	newhook->dmg = damage;
 
 	// wait used to regulate climb and slide rates; tracks time between frames 
-	newhook->wait = level.time;  
+	newhook->wait = level.time;
 
 	// delay used to keep track of how frequent chain noise should occur 
-	newhook->delay = level.time;   
-    
+	newhook->delay = level.time;
+
 	// play hook launching sound
-	gi.sound (ent, CHAN_AUTO, gi.soundindex ("medic/medatck2.wav"), 1, ATTN_IDLE, 0);
-	
+	gi.sound(ent, CHAN_AUTO, gi.soundindex("medic/medatck2.wav"), 1, ATTN_IDLE, 0);
+
 	// specify actions to follow 
 	newhook->touch = HookTouch;
 	newhook->think = HookAirborne;
 	newhook->nextthink = level.time + FRAMETIME;
-	
-	gi.linkentity (newhook);
+
+	gi.linkentity(newhook);
 	ent->client->num_hooks++;
 
 }
 
 
-void Cmd_Hook_f (edict_t *ent)
+void Cmd_Hook_f(edict_t* ent)
 {
-	char *s;
-	int	*hookstate;
+	char* s;
+	int* hookstate;
 
 	// No grappling hook when you're dead.
-	if (ent->deadflag) 
+	if (ent->deadflag)
 		return;
 
 	// Or when you're a ghost.
-	if (ctf->value && ent->movetype == MOVETYPE_NOCLIP && ent->solid == SOLID_NOT) 
+	if (ctf->value && ent->movetype == MOVETYPE_NOCLIP && ent->solid == SOLID_NOT)
 		return;
-	
+
 	// Or when you're frozen.
-	if (ent->frozen) 
+	if (ent->frozen)
 		return;
 
 	// Or if the grappling hook has been banned.
-	if ((int)featureban->value & FB_HOOK) 
+	if ((int)featureban->value & FB_HOOK)
 		return;
 
 	// get the first hook argument
@@ -392,13 +392,13 @@ void Cmd_Hook_f (edict_t *ent)
 	if ((!(*hookstate & HOOK_ON)) && (Q_stricmp(s, "action") == 0))
 	{
 		// flags hook as being active 
-		*hookstate = HOOK_ON;   
+		*hookstate = HOOK_ON;
 
-		FireHook (ent);
+		FireHook(ent);
 		return;
 	}
 
-	if  (*hookstate & HOOK_ON)
+	if (*hookstate & HOOK_ON)
 	{
 		// release hook	
 		if (Q_stricmp(s, "action") == 0)
@@ -407,21 +407,21 @@ void Cmd_Hook_f (edict_t *ent)
 			return;
 		}
 
-// FIXME: put this in when I figure out where the jump key is handled
-		// hop of chain and release hook when the following conditions apply
-//		if (	(self.button2) && 					// jump is pressed
-//				(self.flags & FL_JUMPRELEASED) &&	// previous jump cycle has finished
-//				(self.hook & HOOK_IN) &&			// hook is attached
-//				(!(self.flags & FL_ONGROUND)) &&	// player not on ground
-//				(!(self.flags & FL_INWATER))	)	// player not in water
-//		{
-//			self.hook = self.hook - (self.hook & HOOK_ON);
-//			self.velocity_z = self.velocity_z + 200;
-//			sound (self, CHAN_BODY, "player/plyrjmp8.wav", 1, ATTN_NORM);
-//			return;
-//		}
+		// FIXME: put this in when I figure out where the jump key is handled
+				// hop of chain and release hook when the following conditions apply
+		//		if (	(self.button2) && 					// jump is pressed
+		//				(self.flags & FL_JUMPRELEASED) &&	// previous jump cycle has finished
+		//				(self.hook & HOOK_IN) &&			// hook is attached
+		//				(!(self.flags & FL_ONGROUND)) &&	// player not on ground
+		//				(!(self.flags & FL_INWATER))	)	// player not in water
+		//		{
+		//			self.hook = self.hook - (self.hook & HOOK_ON);
+		//			self.velocity_z = self.velocity_z + 200;
+		//			sound (self, CHAN_BODY, "player/plyrjmp8.wav", 1, ATTN_NORM);
+		//			return;
+		//		}
 
-		// deactivate chain growth or shrink
+				// deactivate chain growth or shrink
 		if (Q_stricmp(s, "stop") == 0)
 		{
 			*hookstate -= *hookstate & (GROW_ON | SHRINK_ON);
@@ -439,19 +439,19 @@ void Cmd_Hook_f (edict_t *ent)
 		// activate chain shrinking
 		if (Q_stricmp(s, "shrink") == 0)
 		{
-			*hookstate |= SHRINK_ON;		
-			*hookstate -= *hookstate & GROW_ON;	
+			*hookstate |= SHRINK_ON;
+			*hookstate -= *hookstate & GROW_ON;
 		}
 	}
 }
 
 /**
- This function gives the alias set for the 
+ This function gives the alias set for the
  grappling hook to the client requesting them.
  */
-void HookGiveBinds_f (edict_t *ent)
+void HookGiveBinds_f(edict_t* ent)
 {
-	char* aliases = 
+	char* aliases =
 		"alias +hook \"hook action; hook shrink\"\n"
 		"alias -hook \"hook stop\"\n"
 		"alias +shrink \"hook shrink\"\n"

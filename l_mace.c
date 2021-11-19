@@ -18,7 +18,7 @@ findradius (origin, radius)
 */
 static edict_t* mace_horn_findradius(edict_t* from, vec3_t org, float rad)
 {
-	vec3_t	eorg;
+	vec3_t	eorg = { 0 };
 	int		j;
 
 	if (!from)
@@ -44,7 +44,7 @@ static edict_t* mace_horn_findradius(edict_t* from, vec3_t org, float rad)
 
 qboolean mace_horn_infront(edict_t* self, edict_t* other)
 {
-	vec3_t	vec, forward;
+	vec3_t	vec = { 0 }, forward;
 	float	dot;
 
 	AngleVectors(self->s.angles, forward, NULL, NULL);
@@ -59,7 +59,7 @@ qboolean mace_horn_infront(edict_t* self, edict_t* other)
 
 void fire_mace(edict_t* self, vec3_t start, vec3_t aimdir, int inDamage, int strength, float inRange, float recoil)
 {
-	vec3_t	end, delta, forward, right, up;
+	vec3_t	end, delta = { 0 }, forward, right, up;
 	float percent, distance;
 	float max_mass = 800; //max mass that can be moved
 	float actual_mass;
@@ -177,7 +177,7 @@ void fire_mace(edict_t* self, vec3_t start, vec3_t aimdir, int inDamage, int str
 
 void weapon_mace_fire(edict_t* ent)
 {
-	vec3_t	start, up, forward, right, offset;
+	vec3_t	start, up, forward, right, offset = { 0 };
 	int		damage = 2;
 	int		kick = 8;
 

@@ -19,7 +19,7 @@ the player has been recently.  It is used by monsters for pursuit.
 
 #define	TRAIL_LENGTH	8
 
-edict_t		*trail[TRAIL_LENGTH];
+edict_t* trail[TRAIL_LENGTH];
 int			trail_head;
 qboolean	trail_active = false;
 
@@ -27,7 +27,7 @@ qboolean	trail_active = false;
 #define PREV(n)		(((n) - 1) & (TRAIL_LENGTH - 1))
 
 
-void PlayerTrail_Init (void)
+void PlayerTrail_Init(void)
 {
 	int		n;
 
@@ -45,35 +45,35 @@ void PlayerTrail_Init (void)
 }
 
 
-void PlayerTrail_Add (vec3_t spot)
+void PlayerTrail_Add(vec3_t spot)
 {
-	vec3_t	temp;
+	vec3_t	temp = { 0 };
 
 	if (!trail_active)
 		return;
 
-	VectorCopy (spot, trail[trail_head]->s.origin);
+	VectorCopy(spot, trail[trail_head]->s.origin);
 
 	trail[trail_head]->timestamp = level.time;
 
-	VectorSubtract (spot, trail[PREV(trail_head)]->s.origin, temp);
-	trail[trail_head]->s.angles[1] = vectoyaw (temp);
+	VectorSubtract(spot, trail[PREV(trail_head)]->s.origin, temp);
+	trail[trail_head]->s.angles[1] = vectoyaw(temp);
 
 	trail_head = NEXT(trail_head);
 }
 
 
-void PlayerTrail_New (vec3_t spot)
+void PlayerTrail_New(vec3_t spot)
 {
 	if (!trail_active)
 		return;
 
-	PlayerTrail_Init ();
-	PlayerTrail_Add (spot);
+	PlayerTrail_Init();
+	PlayerTrail_Add(spot);
 }
 
 
-edict_t *PlayerTrail_PickFirst (edict_t *self)
+edict_t* PlayerTrail_PickFirst(edict_t* self)
 {
 	int		marker;
 	int		n;
@@ -102,7 +102,7 @@ edict_t *PlayerTrail_PickFirst (edict_t *self)
 	return trail[marker];
 }
 
-edict_t *PlayerTrail_PickNext (edict_t *self)
+edict_t* PlayerTrail_PickNext(edict_t* self)
 {
 	int		marker;
 	int		n;
@@ -121,7 +121,7 @@ edict_t *PlayerTrail_PickNext (edict_t *self)
 	return trail[marker];
 }
 
-edict_t *PlayerTrail_LastSpot (void)
+edict_t* PlayerTrail_LastSpot(void)
 {
 	return trail[PREV(trail_head)];
 }

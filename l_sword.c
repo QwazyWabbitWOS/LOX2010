@@ -15,37 +15,37 @@ fire_sword
   =============
 */
 
-void fire_sword ( edict_t *self, vec3_t start, vec3_t aimdir, int damage, int kick)
+void fire_sword(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick)
 {
 	//You may recognize a lot of this from the fire lead command, which
 	//is the one that I understood best what the hell was going on
-	
+
 	trace_t tr;             //Not entirely sure what this is, I know that it is used
 	//to trace out the route of the weapon being used...gotta limit it
-	
+
 	vec3_t          dir;            //Another point I am unclear about
 	vec3_t          forward;        //maybe someday I will know a little bit
 	vec3_t          right;          //better about what these are
 	vec3_t          up;
 	vec3_t          end;
-	
-	tr = gi.trace (self->s.origin, NULL, NULL, start, self, MASK_SHOT);
-	
+
+	tr = gi.trace(self->s.origin, NULL, NULL, start, self, MASK_SHOT);
+
 	if (!(tr.fraction < 1.0))       //I can only assume this has something to do
 								//with the progress of the trace
 	{
-		vectoangles(aimdir,dir);
-		AngleVectors(dir,forward,right,up);             //possibly sets some of the angle vectors
+		vectoangles(aimdir, dir);
+		AngleVectors(dir, forward, right, up);             //possibly sets some of the angle vectors
 		//as standards?
-		
-		VectorMA (start, 8192, forward, end);           //This does some extension of the vector
+
+		VectorMA(start, 8192, forward, end);           //This does some extension of the vector
 		//note how short I have this attack going
 	}
-	
+
 	//The fire_lead had an awful lot of stuff in here dealing with the effect of the shot
 	//upon water and whatnot, but a sword doesn't make you worry about that sort of stuff
 	//thats why highlanders are so damn cool.
-	
+
 	if (!((tr.surface) && (tr.surface->flags & SURF_SKY)))
 	{
 		if (tr.fraction < 1.0)
@@ -53,19 +53,19 @@ void fire_sword ( edict_t *self, vec3_t start, vec3_t aimdir, int damage, int ki
 			if (tr.ent->takedamage)
 			{
 				//This tells us to damage the thing that in our path
-				T_Damage (tr.ent, self, self, aimdir, tr.endpos, tr.plane.normal, damage, kick, 0,MOD_SWORD);
-				gi.sound (self, CHAN_VOICE, gi.soundindex ("weapons/sword/hitwall.wav"), 1, ATTN_NORM, 0);
+				T_Damage(tr.ent, self, self, aimdir, tr.endpos, tr.plane.normal, damage, kick, 0, MOD_SWORD);
+				gi.sound(self, CHAN_VOICE, gi.soundindex("weapons/sword/hitwall.wav"), 1, ATTN_NORM, 0);
 			}
 			else
 			{
-				if (tr.surface && strncmp (tr.surface->name, "sky", 3) != 0)
+				if (tr.surface && strncmp(tr.surface->name, "sky", 3) != 0)
 				{
-					gi.WriteByte (svc_temp_entity);
-					gi.WriteByte (TE_GUNSHOT);
-					gi.WritePosition (tr.endpos);
-					gi.WriteDir (tr.plane.normal);
-					gi.multicast (tr.endpos, MULTICAST_PVS);
-					
+					gi.WriteByte(svc_temp_entity);
+					gi.WriteByte(TE_GUNSHOT);
+					gi.WritePosition(tr.endpos);
+					gi.WriteDir(tr.plane.normal);
+					gi.multicast(tr.endpos, MULTICAST_PVS);
+
 					if (self->client)
 						PlayerNoise(self, tr.endpos, PNOISE_IMPACT);
 				}
@@ -75,40 +75,40 @@ void fire_sword ( edict_t *self, vec3_t start, vec3_t aimdir, int damage, int ki
 	return;
 }
 
-void sword_attack (edict_t *ent, vec3_t g_offset, int damage)
+void sword_attack(edict_t* ent, vec3_t g_offset, int damage)
 {
 	vec3_t  forward, right;
 	vec3_t  start;
-	vec3_t  offset;
-	
+	vec3_t  offset = { 0 };
+
 	if (is_quad)
 		damage *= 4;
-	AngleVectors (ent->client->v_angle, forward, right, NULL);
+	AngleVectors(ent->client->v_angle, forward, right, NULL);
 	VectorSet(offset, 24, 8, ent->viewheight - 8.0f);
-	VectorAdd (offset, g_offset, offset);
-	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
-	
-	VectorScale (forward, -2, ent->client->kick_origin);
+	VectorAdd(offset, g_offset, offset);
+	P_ProjectSource(ent->client, ent->s.origin, offset, forward, right, start);
+
+	VectorScale(forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -1;
-	gi.sound (ent, CHAN_VOICE, gi.soundindex ("weapons/sword/swingr.wav"), 1, ATTN_NORM, 0);
-	fire_sword (ent, start, forward, damage, SWORD_KICK );
+	gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/sword/swingr.wav"), 1, ATTN_NORM, 0);
+	fire_sword(ent, start, forward, damage, SWORD_KICK);
 }
 
-void Weapon_Sword_Fire (edict_t *ent)
+void Weapon_Sword_Fire(edict_t* ent)
 {
 	int damage;
 	if (deathmatch->value)
 		damage = SWORD_DEATHMATCH_DAMAGE;
 	else
 		damage = SWORD_NORMAL_DAMAGE;
-	sword_attack (ent, vec3_origin, damage);
+	sword_attack(ent, vec3_origin, damage);
 	ent->client->ps.gunframe++;
 }
 
-void Weapon_Sword (edict_t *ent)
+void Weapon_Sword(edict_t* ent)
 {
-	static int      pause_frames[]  = {8,0};
-	static int      fire_frames[]   = {10,0};
-	
-	Weapon_Generic (ent, 4, 16, 26, 31, pause_frames, fire_frames, Weapon_Sword_Fire);
+	static int      pause_frames[] = { 8,0 };
+	static int      fire_frames[] = { 10,0 };
+
+	Weapon_Generic(ent, 4, 16, 26, 31, pause_frames, fire_frames, Weapon_Sword_Fire);
 }

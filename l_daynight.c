@@ -8,11 +8,11 @@
 
   This function computes the time interval needed to cycle
   the light level config string thru one day/night/day cycle
-  based on the "nightdaytime" cvar. If the nightdaytime 
-  is negative, it changes it to zero (disable day/night). 
-  The server frames per light level are readjusted to account 
-  for minlevel. This maintains the overall day-night time by 
-  slightly extending the number of server frames used at each 
+  based on the "nightdaytime" cvar. If the nightdaytime
+  is negative, it changes it to zero (disable day/night).
+  The server frames per light level are readjusted to account
+  for minlevel. This maintains the overall day-night time by
+  slightly extending the number of server frames used at each
   light level.
 
   QwazyWabbit
@@ -24,8 +24,8 @@
 #define DOWN	1
 
 //cvars for customizing all this
-cvar_t	*nightdaytime;
-cvar_t	*minlevel;
+cvar_t* nightdaytime;
+cvar_t* minlevel;
 
 void InitDayNightVars(void)
 {
@@ -56,7 +56,7 @@ int			cycletime;	// server ticks per light level
 void DayNightCycle(void)
 {
 	float result;
-	
+
 	// catch frame 0 or frame 1 at start of a new map
 	// because we might be called after framenum was incremented
 	if (level.framenum <= 1 || nightdaytime->modified || minlevel->modified)
@@ -66,7 +66,7 @@ void DayNightCycle(void)
 		level.lightcount1 = 12;	 //13 light levels a to m
 		level.lightcount2 = 0;
 		level.updown = DOWN;
-		
+
 		//range checks
 		if ((nightdaytime->value > timelimit->value) && timelimit->value != 0.0f)
 			gi.cvar_set("nightdaytime", timelimit->string);
@@ -81,11 +81,11 @@ void DayNightCycle(void)
 		minlevel->modified = false;
 
 		result = (60 / FRAMETIME) * (nightdaytime->value / 26); //convert minutes to frames per step
-		
+
 		//adjust number of server frames between light level changes
-		level.cycletime =  (int) (result + (minlevel->value * result / (26.0f - minlevel->value)));
+		level.cycletime = (int)(result + (minlevel->value * result / (26.0f - minlevel->value)));
 	}
-	
+
 	if (deathmatch->value && nightdaytime->value != 0.0f)
 	{
 		// is it time to adjust light levels?
@@ -96,19 +96,19 @@ void DayNightCycle(void)
 				level.updown = DOWN;	// start reducing
 			else if (level.lightcount1 == minlevel->value) // at min light level
 				level.updown = UP; // start increasing
-			
+
 			if (level.updown == DOWN)
 				level.lightcount1--;
 			else if (level.updown == UP)
 				level.lightcount1++;
-			
+
 			// initialized above, a 2 byte string declared in g_local.h
 			level.lights[0] = (char)('a' + level.lightcount1); // modify the string (ASCII dependency)
-			
+
 			// reset the lightcount2 timer and set the light level in the game
 			level.lightcount2 = 0;
 			gi.configstring(CS_LIGHTS + 0, level.lights);
-			
+
 			// diagnostics
 			//gi.dprintf("level.lights %s \n", level.lights);	
 			//gi.dprintf("level.lightcount1 %d\n",level.lightcount1);

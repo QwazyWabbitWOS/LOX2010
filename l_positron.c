@@ -7,41 +7,41 @@
 #include "l_angels.h"
 #include "l_positron.h"
 
-void Shake (edict_t *self)
+void Shake(edict_t* self)
 {
-	edict_t *selected;
-	vec3_t dist;
+	edict_t* selected;
+	vec3_t dist = { 0 };
 	float distance;
 	int i;
-	
-	for (i=0 ; i<maxclients->value ; i++)
+
+	for (i = 0; i < maxclients->value; i++)
 	{
 		selected = g_edicts + 1 + i;
 		if (!selected->inuse)
 			continue;
-		
+
 		if (visible(self, selected))
 		{
 			VectorSubtract(selected->s.origin, self->s.origin, dist);
-			if ((distance=VectorLength(dist)) <= 500)
+			if ((distance = VectorLength(dist)) <= 500)
 				selected->client->kick_angles[0] = crandom() * (10 - distance * 0.02f);
 		}
 	}
 }
 
 
-void Positron_Think (edict_t *self)
+void Positron_Think(edict_t* self)
 {
 	if (self->s.frame > 17)
 	{
-		G_FreeEdict (self);
+		G_FreeEdict(self);
 		return;
 	}
 
-	Shake (self);
+	Shake(self);
 	T_RadiusDamage(self, self->owner, (12.0f * self->s.frame), self->enemy, (12.0f * self->s.frame + 40.0f), MOD_POSITRON);
 	//   T_RadiusDamage (self,self.owner,(8 * self.frame),world);
-	
+
 	if (!(self->s.frame % 3))
 		self->s.frame += 2;
 	else
@@ -49,7 +49,7 @@ void Positron_Think (edict_t *self)
 	self->nextthink = level.time + FRAMETIME;
 }
 
-void Positron_Exp (edict_t *self)
+void Positron_Exp(edict_t* self)
 {
 	self->avelocity[1] = 200;
 	self->avelocity[2] = self->avelocity[0] = 0;
@@ -61,17 +61,17 @@ void Positron_Exp (edict_t *self)
 	gi.linkentity(self);
 	self->think = Positron_Think;
 	self->nextthink = level.time + FRAMETIME;
-	gi.sound (self, CHAN_AUTO, gi.soundindex ("weapons/pt_blast.wav"), 1, ATTN_NORM, 0);
+	gi.sound(self, CHAN_AUTO, gi.soundindex("weapons/pt_blast.wav"), 1, ATTN_NORM, 0);
 }
 
-void MakePositron (edict_t *maker, edict_t *ignore, vec3_t origin, float delay)
+void MakePositron(edict_t* maker, edict_t* ignore, vec3_t origin, float delay)
 {
-	edict_t *positron;
-	
+	edict_t* positron;
+
 	positron = G_Spawn();
 	positron->owner = maker;
 	VectorCopy(origin, positron->s.origin);
-	VectorClear (positron->velocity);
+	VectorClear(positron->velocity);
 	positron->movetype = MOVETYPE_FLYMISSILE;
 	positron->s.modelindex = 0;
 	positron->think = Positron_Exp;
@@ -80,25 +80,25 @@ void MakePositron (edict_t *maker, edict_t *ignore, vec3_t origin, float delay)
 	positron->enemy = ignore;
 	positron->classname = "positron";
 	positron->classnum = CN_POSITRON;
-	gi.linkentity (positron);
+	gi.linkentity(positron);
 }
 
-void PositronBeamFire(edict_t *ent, vec3_t start, vec3_t dir)
+void PositronBeamFire(edict_t* ent, vec3_t start, vec3_t dir)
 {
 	vec3_t end;
 	trace_t tr;
-	
-	VectorMA (start, 2048, dir, end);
-	
-	tr = gi.trace (start, NULL, NULL, end, ent, CONTENTS_SOLID|CONTENTS_MONSTER|CONTENTS_DEADMONSTER);
-	
+
+	VectorMA(start, 2048, dir, end);
+
+	tr = gi.trace(start, NULL, NULL, end, ent, CONTENTS_SOLID | CONTENTS_MONSTER | CONTENTS_DEADMONSTER);
+
 	//Beam Effect
-	gi.WriteByte (svc_temp_entity);
-	gi.WriteByte (TE_BFG_LASER);
-	gi.WritePosition (start);
-	gi.WritePosition (tr.endpos);
-	gi.multicast (start, MULTICAST_PHS);
-	
+	gi.WriteByte(svc_temp_entity);
+	gi.WriteByte(TE_BFG_LASER);
+	gi.WritePosition(start);
+	gi.WritePosition(tr.endpos);
+	gi.multicast(start, MULTICAST_PHS);
+
 	if (!((tr.surface) && (tr.surface->flags & SURF_SKY)))
 	{
 		if (tr.fraction < 1.0)
@@ -113,9 +113,9 @@ void PositronBeamFire(edict_t *ent, vec3_t start, vec3_t dir)
 	}
 }
 
-void weapon_positron_fire (edict_t *ent)
+void weapon_positron_fire(edict_t* ent)
 {
-	vec3_t	start, forward, right, offset;
+	vec3_t	start, forward, right, offset = { 0 };
 	int			damage = 80;
 	int			kick = 200;
 
@@ -125,29 +125,29 @@ void weapon_positron_fire (edict_t *ent)
 		kick *= 4;
 	}
 
-	AngleVectors (ent->client->v_angle, forward, right, NULL);
-	
-	VectorScale (forward, -3, ent->client->kick_origin);
+	AngleVectors(ent->client->v_angle, forward, right, NULL);
+
+	VectorScale(forward, -3, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -3;
-	
-	VectorSet(offset, 0, 7,  ent->viewheight - 8.0f);
-	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
-	
+
+	VectorSet(offset, 0, 7, ent->viewheight - 8.0f);
+	P_ProjectSource(ent->client, ent->s.origin, offset, forward, right, start);
+
 	PositronBeamFire(ent, start, forward);
 	if (ent->client && ent->client->pers.special == AODEATH)
 	{
-		PositronBeamFire (ent, ent->client->angel->s.origin, forward);
+		PositronBeamFire(ent, ent->client->angel->s.origin, forward);
 	}
 	if (ent->client && !ent->client->silencer_shots)
 		gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/pt_fire.wav"), 1, ATTN_NORM, 0);
 	else
 		gi.sound(ent, CHAN_VOICE, gi.soundindex("weapons/pt_fire.wav"), 0.2f, ATTN_NORM, 0);
-	
+
 	ent->client->ps.gunframe++;
 	PlayerNoise(ent, start, PNOISE_WEAPON);
-	
-	if ((! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		&&(ent->client->ammo_index))
+
+	if ((!((int)dmflags->value & DF_INFINITE_AMMO))
+		&& (ent->client->ammo_index))
 	{
 		ent->client->pers.inventory[ent->client->ammo_index] -= 2;
 		ent->client->pers.inventory[ent->client->ammo2_index] -= 10;
@@ -155,10 +155,10 @@ void weapon_positron_fire (edict_t *ent)
 }
 
 
-void Weapon_Positron (edict_t *ent)
+void Weapon_Positron(edict_t* ent)
 {
-	static int	pause_frames[]	= {0};
-	static int	fire_frames[]	= {4,0};
+	static int	pause_frames[] = { 0 };
+	static int	fire_frames[] = { 4,0 };
 
-	Weapon_Generic (ent, 3, 20, 49, 53, pause_frames, fire_frames, weapon_positron_fire);
+	Weapon_Generic(ent, 3, 20, 49, 53, pause_frames, fire_frames, weapon_positron_fire);
 }

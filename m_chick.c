@@ -419,7 +419,7 @@ void chick_dodge (edict_t *self, edict_t *attacker, float eta)
 
 void ChickSlash (edict_t *self)
 {
-	vec3_t	aim;
+	vec3_t	aim = { 0 };
 
 	VectorSet (aim, MELEE_DISTANCE, self->mins[0], 10);
 	gi.sound (self, CHAN_WEAPON, sound_melee_swing, 1, ATTN_NORM, 0);
@@ -431,8 +431,8 @@ void ChickRocket (edict_t *self)
 {
 	vec3_t	forward, right;
 	vec3_t	start;
-	vec3_t	dir;
-	vec3_t	vec;
+	vec3_t	dir = { 0 };
+	vec3_t	vec = { 0 };
 
 	AngleVectors (self->s.angles, forward, right, NULL);
 	G_ProjectSource (self->s.origin, monster_flash_offset[MZ2_CHICK_ROCKET_1], forward, right, start);
