@@ -541,8 +541,9 @@ void G_FreeEdict(edict_t* ed)
 		return;
 	}
 
-	//DbgPrintf("%s edict count: %d %s index %d, time: %0.1f\n", __func__,
-	//	globals.num_edicts, ed->classname, ed->classnum, level.time);
+	if (level.time)
+		DbgPrintf("%s edict count: %d ent number %d %s index %d, time: %0.1f\n", __func__,
+			globals.num_edicts, ed->s.number, ed->classname, ed->classnum, level.time);
 
 	memset(ed, 0, sizeof(*ed));
 	ed->classname = "freed";

@@ -141,22 +141,6 @@ unsigned long i_loxtrackerban;
 unsigned long i_loxturretban;
 
 
-void ClientThink(edict_t* ent, usercmd_t* cmd);
-qboolean ClientConnect(edict_t* ent, char* userinfo);
-void ClientUserinfoChanged(edict_t* ent, char* userinfo);
-void ClientDisconnect(edict_t* ent);
-void ClientBegin(edict_t* ent);
-void ClientCommand(edict_t* ent);
-//void RunEntity (edict_t *ent);
-void WriteGame(char* filename, qboolean autosave);
-void ReadGame(char* filename);
-void WriteLevel(char* filename);
-void ReadLevel(char* filename);
-void InitGame(void);
-void G_RunFrame(void);
-void LogPlayerStats(void);
-
-
 // HACK
 int HACK_modelindex(char* name);
 int (*oldmodelindex) (char* name);
@@ -668,7 +652,7 @@ void G_RunFrame(void)
 }
 
 // HACK
-char modelSeen[256];
+char modelSeen[MAX_MODELS];
 
 int HACK_modelindex(char* name)
 {
@@ -678,10 +662,7 @@ int HACK_modelindex(char* name)
 	result = oldmodelindex(name);
 
 	// Log some "*Index: overflow" bugcatching info to the console, if
-	// they're using the maplist feature on a dedicated DM server -
-
-	//QW//
-	// - and debugmodels is on.
+	// they're using the maplist feature on a dedicated DM server and debugmodels is on.
 	// The purpose of this hack is to allow debugging of the overflow bug of the 256 model
 	// index limit in Q2. It starts the next level if we start to exceed the model limit.
 	// I hacked the hack to allow the server configuration to control whether we see the

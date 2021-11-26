@@ -2115,6 +2115,11 @@ void InitClientResp (gclient_t *client);
 void InitBodyQue (void);
 void ClientBeginServerFrame (edict_t *ent);
 void TossClientWeapon(edict_t *ent);
+void ClientUserinfoChanged(edict_t* ent, char* userinfo);
+void ClientThink(edict_t* ent, usercmd_t* cmd);
+qboolean ClientConnect(edict_t* ent, char* userinfo);
+void ClientDisconnect(edict_t* ent);
+void ClientBegin(edict_t* ent);
 
 //
 // g_player.c
@@ -2138,6 +2143,11 @@ qboolean SV_FilterPacket (char *from);
 //
 // g_save.c
 //
+void WriteGame(char* filename, qboolean autosave);
+void ReadGame(char* filename);
+void WriteLevel(char* filename);
+void ReadLevel(char* filename);
+void InitGame(void);
 void UpdateBans(void);
 
 //
@@ -2193,10 +2203,12 @@ void G_RunEntity (edict_t *ent);
 //
 // g_main.c
 //
+void G_RunFrame(void);
 void SaveClientData (void);
 void FetchClientEntData (edict_t *ent);
 void EndDMLevel (void);
 int CountConnectedClients (void);
+void LogPlayerStats(void);
 
 //
 // g_func.c
@@ -2287,6 +2299,7 @@ void Cmd_TimeRemaining_f(edict_t *ent);
 void Cmd_TimeAll_f(edict_t *ent);
 void Log_Time (void);
 void Cmd_SkinList_f(edict_t *ent);
+void ClientCommand(edict_t* ent);
 
 // defined in l_daynight.c
 void DayNightCycle(void);
