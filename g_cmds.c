@@ -376,7 +376,7 @@ void Cmd_Help(edict_t* ent)
 	}
 
 	query = gi.argv(1);
-	switch (tolower(query[0]))
+	switch (Q_tolower(query[0]))
 	{
 
 	case 'a':

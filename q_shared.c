@@ -774,8 +774,108 @@ void Com_PageInMemory(byte* buffer, int size)
 
 ============================================================================
 */
+// fast "C" macros
+#define Q_isupper(c)    ((c) >= 'A' && (c) <= 'Z')
+#define Q_islower(c)    ((c) >= 'a' && (c) <= 'z')
+#define Q_isdigit(c)    ((c) >= '0' && (c) <= '9')
+#define Q_isalpha(c)    (Q_isupper(c) || Q_islower(c))
+#define Q_isalnum(c)    (Q_isalpha(c) || Q_isdigit(c))
+#define Q_isprint(c)    ((c) >= 32 && (c) < 127)
+#define Q_isgraph(c)    ((c) > 32 && (c) < 127)
+#define Q_isspace(c)    (c == ' ' || c == '\f' || c == '\n' || \
+                         c == '\r' || c == '\t' || c == '\v')
 
-static	char	bigbuffer[0x1000]; // for Com_Sprintf
+int Q_tolower(int c)
+{
+	if (Q_isupper(c)) {
+		c += ('a' - 'A');
+	}
+	return c;
+}
+
+/** Case independent string compare.
+ If s1 is contained within s2 then return 0, they are "equal".
+ else return the lexicographic difference between them.
+*/
+int Q_stricmp(const char* s1, const char* s2)
+{
+	const unsigned char
+		* uc1 = (const unsigned char*)s1,
+		* uc2 = (const unsigned char*)s2;
+
+	while (Q_tolower(*uc1) == Q_tolower(*uc2++))
+		if (*uc1++ == '\0')
+			return (0);
+	return (Q_tolower(*uc1) - Q_tolower(*--uc2));
+}
+
+int Q_strnicmp(const char* s1, const char* s2, size_t count)
+{
+	if (count == 0)
+		return 0;
+	else
+	{
+		while (count-- != 0 && Q_tolower(*s1) == Q_tolower(*s2))
+		{
+			if (count == 0 || *s1 == '\0' || *s2 == '\0')
+				break;
+			s1++;
+			s2++;
+		}
+
+		return Q_tolower(*(unsigned char*)s1) - Q_tolower(*(unsigned char*)s2);
+	}
+}
+
+size_t Q_strncpyz(char* dst, size_t dstSize, const char* src)
+{
+	char* d = dst;
+	const char* s = src;
+	size_t        decSize = dstSize;
+
+	if (!dst || !src || dstSize < 1) {
+		Com_Printf("Bad arguments passed to %s\n", __func__);
+		return 0;
+	}
+
+	while (--decSize && *s)
+		*d++ = *s++;
+	*d = 0;
+
+	if (decSize == 0)    // Unsufficent room in dst, return count + length of remaining src
+		return (s - src - 1 + strlen(s));
+	else
+		return (s - src - 1);    // returned count excludes NULL terminator
+}
+
+size_t Q_strncatz(char* dst, size_t dstSize, const char* src)
+{
+	char* d = dst;
+	const char* s = src;
+	size_t        decSize = dstSize;
+	size_t        dLen;
+
+	if (!dst || !src || dstSize < 1) {
+		Com_Printf("Bad arguments passed to %s\n", __func__);
+		return 0;
+	}
+
+	while (--decSize && *d)
+		d++;
+	dLen = d - dst;
+
+	if (decSize == 0)
+		return (dLen + strlen(s));
+
+	if (decSize > 0) { // Always true!
+		while (--decSize && *s)
+			*d++ = *s++;
+
+		*d = 0;
+	}
+
+	return (dLen + (s - src));    // returned count excludes NULL terminator
+}
 
 /**
  Safer, uses large buffer.
@@ -789,6 +889,7 @@ void Com_sprintf(char* dest, int size, char* fmt, ...)
 {
 	int		len;
 	va_list	argptr;
+	char	bigbuffer[0x1000];
 
 	va_start(argptr, fmt);
 	len = vsprintf(bigbuffer, fmt, argptr);
@@ -801,32 +902,6 @@ void Com_sprintf(char* dest, int size, char* fmt, ...)
 			"Input was: %s", __func__, len, size, bigbuffer);
 	}
 }
-
-/** Case independent string compare (strcasecmp)
- if s1 is contained within s2 then return 0, they are "equal".
- else return the lexicographic difference between them.
-*/
-int	Q_stricmp(const char* s1, const char* s2)
-{
-	const unsigned char
-		* uc1 = (const unsigned char*)s1,
-		* uc2 = (const unsigned char*)s2;
-
-	while (tolower(*uc1) == tolower(*uc2++))
-		if (*uc1++ == '\0')
-			return (0);
-	return (tolower(*uc1) - tolower(*--uc2));
-}
-
-/**
- A wrapper for strncpy that unlike strncpy, always terminates strings with NUL.
- */
- //void Q_strncpy(char* pszDest, const char* pszSrc, int nDestSize)
- //{
- //	strncpy(pszDest, pszSrc, nDestSize);
- //	pszDest[nDestSize - 1] = '\0';
- //}
-
 
  /*
  =====================================================================

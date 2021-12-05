@@ -44,7 +44,7 @@ char* LoadEntFile(char* mapname, char* entities)
 	Com_sprintf(entfilename, sizeof entfilename, "%s/ent/%s.ent", gamedir->string, mapname);
 	// convert string to all lowercase 
 	for (int i = 0; entfilename[i]; i++)
-		entfilename[i] = (char)tolower(entfilename[i]);
+		entfilename[i] = (char)Q_tolower(entfilename[i]);
 
 	newentities = ReadEntFile(entfilename);
 

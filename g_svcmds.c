@@ -380,7 +380,7 @@ static void SVCmd_KickBan_f(void)
 		ent = g_edicts + i + 1;
 		if (ent->inuse && ent->client)
 		{
-			ipfilter_t ipAddr;
+			ipfilter_t ipAddr = { 0 };
 
 			// Ban them from the server.
 			ipAddr.compare = ent->client->pers.ipAddr;
