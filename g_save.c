@@ -170,7 +170,7 @@ void InitGame(void)
 #endif
 
 	gi.dprintf("==== InitGame (LOX %s %s %s) ====\n", VERSION, BUILD, __DATE__);
-	gi.dprintf(loxbanner);
+	gi.dprintf(loxbanner, VERSION, BUILD, __DATE__, __TIME__);
 	version = gi.cvar("version", "", CVAR_NOSET);
 	if (version)
 		gi.dprintf("LOX detected engine: %s\n", version->string);
@@ -207,7 +207,7 @@ void InitGame(void)
 	deathmatch = gi.cvar("deathmatch", "0", CVAR_LATCH);
 	ctf = gi.cvar("ctf", "0", CVAR_LATCH);
 	coop = gi.cvar("coop", "0", CVAR_LATCH | CVAR_SERVERINFO);
-	skill = gi.cvar("skill", "1", CVAR_LATCH);
+	skill = gi.cvar("skill", "3", CVAR_LATCH);
 	noscore = gi.cvar("noscore", "0", CVAR_LATCH); // for the new scoreboard logic
 	maxentities = gi.cvar("maxentities", "1024", CVAR_LATCH);
 	dumpents = gi.cvar("dumpents", "0", 0);		//QW// create entfiles as we go
@@ -385,7 +385,6 @@ void InitGame(void)
 // Worst-case execution time of this function is 12 uS 
 // on a 2.8GHz P4 on Windows XP. Average was 3 or 4 uS 
 // so it costs almost nothing to run it every server frame.
-
 void UpdateBans(void)
 {
 

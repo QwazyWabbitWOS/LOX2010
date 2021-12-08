@@ -441,7 +441,8 @@ void CheckDMRules(void)
 		return;
 
 	Voting_CheckVoting();
-	UpdateBans();
+	if (level.framenum % 15 == 0) // Once every 1.5 seconds.
+		UpdateBans();
 
 	if (ctf->value)
 	{
