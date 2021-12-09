@@ -175,6 +175,4 @@ void Spawn_Angel(edict_t* ent)
 	}
 
 	gi.linkentity(angel);
-
 }
-

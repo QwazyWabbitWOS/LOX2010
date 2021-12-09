@@ -104,4 +104,3 @@ void TeamplayStartRound2(void);
 void TeamplayRebalanceTeams(void);
 
 #endif
-

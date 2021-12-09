@@ -6,10 +6,6 @@
 #include "g_local.h"
 #include "g_team.h"
 
-/*
-* flare_think
-*/
-
 void flare_think(edict_t* self)
 {
 	// self->timestamp is 15 seconds after the flare was spawned.
@@ -56,8 +52,6 @@ void flare_think(edict_t* self)
 	else
 		self->s.angles[PITCH] = self->s.angles[ROLL] = 0;
 
-	// We'll think again in .1 seconds
-	//
 	self->nextthink = level.time + 0.1f;
 }
 

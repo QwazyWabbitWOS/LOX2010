@@ -152,4 +152,3 @@ void Weapon_SuperRailShotgun(edict_t* ent)
 
 	Weapon_Generic(ent, 3, 18, 56, 61, pause_frames, fire_frames, weapon_superrailshotgun_fire);
 }
-

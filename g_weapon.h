@@ -46,9 +46,3 @@ void fire_plasma (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed
 void fire_bolt (edict_t *self, vec3_t start, vec3_t aimdir, int damage);
 
 #endif
-
-
-
-
-
-

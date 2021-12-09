@@ -39,7 +39,6 @@ void guided_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage
 	RemoveGuided(self);
 }
 
-
 //Explode rocket without touching anything
 void GuidedRocket_Explode(edict_t* ent)
 {
@@ -52,7 +51,6 @@ void GuidedRocket_Explode(edict_t* ent)
 	Grenade_Explode_dM(ent);	// Use darKMajick Grenades //QW//
 }
 
-
 // When a rocket 'dies', it blows up next frame
 void GuidedRocket_Think(edict_t* self)
 {
@@ -61,7 +59,6 @@ void GuidedRocket_Think(edict_t* self)
 	self->nextthink = level.time + FRAMETIME;
 	self->think = GuidedRocket_Explode;
 }
-
 
 void guidedrocket_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
@@ -143,7 +140,6 @@ void fire_guidedrocket(edict_t* self, vec3_t start, vec3_t dir, int damage, int 
 	gi.linkentity(rocket);
 }
 
-
 void Weapon_GuidedMissile_Fire(edict_t* ent)
 {
 	vec3_t	offset = { 0 }, start, forward, right;
@@ -208,4 +204,3 @@ void Weapon_GuidedMissiles(edict_t* ent)
 		return;
 	Weapon_Generic(ent, 4, 12, 50, 54, pause_frames, fire_frames, Weapon_GuidedMissile_Fire);
 }
-

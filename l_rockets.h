@@ -32,4 +32,3 @@ void myhoming_think2 (edict_t *ent);
 void myhoming_think (edict_t *ent);
 
 #endif
-

@@ -140,4 +140,3 @@ void Cmd_Flashlight(edict_t* ent)
 		FlashlightReset(ent->client->flashlight);
 	}
 }
-

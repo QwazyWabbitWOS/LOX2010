@@ -359,7 +359,7 @@ static void Maplist_VariesMonthly(void)
 // it's important to examine the equivalent functions in your own code
 // before copying this into them.
 
-#if 0	//this is sample code
+#if 0	//This is sample code. Don't enable!!
 
 //create a target_changelevel entitity for the next map
 edict_t* CreateTargetChangeLevel(char* map)

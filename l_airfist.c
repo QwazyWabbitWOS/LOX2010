@@ -3,8 +3,6 @@
 //**************       airfist         **************/
 //***************************************************/
 
-
-
 #include "g_local.h"
 #include "l_angels.h"
 
@@ -275,5 +273,3 @@ void Weapon_Airfist(edict_t* ent)
 
 	Weapon_Generic(ent, 7, 18, 36, 39, pause_frames, fire_frames, weapon_airfist_fire);
 }
-
-

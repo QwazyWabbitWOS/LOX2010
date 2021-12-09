@@ -264,4 +264,3 @@ void hook_fire(edict_t* ent)
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 
 }
-

@@ -249,5 +249,3 @@ void Weapon_Mace(edict_t* ent)
 
 	Weapon_Generic(ent, 4, 8, 52, 55, pause_frames, fire_frames, weapon_mace_fire);
 }
-
-

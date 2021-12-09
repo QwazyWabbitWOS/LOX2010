@@ -290,6 +290,3 @@ void fire_flamerocket(edict_t* self, vec3_t start, vec3_t dir, int damage, int s
 
 	gi.linkentity(rocket);
 }
-
-/*===========================/  END OF FILE  /===========================*/
-

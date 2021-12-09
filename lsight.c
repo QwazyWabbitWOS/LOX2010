@@ -4,15 +4,9 @@
 #include "g_local.h"
 #include "g_team.h"
 
-
-/*----------------------------------------
-SP_LaserSight
-
-Create/remove the laser sight entity
------------------------------------------*/
-
 #define lss self->lasersight
 
+//Create or remove the laser sight entity
 void SP_LaserSight(edict_t* self)
 {
 	vec3_t  start, forward, right, end = { 0 };

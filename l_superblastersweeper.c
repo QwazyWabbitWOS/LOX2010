@@ -179,5 +179,3 @@ void Weapon_SuperBlastersweeper(edict_t* ent)
 			weapon_superblastersweeper_fire);
 	}
 }
-
-

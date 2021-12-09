@@ -1,4 +1,3 @@
-
 /*
 ======================================================================
 
@@ -169,4 +168,3 @@ void fire_freezer(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed
 		bolt->touch(bolt, tr.ent, NULL, NULL);
 	}
 }
-

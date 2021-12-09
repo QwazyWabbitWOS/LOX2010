@@ -6,7 +6,7 @@
 void RemoveNuke(edict_t *ent);
 void GuidedNuke_Explode (edict_t *ent);
 void GuidedNuke_Think (edict_t *self);
-void guidednuke_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf);
+void guidednuke_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf); // Called by guidedNuke_touch
 void guidedNuke_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf);
 void fire_guidednuke (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage);
 void Weapon_GuidedNuke_Fire (edict_t *ent);
@@ -21,4 +21,3 @@ void weapon_nuke_fire (edict_t *ent);
 void Weapon_Nuke (edict_t *ent);
 
 #endif
-

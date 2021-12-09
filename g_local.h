@@ -2314,6 +2314,3 @@ qboolean MatchplayCheckRound2 (void);
 void MatchplayStartRound2 (void);
 void MatchplayMakeObserver (edict_t *ent);
 void DoMatchCountdown(edict_t *ent);
-
-
-

@@ -176,6 +176,3 @@ void fire_bolt(edict_t* self, vec3_t start, vec3_t aimdir, int damage)
 	if (self->client)
 		PlayerNoise(self, tr.endpos, PNOISE_IMPACT);
 }
-
-//end plasma
-

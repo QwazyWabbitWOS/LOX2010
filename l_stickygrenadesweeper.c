@@ -182,4 +182,3 @@ void Weapon_StickyGrenadesweeper(edict_t* ent)
 			weapon_stickygrenadesweeper_fire);
 	}
 }
-

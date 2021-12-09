@@ -30,7 +30,6 @@
 // darKMajick definitions
 #include "l_dm_grenades.h"
 
-
 void Turret_Stick(edict_t* ent, edict_t* other)
 {
 
@@ -533,4 +532,3 @@ void Turret_Weapon_Fire(edict_t* ent)
 	if (!((int)dmflags->value & DF_INFINITE_AMMO))
 		ent->client->pers.inventory[ent->client->ammo_index] -= 2;
 }
-

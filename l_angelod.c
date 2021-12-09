@@ -48,4 +48,3 @@ void AOD_Think(edict_t* ent)
 
 	ent->nextthink = level.time + FRAMETIME;
 }
-

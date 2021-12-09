@@ -186,4 +186,3 @@ void Weapon_Snipersweeper(edict_t* ent)
 			weapon_snipersweeper_fire);
 	}
 }
-

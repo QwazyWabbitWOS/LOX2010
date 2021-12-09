@@ -7,9 +7,6 @@
 #include "l_angels.h"
 #include "m_player.h"
 
-/*
-fire_nail
-*/
 
 // RAFAEL
 void spike_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)

@@ -338,4 +338,3 @@ void weapon_Disintegrator_fire(edict_t* self)
 		&& (self->client->ammo_index))
 		self->client->pers.inventory[self->client->ammo_index] -= self->client->pers.weapon->quantity;
 }
-

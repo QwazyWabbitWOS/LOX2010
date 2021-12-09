@@ -1110,4 +1110,3 @@ void homing_rethink(edict_t* rocket)
 
 	gi.linkentity(rocket);
 }
-

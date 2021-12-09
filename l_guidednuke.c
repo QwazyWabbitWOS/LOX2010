@@ -81,7 +81,6 @@ void guidednuke_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t*
 	if (other == ent->owner)
 		return;
 
-
 	VectorCopy(ent->velocity, aimdir);
 	VectorNormalize(aimdir);
 
@@ -104,7 +103,6 @@ void guidednuke_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t*
 	VectorMA(ent->s.origin, -4, aimdir, end);
 	PBM_FlashExplosion(ent->owner, ent->s.origin, end, (float)radius_damage, radii, NULL, MOD_NUKE);
 	PBM_FlameCloud2(ent->owner, ent->s.origin, cloud, timer, true, fire_damage, fire_damage, 0, 100);
-
 }
 
 void guidedNuke_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)

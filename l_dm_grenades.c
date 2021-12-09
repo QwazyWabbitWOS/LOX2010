@@ -2094,6 +2094,4 @@ qboolean isvisible(edict_t* self, edict_t* other)
 	return false;
 }
 
-
-
 // End dm grenades

@@ -70,4 +70,3 @@ void fire_grenade_dM (edict_t *self, vec3_t start, vec3_t aimdir, int damage,
 void BecomeNewExplosion (edict_t *ent);
 
 #endif
-

@@ -166,4 +166,3 @@ void Weapon_ExplosiveMachingun(edict_t* ent)
 
 	Weapon_Generic(ent, 3, 5, 45, 49, pause_frames, fire_frames, ExplosiveMachinegun_Fire);
 }
-

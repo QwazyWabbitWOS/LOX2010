@@ -104,4 +104,3 @@ void Weapon_FloatingMineLauncher(edict_t* ent)
 		fire_frames,
 		weapon_floatingminelauncher_fire);
 }
-

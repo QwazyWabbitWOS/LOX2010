@@ -433,7 +433,7 @@ static int Voting_CountPlayers(void)
 	return (count);
 }
 
-// this peeks at the next map in the maplist
+// This peeks at the next map in the maplist
 // to see if the file exists
 static qboolean Voting_PeekMaplist(void)
 {

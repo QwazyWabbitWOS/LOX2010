@@ -224,4 +224,3 @@ void Weapon_Bazookasweeper(edict_t* ent)
 			weapon_bazookasweeper_fire);
 	}
 }
-

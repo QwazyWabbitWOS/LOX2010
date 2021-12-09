@@ -66,4 +66,3 @@ void Weapon_SuperBlaster(edict_t* ent)
 
 	Weapon_Generic(ent, 4, 8, 52, 55, pause_frames, fire_frames, Weapon_Super_Fire);
 }
-

@@ -184,4 +184,3 @@ void Weapon_Railgunsweeper(edict_t* ent)
 			weapon_railgunsweeper_fire);
 	}
 }
-

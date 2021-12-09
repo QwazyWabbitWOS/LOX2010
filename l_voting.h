@@ -76,4 +76,3 @@ void Voting_KillVoting(void);
 void Voting_InitVars(void);
 
 #endif	// L_VOTING_H
-
