@@ -21,7 +21,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "g_local.h"
 #include "g_team.h"
 #include "m_player.h"
-
 #include "l_angels.h"
 #include "scanner.h"
 #include "kamikaze.h"
@@ -30,7 +29,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "l_backpack.h"
 
 
-void ClientUserinfoChanged(edict_t* ent, char* userinfo);
 void ClientPrintMOTD(edict_t* ent);
 
 void SP_misc_teleporter_dest(edict_t* ent);
@@ -2728,7 +2726,6 @@ void ClientThink(edict_t* ent, usercmd_t* ucmd)
 		ent->plaguedamagecount = -1;
 	}
 
-
 	if (weaponheat->value)
 	{
 		if (ent->client->curr_heat > 130)
@@ -2890,5 +2887,3 @@ void Create_Ghost(void)
 	Ghost->nextthink = 1.0; // Start in 1 second.
 	gi.linkentity(Ghost);
 }
-
-

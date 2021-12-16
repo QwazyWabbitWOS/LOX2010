@@ -84,7 +84,8 @@ void MoveClientToIntermission(edict_t* ent)
 void BeginIntermission(edict_t* targ)
 {
 	int		i, n;
-	edict_t* ent, * client;
+	edict_t* ent;
+	edict_t* client;
 
 	if (level.intermissiontime)
 		return;		// already activated
@@ -104,7 +105,6 @@ void BeginIntermission(edict_t* targ)
 			continue;
 		if (client->health <= 0)
 			respawn(client);
-
 	}
 
 	level.intermissiontime = level.time;

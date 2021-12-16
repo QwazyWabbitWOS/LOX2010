@@ -3814,8 +3814,8 @@ void ClientCommand(edict_t* ent)
 	}
 
 
-	// Parse the command.  To speed things up cheaply, do a switch on the first
-	// few characters in the command.
+	// Parse the command. To speed things up cheaply,
+	// do a switch on the first character in the command.
 	switch (cmd[0])
 	{
 	case 'a':

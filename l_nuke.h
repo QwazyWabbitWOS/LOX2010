@@ -5,6 +5,7 @@
 // defined in l_guidednuke.c */
 void RemoveNuke(edict_t *ent);
 void GuidedNuke_Explode (edict_t *ent);
+void SpawnExplosionNuke(vec3_t start, edict_t* self, float damage, edict_t* ignore, float radius, int mod);
 void GuidedNuke_Think (edict_t *self);
 void guidednuke_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf); // Called by guidedNuke_touch
 void guidedNuke_touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf);

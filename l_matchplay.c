@@ -99,7 +99,6 @@ void MatchplayDoCountdown(void)
 	}
 }
 
-
 void MatchplaySpawnEntities(char* mapname, char* entities, char* spawnpoint)
 {
 	FILE* f;

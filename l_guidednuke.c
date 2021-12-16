@@ -4,12 +4,8 @@
 /***************************************************/
 
 #include "g_local.h"
-#include "l_rockets.h"
 #include "x_fire.h"
 #include "l_nuke.h"
-#include "g_weapon.h"
-#include "l_positron.h"
-#include "l_angels.h"
 
 void RemoveNuke(edict_t* ent)
 {
@@ -35,6 +31,16 @@ void nuke_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage, 
 	RemoveNuke(self);
 }
 
+void SpawnExplosionNuke(vec3_t start, edict_t* self, float damage, edict_t* ignore, float radius, int mod)
+{
+	edict_t* xplosion;
+
+	xplosion = G_Spawn();
+	VectorCopy(start, xplosion->s.origin);
+	T_RadiusDamage(xplosion, self, damage, world, radius, mod);
+	G_FreeEdict(xplosion);
+}
+
 //Explode rocket without touching anything
 void GuidedNuke_Explode(edict_t* ent)
 {
@@ -44,7 +50,7 @@ void GuidedNuke_Explode(edict_t* ent)
 		RemoveNuke(ent->owner);
 	}
 
-	SpawnExplosion(ent->s.origin, ent->owner, 100, world, 140, MOD_GUIDEDNUKE);
+	SpawnExplosionNuke(ent->s.origin, ent->owner, 100, world, 140, MOD_GUIDEDNUKE);
 
 	gi.WriteByte(svc_temp_entity);
 	if (ent->waterlevel)
@@ -113,6 +119,7 @@ void guidedNuke_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t*
 
 	if (other == ent->owner)
 		return;
+
 	VectorCopy(ent->velocity, aimdir);
 	VectorNormalize(aimdir);
 
@@ -182,33 +189,28 @@ void fire_guidednuke(edict_t* self, vec3_t start, vec3_t dir, int damage, int sp
 	{
 		self->client->missile = rocket;
 		self->client->ps.gunindex = 0;
-		if (!self->client->chasetoggle) self->client->oldplayer = G_Spawn();
+		
+		if (!self->client->chasetoggle)
+			self->client->oldplayer = G_Spawn();
+		
 		self->client->ps.pmove.pm_flags |= PMF_NO_PREDICTION;
 
 		check_dodge(self, rocket->s.origin, dir, speed);
 	}
-
 	gi.linkentity(rocket);
 }
 
-
 void Weapon_GuidedNuke_Fire(edict_t* ent)
 {
-	vec3_t	offset = { 0 }, start, forward, right;
+	vec3_t	offset = { 0 };
+	vec3_t	start, forward, right;
 	int		damage;
 	int		radius_damage;
 
 	damage = 400 + (int)(random() * 20.0);
 	radius_damage = 300;
 
-	if (is_quad)
-	{
-		damage *= 4;
-		radius_damage *= 4;
-	}
-
 	AngleVectors(ent->client->v_angle, forward, right, NULL);
-
 	VectorScale(forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -1;
 

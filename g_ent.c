@@ -9,7 +9,7 @@ static char* ReadEntFile(char* filename)
 	FILE* fp;
 	char* filestring = NULL;
 	long int	i = 0;
-	int		ch;
+	int		ch = { 0 };
 
 	while (1)
 	{
@@ -20,7 +20,8 @@ static char* ReadEntFile(char* filename)
 		for (i = 0; (ch = fgetc(fp)) != EOF; i++);
 
 		filestring = gi.TagMalloc(i + 1, TAG_LEVEL);
-		if (!filestring) break;
+		if (!filestring)
+			break;
 
 		fseek(fp, 0L, SEEK_SET);
 		for (i = 0; (ch = fgetc(fp)) != EOF; i++)

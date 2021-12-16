@@ -1,7 +1,7 @@
 
-
-//CHASECAM!
-
+/**************************************************/
+//                  ChaseCam!                      /
+/**************************************************/
 
 #include "g_local.h"
 
@@ -18,7 +18,6 @@ static void ChasecamStart(edict_t* ent)
 
 	/* Tell everything that looks at the toggle that our chasecam is on
 	* and working */
-
 	ent->client->chasetoggle = 1;
 
 	/* Make our gun model "non-existent" so it's more realistic to the
@@ -35,7 +34,6 @@ static void ChasecamStart(edict_t* ent)
 	ent->s.event = 0;
 	ent->s.modelindex = 0;
 	//QW//
-
 
 	chasecam = G_Spawn();
 	chasecam->owner = ent;
@@ -58,16 +56,13 @@ static void ChasecamStart(edict_t* ent)
 
 	/* Now, make the angles of the player model, (!NOT THE HUMAN VIEW!) be
 	* copied to the same angle of the chasecam entity */
-
 	VectorCopy(ent->s.angles, chasecam->s.angles);
 
 	/* Clear the size of the entity, so it DOES technically have a size,
 	* but that of '0 0 0'-'0 0 0'. (xyz, xyz). mins = Minimum size,
 	* maxs = Maximum size */
-
 	VectorClear(chasecam->mins);
 	VectorClear(chasecam->maxs);
-
 
 	/* Make the chasecam's origin (position) be the same as the player
 	* entity's because as the camera starts, it will force itself out
@@ -86,7 +81,6 @@ static void ChasecamStart(edict_t* ent)
 	//execute the routine only once
 	chasecam->prethink(chasecam);
 }
-
 
 void ChasecamRestart(edict_t* ent)
 {
@@ -145,20 +139,14 @@ void ChasecamRemove(edict_t* ent)
 
 }
 
-
 void ChasecamTrack(edict_t* ent)
 {
-
 	trace_t	tr;
 	vec3_t	spot1 = { 0 }, spot2 = { 0 }, spot3 = { 0 };
 	vec3_t	spot4 = { 0 }, spot5 = { 0 }, dir = { 0 };
 	vec3_t	forward, right, up;
 	vec3_t	size1 = { 0 }, size2 = { 0 };
 	float distance, tot;
-	//   vec3_t       owner_origin;
-	//   int          dist;
-	//   int          cap;
-
 
 	VectorSet(size1, -4, -4, -4);
 	VectorSet(size2, 4, 4, 4);
@@ -201,13 +189,12 @@ void ChasecamTrack(edict_t* ent)
 	else
 		VectorCopy(spot3, spot2);
 
-	/*
-	if (tr.fraction != 1)
-	{
-	VectorSubtract(spot2, ent->owner->s.origin, spot1);
-	ent->chasedist1 = VectorLength(spot1);
-	}
-*/
+	//if (tr.fraction != 1)
+	//{
+	//	VectorSubtract(spot2, ent->owner->s.origin, spot1);
+	//	ent->chasedist1 = VectorLength(spot1);
+	//}
+
 	tr = gi.trace(ent->s.origin, size1, size2, spot2, ent->owner, MASK_OPAQUE);
 
 	if ((tr.fraction != 1) || !visible(ent, ent->owner))
@@ -258,7 +245,6 @@ void ChasecamTrack(edict_t* ent)
 	/* if we're too far away, give us a maximum distance */
 	if (ent->chasedist1 > 90)
 		ent->chasedist1 = 90;
-
 }
 
 void Cmd_Chasecam_Toggle(edict_t* ent)
@@ -304,6 +290,4 @@ void CheckChasecam_Viewent(edict_t* ent)
 
 		gi.linkentity(ent->client->oldplayer);
 	}
-
 }
-

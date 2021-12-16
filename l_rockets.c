@@ -583,7 +583,6 @@ void SpawnExplosion(vec3_t start, edict_t* self, float damage, edict_t* ignore, 
 	VectorCopy(start, xplosion->s.origin);
 	T_RadiusDamage(xplosion, self, damage, world, radius, mod);
 	G_FreeEdict(xplosion);
-
 }
 
 // homing rocket

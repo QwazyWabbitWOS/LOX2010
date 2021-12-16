@@ -1231,8 +1231,6 @@ newanim:
 
 /*
 =================
-ClientEndServerFrame
-
 Called for each player at the end of the server frame
 and right after spawning
 =================
@@ -1346,8 +1344,7 @@ void ClientEndServerFrame(edict_t* ent)
 	for (i = 1; i <= maxclients->value; i++)
 	{
 		edict_t* e = g_edicts + i;
-		if (!ent->inuse
-			|| e->client->chase_target != ent)
+		if (!ent->inuse || !e->client || e->client->chase_target != ent)
 			continue;
 		memcpy(e->client->ps.stats,
 			ent->client->ps.stats,
@@ -1357,11 +1354,8 @@ void ClientEndServerFrame(edict_t* ent)
 	//ZOID
 
 	G_SetClientEvent(ent);
-
 	G_SetClientEffects(ent);
-
 	G_SetClientSound(ent);
-
 	G_SetClientFrame(ent);
 
 	VectorCopy(ent->velocity, ent->client->oldvelocity);
@@ -1403,13 +1397,9 @@ void ClientEndServerFrame(edict_t* ent)
 		CheckChasecam_Viewent(ent);
 }
 
-
 //=================
-// ThirdBegin
-//
 // Called when starting the ThirdPerson Perspective Mode
 //=================
-
 void ThirdBegin(edict_t* ent)
 {
 	edict_t* clone;
