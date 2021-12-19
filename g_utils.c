@@ -449,10 +449,6 @@ void G_InitEdict(edict_t* e)
 	e->nextthink = 0;
 }
 
-// The free-edict list.  Meant to vastly speed up G_Spawn().
-edict_t* g_freeEdictsH = NULL;
-edict_t* g_freeEdictsT = NULL;
-
 /*
 =================
 Either finds a free edict, or allocates a new one.
@@ -467,35 +463,8 @@ edict_t* G_Spawn(void)
 	int			i;
 	edict_t* e;
 
-	// If the free-edict queue can help, let it.
-	while (g_freeEdictsH != NULL)
-	{
-		// Remove the first item.
-		e = g_freeEdictsH;
-		g_freeEdictsH = g_freeEdictsH->chain;
-		if (g_freeEdictsH == NULL)
-			g_freeEdictsT = NULL;
-
-		// If it's in use, get another one.
-		if (e->inuse)
-			continue;
-
-		// If it's safe to use it, do so.
-		if (e->freetime < 2 || level.time - e->freetime > 0.5f)
-		{
-			G_InitEdict(e);
-			return e;
-		}
-
-		// If we can't use it, we won't be able to use any of these -- anything
-		// after it in the queue was freed even later.
-		else
-			break;
-	}
-
-	// The old way to find a free edict.
 	e = &g_edicts[(int)maxclients->value + 1];
-	for (i = (int)maxclients->value + 1; i < globals.num_edicts; i++, e++)
+	for (i = maxclients->value + 1; i < globals.num_edicts; i++, e++)
 	{
 		// the first couple seconds of server time can involve a lot of
 		// freeing and allocating, so relax the replacement policy
@@ -511,11 +480,9 @@ edict_t* G_Spawn(void)
 
 	globals.num_edicts++;
 	G_InitEdict(e);
-
-	if (globals.num_edicts > game.peak_edicts)
-		game.peak_edicts = globals.num_edicts;
-
-	//DbgPrintf("%s entity count: %d/%d\n", __func__, globals.num_edicts, game.maxentities);
+	//don't report during worldspawn
+	//if (level.time)
+	//	DbgPrintf("%s entity count: %d/%d\n", __func__, globals.num_edicts, game.maxentities);
 	return e;
 }
 
@@ -545,14 +512,6 @@ void G_FreeEdict(edict_t* ed)
 	ed->classnum = CN_NOCLASS;
 	ed->freetime = level.time;
 	ed->inuse = false;
-
-	// Put this edict into the free-edict queue.
-	if (g_freeEdictsH == NULL)
-		g_freeEdictsH = ed;
-	else
-		g_freeEdictsT->chain = ed;
-	g_freeEdictsT = ed;
-	ed->chain = NULL;
 }
 
 
