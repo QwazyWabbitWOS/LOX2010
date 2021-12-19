@@ -43,6 +43,7 @@ char* LoadEntFile(char* mapname, char* entities)
 	char* newentities;
 
 	Com_sprintf(entfilename, sizeof entfilename, "%s/ent/%s.ent", gamedir->string, mapname);
+	
 	// convert string to all lowercase 
 	for (int i = 0; entfilename[i]; i++)
 		entfilename[i] = (char)Q_tolower(entfilename[i]);
@@ -51,7 +52,7 @@ char* LoadEntFile(char* mapname, char* entities)
 
 	if (newentities)
 	{
-		gi.dprintf("LOX: Entity file %s.ent found\n", mapname);
+		gi.dprintf("LOX: Entity file %s.ent loaded.\n", mapname);
 		return(newentities);   // reassign the ents 
 	}
 	else

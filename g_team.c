@@ -1212,8 +1212,7 @@ char* CTFCheckRules(void)
 		return NULL;
 
 	// If one team doesn't have all the spawnpoints, the game can't be over yet.
-	if (ctfgame.spawn1 != ctfgame.spawncount
-		&& ctfgame.spawn2 != ctfgame.spawncount)
+	if (ctfgame.spawn1 != ctfgame.spawncount && ctfgame.spawn2 != ctfgame.spawncount)
 		return NULL;
 
 	// Count up the live players on each team.
@@ -1354,10 +1353,7 @@ void SP_info_teleport_destination(edict_t* ent)
 	ent->s.origin[2] += 16;
 }
 
-
 /*-----------------------------------------------------------------------*/
-
-
 
 // Finish setting up a deathmatch spawnpoint for teamplay.
 void TeamplaySetupSpawnpoint(edict_t* spot)
@@ -1649,7 +1645,7 @@ void TeamplaySpawnEntities(char* mapname, char* entities, char* spawnpoint)
 
 	/* Create path to the entity file and try to open it. */
 	Com_sprintf(filename, MAX_QPATH, "%s/ent/%s.ent", gamedir->string, mapname);
-	if ((f = fopen(filename, "rb")) != NULL)
+	if ((f = fopen(filename, "rb")) != NULL) // Note: must be rb here. No translation.
 	{
 		nEntSize = getEntityFileSize(filename, f);
 		if (nEntSize != 0)

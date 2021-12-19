@@ -194,7 +194,7 @@ void InitGame(void)
 
 	// noset vars  (set from command line or server config file)
 	dedicated = gi.cvar("dedicated", "0", CVAR_NOSET);
-	gamedir = gi.cvar("gamedir", "", CVAR_NOSET);
+	gamedir = gi.cvar("gamedir", "lox", CVAR_NOSET);
 
 	// latched vars (changed when game next restarts)
 

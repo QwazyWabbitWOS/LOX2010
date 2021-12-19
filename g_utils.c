@@ -455,8 +455,6 @@ edict_t* g_freeEdictsT = NULL;
 
 /*
 =================
-G_Spawn
-
 Either finds a free edict, or allocates a new one.
 Try to avoid reusing an entity that was recently freed, because it
 can cause the client to think the entity morphed into something else
@@ -464,12 +462,10 @@ instead of being removed and recreated, which can cause interpolated
 angles and bad trails.
 =================
 */
-
 edict_t* G_Spawn(void)
 {
 	int			i;
 	edict_t* e;
-	char	string[64];
 
 	// If the free-edict queue can help, let it.
 	while (g_freeEdictsH != NULL)
@@ -519,8 +515,7 @@ edict_t* G_Spawn(void)
 	if (globals.num_edicts > game.peak_edicts)
 		game.peak_edicts = globals.num_edicts;
 
-	sprintf(string, "G_Spawn: num_edicts = %i\n", globals.num_edicts);
-	//	OutputDebugString(string);
+	//DbgPrintf("%s entity count: %d/%d\n", __func__, globals.num_edicts, game.maxentities);
 	return e;
 }
 
@@ -541,9 +536,9 @@ void G_FreeEdict(edict_t* ed)
 		return;
 	}
 
-	if (level.time)
-		DbgPrintf("%s edict count: %d ent number %d %s index %d, time: %0.1f\n", __func__,
-			globals.num_edicts, ed->s.number, ed->classname, ed->classnum, level.time);
+	//if (level.time)
+	//	DbgPrintf("%s edict count: %d ent number %d %s index %d, time: %0.1f\n", __func__,
+	//		globals.num_edicts, ed->s.number, ed->classname, ed->classnum, level.time);
 
 	memset(ed, 0, sizeof(*ed));
 	ed->classname = "freed";

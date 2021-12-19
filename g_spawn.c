@@ -588,7 +588,7 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 		if (!entities)
 			break;
 		if (com_token[0] != '{') {
-			gi.error("ED_LoadFromFile: found %s when expecting {", com_token);
+			gi.error("LOX %s: found %s when expecting {", __func__, com_token);
 			return; //QW// never executes.
 		}
 

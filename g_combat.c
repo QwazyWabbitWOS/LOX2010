@@ -421,6 +421,9 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir,
 	int			psave;
 	int			te_sparks;
 
+	if (!targ->inuse || !targ->takedamage)
+		return;
+
 	if (Q_stricmp(targ->classname, "Tracker") == 0)
 	{
 		targ->health = targ->health - damage;

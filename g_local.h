@@ -28,9 +28,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
   #define _CRTDBG_MAP_ALLOC
   #include <stdlib.h>
   #include <crtdbg.h>
-  #ifndef __func__
-    #define __func__ __FUNCTION__ // for backward compatibility
-  #endif
   _CrtMemState startup1;	// memory diagnostics, link with debug lib (/MDd)
 #else
   #define OutputDebugString	//not doing Windows
@@ -1917,9 +1914,11 @@ struct edict_s
 //============================================================================
 // Here we have a fine collection of prototypes that probably belong elsewhere
 //============================================================================
+
 //
 // g_ent.c
 //
+
 // Phlem - new for off-world teleport and entity loading
 char *LoadEntFile(char *mapname, char *entities); 
 // Phlem - end new for off-world teleport and entity loading
