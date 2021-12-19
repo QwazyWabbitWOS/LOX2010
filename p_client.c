@@ -1918,15 +1918,19 @@ void ClientPrintMOTD(edict_t* ent)
 			return;
 		}
 
-		sprintf(motdPath, "%s/%s", gamedir->string, motdfile->string);
+		Com_sprintf(motdPath, sizeof motdPath, "%s/%s", gamedir->string, motdfile->string);
 
 		// Open the file.
 		in = fopen(motdPath, "rt");
 		if (in == NULL)
 		{
-			gi.dprintf("LOX: Unable to open MOTD file %s\n", motdPath);
+			gi.dprintf("LOX: Unable to open MOTD file %s, %s\n", motdPath, strerror(errno));
 			gMOTD = NULL;
 			return;
+		}
+		else
+		{
+			gi.dprintf("Loading %s\n", motdPath);
 		}
 
 		// Count the number of bytes in the file.
@@ -1959,7 +1963,6 @@ void ClientPrintMOTD(edict_t* ent)
 	{
 		gi.centerprintf(ent, "%s", gMOTD);
 	}
-	return;
 }
 
 

@@ -524,10 +524,10 @@ void G_FindTeams(void)
 void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 {
 	edict_t* ent;
-	int			inhibit;
+	int      inhibit;
 	char* com_token;
-	int			i;
-	float		skill_level;
+	int      i;
+	float    skill_level;
 
 	// for the dumpents feature
 	char* entstart = NULL;
@@ -537,14 +537,12 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 	if (dumpents->value)
 	{
 		// Create the pathname to the new entity file.
-		Com_sprintf(szFile, sizeof(szFile), "%s/ent/new-%s.ent",
-			gamedir->string, mapname);
+		Com_sprintf(szFile, sizeof(szFile), "%s/ent/new-%s.ent", gamedir->string, mapname);
 
 		// Try to open it.
 		f = fopen(szFile, "wb");
 		if (!f)
-			gi.error("SpawnEntities DUMPENTS: couldn't open %s for writing\n",
-				szFile);
+			gi.error("%s DUMPENTS: couldn't open %s for writing\n", __func__, szFile);
 	}
 
 	skill_level = floor(skill->value);
