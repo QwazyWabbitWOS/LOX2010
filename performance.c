@@ -1,4 +1,3 @@
-
 // **********************************************
 //        Windows high performance counter
 // **********************************************
@@ -32,7 +31,7 @@ void _STOP_PERFORMANCE_TIMER(char* str)
 	LARGE_INTEGER stop;
 	__int64 diff;
 	LARGE_INTEGER freq;
-	char string[64];
+	static char string[64];
 
 	QueryPerformanceCounter(&stop);
 	QueryPerformanceFrequency(&freq);
@@ -46,7 +45,6 @@ void _STOP_PERFORMANCE_TIMER(char* str)
 }
 #endif
 #endif
-
 
 //QW//
 /*
