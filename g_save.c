@@ -187,10 +187,11 @@ void InitGame(void)
 	gun_y = gi.cvar("gun_y", "0", 0);
 	gun_z = gi.cvar("gun_z", "0", 0);
 
-	rollspeed = gi.cvar("rollspeed", "200", 0);
-	rollangle = gi.cvar("rollangle", "2", 0);
+	//FIXME: sv_ prefix is wrong for these
+	sv_rollspeed = gi.cvar("sv_rollspeed", "200", 0);
+	sv_rollangle = gi.cvar("sv_rollangle", "2", 0);
 	sv_maxvelocity = gi.cvar("sv_maxvelocity", "2500", 0);
-	sv_gravity = gi.cvar("gravity", "800", 0);
+	sv_gravity = gi.cvar("sv_gravity", "800", 0);
 
 	// noset vars  (set from command line or server config file)
 	dedicated = gi.cvar("dedicated", "0", CVAR_NOSET);
@@ -544,7 +545,7 @@ void WriteField1(FILE* f, field_t* field, byte* base)
 		break;
 
 	default:
-		gi.error("WriteEdict: unknown field type");
+		GameError("WriteEdict: unknown field type");
 	}
 }
 
@@ -634,7 +635,7 @@ static void ReadField(FILE* f, field_t* field, byte* base)
 		break;
 
 	default:
-		gi.error("ReadEdict: unknown field type");
+		GameError("ReadEdict: unknown field type");
 	}
 }
 
@@ -720,10 +721,8 @@ void WriteGame(char* filename, qboolean autosave)
 
 	f = fopen(filename, "wb");
 	if (!f)
-	{
-		gi.error("Couldn't open %s", filename);
-		return;
-	}
+		GameError("Couldn't open %s", filename);
+
 	memset(str, 0, sizeof(str));
 	strcpy(str, __DATE__);	//safe, no user input
 	fwrite(str, sizeof(str), 1, f);
@@ -751,17 +750,15 @@ void ReadGame(char* filename)
 		return;
 	f = fopen(filename, "rb");
 	if (!f)
-	{
-		gi.error("Couldn't open %s", filename);
-		return; //QW// never executes
-	}
+		GameError("Couldn't open %s", filename);
+
 	count = fread(str, sizeof(str), 1, f);
 	if (count)
 		; // don't worry, be happy
 	if (Q_stricmp(str, __DATE__))
 	{
 		fclose(f);
-		gi.error("Savegame from an older version.\n");
+		GameError("Savegame from an older version.\n");
 	}
 
 	g_edicts = gi.TagMalloc(game.maxentities * sizeof(g_edicts[0]), TAG_GAME);
@@ -903,10 +900,8 @@ void WriteLevel(char* filename)
 		return;
 	f = fopen(filename, "wb");
 	if (!f)
-	{
-		gi.error("Couldn't open %s", filename);
-		return;
-	}
+		GameError("Couldn't open %s", filename);
+
 	// write out edict size for checking
 	i = sizeof(edict_t);
 	fwrite(&i, sizeof(i), 1, f);
@@ -961,10 +956,8 @@ void ReadLevel(char* filename)
 
 	f = fopen(filename, "rb");
 	if (!f)
-	{
-		gi.error("Couldn't open %s", filename);
-		return;
-	}
+		GameError("Couldn't open %s", filename);
+
 	// free any dynamic memory allocated by loading the level
 	// base state
 	gi.FreeTags(TAG_LEVEL);
@@ -978,8 +971,7 @@ void ReadLevel(char* filename)
 	if (i != sizeof(edict_t))
 	{
 		fclose(f);
-		gi.error("ReadLevel: mismatched edict size");
-		return;
+		GameError("ReadLevel: mismatched edict size");
 	}
 
 	// check function pointer base address
@@ -987,8 +979,7 @@ void ReadLevel(char* filename)
 	if (base != InitGame)
 	{
 		fclose(f);
-		gi.error("ReadLevel: function pointers have moved");
-		return;
+		GameError("ReadLevel: function pointers have moved");
 	}
 
 	// load the level locals
@@ -1001,7 +992,7 @@ void ReadLevel(char* filename)
 		if (count != 1)
 		{
 			fclose(f);
-			gi.error("ReadLevel: failed to read entnum");
+			GameError("ReadLevel: failed to read entnum");
 		}
 		if (entnum == -1)
 			break;

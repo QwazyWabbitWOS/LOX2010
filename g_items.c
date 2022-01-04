@@ -1396,12 +1396,11 @@ void PrecacheItem(gitem_t* it)
 			s++;
 
 		len = s - start;
-		if (len >= MAX_QPATH || len < 5) {
-			gi.error("PrecacheItem: %s has bad precache string", it->classname);
-			return; //QW// never executes
-		}
+		if (len >= MAX_QPATH || len < 5)
+			GameError("PrecacheItem: %s has bad precache string", it->classname);
+
 		memcpy(data, start, len);
-		data[len] = 0;
+		data[len - 1] = 0;
 		if (*s)
 			s++;
 

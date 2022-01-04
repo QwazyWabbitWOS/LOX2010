@@ -27,7 +27,7 @@ void _START_PERFORMANCE_TIMER(void)
 
 void _STOP_PERFORMANCE_TIMER(char* str)
 {
-	double res;
+	double result;
 	LARGE_INTEGER stop;
 	__int64 diff;
 	LARGE_INTEGER freq;
@@ -36,12 +36,12 @@ void _STOP_PERFORMANCE_TIMER(char* str)
 	QueryPerformanceCounter(&stop);
 	QueryPerformanceFrequency(&freq);
 	diff = stop.QuadPart - start.QuadPart;
-	res = ((double)((double)diff / (double)freq.QuadPart));
+	result = ((double)((double)diff / (double)freq.QuadPart));
 	Com_sprintf(string, sizeof string,
-		"%s executed in %.9f secs.\n", str, res);
+		"%s executed in %.9f secs.\n", str, result);
 	OutputDebugString(string);
 	//	Com_Printf (string);
-	totalTime += res;
+	totalTime += result;
 }
 #endif
 #endif

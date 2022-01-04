@@ -428,17 +428,17 @@ char* ED_ParseEdict(char* data, edict_t* ent)
 		if (com_token[0] == '}')
 			break;
 		if (!data)
-			gi.error("%s: EOF without closing brace", __func__);
+			GameError("%s: EOF without closing brace", __func__);
 
 		strncpy(keyname, com_token, sizeof(keyname) - 1);
 
 		// parse value	
 		com_token = COM_Parse(&data);
 		if (!data)
-			gi.error("%s: EOF without closing brace", __func__);
+			GameError("%s: EOF without closing brace", __func__);
 
 		if (com_token[0] == '}')
-			gi.error("%s: closing brace without data", __func__);
+			GameError("%s: closing brace without data", __func__);
 
 		init = true;
 
@@ -542,7 +542,7 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 		// Try to open it.
 		f = fopen(szFile, "wb");
 		if (!f)
-			gi.error("%s DUMPENTS: couldn't open %s for writing\n", __func__, szFile);
+			GameError("%s DUMPENTS: couldn't open %s for writing\n", __func__, szFile);
 	}
 
 	skill_level = floor(skill->value);
@@ -570,10 +570,9 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 	ent = NULL;
 	inhibit = 0;
 
-	// Phlem - new for entity externally adding (and off-world teleport)
-	if (custom_ents->value && !ctf->value)
-		entities = LoadEntFile(mapname, entities);    /*MrG{DRGN} 10/04/2004*/
-	// end - new for entity externally adding
+	//QW// custom_ents is automatically 1 in CTF mode.
+	if (custom_ents->value)
+		entities = LoadEntFile(mapname, entities);
 
 	// parse ents
 	while (1)
@@ -586,8 +585,7 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 		if (!entities)
 			break;
 		if (com_token[0] != '{') {
-			gi.error("LOX %s: found %s when expecting {", __func__, com_token);
-			return; //QW// never executes.
+			GameError("LOX %s: found %s when expecting {", __func__, com_token);
 		}
 
 		if (!ent)
@@ -650,7 +648,7 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 			// Write it.
 			nWritten = (int)fwrite(entstart, sizeof(char), entsize, f);
 			if (nWritten != entsize)
-				gi.error("SpawnEntities DUMPENTS: couldn't write to file\n");
+				GameError("SpawnEntities DUMPENTS: couldn't write to file\n");
 		}
 	}
 

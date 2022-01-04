@@ -449,6 +449,22 @@ void G_InitEdict(edict_t* e)
 	e->nextthink = 0;
 }
 
+#if defined (_WIN32)
+__declspec(noreturn) void GameError(char* fmt, ...)
+#elif defined (__GNUC__) || defined (LINUX) || (__APPLE__)
+__attribute__((noreturn)) void GameError(char* fmt, ...)
+#endif
+{
+	va_list	argptr;
+	char	text[MAX_STRING_CHARS];
+
+	va_start(argptr, fmt);
+	vsnprintf(text, sizeof(text), fmt, argptr);
+	va_end(argptr);
+	gi.error("%s", text);
+	abort();
+}
+
 /*
 =================
 Either finds a free edict, or allocates a new one.
@@ -476,7 +492,7 @@ edict_t* G_Spawn(void)
 	}
 
 	if (i == game.maxentities)
-		gi.error("ED_Alloc: no free edicts");
+		GameError("%s: no free edicts", __func__);
 
 	globals.num_edicts++;
 	G_InitEdict(e);

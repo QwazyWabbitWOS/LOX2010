@@ -1010,8 +1010,8 @@ extern	cvar_t	*sv_gravity;
 extern	cvar_t	*sv_maxvelocity;
 
 extern	cvar_t	*gun_x, *gun_y, *gun_z;
-extern	cvar_t	*rollspeed;
-extern	cvar_t	*rollangle;
+extern	cvar_t	*sv_rollspeed;
+extern	cvar_t	*sv_rollangle;
 
 extern	cvar_t	*run_pitch;
 extern	cvar_t	*run_roll;
@@ -1919,9 +1919,7 @@ struct edict_s
 // g_ent.c
 //
 
-// Phlem - new for off-world teleport and entity loading
 char *LoadEntFile(char *mapname, char *entities); 
-// Phlem - end new for off-world teleport and entity loading
 
 //
 // g_cmds.c
@@ -1974,6 +1972,13 @@ void CreateStatusBar(void);
 //
 // g_utils.c
 //
+
+#if defined (_WIN32)
+__declspec(noreturn) void GameError(char* fmt, ...);
+#elif defined (__GNUC__) || defined (LINUX) || (__APPLE__)
+__attribute__((noreturn)) void GameError(char* fmt, ...);
+#endif
+
 qboolean	KillBox (edict_t *ent);
 void	G_ProjectSource (vec3_t point, vec3_t distance, vec3_t forward, vec3_t right, vec3_t result);
 edict_t *G_Find (edict_t *from, int fieldofs, char *match);
