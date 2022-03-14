@@ -437,7 +437,7 @@ Using a monster makes it angry at the current activator
 */
 void monster_use(edict_t* self, edict_t* other, edict_t* activator)
 {
-	if (self->enemy)
+	if (self->enemy || !activator)
 		return;
 	if (self->health <= 0)
 		return;
