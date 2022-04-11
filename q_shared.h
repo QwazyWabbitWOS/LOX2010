@@ -744,7 +744,7 @@ typedef struct pmove_s
 #define MZ2_SOLDIER_SHOTGUN_8			99
 #define MZ2_SOLDIER_MACHINEGUN_8		100
 
-// --- Xian shit below ---
+// --- For Xian ---
 #define	MZ2_MAKRON_BFG					101
 #define MZ2_MAKRON_BLASTER_1			102
 #define MZ2_MAKRON_BLASTER_2			103

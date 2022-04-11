@@ -228,7 +228,7 @@ vec3_t monster_flash_offset [] =
 // MZ2_SOLDIER_MACHINEGUN_8			100
 	{34.5f * 1.2f, 9.6f * 1.2f, 6.1f * 1.2f},
 
-// --- Xian shit below ---
+// --- For Xian ---
 // MZ2_MAKRON_BFG					101
 	{17,		-19.5f,	62.9f},
 // MZ2_MAKRON_BLASTER_1				102
@@ -306,7 +306,7 @@ vec3_t monster_flash_offset [] =
 // MZ2_BOSS2_MACHINEGUN_R5			77
 	{-32,	40,	70},
 
-// --- End Xian Shit ---
+// --- End Xian ---
 
 // end of table
 	{0.0f, 0.0f, 0.0f}

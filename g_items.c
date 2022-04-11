@@ -621,8 +621,8 @@ qboolean Pickup_Ammo(edict_t* ent, edict_t* other)
 		return false;
 
 	/*
-	This, apparently, is the source of that fucking "switch to grenades every
-	goddamn time you run over them, whether or not you're holding a superior
+	This, apparently, is the source of that "switch to grenades every
+	time you run over them, whether or not you're holding a superior
 	weapon" bug.
 	if (weapon && !oldcount)
 	{

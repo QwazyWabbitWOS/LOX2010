@@ -1,8 +1,9 @@
 #include "g_local.h" 
 
-/** Read the specified .ent file.
-   Pass back a pointer to the allocated entity block.
- */
+//
+//Read the specified .ent file.
+//Pass back a pointer to the allocated entity block.
+//
 static char* ReadEntFile(char* filename)
 {
 
@@ -34,9 +35,10 @@ static char* ReadEntFile(char* filename)
 	return(filestring);
 }
 
-/* Look for a .ent file matching the map name.
-   Load it if it exists.
- */
+//
+//Look for a .ent file matching the map name.
+//Load it if it exists.
+//
 char* LoadEntFile(char* mapname, char* entities)
 {
 	char	entfilename[MAX_QPATH] = "";

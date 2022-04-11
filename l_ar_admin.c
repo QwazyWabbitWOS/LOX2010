@@ -136,7 +136,7 @@ void RenameStatsLog(void)
 
 		if (rename(logpath, newname) != 0)
 		{
-			gi.dprintf("Error renaming %s to %s, %s.\n", logpath, newname, strerror(errno));
+			gi.dprintf("Warning: when renaming %s to %s, %s.\n", logpath, newname, strerror(errno));
 		}
 	}
 }
@@ -172,7 +172,7 @@ void RenameConsoleLog(void)
 
 		if (rename(logpath, newname) != 0)
 		{
-			gi.dprintf("Error renaming %s to %s, %s.\n", logpath, newname, strerror(errno));
+			gi.dprintf("Warning: when renaming %s to %s, %s.\n", logpath, newname, strerror(errno));
 		}
 
 		gi.cvar_forceset("logfile", logval);	// restore previous mode
