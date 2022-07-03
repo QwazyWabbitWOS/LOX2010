@@ -498,7 +498,7 @@ edict_t* G_Spawn(void)
 	G_InitEdict(e);
 	//don't report during worldspawn
 	//if (level.time)
-	//	DbgPrintf("%s entity count: %d/%d\n", __func__, globals.num_edicts, game.maxentities);
+	//	DbgPrintf("%s num_edicts is %d\n", __func__, globals.num_edicts);
 	return e;
 }
 

@@ -1302,7 +1302,7 @@ void droptofloor(edict_t* ent)
 	tr = gi.trace(ent->s.origin, ent->mins, ent->maxs, dest, ent, MASK_SOLID);
 	if (tr.startsolid)
 	{
-		gi.dprintf("droptofloor: %s startsolid at %s\n", ent->classname, vtos(ent->s.origin));
+		gi.dprintf("%s: %s startsolid at %s\n", __func__, ent->classname, vtos(ent->s.origin));
 		G_FreeEdict(ent);
 		return;
 	}

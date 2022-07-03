@@ -12,28 +12,28 @@ static char* ReadEntFile(char* filename)
 	long int	i = 0;
 	int		ch = { 0 };
 
-	while (1)
+	if ((fp = fopen(filename, "r")) == NULL)
 	{
-		fp = fopen(filename, "rt");
-		if (!fp)
-			break;
-
-		for (i = 0; (ch = fgetc(fp)) != EOF; i++);
-
-		filestring = gi.TagMalloc(i + 1, TAG_LEVEL);
-		if (!filestring)
-			break;
-
-		fseek(fp, 0L, SEEK_SET);
-		for (i = 0; (ch = fgetc(fp)) != EOF; i++)
-			filestring[i] = (char)ch;
-		filestring[i] = '\0';
-		break;
+		gi.cprintf(NULL, PRINT_HIGH, "Could not find file \"%s\". %s\n\n", filename, strerror(errno));
+		return NULL;
 	}
 
-	if (fp) fclose(fp);
+	for (i = 0; (ch = fgetc(fp)) != EOF; i++);
+
+	filestring = gi.TagMalloc(i + 1, TAG_LEVEL);
+	if (!filestring)
+		return NULL;
+
+	fseek(fp, 0L, SEEK_SET);
+	for (i = 0; (ch = fgetc(fp)) != EOF; i++)
+		filestring[i] = (char)ch;
+
+	filestring[i] = '\0';
+
+	fclose(fp);
 	return(filestring);
 }
+
 
 //
 //Look for a .ent file matching the map name.
@@ -44,7 +44,10 @@ char* LoadEntFile(char* mapname, char* entities)
 	char	entfilename[MAX_QPATH] = "";
 	char* newentities;
 
-	Com_sprintf(entfilename, sizeof entfilename, "%s/ent/%s.ent", gamedir->string, mapname);
+	if (deathmatch->value)
+		Com_sprintf(entfilename, sizeof entfilename, "%s/entfiles/%s.ent", gamedir->string, mapname);
+	else
+		Com_sprintf(entfilename, sizeof entfilename, "%s/ent/%s.ent", gamedir->string, mapname);
 	
 	// convert string to all lowercase 
 	for (int i = 0; entfilename[i]; i++)

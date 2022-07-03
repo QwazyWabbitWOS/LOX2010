@@ -155,19 +155,19 @@ void SP_info_player_coop(edict_t* self)
 		return;
 	}
 
-	if ((Q_stricmp(level.mapname, "jail2") == 0) ||
-		(Q_stricmp(level.mapname, "jail4") == 0) ||
-		(Q_stricmp(level.mapname, "mine1") == 0) ||
-		(Q_stricmp(level.mapname, "mine2") == 0) ||
-		(Q_stricmp(level.mapname, "mine3") == 0) ||
-		(Q_stricmp(level.mapname, "mine4") == 0) ||
-		(Q_stricmp(level.mapname, "lab") == 0) ||
-		(Q_stricmp(level.mapname, "boss1") == 0) ||
-		(Q_stricmp(level.mapname, "fact3") == 0) ||
-		(Q_stricmp(level.mapname, "biggun") == 0) ||
-		(Q_stricmp(level.mapname, "space") == 0) ||
+	if ((Q_stricmp(level.mapname, "jail2") == 0)   ||
+		(Q_stricmp(level.mapname, "jail4") == 0)   ||
+		(Q_stricmp(level.mapname, "mine1") == 0)   ||
+		(Q_stricmp(level.mapname, "mine2") == 0)   ||
+		(Q_stricmp(level.mapname, "mine3") == 0)   ||
+		(Q_stricmp(level.mapname, "mine4") == 0)   ||
+		(Q_stricmp(level.mapname, "lab") == 0)     ||
+		(Q_stricmp(level.mapname, "boss1") == 0)   ||
+		(Q_stricmp(level.mapname, "fact3") == 0)   ||
+		(Q_stricmp(level.mapname, "biggun") == 0)  ||
+		(Q_stricmp(level.mapname, "space") == 0)   ||
 		(Q_stricmp(level.mapname, "command") == 0) ||
-		(Q_stricmp(level.mapname, "power2") == 0) ||
+		(Q_stricmp(level.mapname, "power2") == 0)  ||
 		(Q_stricmp(level.mapname, "strike") == 0))
 	{
 		// invoke one of our gross, ugly, disgusting hacks
