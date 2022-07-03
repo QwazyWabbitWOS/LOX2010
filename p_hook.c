@@ -34,6 +34,9 @@ void P_ProjectSource_Reverse(gclient_t* client, vec3_t point, vec3_t distance, v
 
 void DropHook(edict_t* ent)
 {
+	if (!ent->owner)
+		return;
+	
 	// remove all hook flags
 	ent->owner->client->hookstate = HOOK_READY;
 	ent->owner->client->num_hooks = 0;
