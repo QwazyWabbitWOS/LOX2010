@@ -1322,9 +1322,17 @@ void SP_trigger_teleport(edict_t* ent)
 	edict_t* s;
 	int i;
 
+	//QW// Meet minimum requirements for the ent.
 	if (!ent->target)
 	{
-		gi.dprintf("teleporter without a target.\n");
+		gi.dprintf("In %s: teleporter without a target.\n", __func__);
+		G_FreeEdict(ent);
+		return;
+	}
+
+	if (!ent->model)
+	{
+		gi.dprintf("In %s: teleporter without a model.\n", __func__);
 		G_FreeEdict(ent);
 		return;
 	}
