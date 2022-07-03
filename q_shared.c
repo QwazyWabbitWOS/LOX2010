@@ -810,6 +810,7 @@ int Q_strnicmp(const char* s1, const char* s2, size_t count)
 	}
 }
 
+// These two functions courtesy Knightmare
 size_t Q_strncpyz(char* dst, size_t dstSize, const char* src)
 {
 	char* d = dst;

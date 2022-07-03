@@ -3323,10 +3323,10 @@ void Cmd_Players_f(edict_t* ent)
 			game.clients[index[i]].pers.netname);
 		if (strlen(small) + strlen(large) > sizeof(large) - 100)
 		{	// can't print all of them in one packet
-			strcat(large, "...\n");
+			Q_strncatz(large, sizeof large, "...\n");
 			break;
 		}
-		strcat(large, small);
+		Q_strncatz(large, sizeof large, small);
 	}
 
 	gi.cprintf(ent, PRINT_HIGH, "%s\n%i players\n", large, count);
@@ -3587,9 +3587,9 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0)
 
 	if (arg0)
 	{
-		strcat(text, gi.argv(0));
-		strcat(text, " ");
-		strcat(text, gi.args());
+		Q_strncatz(text, sizeof text, gi.argv(0));
+		Q_strncatz(text, sizeof text, " ");
+		Q_strncatz(text, sizeof text, gi.args());
 	}
 	else
 	{
@@ -3600,7 +3600,7 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0)
 			p++;
 			p[strlen(p) - 1] = 0;
 		}
-		strcat(text, p);
+		Q_strncatz(text, sizeof text, p);
 	}
 
 	// don't allow percents in chat text
@@ -3617,7 +3617,7 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0)
 	if (strlen(text) > 150)
 		text[150] = 0;
 
-	strcat(text, "\n");
+	Q_strncatz(text, sizeof text, "\n");
 
 	if (flood_msgs->value)
 	{
@@ -3763,7 +3763,7 @@ void Cmd_PlayerList_f(edict_t* ent)
 			gi.cprintf(ent, PRINT_HIGH, "%s", text);
 			return;
 		}
-		strcat(text, str);
+		Q_strncatz(text, sizeof text, str);
 	}
 	gi.cprintf(ent, PRINT_HIGH, "%s", text);
 }

@@ -36,7 +36,6 @@ edict_t* SV_TestEntityPosition(edict_t* ent)
 	trace_t	trace;
 	int		mask;
 
-
 	if (ent->clipmask)
 		mask = ent->clipmask;
 	else
