@@ -192,242 +192,242 @@
     <ClCompile Include="s_cam.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="kamikaze.c">
-      <Filter>Lox Extensions</Filter>
+    <ClCompile Include="g_offworld.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="l_voting.c">
-      <Filter>Lox Extensions</Filter>
+    <ClCompile Include="kamikaze.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_airfist.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angelob.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angeloblind.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angelod.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angeloe.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angelof.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angeloh.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angelol.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angelom.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angelop.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angelor.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angelou.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_angels.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_antiflaregun.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_antimattercannon.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_ar_admin.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_backpack.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_bazookasweeper.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_bucky.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_chunkgun.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_daynight.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_disintegrator.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_dm_grenades.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_doubleimpact.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_durg.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_durgsweeper.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_energyvortex.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_explosivemachinegun.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_fbfg.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_flamesweeper.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_flamethrower.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_flaregun.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_flashlight.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_floatingminelauncher.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_freezatron.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_freezegun.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_freezersweeper.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_grenadesweeper.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_guidednuke.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_guidedrocket.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_help.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_iceballgun.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_kaminit.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_lightninggun.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_mace.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_matchplay.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_nailgun.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_nuke.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_nukegrenade.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_plasmarifle.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_positron.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_pulserifle.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_railgunsweeper.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_rockets.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_snipersweeper.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_spiralrocket.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_stickinggrenades.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_stickygrenadesweeper.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_superblaster.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_superblastersweeper.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_superrailshotgun.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_sword.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_tracker.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_turret.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="l_vacuummaker.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="l_voting.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lasertrip.c">
-      <Filter>Lox Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="lsight.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lithhook.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scanner.c">
-      <Filter>Lox Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="wf_decoy.c">
-      <Filter>Lox Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="x_fbomb.c">
-      <Filter>Lox Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="x_fire.c">
-      <Filter>Lox Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="zbotcheck.c">
-      <Filter>Lox Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="unicast_snd.c">
-      <Filter>Lox Extensions</Filter>
-    </ClCompile>
-    <ClCompile Include="performance.c">
-      <Filter>Lox Extensions</Filter>
+    <ClCompile Include="lsight.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="maplist.c">
-      <Filter>Lox Extensions</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="g_offworld.c">
-      <Filter>Lox Extensions</Filter>
+    <ClCompile Include="performance.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scanner.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="unicast_snd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wf_decoy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="x_fbomb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="x_fire.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zbotcheck.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -100,6 +100,7 @@ GAME_OBJS = \
 game$(ARCH).real.$(SHLIBEXT) : $(GAME_OBJS)
 	$(CC) $(CFLAGS) -shared -o $@ $(GAME_OBJS) -ldl -lm
 	$(LIBTOOL) -r $@
+	file $@
 
 
 #############################################################################

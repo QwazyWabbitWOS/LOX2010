@@ -205,10 +205,8 @@ void Weapon_GuidedNuke_Fire(edict_t* ent)
 	vec3_t	offset = { 0 };
 	vec3_t	start, forward, right;
 	int		damage;
-	int		radius_damage;
 
 	damage = 400 + (int)(random() * 20.0);
-	radius_damage = 300;
 
 	AngleVectors(ent->client->v_angle, forward, right, NULL);
 	VectorScale(forward, -2, ent->client->kick_origin);

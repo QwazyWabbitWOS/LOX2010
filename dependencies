@@ -132,8 +132,7 @@ l_freezersweeper.o: l_freezersweeper.c g_local.h q_shared.h performance.h \
 l_grenadesweeper.o: l_grenadesweeper.c g_local.h q_shared.h performance.h \
  game.h g_weapon.h p_menu.h m_player.h l_angels.h x_fbomb.h
 l_guidednuke.o: l_guidednuke.c g_local.h q_shared.h performance.h game.h \
- g_weapon.h p_menu.h l_rockets.h x_fire.h l_nuke.h l_positron.h \
- l_angels.h
+ g_weapon.h p_menu.h x_fire.h l_nuke.h
 l_guidedrocket.o: l_guidedrocket.c g_local.h q_shared.h performance.h \
  game.h g_weapon.h p_menu.h l_rockets.h x_fire.h l_nuke.h l_positron.h \
  l_angels.h l_dm_grenades.h
