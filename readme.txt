@@ -221,23 +221,6 @@ I hope you enjoy playing this mod as much as I have and I hope this
 mod will last many more years on this classic game called Quake 2.
 
 =================================
- Auto-Installation - Important
-=================================
-
-Download and run one of the Clan LOX installation packages:
-
-* http://www.aracnet.com/~jblabs/lox/loxservercfg_install.exe
-  - Installs the LOX Server Config Utility
-* http://www.aracnet.com/~jblabs/lox/winx_loxclient.exe
-  - Installs the LOX Client Files only
-* http://www.aracnet.com/~jblabs/lox/winx_lox_all.exe
-  - Installs the LOX Client and Server Files
-
-Download and install the LOX 1.12.x packages:
-* http://www.clanwos.org/
-Look for the download links.
-
-=================================
  Manual Installation - Important
 =================================
 
