@@ -75,10 +75,10 @@ void Cmd_DropArmor_f(edict_t* ent)
 
 // Strip unwanted characters from a string.
 // Copy string s into d removing the chars found in string q
-// s is pointer to source string
 // d is pointer to destination string
+// s is pointer to source string
 // q is pointer to array of characters to filter out
-void stripem(char* s, char* d, char* q)
+void stripem(char* d, const char* s, const char* q)
 {
 	char* r = q;	// Everybody remember where we parked.
 	while (*s) {
