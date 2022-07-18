@@ -728,8 +728,7 @@ void CTFTeam_f(edict_t* ent)
 //
 // This function is called by DeathmatchScoreboardMessage, it receives a pointer
 // to a 1400 byte string array and fills it with the scoreboard message.
-//QW// Note: killer is unused here.
-void CTFScoreboardMessage(edict_t* ent, edict_t* killer, char* string)
+void CTFScoreboardMessage(edict_t* ent, edict_t* killer /*unused*/, char* string)
 {
 	char	entry[1024] = { 0 };
 	size_t	len;
