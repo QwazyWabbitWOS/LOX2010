@@ -412,7 +412,7 @@ typedef enum damage_n
 
 typedef enum weaponstate_n
 {
-	WEAPON_READY, 
+	WEAPON_READY,
 	WEAPON_ACTIVATING,
 	WEAPON_DROPPING,
 	WEAPON_FIRING
@@ -630,21 +630,21 @@ typedef struct gitem_s
 	void		(*use)(struct edict_s* ent, struct gitem_s* item);
 	void		(*drop)(struct edict_s* ent, struct gitem_s* item);
 	void		(*weaponthink)(struct edict_s* ent);
-	char*		pickup_sound;
-	char*		world_model;
+	char* pickup_sound;
+	char* world_model;
 	int			world_model_flags;
-	char*		view_model;
+	char* view_model;
 
 	// client side info
-	char*	icon;
-	char*	pickup_name;		// for printing on pickup
+	char* icon;
+	char* pickup_name;		// for printing on pickup
 	int		count_width;		// number of digits to display by icon
 
 	const int		quantity;	// for ammo how much, for weapons how much is used per shot
 	struct gitem_s* ammo;		// for weapons
 	int		flags;				// IT_* flags
 
-	void*	info;
+	void* info;
 	int		tag;
 
 	char* precaches;		// string of all models, sounds, and images this item will use
@@ -667,7 +667,7 @@ typedef struct game_locals_s
 	int			helpchanged;	// flash F1 icon if non 0, play sound
 								// and increment only if 1, 2, or 3
 
-	gclient_t	*clients;		// [maxclients]
+	gclient_t* clients;		// [maxclients]
 
 	// can't store spawnpoint in level, because
 	// it would get overwritten by the savegame restore
@@ -1343,7 +1343,6 @@ typedef struct client_persistent_s
 	// values saved and restored from edicts when changing levels
 	int			health;
 	int			max_health;
-	qboolean		powerArmorActive;
 
 	int			selected_item;
 	int			inventory[MAX_ITEMS];
@@ -1358,8 +1357,6 @@ typedef struct client_persistent_s
 
 	gitem_t* weapon;		// the current weapon
 	gitem_t* lastweapon;
-	gitem_t* lastweapons[10];
-	gitem_t* reallastweapon;
 
 	int			power_cubes;	// used for tracking the cubes in coop games
 	int			score;			// for calculating total unit score in coop games
@@ -1372,6 +1369,11 @@ typedef struct client_persistent_s
 	int			helpchanged;
 
 	qboolean	spectator;			// client is a spectator
+
+	gitem_t* lastweapons[10];
+	gitem_t* reallastweapon;
+
+	qboolean	powerArmorActive;
 
 	int	scanner_active;	// bit 0 is on/off, bit 1 is just changed bit
 	qboolean fire_mode; // Muce: 0 for FA and 1 for BF
@@ -1399,14 +1401,15 @@ typedef struct client_respawn_s
 {
 	client_persistent_t	coop_respawn;	// what to set client->pers to on a respawn
 	int			enterframe;			// level.framenum the client entered the game
-	float		entertime;			// level.time the client entered the game
 	int			score;				// frags, etc
-	int			deaths;				// how many times he's been killed
 	vec3_t		cmd_angles;			// angles sent over in the last command
-	int			game_helpchanged;
-	int			helpchanged;
 
 	qboolean	spectator;		// client is a spectator
+	int			game_helpchanged;
+	int			helpchanged;
+	float		entertime;		// level.time the client entered the game
+	int			deaths;			// how many times he's been killed
+
 	qboolean	voted;			// for elections
 	int			votes_started;
 
@@ -1416,7 +1419,7 @@ typedef struct client_respawn_s
 	qboolean	id_state;
 	//ZOID
 
-		// for zbotcheck
+	// for zbotcheck
 	short angles[2][2];
 	int tog;
 	int jitter;
@@ -1463,7 +1466,6 @@ struct gclient_s
 	qboolean	weapon_thunk;
 
 	gitem_t* newweapon;
-	gitem_t* last_touched_weapon;	//QW// only for extinction map development
 
 	// sum up damage over an entire frame, so
 	// shotgun blasts give a single big kick
@@ -1520,6 +1522,8 @@ struct gclient_s
 
 	float		respawn_time;		// can respawn when time > this
 
+	gitem_t* last_touched_weapon;	//QW// only for extinction map development
+
 	int		hookstate;
 	int		num_hooks;		//QW// deployed hook count
 	edict_t* hook;			//QW// for lithium laser hook
@@ -1551,7 +1555,7 @@ struct gclient_s
 	float kamikaze_timeleft;
 	/* WonderSlug End */
 
-//ZOID
+	//ZOID
 	qboolean	inmenu;				// in menu
 	pmenuhnd_t* menu;				// current menu
 	edict_t* chase_target;
@@ -1637,7 +1641,7 @@ struct gclient_s
 
 	int baton; // 1=ON, 0=OFF 
 
-//ROGUE disruptor
+	//ROGUE disruptor
 	float		tracker_pain_framenum;
 
 	int			scannerx;
@@ -1658,7 +1662,7 @@ struct gclient_s
 	*/
 	// David Martin - LBIND variables
 
-// PM:  New fields
+	// PM:  New fields
 	float		flash_alpha;
 	float		flash_fade;
 	// PM
@@ -1709,7 +1713,6 @@ struct edict_s
 	// EXPECTS THE FIELDS IN THAT ORDER!
 
 	//================================
-	edict_t* other;
 	int			movetype;
 	int			flags;
 
@@ -1721,7 +1724,6 @@ struct edict_s
 	//
 	char* message;
 	char* classname;	// the name of the entity class
-	int			classnum;	// the number of the entity class to use instead of strings
 	int			spawnflags;
 
 	float		timestamp;
@@ -1742,7 +1744,7 @@ struct edict_s
 
 	vec3_t		velocity;
 	vec3_t		avelocity;
-	float		mass;
+	float		mass;	//QW// Used in original game as float or int indiscriminately. 
 	float		air_finished;
 	float		gravity;		// per entity gravity multiplier (1.0 is normal)
 								// use for lowgrav artifact, e.g., flares
@@ -1753,8 +1755,6 @@ struct edict_s
 	float		ideal_yaw;
 
 	float		nextthink;
-	float		nextthink4;		// from Paril's wall hider detection
-	void		(*think4)(edict_t* self);
 
 	void		(*prethink) (edict_t* ent);
 	void		(*think)(edict_t* self);
@@ -1775,7 +1775,7 @@ struct edict_s
 	int			max_health;
 	int			gib_health;
 	int			deadflag;
-	float		show_hostile;
+	float		show_hostile; //QW// Originally declared qboolean, they used it as float in FindTarget.
 
 	float		powerarmor_time;
 
@@ -1786,7 +1786,6 @@ struct edict_s
 	int			dmg;		// damage inflicted
 	int			radius_dmg;
 	float		dmg_radius;
-	int			dm_type;		// darKMajick grenade type
 	int			sounds;			//make this a spawntemp var?
 	int			count;
 
@@ -1830,6 +1829,15 @@ struct edict_s
 	// common data blocks
 	moveinfo_t		moveinfo;
 	monsterinfo_t	monsterinfo;
+
+	int			classnum;	// the number of the entity class to use instead of strings
+	edict_t* other;
+
+	float		nextthink4;		// from Paril's wall hider detection
+	void		(*think4)(edict_t* self);
+
+	// darKMajick grenade type
+	int			dm_type;
 
 	// *************************
 	// freezing data
