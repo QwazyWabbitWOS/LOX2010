@@ -80,7 +80,7 @@ void Cmd_DropArmor_f(edict_t* ent)
 // q is pointer to array of characters to filter out
 void stripem(char* d, const char* s, const char* q)
 {
-	char* r = q;	// Everybody remember where we parked.
+	const char* r = q;	// Everybody remember where we parked.
 	while (*s) {
 		while (*q) {
 			if (*s != *q)
