@@ -175,7 +175,7 @@ Returns the clipflags if the velocity was modified (hit something solid)
 #define	MAX_CLIP_PLANES	5
 int SV_FlyMove(edict_t* ent, float time, int mask)
 {
-	edict_t* hit;
+	edict_t*	hit;
 	int			bumpcount, numbumps;
 	vec3_t		dir;
 	float		d;

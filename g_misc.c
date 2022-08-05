@@ -384,7 +384,7 @@ void SP_path_corner(edict_t* self)
 {
 	if (!self->targetname)
 	{
-		gi.dprintf("path_corner with no targetname at %s\n", vtos(self->s.origin));
+		gi.dprintf("%s path_corner with no targetname at %s\n", __func__, vtos(self->s.origin));
 		G_FreeEdict(self);
 		return;
 	}
