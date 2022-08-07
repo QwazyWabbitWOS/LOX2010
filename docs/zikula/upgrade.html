@@ -1,0 +1,199 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Zikula Upgrade Instructions</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"  />
+</head>
+
+<body>
+
+<p><strong>NOTE:  THIS DOCUMENT CONTAINS IMPORTANT INFORMATION ABOUT ZIKULA.  PLEASE READ ALL
+       OF IT BEFORE CONTINUING.</strong></p>
+
+<!--
+<div style="border: 1px dotted black; margin: 10px; padding: 5px; text-align: center;">
+This release of Zikula is a Release Candidate (RC) and is not intended for use on 
+live websites.  It is intended for development and testing purposes.<br />
+Please test this release and submit bugs to the <a href="http://code.zikula.org/core/">tracker</a>. 
+The earlier bugs are fixed, the quicker a final release can be built.<br />
+Although now considered complete, the upgrade process has not been fully tested.
+</div>
+-->
+
+<h1>Zikula Upgrade Instructions</h1>
+<p>More detailed documentation is available in the 
+<a href="http://community.zikula.org/Wiki-tag-UserDocs.htm" title="Documentation Wiki">Documentation Wiki</a> at 
+<a href="http://community.zikula.org" title="The Zikula Community">http://community.zikula.org</a>.  
+Support and help with upgrading to Zikula v1.1.1 can be obtained from the <a href="http://community.zikula.org/module-Forum.htm">forums</a>.</p>
+
+<h2>Contents</h2>
+<ul>
+	<li><a href="#Warning">1 Warning</a></li>
+	<li><a href="#Server">2 Server Considerations</a></li>
+	<li><a href="#Upgrade764">3 Upgrading From PostNuke v0.764</a></li>
+	<li><a href="#Upgrade10x">4 Upgrading From Zikula 1.0.x</a></li>
+	<li><a href="#Caution">5 Caution</a></li>
+	<li><a href="#Themes">6 Upgrading Themes</a></li>
+	<li><a href="#Final">7 Final Note</a></li>
+</ul>
+
+<h2 id="Warning">1 Warning</h2>
+<p>Your PostNuke installation must already be upgraded to PostNuke 0.764 or greater before 
+attempting to upgrade to Zikula v1.1.  Upgrades from earlier releases are not 
+supported.  Please also be aware that the 0.7x PostNuke series will cease 
+to be supported by the Zikula team on 1st July 2009.</p>
+
+<h2 id="Server">2 Server Consideration</h2>
+<p>Before you begin your upgrade, there are some requirements and guidelines you should consider to make upgrading, installing, running, and securing Zikula easier. Please read the <a href="softwarerecommendations.html">Zikula software condsiderations document</a>.</p>
+
+<h2 id="Upgrade764">3 Upgrading From PostNuke v0.764</h2>
+<p>Please follow the steps below in order, and read each in detail before 
+proceeding.  Providing the instructions are followed exactly, the upgrade 
+should proceed with no problems.</p>
+<ul>
+	<li><a href="#Backup">3.1 Backup your database and files</a></li>
+	<li><a href="#Prepare">3.2 Prepare your v0.7x installation</a></li>
+	<li><a href="#Config">3.3 Update config.php</a></li>
+	<li><a href="#Run">3.4 Run the upgrade</a></li>
+	<li><a href="#Clean">3.5 Clean Up</a></li>
+</ul>
+
+<h3 id="Backup">3.1 Backup your database and files</h3>
+<p>It is vital to backup your v0.7x database and file system before proceeding 
+with the upgrade.  Upgrades cannot be rolled back, therefore the only solution 
+is to restore from backup if problems occur.  To backup your database, try using 
+a tool such as <a href="http://www.mysqldumper.de/en/">mysqldumper</a>, <a href="http://www.phpmyadmin.org">phpMyAdmin</a> or 
+alternately use SSH or your hosting control panel.  Full instructions and 
+tutorials on database backups can be found by searching the web and the documentation of your tool set.</p>
+
+<h3 id="Prepare">3.2 Prepare your 0.7x installation</h3>
+<p>Login to your PostNuke site with an administrator account and ensure each of 
+the modules listed below are installed and activated.  All are included in 
+0.764 - remember only upgrades to Zikula v1.1 from this release or later are supported.</p>
+
+<ol>
+<li>Admin</li>
+<li>Admin_Messages</li>
+<li>Blocks</li>
+<li>Groups</li>
+<li>Header_Footer</li>
+<li>legal</li>
+<li>Mailer</li>
+<li>Permissions</li>
+<li>pnRender</li>
+<li>Search</li>
+<li>Settings</li>
+<li>User</li>
+<li>Xanthia</li>
+</ol>
+
+<p>Other modules are optional as the core of Zikula v1 is slimmed down to 
+remove non compulsory modules.  You can upgrade these separately by 
+downloading the ValueAddons pack distributed at the NOC, or by using the special upgrade distribution
+which is available at the core downloads section. Once this step is complete your database is ready to be upgraded.</p>
+
+<p>Finally, remove all your PostNuke v0.7x files.  The file system in Zikula v1 has 
+changed dramatically from earlier releases and this step is necessary to avoid 
+conflicts during the upgrade process.  It is suggested you remove all your files 
+to a backup directory and then copy back the files (such as third party modules, 
+themes and downloads, images, and so on) you need once the upgrade is completed. 
+Once your .7x files have been removed, upload the v1.1.1 files to your web space in their place. 
+As you have uploaded a fresh pnTemp directory, ensure it, and all its 
+subdirectories are writable (chmod -R 777).</p>
+
+<h3 id="Config">3.3 Update config.php</h3>
+<p>The location of config.php has moved to the /config directory.  Open up the 
+config.php included with Zikula v1.1 and add in your database information to 
+the following lines:</p>
+
+<p>$PNConfig['System']['prefix']<br />
+$PNConfig['DBInfo']['default']['dbuname']<br />
+$PNConfig['DBInfo']['default']['dbpass']<br />
+$PNConfig['DBInfo']['default']['dbname']</p>
+
+<p>If you copy the encoded values from your 0.764 config.php be sure to set <br />
+$PNConfig['DBInfo']['default']['encoded'] = 1;</p>
+
+<p>Additionally edit the following line:<br />
+$PNConfig['System']['installed'] = 1;</p>
+
+<p>In some cases it may also be necessary to edit your database type, table, and host if you are not using the default types.</p>
+
+<h3 id="Run">3.4 Run the upgrade</h3>
+<p>To upgrade your database, visit the file upgrade.php in your browser.  
+You will need to know your administration username and password to proceed.  
+Follow the onscreen instructions to complete the upgrade process.</p>
+
+<p><strong>Note:</strong> Zikula v1.1 removes the footer message from the admin interface, so your footer message will disappear after the upgrade.  We recommend hard coding your footer in your theme's template files.  For reference, the upgrade process stores a copy of your old footer in the pnTemp directory for easy retrieval.</p>
+
+<p><strong>Note:</strong> For performance reasons, user permissions no longer exist in Zikula 1.1 and later.  It is recommended you move any user permissions you are using to group based permissions before the upgrade.</p>
+
+<h3 id="Clean">3.5 Clean Up</h3>
+<p>Lastly, remove upgrade.php, install.php and the install directory from your file system.</p>
+
+<h2 id="Upgrade10x">4 Upgrade from Zikula 1.0.x</h2>
+<p>Please follow the steps below in order, and read each in detail before 
+proceeding.  Providing the instructions are followed exactly, the upgrade 
+should proceed with no problems.</p>
+<ul>
+	<li><a href="#Backup10x">4.1 Backup your database and files</a></li>
+	<li><a href="#Prepare10x">4.2 Prepare your 1.0.x installation</a></li>
+	<li><a href="#Run10x">4.3 Run the upgrade</a></li>
+	<li><a href="#Clean10x">4.4 Clean up and additional configuration</a></li>
+</ul>
+
+<h3 id="Backup10x">4.1 Backup your database and files</h3>
+<p>It is vital to backup your 1.0.x database and file system before proceeding 
+with the upgrade.  Upgrades cannot be rolled back, therefore the only solution 
+is to restore from backup if problems occur.  To backup your database, try using 
+a tool such as <a href="http://www.mysqldumper.de/en/">mysqldumper</a>, <a href="http://www.phpmyadmin.org">phpMyAdmin</a> or 
+alternately use SSH or your hosting control panel.  Full instructions and tutorials on database backups can be found by searching the web and the documentation of your tool set.</p>
+
+<h3 id="Prepare10x">4.2 Prepare your 1.0.x installation</h3>
+<p>Login to your Zikula site with an administrator account. If you want, you can disable your site during the upgrade by changing the configuration in index.php?module=Settings&amp;type=admin. After that go to your modules administration to disable and remove the Members_List module. Upload all files from the package you downloaded, but <strong>not the config folder</strong>! Uploading this with overwrite your config.php and trash your configuration! Also make sure that you delete the modules/Members_List/ and the system/Profile folder, both are now integrated in the new Profile module which now resides in modules/.</p>
+
+<h3 id="Run10x">4.3 Run the upgrade</h3>
+<p>Run the upgrade script upgrade10xto11x.php and follow the steps as described. There is no real interaction needed other than clicking on 'next'. All database changes that are necessary will be done automatically. At the end you will be redirected to your admin panel.</p>
+
+<h3 id="Clean10x">4.4 Clean up and additional configuration</h3>
+<p>After a successful upgrade you have to remove</p>
+<ol>
+    <li>the module MailUsers - go to the Modules administraton, deinstall it and remove the files from the filesystem (found in modules/MailUsers),</li>
+    <li>the module Members_List if you haven't done this before already - go to the Modules administraton, deinstall it and remove the files from the filesystem (found in modules/Members_List),</li>
+    <li>the folder system/Profile if you haven't done this before already - DO NOT REMOVE THE FOLDER modules/Profile!</li>
+    <li>the folder includes/pnobjlib - the files contained there have been moved to the includes folder itself,</li>
+    <li>the install folder and the files install.php, upgrade.php and upgrade10xto11x.php from the root folder of your site.</li>
+</ol>
+<p>If you have a menublock pointing to the old Members_List module you have to change the link to point to index.php?module=Profile&amp;func=viewmembers. The permissions may have to be changed to the component 'Profile:Members:'.</p>
+<p>Zikula 1.1.1 allows you to configure your favorite profile and messaging module so you should visit the systems settings and check if the upgrade script selected the correct module. We don't know your personal taste, so its better to have a look at this now.</p>
+<p>as the time of writing this document the following modules support this technique:</p>
+<ol>
+    <li>profile: the known Profile module (available from the <a href="http://community.zikula.org/module-Extensions.htm">Extensions database</a>)</li>
+    <li>messaging: <a href="http://code.zikula.org/intercom/">InterCom 2.1</a></li>
+</ol>
+<p><a href="http://code.zikula.org/myprofile/">MyProfile</a> will become an alternative in the future.</p>
+<p>If you disabled your site before starting the upgrade (see 4.2) you should re-enable it now.</p>
+
+<h2 id="Caution">5 Caution</h2>
+<p>Before the PostNuke series API was stabilized, it was common for the core database tables to be modified by third party extensions through adding fields, changing names, etc.  It should be noted that Zikula does not support any modification of the core code or data structure.  Zikula v1 has been designed to be flexible enough to avoid any need to 
+modify the core, but if you find something missing that you believe could
+be of widespread use, please submit a feature request to the feature request
+tracker at <a href="http://code.zikula.org/core">code.zikula.org/core</a>.</p>
+
+<h2 id="Themes">6 Upgrading Themes</h2>
+
+<p>Zikula v1 has reconfigured the theme structure for the new theme module, now simply called Themes (Xanthia version 3). If you are using a Xanthia 2 theme, Zikula v1 comes with an upgrade option. To use this tool make your themes directory writeable (chmod -R 777). Go to your Themes Module Administration and click the 'upgrade' option. Please note this is a tool, not the definitive upgrade script. For most Xanthia themes it should work fine, however for more complex themes, it <em>may</em> not completely upgrade your theme. You may have to edit parts of your theme manually. For non-Xanthia (e.g. AutoTheme) themes please consult your theme engine provider.  Once you have finished upgrading your themes, ensure you make your theme directory read only again!</p>
+
+<h2 id="Final">7 Final Note</h2>
+<p>Congratulations!  Your upgrade is complete.  We hope you enjoy using this 
+new Zikula version.  If you have any comments, please use the feedback forum on <a href="http://community.zikula.org" title="The Zikula Community">http://community.zikula.org</a>.</p>
+
+<p>Regards,<br />
+
+The Zikula Team</p>
+
+</body>
+</html>

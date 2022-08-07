@@ -1,0 +1,99 @@
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Zikula Installation Instructions</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" media="screen"  />
+</head>
+
+<body>
+<p><strong>NOTE:  THIS DOCUMENT CONTAINS IMPORTANT INFORMATION ABOUT ZIKULA.  PLEASE READ ALL
+       OF IT BEFORE CONTINUING.</strong></p>
+
+<!--
+<div style="border: 1px dotted black; margin: 10px; padding: 5px; text-align: center;">
+This release of Zikula is a Release Candidate (RC) and is not intended for use on live websites.  It is intended for development and testing purposes.<br />
+Please test this release and submit bugs to the <a href="http://code.zikula.org/core/">tracker</a>.  The earlier bugs are fixed, the quicker a final release can be built.
+</div>
+-->
+
+<h1>Zikula Installation Instructions</h1>
+<p>More detailed installation documentation is available in the 
+<a href="http://community.zikula.org/Wiki-tag-UserDocs.htm" title="Documentation Wiki">Documentation Wiki</a> at 
+<a href="http://community.zikula.org" title="The Zikula Community">http://community.zikula.org</a>.</p>
+
+
+<h2>Contents</h2>
+<ol>
+	<li><a href="#AB">Zikula: The adam_baum Release</a></li>
+    <li><a href="#Server">Setup Consideration</a></li>
+	<li><a href="#New">New Installation</a>
+    <ul>
+        <li><a href="#Graph">Graphical Browser Install</a></li>
+      <li><a href="#Manual">Manual SQL Dump Install</a></li>
+    </ul>
+	</li>
+	<li><a href="#Final">Final Note</a></li>
+</ol>
+
+<h2 id="AB">1. Zikula: The adam_baum Release</h2>
+<p>Zikula is an open source, open development application framework for dynamic websites.
+The core system includes a complete API on which third party developments can build.  
+Zikula has a very strong community, which provides a large number of extensions to the 
+system and a helpful support centre in the <a href="http://community.zikula.org/module-Forum.htm" title="The Zikula Forums">forums</a>.</p>
+
+<p>We welcome contributions from anyone, regardless of skill level.  
+<a href="http://community.zikula.org/module-Pages-display-pid-6.htm" title="Contribute to the Zikula project">How you can help us</a>.</p>
+<h2 id="Server">2. Server Consideration</h2>
+<p>Before you begin, there are some requirements and guidelines you should consider to make installing, running, and securing Zikula easier. Please read the <a href="softwarerecommendations.html">Zikula software recommendations document</a>.</p>
+<h2 id="New">3. New Installation</h2>
+<p>There are two installation methods for Zikula:</p>
+<ul>
+	<li><a href="#Graph">Graphical Browser Install</a></li>
+	<li><a href="#Manual">Manual SQL Dump Install</a></li>
+</ul>
+
+
+<h3 id="Graph">Graphical Browser Install</h3>
+<p>To use the installer, simply visit install.php in the Zikula directory with your
+browser, e.g. <em>http://www.example.com/install.php</em>.  If you installed Zikula into a subdirectory 'foo' the URL would be 
+<em>http://www.example.com/foo/install.php</em>.</p>
+
+<p>The installer provides you with instructions on the way.  Zikula require a database
+to be created at some point and it can save problems later if this is created by you 
+<em>before</em> the install script is run.  While it is possible for the Zikula installer to
+attempt to create the database, this will not always be successful as you will require 
+greater access rights to the database.  In most hosted environments this is not available so you must 
+create databases through an administration control panel.  If you do this, note down 
+the database name, username and password for use in the installation.</p>
+
+<p>Once the installation process is complete, you can visit your Zikula website by navigating to index.php, e.g. <em>http://www.example.com/index.php</em>.  
+In the vast majority of cases, this will open automatically when typing <em>http://www.example.com</em> into your browser.</p>
+
+
+<h3 id="Manual">Manual SQL Dump Install (Not recommended)</h3> 
+<p>If you wish to import the SQL dump to install Zikula manually, this can be done through a
+tool such as phpMyAdmin.  The dump provided is from a MySQL 5.x database, and may not work
+with other databases, or MySQL versions.  Once you have imported the SQL dump, you should manually
+edit config/config.php and add the appropriate database connection details in the area reserved for the
+'default' connection.  The values for username and password should be base64 encoded for added security
+(encoders are freely available on the Internet).  Should you install in this manner, the administration
+login username is "admin" with password "Password" (without the quotes).</p>
+
+
+<h2 id="Final">4. Final Note</h2>
+<p>Modifications to the Zikula core system code or database are not supported.  Doing so can cause 
+extensive problems when upgrading the system in the future and therefore these 'hacks' are not
+recommended.  Zikula has a flexible extensions system and configuration override system to allow
+customization and we recommend you consult the <a href="http://community.zikula.org/Wiki-tag-DeveloperDocs.htm">developer documentation</a> about this.</p>
+
+<p>We hope you enjoy using this release of Zikula.</p>
+
+<p>Regards,<br />
+
+The Zikula Team</p>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+Zikula 1.0 (adam_baum) Release Credits
+======================================
+
+Zikula is, as with many successful open-source products, a huge
+collaborative effort spanning many diverse talents from across the 
+globe.  The list below gives an idea of some of the people that have 
+helped in creating the Zikula .8 (adam_baum) Release, and also
+those in other areas such as support and documentation.
+
+Please note that this credits file only contains credits relevant to
+the .8 (adam_baum) release of Zikula.  For full credits, please refer 
+to the file docs/previouscredits.txt. For credits of the many third party 
+applications and tools used to build Zikula please refer to the file
+docs/thirdpartycredits.txt
+
+
+Zikula Software Foundation
+==========================
+
+Vanessa Haakenson
+vworld
+
+Mark West
+markwest
+
+Andreas Krapohl
+larsneo
+
+Harry Zink
+hzink
+
+Hostnuke
+drak
+
+Zikula Steering Committee
+===========================
+
+Simon Birtwistle
+HammerHead
+
+Frank Schummertz
+landseer
+
+Steffen Voss
+kafferringe
+
+Robert Gasch
+rgasch
+
+Axel Guckelsberger
+guite
+
+Development Team
+================
+
+Andreas Krapohl
+larsneo
+Lead Development
+
+Mark West
+markwest
+Lead Development
+
+Joerg Napp
+jn
+
+Jorn Wildt
+jorn
+
+Frank Schummertz
+Landseer
+
+Franky Chestnut
+Chestnut
+
+Robert Gasch
+rgasch
+
+Axel Guckelsberger
+guite
+
+Drak
+drak
+
+
+Zikula Teams
+============
+
+Michael Halbrook
+mhalbrook
+Support Team Lead
+
+David Nelson
+davidnelson
+
+Florian Schiessl
+quan
+
+Peter Elias
+pheski
+
+David Pahl
+Ammodump
+
+Mateo Tibaquirá Palacios
+nestormateo
+
+Zikula Translations
+===================
+
+Thanks also go to the many translation teams around the world who
+translate Zikula.  Without translations, Zikula could not be a 
+truly multi-national project, with contributions from around the
+world.
+
+
+Zikula Users
+============
+
+All users of the Zikula project deserve a mention here.  In one
+way or another, everyone has contributed to Zikula, either by
+downloading and installing the system, submitting
+bug fixes, helping in the forums or in many many different ways.

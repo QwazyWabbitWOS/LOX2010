@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Quake 2 LOX Mod Installation on Linux</title>
+<meta name="description" content="Tutorial about installing Quake 2 LOX mod on Linux from start to finish.">
+<meta name="keywords" content="Quake 2, Quake2, quake2, quake 2, q2, LOX, LOX mod, Lethal Orifice Examination, linux, game servers, tutorials">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="loxlinuxinstall.css" type="text/css">
+</head>
+<body> 
+<div id="masthead"> 
+  <h1 id="siteName">Quake 2 LOX Mod Installation on Linux</h1> 
+  <div id="globalNav">     
+  </div> 
+</div> 
+<!-- end masthead --> 
+<div id="content"> 
+  <div id="breadCrumb"> 
+    <a href="http://www.clanwos.org">WOS Home</a> / <a href="http://www.clanwos.org/forums">Forums</a> / <a href="ftp://ftp.deaconstomb.org">FTP</a> /
+  </div> 
+  <!-- start content area -->
+  <h2 id="pageName">Linux Quake 2 Installation ..</h2> 
+  <div class="feature"> 
+    <img src="http://www.clanwos.org/images/deacon/loxlinuxlogo.gif" alt="LOX Linux Docs" width="110" height="110"> 
+    <h3></h3> 
+    <p> 
+	Here we will install Quake 2 version 3.19, then update it to 3.20.  Later in the next step we will compile and install version 3.21.
+	</p>
+	<p>
+3. Put the Q2 CD in your CD-Rom and mount the drive:
+<pre>
+# mount /dev/cdrom
+</pre>
+- Other linux operating systems may require this command:
+<pre>
+# mount –t iso9660 /dev/cdrom /mnt/cdrom
+</pre>
+4. Make sure you are in the directory you created, ie. /home/q2user/quake2
+and proceed to copy the files from the CD-Rom, don’t forget the “.” Period at
+the end to tell your machine to copy all files to the current location:
+<pre>
+# cp –r /media/cdrom/Install/Data/* .
+</pre>
+5. Now we want to get rid of all the windows files that we don’t need:
+<pre>
+# rm –rf /home/q2user/quake2/*.dll
+# rm –rf /home/q2user/quake2/quake2.exe
+# rm –rf /home/q2user/quake2/baseq2/gamex386.dll
+</pre>
+6. Now, download the Quake2 Linux Binaries. There are a number of places that
+offer them for download, in this particular install we are using the
+quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz file, here are a couple download
+links:
+<p>
+<a href="ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz">ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz</a>
+<a href="ftp://ftp.deaconstomb.org/pub/q2/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz">ftp://ftp.deaconstomb.org/pub/q2/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz</a>
+<p>
+<pre>
+# ncftpget ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz
+or
+# wget ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz
+</pre>
+7. Untar the Quake2 Linux Binaries package:
+<pre>
+# tar –zxvf quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz
+</pre>
+8. The main files are now essentially setup for a working Quake2 Server and we
+should set permissions for the new user we created to be able to alter files
+and start the server, if all goes well this should start up a basic DM Quake2
+Server, <b>however</b>, once you or someone connects to the server it will crash
+due to problems with the 3.20 q2 binary and the new lox versions.  This problem
+will be fixed in the next step when we prepare a new updated 3.21 server binary.
+In addition I will outline steps to prepare the R1Q2DED server binary instead of the 3.21
+binary for added security and enhanced server features.
+<pre>
+# chown –R q2user /home/q2user/quake2 ; chgrp –R q2user /home/q2user/quake2
+# su q2user
+# ./quake2 +set dedicated 1 +map q2dm1
+</pre>
+    </p> 
+  </div> 
+</div> 
+<!--end content --> 
+<div id="navBar"> 
+  <div id="sectionLinks"> 
+    <ul> 
+      <li><a href="loxnew_docs.htm">Introduction</a></li> 
+      <li><a href="tools.htm">Tools Needed</a></li> 
+	  <li><a href="system.htm">System Prep</a></li>
+      <li><a href="q2install.htm">Quake2 Install</a></li>
+      <li><a href="r1q2install.htm">R1Q2 Install</a></li>
+      <li><a href="321install.htm">3.21 Install</a></li>
+      <li><a href="loxinstall.htm">LOX Install</a></li> 
+      <li><a href="q2admininstall.htm">Q2Admin Install</a></li> 
+      <li><a href="bwainstall.htm">BW-Admin Install</a></li>
+	  <li><a href="links.htm">Helpful Links</a></li>
+      <li><a href="contactinfo.htm">Contact Info</a></li> 
+    </ul>
+  </div> 
+  <div id="advert"> 
+        <script type="text/javascript"><!--
+google_ad_client = "pub-2330509524152411";
+google_ad_width = 120;
+google_ad_height = 240;
+google_ad_format = "120x240_as";
+google_ad_channel ="0375101078";
+google_ad_type = "text_image";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "000000";
+google_color_url = "666666";
+google_color_text = "333333";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+  </div> 
+</div> 
+<!--end navbar --> 
+<div id="siteInfo"> 
+  <a href="http://www.datacabin.com"><img src="http://datacabin.com/images/dc1_88x31.gif" alt="DataCabin web hosting" title="DataCabin web hosting" width="88" height="31" border="0"></a> <img src="http://clanwos.org/images/deacon/wos_button1.gif" alt="Clan WOS" width="88" height="31"> <a href="http://www.clanwos.org">WOS Home</a> | <a href="http://www.clanwos.org/forums">Forums</a> | Well of Souls Gaming Community
+</div> 
+<br> 
+</body>
+</html>

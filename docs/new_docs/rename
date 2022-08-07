@@ -1,0 +1,112 @@
+##########################################################################
+# Title      :	rename - rename files (change extension)
+# Author     :	Heiner Steven <heiner.steven@odn.de>
+# Date       :	1995-05-18
+# Requires   :	
+# Category   :	File Utilities
+# SCCS-Id.   :	@(#) rename	1.2 03/12/19
+##########################################################################
+# Description
+#
+##########################################################################
+
+PN=`basename "$0"`			# program name
+VER='1.2'
+
+usage () {
+    echo >&2 "$PN - rename files: change extension, $VER (stv '95)
+usage: $PN [-f] [oldext [newext [files ...]]]
+    -f:		force rename, do not prompt for confirmation
+    oldext	old file extension
+    newext	new file extension
+
+Both extensions must not contain wildcards. Missing parameters are
+prompted for. The old file extension is 'anchored' to the end of the
+line, so 'old' will match *old.
+
+Example:	$PN \\.old \\.new *.old"
+    exit 1
+}
+
+msg () {
+    for msgLine
+    do echo "$PN: $msgLine" >&2
+    done
+}
+
+fatal () { msg "$@"; exit 1; }
+
+Interactive=yes				# yes/no
+while [ $# -gt 0 ]
+do
+    case "$1" in
+	--)	shift; break;;
+	-f)	Interactive=no;;
+	-h)	usage;;
+	-*)	usage;;
+	*)	break;;			# First file name
+    esac
+    shift
+done
+
+if [ $# -gt 0 ]
+then Old="$1"; shift
+else echo -n "old extension (e.g. '.old'): " >&2
+     read Old || exit 2
+fi
+case "$Old" in
+    "")	    exit 0;;
+    *\**)   fatal "no regular expressions allowed: $Old";;
+esac
+
+if [ $# -gt 0 ]
+then New="$1"; shift
+else echo -n "new extension (e.g. '.new'): " >&2
+     read New || exit 2
+fi
+case "$New" in
+    "")	    exit 0;;
+    *\**)   fatal "no regular expressions allowed: $New";;
+esac
+
+if [ $# -eq 0 ]
+then echo -n "files to rename: *" >&2
+     read Files || exit 2
+     set -- ${Files:-*}
+fi
+
+[ -z "$Old" -o -z "$New" ] && usage
+
+# Play around with a status indicator...
+i=0 p0="|" p1="/" p2="-" p3="\\"
+
+n=0				# Number of files renamed
+
+trap "[ \$n -gt 0 ] && echo \"$PN: \$n file(s) renamed\"" 0
+trap "exit 2" 1 2 3 15
+
+for File
+do
+    eval p=\$p$i
+    echo -n "$p" >&2
+    i=`expr \( $i + 1 \) % 4`
+
+    [ -f "$File" ] || {
+	msg "$File is no file - ignored"
+	continue
+    }
+    Name=`echo "$File" | sed -e "s/$Old$/$New/"`
+    [ -n "$Name" -a "$Name" != "$File" ] && {
+	[ $Interactive = yes ] && {
+	    echo -n "$PN: rename <$File> to <$Name> (y/n)? y" >&2
+	    read ok || exit 2
+	    case "$ok" in
+		[yYjJ]*|"")	;;	# rename
+		*)	continue;;
+	    esac
+	    msg "$File	-> $Name"
+	}
+	mv "$File" "$Name" && n=`expr ${n:-0} + 1`
+    }
+done
+exit 0

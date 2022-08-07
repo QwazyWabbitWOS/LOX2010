@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- DW6 -->
+<head>
+<title>Quake 2 LOX Mod Installation on Linux</title>
+<meta name="description" content="Tutorial about installing Quake 2 LOX mod on Linux from start to finish.">
+<meta name="keywords" content="Quake 2, Quake2, quake2, quake 2, q2, LOX, LOX mod, Lethal Orifice Examination, linux, game servers, tutorials">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="loxlinuxinstall.css" type="text/css">
+</head>
+<body> 
+<div id="masthead"> 
+  <h1 id="siteName">Quake 2 LOX Mod Installation on Linux</h1> 
+  <div id="globalNav">     
+  </div> 
+</div> 
+<!-- end masthead --> 
+<div id="content"> 
+  <div id="breadCrumb"> 
+    <a href="http://www.clanwos.org">WOS Home</a> / <a href="http://www.clanwos.org/forums">Forums</a> / <a href="http://www.deaconstomb.org">Q2 Downloads</a> /
+  </div> 
+  <!-- start content area -->
+  <h2 id="pageName">BW-Admin Installation ..</h2> 
+  <div class="feature"> 
+    <img src="http://www.clanwos.org/images/deacon/loxlinuxlogo.gif" alt="LOX Linux Docs" width="110" height="110"> 
+    <h3></h3> 
+    <p> 
+22. Download the BW-Admin files into your main quake2 directory, in this case
+it's /home/q2user/quake2 and you will also need to su to the new user you
+created, we are using 'q2user'.
+</p>
+<pre>
+# wget http://bw-admin.sourceforge.net/files/bw-admin.linux.v1.74.tar.gz
+# tar -zxvf bw-admin.linux.v1.74.tar.gz
+# cd bw-admin
+</pre>
+<p>
+23. With BW-Admin installed we need to edit bw-admin.cfg to tell the BW-Admin DLL what the renamed LOX mod "gamei386.so" is
+named.  More information about this procedure in the bw-admin.html file in the bw-admin directory.
+</p>
+<pre>
+# vi bw-admin.cfg
+</pre>
+<p>
+-Add on the second line:<br>
+<font color="#FF9933">
+dll = gamei386.so.real<br>
+</font>
+<br>
+-Enable all logging features:<br>
+<font color="#FF9933">
+track_connect = 1<br>
+track_disconnect = 1<br>
+track_renames = 1<br>
+track_refused = 1<br>
+</font>
+<br>
+-Uncomment the admin password:<br>
+<font color="#FF9933">
+admin = someG00Dp4ssword<br>
+</font>
+</p>
+<p>
+24. For each mod that we want to run BW-Admin on, we need to rename the original
+mod "gamei386.so" to "gamei386.so.real" and copy the BW-Admin "gamei386.so"
+to the mods main directory, in this example we are using <b>LOX</b>, ie:
+/home/q2user/quake2/lox , before we do anything, we will create a few
+backups, then copy all the neccessary files.
+</p>
+<pre>
+# cp /home/q2user/quake2/lox/gamei386.so /home/q2user/quake2/lox/gamei386.so.bak
+# mv /home/q2user/quake2/lox/gamei386.so /home/q2user/quake2/lox/gamei386.so.real
+# cp /home/q2user/quake2/bw-admin/release/gamei386.so /home/q2user/quake2/lox/gamei386.so
+# cp /home/q2user/quake2/bw-admin/server_bans.txt /home/q2user/quake2/lox/
+# cp /home/q2user/quake2/bw-admin/bw-admin.cfg /home/q2user/quake2/lox/
+</pre>
+<p>
+25. All that's left now is to start up our BOT Protected server and fill it up
+with LOX hungry people.
+</p>
+<pre>
+# cd ..
+# ./r1q2ded +set dedicated 1 +set game lox +exec testserver.cfg
+</pre>
+    </p> 
+  </div> 
+</div> 
+<!--end content --> 
+<div id="navBar"> 
+  <div id="sectionLinks"> 
+    <ul> 
+      <li><a href="loxnew_docs.htm">Introduction</a></li> 
+      <li><a href="tools.htm">Tools Needed</a></li> 
+	  <li><a href="system.htm">System Prep</a></li>
+      <li><a href="q2install.htm">Quake2 Install</a></li>
+      <li><a href="r1q2install.htm">R1Q2 Install</a></li>
+      <li><a href="321install.htm">3.21 Install</a></li>
+      <li><a href="loxinstall.htm">LOX Install</a></li> 
+      <li><a href="q2admininstall.htm">Q2Admin Install</a></li> 
+      <li><a href="bwainstall.htm">BW-Admin Install</a></li>
+	  <li><a href="links.htm">Helpful Links</a></li>
+      <li><a href="contactinfo.htm">Contact Info</a></li> 
+    </ul>
+  </div> 
+  <div id="advert"> 
+        <script type="text/javascript"><!--
+google_ad_client = "pub-2330509524152411";
+google_ad_width = 120;
+google_ad_height = 240;
+google_ad_format = "120x240_as";
+google_ad_channel ="0375101078";
+google_ad_type = "text_image";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "000000";
+google_color_url = "666666";
+google_color_text = "333333";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+  </div> 
+</div> 
+<!--end navbar --> 
+<div id="siteInfo"> 
+  <a href="http://www.datacabin.com"><img src="http://datacabin.com/images/dc1_88x31.gif" alt="DataCabin web hosting" title="DataCabin web hosting" width="88" height="31" border="0"></a> <img src="http://clanwos.org/images/deacon/wos_button1.gif" alt="Clan WOS" width="88" height="31"> <a href="http://www.clanwos.org">WOS Home</a> | <a href="http://www.clanwos.org/forums">Forums</a> | Well of Souls Gaming Community
+</div> 
+<br> 
+</body>
+</html>

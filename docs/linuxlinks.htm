@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>Quake 2 LOX Mod - Server Setup for Linux</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META name="description" content="Quake 2 LOX mod documentation and information.">
+<META name="keywords" content="Quake 2, LOX, LOX mod, modification, documentation, LOX documentation, docs, readme">
+<style type="text/css">
+<!--
+body 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #FFFFFF; text-decoration: none; background-attachment: fixed; background-color: #FFFFFF}
+p,blockquote,li,ol,ul,td 	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #000000; text-decoration: none}
+a 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #999999; text-decoration: none}
+a:hover 			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #00CC33; text-decoration: underline overline}
+-->
+</style>
+</head>
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" bgcolor="#FFFFFF">
+<table border="0">
+<tr><td>
+<img src="images/loxdocmain2.gif" border="0">
+</td>&nbsp;&nbsp;
+<td valign="center" align="middle">
+<img src="images/loxdocmain.gif" border="0">
+</td>
+</table>
+<table border="0" align="left">
+<tr><td>
+<b>Main Menu</b>:<br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="index.htm">Home</a><br>
+<a href="installation.htm">Installation</a><br><a href="modes.htm">Game Modes</a><br>
+<a href="weapons.htm">Weapons</a><br>
+<a href="features.htm">Features</a><br>
+<a href="grenades.htm">Grenades</a><br>
+<a href="angels.htm">Angels</a><br>
+<a href="armour.htm">Armour</a><br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="history.htm">History</a><br>
+<a href="changelog.htm">Changelog</a><br>
+<hr width="15%" size="1" align="center" noshade>
+Server:<br>
+<a href="server_win.htm">Windows</a><br>
+<a href="server_linux.htm">Linux</a><br><a href="server_cvars.htm">Server Cvars</a><br><hr width="15%" size="1" align="center" noshade>Entities:<br><a href="ent.htm">.ent file How-To</a><br><a href="offworldtransport.htm">OffWorld Transport</a><br>
+<hr width="15%" size="1" align="center" noshade>
+</td>
+<table width="80%" border="0" cellspacing="2" cellpadding="4" align="center">
+  <tr> 
+    <td colspan="2" valign="top">
+	<img src="images/server_linux.jpg" width="230" height="195">
+	</td>
+
+    <td valign="top" width="100%">
+      <b>Helpful Links:</b><br><br>
+<p>
+<ul>
+<li>
+<b>IDSoftware</b> -<br>
+<a href="http://www.idsoftware.com/games/quake/quake2/">http://www.idsoftware.com/games/quake/quake2/</a>
+</li>
+<li>
+<b>IDSoftware FTP</b> - <br>
+<a href="ftp://ftp.idsoftware.com/idstuff/quake2">ftp://ftp.idsoftware.com/idstuff/quake2</a>
+</li>
+<li>
+<b>BW-Admin</b> - <br>
+<a href="http://bw-admin.sourceforge.net/">http://bw-admin.sourceforge.net/</a>
+</li>
+<li>
+<b>Q2Admin and Updated Information</b> -<br>
+<a href="http://www.r1ch.net/forum/index.php?topic=253">R1Q2 Forums</a>
+</li>
+<li>
+<b>Well of Souls - Clan WOS</b> - <br>
+<a href="http://www.clanwos.org">http://www.clanwos.org</a>
+</li>
+<li>
+<b>Well of Souls Message Boards - LOX Help Forums</b> - <br>
+<a href="http://www.clanwos.org/forums">http://www.clanwos.org/forums</a>
+</li>
+<li>
+<b>Quake 2 LOX Docs. - <a href="http://www.clanwos.org">http://www.clanwos.org</a>- Updated for version 1.12.9</b> - <br>
+<a href="http://www.clanwos.org/docs/">http://www.clanwos.org/docs/</a>
+</li>
+<li>
+<b>Quake 2 Linux Server Setup with LOX</b> - <br>
+<a href="http://www.clanwos.org/docs/loxlinux/">http://www.clanwos.org/docs/loxlinux/</a>
+</li>
+<li>
+<b>Deacons|TOMB| File Warehouse</b> - <br>
+<a href="http://www.deaconstomb.org">http://www.deaconstomb.org</a>
+</li>
+<li>
+<b>R1Q2 - R1CHs Enhanced Quake II Client/Server</b> - <br>
+<a href="http://www.r1ch.net/stuff/r1q2/">http://www.r1ch.net/stuff/r1q2/</a>
+</li>
+</ul>
+</p>
+  </tr>
+</table>
+<hr width="70%" size="1" align="center" noshade>
+<table width="80%" border="0" cellspacing="0" cellpadding="4" align="center">
+  <tr> 
+    <td width="20%"><a href="bwainstall.htm"><nobr>&lt;&lt; Previous</nobr></a></td>
+    <td align="center" width="50%"><b>1.</b><a href="server_linux.htm">Intro</a> - <b>2.</b><a href="tools.htm">Tools Needed</a> - <b>3.</b><a href="system.htm">System Prep</a> - <b>4.</b><a href="q2install.htm">Quake2 Install</a> - <b>5.</b><a href="r1q2install.htm">R1Q2 Install</a> - <b>6.</b><a href="321install.htm">3.21 Install</a> - <b>7.</b><a href="loxinstall.htm">LOX Install</a> - <b>8.</b><a href="q2admininstall.htm">Q2Admin Install</a> - <b>9.</b><a href="bwainstall.htm">BW-Admin Install</a> - <i>10.</i><b>Links</b></td>
+    <td align="right" width="20%"><a href="server_linux.htm">Next &gt;&gt;</a></td>
+  </tr>
+</table>
+</tr>
+</table>
+</body>
+</html>
+

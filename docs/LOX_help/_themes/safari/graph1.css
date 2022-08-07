@@ -1,0 +1,107 @@
+.mstheme
+{
+	nav-banner-image: url(safbana.gif);
+	separator-image: url(safsepa.gif);
+	list-image-1: url(safbul1a.gif);
+	list-image-2: url(safbul2a.gif);
+	list-image-3: url(safbul3a.gif);
+
+
+	navbutton-horiz-normal: url(safnavha.gif);
+	navbutton-horiz-hovered: url(safnavhh.gif);
+	navbutton-horiz-pushed: url(safnavhe.gif);
+
+	navbutton-vert-normal: url(safnavva.gif);
+	navbutton-vert-pushed: url(safnavve.gif);
+	navbutton-vert-hovered: url(safnavvh.gif);
+
+	navbutton-home-normal: url(safhoma.gif);
+	navbutton-home-hovered: url(safhomah.gif);
+	navbutton-home-pushed: url(safhomas.gif);
+
+	navbutton-next-normal: url(safnexa.gif);
+	navbutton-next-hovered: url(safnexah.gif);
+	navbutton-next-pushed: url(safnexas.gif);
+
+	navbutton-prev-normal: url(safprea.gif);
+	navbutton-prev-hovered: url(safpreah.gif);
+	navbutton-prev-pushed: url(safpreas.gif);
+
+	navbutton-up-normal: url(safupa.gif);
+	navbutton-up-hovered: url(safupah.gif);
+	navbutton-up-pushed: url(safupas.gif);
+
+}
+
+.mstheme-bannertxt
+{
+	font-family: "Trebuchet MS", Arial, Helvetica;
+	color: rgb(255,102,0);
+	text-align: center;
+	vertical-align: bottom;
+}
+.mstheme-horiz-navtxt
+{
+	font-family: "Trebuchet MS", Arial, Helvetica;
+	font-weight: bold;
+	color: rgb(204,102,0);
+	text-align: center;
+	vertical-align: middle;
+}
+
+.mstheme-vert-navtxt
+{
+	font-family: "Trebuchet MS", Arial, Helvetica;
+	font-weight: bold;
+	color: rgb(204,102,0);
+	text-align: right;
+	vertical-align: middle;
+}
+
+.mstheme-navtxthome
+{
+	font-family: "Trebuchet MS", Arial, Helvetica;
+	font-weight: bold;
+	color: rgb(204,102,0);
+	text-align: center;
+	vertical-align: middle;
+}
+
+.mstheme-navtxtnext
+{
+	font-family: "Trebuchet MS", Arial, Helvetica;
+	font-weight: bold;
+	color: rgb(204,102,0);
+	text-align: center;
+	vertical-align: middle;
+}
+
+.mstheme-navtxtprev
+{
+	font-family: "Trebuchet MS", Arial, Helvetica;
+	font-weight: bold;
+	color: rgb(204,102,0);
+	text-align: center;
+	vertical-align: middle;
+}
+
+.mstheme-navtxtup
+{
+	font-family: "Trebuchet MS", Arial, Helvetica;
+	font-weight: bold;
+	color: rgb(204,102,0);
+	text-align: center;
+	vertical-align: middle;
+}
+UL
+{ 
+	list-style-image: url(safbul1a.gif);
+}
+UL UL
+{
+	list-style-image: url(safbul2a.gif);
+}
+UL UL UL
+{
+	list-style-image: url(safbul3a.gif);
+}

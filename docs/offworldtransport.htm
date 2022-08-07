@@ -1,0 +1,355 @@
+<html>
+<head>
+<title>Quake 2 LOX Mod - LOX Documenation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META name="description" content="Quake 2 LOX mod documentation and information.">
+<META name="keywords" content="Quake 2, LOX, LOX mod, modification, documentation, LOX documentation, docs, readme">
+<style type="text/css">
+<!--
+body 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #FFFFFF; text-decoration: none; background-attachment: fixed; background-color: #FFFFFF}
+p,blockquote,li,ol,ul,td 	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #000000; text-decoration: none}
+a 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #999999; text-decoration: none}
+a:hover 			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #00CC33; text-decoration: underline overline}
+-->
+</style>
+</head>
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" bgcolor="#FFFFFF">
+<table border="0">
+<tr><td>
+<img src="images/loxdocmain2.gif" border="0">
+</td>&nbsp;&nbsp;
+<td valign="center" align="middle">
+<img src="images/loxdocmain.gif" border="0">
+</td>
+</tr>
+</table>
+<table border="0" align="left">
+<tr><td>
+<b>Main Menu</b>:<br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="index.htm">Home</a><br>
+<a href="installation.htm">Installation</a><br><a href="modes.htm">Game Modes</a><br>
+<a href="weapons.htm">Weapons</a><br>
+<a href="features.htm">Features</a><br>
+<a href="grenades.htm">Grenades</a><br>
+<a href="angels.htm">Angels</a><br>
+<a href="armour.htm">Armour</a><br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="history.htm">History</a><br>
+<a href="changelog.htm">Changelog</a><br>
+<hr width="15%" size="1" align="center" noshade>
+Server:<br>
+<a href="server_win.htm">Windows</a><br>
+<a href="server_linux.htm">Linux</a><br><a href="server_cvars.htm">Server Cvars</a><br><hr width="15%" size="1" align="center" noshade>Entities:<br><a href="ent.htm">.ent file How-To</a><br><a href="offworldtransport.htm">OffWorld Transport</a><br>
+<hr width="15%" size="1" align="center" noshade>
+</td>
+<table width="80%" border="0" cellspacing="2" cellpadding="4" align="center">
+  <tr> 
+    <td colspan="2" valign="top">
+	<img src="images/offworld.jpg" width="230" height="195">
+	</td>
+    <td valign="top" width="100%">
+       <h1>
+      <b>OffWorld Transport</b><br>
+	<i>written by Phlem&lt;WOS&gt;</i>
+</h1>
+<p>Information regarding the LOX Off World Transport system.</p>
+		<h2>What Is It?</h2>
+
+		<p>What is the offworld Transport system?&nbsp; In short, it is a way to 
+		embellish your existing or new Quake2 maps so that players can jump into 
+		a teleporter and pop out on a whole different server.</p>
+		<p>You can add the special entities for this into a new map.&nbsp; But 
+		the most practical way to do this is to simply add the entities to an 
+		entity file for the map you want to use.&nbsp; In this way you can 
+		update your existing maps, even stock Q2 maps like <i><b>q2dm1</b></i>.</p>
+		<p>This feature is available starting with version 1.12.10 of LOX.&nbsp; </p>
+
+		<p>&nbsp;</p>
+		<h2><b>H</b>ow Do I Use This Feature?</h2>
+		<p>To make use of the feature, you will need to create entities for your 
+		map files.&nbsp; See Deacon's excellent concise guide here:
+		<b><a href="ent.htm">ent.htm</a></b></p>
+		<p>To add a specific offworld teleport pad to your map, you will need a 
+		few details:</p>
+		<ul>
+
+			<li>The X, Y, Z coordinates of the location you wish to place the 
+			pad</li>
+			<li>The descriptive name of the server you want to jump to <br>
+			(e.g. &quot;Loxophilia - Q2 LOX - Main WOS Clan server&quot;)</li>
+			<li>The address of the server, including port number.&nbsp; Note 
+			that this can be numeric or a qualified domain name<br>
+			(e.g. <b>2.3.4.6:27910</b> or <b>phlem.ath.cx:27910</b>)</li>
+
+		</ul>
+		<p>Once you have this information, you can build an entity to be added 
+		to your entity file for the map you are updating.</p>
+		<p>For the above example, I would end up creating an entity that looks 
+		like this:</p>
+		<blockquote>
+			<p><font face="Courier">{
+<br>
+			"message" "Offworld transport to\nLOXophilia\n(72.5.249.99:27910)"
+			<br>
+			"wait" "3"
+
+<br>
+			"sounds" "2"
+<br>
+			"target" "q2@72.5.249.99:27910" <br>
+			"origin" "20 -2583 -471"
+<br>
+			"classname" "misc_offworld_teleporter"
+<br>
+			} <br>&nbsp;</font></p>
+		</blockquote>
+
+		<p>In the above example, the user would see three lines of text when 
+		they approach within about 6 &quot;virtual&quot; feet of the offworld teleporter 
+		pad:</p>
+		<p align="center">Offworld transport to<br>
+		Loxophilia<br>
+		(72.5.249.99:27910)</p>
+		<p>The &quot;\n&quot; characters in the message variable are interpreted as 
+		NEWLINE characters.</p>
+
+		<p>It's that simple!&nbsp; Just add this above segment to your entfile 
+		and you are ready to go!</p>
+		<p>&nbsp;</p>
+		<h2>Detailed Example</h2>
+		<h3>STEP 1 - Create Basic ENT file</h3>
+		<p>Let's try this using our trusty and reliable q2dm1 map as an example.&nbsp; 
+		First, we need to create the ENT file for q2dm1.&nbsp; Per Deacon's 
+		instructions in the <b><a href="ent.htm">ent.htm</a></b> page, we can 
+		use the ENTDUMP.EXE program on Windows (or the equivalent 'entdump' 
+		program on Linux), to create our file.&nbsp; This example assumes the 
+		ENDUMP.EXE program is installed on your system in some directory that is 
+		in your search path, such as <a href="file:///C:/WINDOWS/SYSTEM32">
+
+		C:\WINDOWS\SYSTEM32</a>.</p>
+		<p>From the Windows command line, we might follow a sequence like this 
+		(note that the typed commands are in bold type):</p>
+		<blockquote>
+			<p>C:\&gt;&nbsp; <b>cd \quake2</b></p>
+			<p>C:\QUAKE2&gt; <b>mkdir entfiles</b></p>
+
+			<p>C:\QUAKE2&gt; <b>cd entfiles</b></p>
+			<p>C:\QUAKE2&gt; <b>entdump c:\quake2\baseq2\maps\q2dm1.bsp &gt; q2dm1.ent</b></p>
+		</blockquote>
+		<p>You should now have a q2dm1.ent entity file that is several lines 
+		long.&nbsp; My copy was&nbsp; 955 lines long.&nbsp; The file should look 
+		something like this at the top:</p>
+
+		<blockquote>
+			<p><font face="Courier">{<br>
+			&quot;sounds&quot; &quot;7&quot;<br>
+			&quot;classname&quot; &quot;worldspawn&quot;<br>
+			&quot;message&quot; &quot;The Edge&quot;<br>
+
+			&quot;nextmap&quot; &quot;q2dm2&quot;<br>
+			}<br>
+			{<br>
+			&quot;origin&quot; &quot;984 192 784&quot;<br>
+			&quot;angles&quot; &quot;25 72 0&quot;<br>
+
+			&quot;classname&quot; &quot;info_player_intermission&quot;<br>
+			}<br>
+			{<br>
+			&quot;noise&quot; &quot;world/drip_amb.wav&quot;<br>
+			&quot;spawnflags&quot; &quot;1&quot;<br>
+
+			&quot;classname&quot; &quot;target_speaker&quot;<br>
+			&quot;origin&quot; &quot;244 -236 332&quot;<br>
+			}<br>
+			{<br>
+			&quot;noise&quot; &quot;world/drip_amb.wav&quot;<br>
+
+			&quot;spawnflags&quot; &quot;1&quot;<br>
+			&quot;classname&quot; &quot;target_speaker&quot;<br>
+			&quot;origin&quot; &quot;244 36 332&quot;<br>
+			}<br>
+
+			{<br>
+			&quot;noise&quot; &quot;world/drip_amb.wav&quot;<br>
+			&quot;spawnflags&quot; &quot;1&quot;<br>
+			&quot;classname&quot; &quot;target_speaker&quot;<br>
+
+			&quot;origin&quot; &quot;940 628 420&quot;<br>
+			}</font></p>
+			<p>&nbsp;</p>
+			<div style="border-style: solid; border-width: 1px; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px">
+				HELPFUL HINT Number 1 - If you are trying to create entity files 
+				for maps that are stored inside of a PAK file, you may need to 
+				extract the map binary files, the BSP files, from the PAK in 
+				order to get ENTDUMP to work on them.&nbsp; You can use a 
+				program like PAKRAT to do this.&nbsp; PAKRAT can be found on 
+				Deacon's Tomb and other locations as well.</div>
+
+			<p>&nbsp;</p>
+		</blockquote>
+		<h3>STEP 2 - Collecting our Ent Data</h3>
+		<p>In the simple example, we showed this entry for a teleport entity:</p>
+		<blockquote>
+			<p><font face="Courier">{
+<br>
+			"message" "Offworld transport to\nLOXophilia\n(72.5.249.99:27910)"
+			<br>
+
+			"wait" "3"
+<br>
+			"sounds" "2"
+<br>
+			"target" "q2@72.5.249.99:27910" <br>
+			"origin" "20 -2583 -471"
+<br>
+			"classname" "misc_offworld_teleporter"
+<br>
+			} <br>&nbsp;</font></p>
+
+		</blockquote>
+		<p>What we need to do to make this entry work for our q2dm1 is to simply 
+		get the coordinates correct and then tack this little section of text 
+		onto the bottom of our newly created q2dm1.ent file.</p>
+		<p>To do this, per the instructions in Deacon's ent.htm page, we can use 
+		viewpos.&nbsp; Get your favorite server to run the map you are working 
+		on, then connect your regular Q2 game program to the server and move 
+		your character to the location where you want to place your offworld 
+		teleport pad.&nbsp; Remember, too, that you can place as many pads as 
+		you want, so collect data from lots of locations if you want to.</p>
+		<p>At this point, type &quot;viewpos&quot; (for View Position) in the console.&nbsp; 
+		It will return a string similar to this:</p>
+
+		<blockquote>
+			<p>(1268 654 494): 13</p>
+		</blockquote>
+		<p>The first three digits are the ones we care about.&nbsp; The first 
+		digit is the X coordinate, the second is the Y, and the 3rd is the Z.&nbsp; 
+		For my example, I went into the middle of the round open area in q2dm1 
+		to get my coordinates.&nbsp; To use these coordinates for teleporting, 
+		we need to make just one change.&nbsp; We need to subtract 28 from the Z 
+		coordinate.&nbsp; This means that our new coordinates for our teleport 
+		pad are as follows: 1268 654 466</p>
+
+		<p>Why subtract 28?&nbsp; Simply to put the pad on the ground.&nbsp; If 
+		you use the same coordinates as directly reported by VIEWPOS, the pad 
+		will be floating in the air.</p>
+		<blockquote>
+			<div style="border-style: solid; border-width: 1px; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px">
+				HELPFUL HINT Number 2 - Remember your basic algebra ... 
+				subtracting a number from a negative number makes the result 
+				MORE NEGATIVE. In other words, if your Z value from VIEWPOS is
+				<i><b>-500</b></i>, the newly adjusted Z value will be <i><b>
+				-528</b></i>, NOT <i><b>-472</b></i>.&nbsp; </div>
+
+		</blockquote>
+		<h3>&nbsp;</h3>
+		<h3>STEP 3 - Making our new ENT Data Entry</h3>
+		<p>To make this work, simply replace the values in our teleport entry 
+		example, putting the new values in the &quot;origin&quot; data line.&nbsp; That 
+		will make our entry for q2dm1 look like this:</p>
+		<blockquote>
+
+			<p><font face="Courier">{
+<br>
+			"message" "Offworld transport to\nLOXophilia\n(72.5.249.99:27910)"
+			<br>
+			"wait" "3"
+<br>
+			"sounds" "2"
+<br>
+			"target" "q2@72.5.249.99:27910" <br>
+			&quot;origin&quot; &quot;1268 654 466&quot; <br>
+
+			"classname" "misc_offworld_teleporter"
+<br>
+			} <br>&nbsp;</font></p>
+		</blockquote>
+		<p>Now all you need to do is add this text to the bottom of the ent file 
+		created by ENTDUMP in step one.&nbsp; This, of course, will work on your 
+		local machine.&nbsp; To make this work on a server, you will need to get 
+		the new q2dm1.ent file placed in the appropriate &quot;entfiles&quot; directory on 
+		your server.</p>
+
+		<blockquote>
+			<div style="border-style: solid; border-width: 1px; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px">
+				HELPFUL HINT Number 3 - If you create your entity files on a 
+				Windows machine, but need to have them work on a Linux Q2 
+				server, they will need to be converted to UNIX/Linux file format 
+				before they can be readily used by that server.&nbsp; If you use 
+				FTP to transfer the files to the server, and use ASCII transfer 
+				mode, the files will convert automatically.&nbsp; If not, you 
+				can use various programs such as &quot;dos2unix&quot; to convert them.&nbsp; 
+				There are various conversion tools available on your Linux 
+				system for this as well.</div>
+		</blockquote>
+
+		<p>&nbsp;</p>
+		<h2>Advanced Usage</h2>
+		<p>What special things can you do to make best use of this feature?&nbsp; 
+		The first thing, of course, is to simply use it.&nbsp; In other words, 
+		try to create entity files containing at least one offworld teleport 
+		entity for each of the maps in your map rotation.</p>
+		<p>Another thing that you can do to highlight the fact that you are 
+		offworld-enabling your server and its map rotation is to update the 
+		description of your map to include the phrase &quot;offworld enbabled&quot;, so 
+		users will see this at connect time.&nbsp; To do this, simply update the 
+		string in the first entity of your map file.&nbsp; For example, here is 
+		the first entity in the q2dm1.ent file:</p>
+
+		<blockquote>
+			<p><font face="Courier">{<br>
+			&quot;sounds&quot; &quot;7&quot;<br>
+			&quot;classname&quot; &quot;worldspawn&quot;<br>
+			&quot;message&quot; &quot;The Edge&quot;<br>
+
+			&quot;nextmap&quot; &quot;q2dm2&quot;<br>
+			}</font></p>
+		</blockquote>
+		<p>To let folks know you have adjusted your config to allow for offworld 
+		teleport, simply change it to this:</p>
+		<blockquote>
+			<p><font face="Courier">{<br>
+
+			&quot;sounds&quot; &quot;7&quot;<br>
+			&quot;classname&quot; &quot;worldspawn&quot;<br>
+			&quot;message&quot; &quot;The Edge (offworld-enabled by AdminDude)&quot;<br>
+			&quot;nextmap&quot; &quot;q2dm2&quot;<br>
+
+			}</font></p>
+		</blockquote>
+		<p>Another way to make your entity updates &quot;shine&quot; is to combine the 
+		addition of offworld teleporters with the addition of other entities, 
+		especially weapons, health, etc.&nbsp; </p>
+		<p>One other thing that you can do to foster better &quot;networking&quot; between 
+		game server admins is to provide offworld teleporter links to servers of 
+		other Q2 mods, other clans, or other service providers.&nbsp; Drop an 
+		email or a message board notice to the admins of these other servers 
+		that your game servers are &quot;offworld teleported linked&quot; to theirs and 
+		that you and your friends will be &quot;popping in from time to time&quot;.&nbsp; 
+		Chances are they will welcome the extra visitors and perhaps even be 
+		interested in returning a visit to your hood.</p>
+
+		<p>&nbsp;</p>
+		<h2>Credit Where Due</h2>
+		<p>Special thanks to QwazyWabbit for the current implementation of the 
+		offworld teleport feature.&nbsp; Phlem (author of this guide) wrote a 
+		prototype version of it, but QwazyWabbit took it up to a usable level, 
+		adding the notice that appears in the user screen and making the pads 
+		rotate so they could readily be distinguished from regular teleport 
+		pads.&nbsp; In other words, QW made this feature usable.&nbsp; </p>
+
+  </tr>
+</table>
+<hr width="70%" size="1" align="center" noshade>
+<table width="80%" border="0" cellspacing="0" cellpadding="4" align="center">
+  <tr> 
+    <td width="20%"></td>
+    <td align="center" width="50%">Quake 2 LOX Docs. - <a href="http://www.clanwos.org">http://www.clanwos.org</a></td>
+    <td align="right" width="20%"></td>
+  </tr>
+</table>
+</tr>
+</table>
+</body>
+</html>

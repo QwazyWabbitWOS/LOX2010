@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>Quake 2 LOX Mod - Server Setup for Linux</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META name="description" content="Quake 2 LOX mod documentation and information.">
+<META name="keywords" content="Quake 2, LOX, LOX mod, modification, documentation, LOX documentation, docs, readme">
+<style type="text/css">
+<!--
+body 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #FFFFFF; text-decoration: none; background-attachment: fixed; background-color: #FFFFFF}
+p,blockquote,li,ol,ul,td 	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #000000; text-decoration: none}
+a 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #999999; text-decoration: none}
+a:hover 			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #00CC33; text-decoration: underline overline}
+-->
+</style>
+</head>
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" bgcolor="#FFFFFF">
+<table border="0">
+<tr><td>
+<img src="images/loxdocmain2.gif" border="0">
+</td>&nbsp;&nbsp;
+<td valign="center" align="middle">
+<img src="images/loxdocmain.gif" border="0">
+</td>
+</table>
+<table border="0" align="left">
+<tr><td>
+<b>Main Menu</b>:<br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="index.htm">Home</a><br>
+<a href="installation.htm">Installation</a><br><a href="modes.htm">Game Modes</a><br>
+<a href="weapons.htm">Weapons</a><br>
+<a href="features.htm">Features</a><br>
+<a href="grenades.htm">Grenades</a><br>
+<a href="angels.htm">Angels</a><br>
+<a href="armour.htm">Armour</a><br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="history.htm">History</a><br>
+<a href="changelog.htm">Changelog</a><br>
+<hr width="15%" size="1" align="center" noshade>
+Server:<br>
+<a href="server_win.htm">Windows</a><br>
+<a href="server_linux.htm">Linux</a><br><a href="server_cvars.htm">Server Cvars</a><br><hr width="15%" size="1" align="center" noshade>Entities:<br><a href="ent.htm">.ent file How-To</a><br><a href="offworldtransport.htm">OffWorld Transport</a><br>
+<hr width="15%" size="1" align="center" noshade>
+</td>
+<table width="80%" border="0" cellspacing="2" cellpadding="4" align="center">
+  <tr> 
+    <td colspan="2" valign="top">
+	<img src="images/server_linux.jpg" width="230" height="195">
+	</td>
+
+    <td valign="top" width="100%">
+      <b>Q2Admin Installation:</b><br><br>
+<p>
+<p> 
+
+19. Download the Q2Admin files into your main quake2 directory, in this case
+it's /home/q2user/quake2 and you will also need to su to the new user you
+created, we are using 'q2user'.  After we get all the base files for Q2Admin
+we will get the latest update sourcecode  to build an updated q2admin.so file.
+</p>
+<pre><font color="#FF9900">
+# wget http://www.deaconstomb.org/pub/q2/tools/q2admin/q2admin117.tar.gz
+# tar -zxvf q2admin117.tar.gz
+# cd q2admin
+# mkdir build ; cd build
+# wget http://xatrixuk.servegame.org/q2admin.1.17.44.tar.gz
+# tar -zxvf q2admin.1.17.44.tar.gz
+# cd q2admin
+# make release
+# mv q2admin.so ../..
+# cd ../..
+</font></pre>
+<p>
+20. With all the Q2Admin files ready we can now move them into our LOX mod folder for
+installation and finally configure Q2Admin in more detail.</p>
+<pre><font color="#FF9900">
+# mv *.txt q2admin.so install ../lox/ ; cd ../lox/
+# ./install
+</font></pre>
+<p>
+21. The main file for Q2admin is <b>q2admin.txt</b>.  Open up this file and read through it.
+You will find many settings and options that can be configured, take your time and read through
+them.  
+</p>
+<p>
+
+Q2Admin is basically installed and ready to rock and roll. You can now run your server.  
+</p>
+<pre><font color="#FF9900">
+# cd ..
+# ./r1q2ded +set dedicated 1 +set game lox +exec server.cfg
+</font></pre>
+<p>
+If you don't want to run Q2Admin you can jump to the BW-Admin install tutorial in the <a href="bwainstall.htm">next section</a>.
+  </div> 
+</p>
+  </tr>
+</table>
+<hr width="70%" size="1" align="center" noshade>
+<table width="80%" border="0" cellspacing="0" cellpadding="4" align="center">
+  <tr> 
+    <td width="20%"><a href="loxinstall.htm"><nobr>&lt;&lt; Previous</nobr></a></td>
+    <td align="center" width="50%"><b>1.</b><a href="server_linux.htm">Intro</a> - <b>2.</b><a href="tools.htm">Tools Needed</a> - <b>3.</b><a href="system.htm">System Prep</a> - <b>4.</b><a href="q2install.htm">Quake2 Install</a> - <b>5.</b><a href="r1q2install.htm">R1Q2 Install</a> - <b>6.</b><a href="321install.htm">3.21 Install</a> - <b>7.</b><a href="loxinstall.htm">LOX Install</a> - <i>8.</i><b>Q2Admin Install</b> - <b>9.</b><a href="bwainstall.htm">BW-Admin Install</a> - <b>10.</b><a href="linuxlinks.htm">Links</a></td>
+    <td align="right" width="20%"><a href="bwainstall.htm">Next &gt;&gt;</a></td>
+  </tr>
+</table>
+</tr>
+</table>
+</body>
+</html>
+

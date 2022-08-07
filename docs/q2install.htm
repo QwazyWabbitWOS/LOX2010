@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>Quake 2 LOX Mod - Server Setup for Linux</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META name="description" content="Quake 2 LOX mod documentation and information.">
+<META name="keywords" content="Quake 2, LOX, LOX mod, modification, documentation, LOX documentation, docs, readme">
+<style type="text/css">
+<!--
+body 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #FFFFFF; text-decoration: none; background-attachment: fixed; background-color: #FFFFFF}
+p,blockquote,li,ol,ul,td 	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #000000; text-decoration: none}
+a 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #999999; text-decoration: none}
+a:hover 			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #00CC33; text-decoration: underline overline}
+-->
+</style>
+</head>
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" bgcolor="#FFFFFF">
+<table border="0">
+<tr><td>
+<img src="images/loxdocmain2.gif" border="0">
+</td>&nbsp;&nbsp;
+<td valign="center" align="middle">
+<img src="images/loxdocmain.gif" border="0">
+</td>
+</table>
+<table border="0" align="left">
+<tr><td>
+<b>Main Menu</b>:<br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="index.htm">Home</a><br>
+<a href="installation.htm">Installation</a><br><a href="modes.htm">Game Modes</a><br>
+<a href="weapons.htm">Weapons</a><br>
+<a href="features.htm">Features</a><br>
+<a href="grenades.htm">Grenades</a><br>
+<a href="angels.htm">Angels</a><br>
+<a href="armour.htm">Armour</a><br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="history.htm">History</a><br>
+<a href="changelog.htm">Changelog</a><br>
+<hr width="15%" size="1" align="center" noshade>
+Server:<br>
+<a href="server_win.htm">Windows</a><br>
+<a href="server_linux.htm">Linux</a><br><a href="server_cvars.htm">Server Cvars</a><br><hr width="15%" size="1" align="center" noshade>Entities:<br><a href="ent.htm">.ent file How-To</a><br><a href="offworldtransport.htm">OffWorld Transport</a><br>
+<hr width="15%" size="1" align="center" noshade>
+</td>
+<table width="80%" border="0" cellspacing="2" cellpadding="4" align="center">
+  <tr> 
+    <td colspan="2" valign="top">
+	<img src="images/server_linux.jpg" width="230" height="195">
+	</td>
+
+    <td valign="top" width="100%">
+      <b>Linux Quake 2 Installation</b><br><br>
+<p> 
+	Here we will install Quake 2 version 3.19, then update it to 3.20.  Later in the next step we will compile and install version 3.21.
+	</p>
+
+	<p>
+3. Put the Q2 CD in your CD-Rom and mount the drive:
+<pre><font color="#FF9900">
+# mount /dev/cdrom
+</font></pre>
+- Other linux operating systems may require this command:
+<pre><font color="#FF9900">
+# mount –t iso9660 /dev/cdrom /mnt/cdrom
+</font></pre>
+4. Make sure you are in the directory you created, ie. /home/q2user/quake2
+and proceed to copy the files from the CD-Rom, don’t forget the “.” Period at
+the end to tell your machine to copy all files to the current location:
+<pre><font color="#FF9900">
+# cp –r /media/cdrom/Install/Data/* .
+</font></pre>
+5. Now we want to get rid of all the windows files that we don’t need:
+<pre><font color="#FF9900">
+# rm –rf /home/q2user/quake2/*.dll
+# rm –rf /home/q2user/quake2/quake2.exe
+# rm –rf /home/q2user/quake2/baseq2/gamex386.dll
+
+</font></pre>
+6. Now, download the Quake2 Linux Binaries. There are a number of places that
+offer them for download, in this particular install we are using the
+quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz file, here are a couple download
+links:
+<p>
+<a href="ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz">ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz</a>
+<a href="http://www.deaconstomb.org/pub/q2/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz">http://www.deaconstomb.org/pub/q2/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz</a>
+<p>
+<pre><font color="#FF9900">
+# ncftpget ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz
+or
+# wget ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz
+</font></pre>
+7. Untar the Quake2 Linux Binaries package:
+<pre><font color="#FF9900">
+# tar –zxvf quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz
+</font></pre>
+8. The main files are now essentially setup for a working Quake2 Server and we
+should set permissions for the new user we created to be able to alter files
+and start the server, if all goes well this should start up a basic DM Quake2
+Server, <b>however</b>, once you or someone connects to the server it will crash
+due to problems with the 3.20 q2 binary and the new lox versions.  This problem
+will be fixed in the next step when we prepare a new updated 3.21 server binary.
+In addition I will outline steps to prepare the R1Q2DED server binary instead of the 3.21
+binary for added security and enhanced server features.
+
+<pre><font color="#FF9900">
+# chown –R q2user /home/q2user/quake2 ; chgrp –R q2user /home/q2user/quake2
+# su q2user
+# ./quake2 +set dedicated 1 +map q2dm1
+</font></pre>
+    </p> 
+  </tr>
+</table>
+<hr width="70%" size="1" align="center" noshade>
+<table width="80%" border="0" cellspacing="0" cellpadding="4" align="center">
+  <tr> 
+    <td width="20%"><a href="system.htm"><nobr>&lt;&lt; Previous</nobr></a></td>
+    <td align="center" width="50%"><b>1.</b><a href="server_linux.htm">Intro</a> - <b>2.</b><a href="tools.htm">Tools Needed</a> - <b>3.</b><a href="system.htm">System Prep</a> - <i>4.</i><b>Quake2 Install</b> - <b>5.</b><a href="r1q2install.htm">R1Q2 Install</a> - <b>6.</b><a href="321install.htm">3.21 Install</a> - <b>7.</b><a href="loxinstall.htm">LOX Install</a> - <b>8.</b><a href="q2admininstall.htm">Q2Admin Install</a> - <b>9.</b><a href="bwainstall.htm">BW-Admin Install</a> - <b>10.</b><a href="linuxlinks.htm">Links</a></td>
+    <td align="right" width="20%"><a href="r1q2install.htm">Next &gt;&gt;</a></td>
+  </tr>
+</table>
+</tr>
+</table>
+</body>
+</html>
+

@@ -1,0 +1,16 @@
+Zikula doesn't stand alone in the world it's part of a greater whole - the open source
+software movement. In creating the end result Zikula utilises many other products.
+These credits cover the many other products used
+
+* PHP
+* MySQL
+* Apache
+* Linux
+* ADODB
+* Smarty
+* PHP Mailer
+* JSON-PHP
+* Prototype
+* script.aculo.us Prototype Effects
+* Flag icons, by Marcus Smith
+* Crystal Clear icon set

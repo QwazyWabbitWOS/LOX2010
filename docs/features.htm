@@ -1,0 +1,594 @@
+<html>
+<head>
+<title>Quake 2 LOX Mod - Features</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META name="description" content="Quake 2 LOX mod documentation and information.">
+<META name="keywords" content="Quake 2, LOX, LOX mod, modification, documentation, LOX documentation, docs, readme">
+<style type="text/css">
+<!--
+body 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #FFFFFF; text-decoration: none; background-attachment: fixed; background-color: #FFFFFF}
+p,blockquote,li,ol,ul,td 	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #000000; text-decoration: none}
+a 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #999999; text-decoration: none}
+a:hover 			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #00CC33; text-decoration: underline overline}
+-->
+</style>
+</head>
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" bgcolor="#FFFFFF">
+<table border="0">
+<tr><td>
+<img src="images/loxdocmain2.gif" border="0">
+</td>&nbsp;&nbsp;
+<td valign="center" align="middle">
+<img src="images/loxdocmain.gif" border="0">
+</td>
+</tr>
+</table>
+<table border="0" align="left">
+<tr><td>
+<b>Main Menu</b>:<br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="index.htm">Home</a><br>
+<a href="installation.htm">Installation</a><br><a href="modes.htm">Game Modes</a><br>
+<a href="weapons.htm">Weapons</a><br>
+<a href="features.htm">Features</a><br>
+<a href="grenades.htm">Grenades</a><br>
+<a href="angels.htm">Angels</a><br>
+<a href="armour.htm">Armour</a><br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="history.htm">History</a><br>
+<a href="changelog.htm">Changelog</a><br>
+<hr width="15%" size="1" align="center" noshade>
+Server:<br>
+<a href="server_win.htm">Windows</a><br>
+<a href="server_linux.htm">Linux</a><br><a href="server_cvars.htm">Server Cvars</a><br><hr width="15%" size="1" align="center" noshade>Entities:<br><a href="ent.htm">.ent file How-To</a><br><a href="offworldtransport.htm">OffWorld Transport</a><br>
+<hr width="15%" size="1" align="center" noshade>
+</td>
+<table width="80%" border="0" cellspacing="2" cellpadding="4" align="center">
+  <tr> 
+    <td colspan="2" valign="top">
+	<img src="images/features.jpg" width="230" height="195">
+	</td>
+    <td valign="top" width="100%">
+      <b>Features</b><br><br>
+<div align="center">
+  <center><table cellSpacing="2" cellPadding="2" width="89%" border="2" bordercolordark="#996600" bordercolorlight="#CC6600">
+    <tr>
+      <!-- Row 1 -->
+
+    <td width="196"><b>Function</b></td>
+    <td width="187" colspan="2"><b>Binding</b></td>
+    <td width="296"><font color="#FF9900"><b>Command</b></td>
+  </tr>
+  
+  <tr>
+    <!-- Row 2 -->
+ 
+  <td width="196"><b>Night Vision</b> - This only works right in GL (3dfx) mode.</td>
+  <td width="187" colspan="2">N</td>
+  <td width="296"><font color="#FF9900"><font color="#FF9900">cmd night vision</font></td>
+  </tr>
+  
+  <tr>
+
+    <!-- Row 3 -->
+  
+  <td width="196"><b>Jetpack</b> - This replaces the quad. Will let you fly, but it's got all the problems
+of a real jetpack: you have to work at it to avoid slamming into walls
+and so on.</td>
+  <td width="187" colspan="2">J</td>
+  <td width="296"><font color="#FF9900">use jetpack</font></td>
+  </tr>
+  
+  <tr>
+    <!-- Row 4 -->
+  
+  <td width="196"><b>Laser Sight</b> - A little red ball will dance in front of you, showing you
+where your gun is pointed.  It'll glow brighter once it finds a target.
+But be careful, everyone else can see it too.</td>
+  <td width="187" colspan="2">S</td>
+  <td width="296"><font color="#FF9900">cmd lsight</font></td>
+  </tr>
+  
+  <tr>
+    <!-- Row 5 -->
+  
+  <td width="196"><b>Laser Tripwire</b></td>
+  <td width="187" colspan="2">L</td>
+  <td width="296"><font color="#FF9900">cmd laser</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 6 -->
+  
+  <td width="196"><b>Tractor Beam
+    Pull</b></td>
+  <td width="187" colspan="2">o</td>
+  <td width="296"><font color="#FF9900">cmd pull</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 7 -->
+  
+  <td width="196"><b>Tractor Beam Push</b></td>
+  <td width="187" colspan="2">p</td>
+  <td width="296"><font color="#FF9900">cmd push</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 8 -->
+  
+  <td width="196"><b>Cycles Zoom Views</b></td>
+  <td width="187" colspan="2">F11</td>
+  <td width="296"><font color="#FF9900">cmd zoom 1</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 9 -->
+  
+  <td width="196"><b>Original View</b></td>
+  <td width="187" colspan="2">F10</td>
+  <td width="296"><font color="#FF9900">cmd zoom 0</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 10 -->
+  
+  <td width="196"><b>Kamikaze</b> - Human explosive device!</td>
+  <td width="187" colspan="2">end</td>
+  <td width="296"><font color="#FF9900">cmd kamikaze</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 11 -->
+  
+  <td width="196"><b>Grappling Hook</b> - This is not a glorified flying machine, like
+the grapples in other mods.  Not only do you swing around as you use
+it, but you can seriously hurt yourself if you use it wrong.  You can
+can also make the line grow or shrink at will.</td>
+  <td width="187" colspan="2">G</td>
+  <td width="296"><font color="#FF9900">+hook</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 12 -->
+  
+  <td width="196"><b>Slide up grapple</b></td>
+  <td width="187" colspan="2">R</td>
+  <td width="296"><font color="#FF9900">+shrink</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 13 -->
+    
+  <td width="196"><b>Slide down grapple</b></td>
+  <td width="187" colspan="2">F</td>
+  <td width="296"><font color="#FF9900">+grow</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 14 -->
+  
+  <td width="196"><b>Scanner</b> - Track players down in DM. If you just use the scanner as is it will stay in the center but, if you
+do scanner &lt;xpos&gt; &lt;ypos&gt; you will be able to relocate the scanner. When
+it is at the original position it's coordinates are 0,0.</td>
+  <td width="187" colspan="2">S</td>
+  <td width="296"><font color="#FF9900">cmd scanner</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 15 -->
+  
+  <td width="196"><b>Chase cam</b></td>
+  <td width="187" colspan="2">X</td>
+  <td width="296"><font color="#FF9900">cmd chasecam</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 16 -->
+  
+  <td width="196"><b>Decoy</b> - Sort of like the Hologram in Duke3D, except it shoots at players.</td>
+  <td width="187" colspan="2">D</td>
+  <td width="296"><font color="#FF9900">cmd decoy</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 17 -->
+  
+  <td width="196"><b>Standard machine gun</b></td>
+  <td width="187" colspan="2">M</td>
+  <td width="296"><font color="#FF9900">cmd firemode</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 18 -->
+  
+  <td width="196"><b>Angel of Life</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">Cycling Key </td>
+  <td width="296"><font color="#FF9900">cmd angelol</font></td>
+  </tr>
+  
+  <tr>
+    <!-- Row 19 -->
+  
+  <td width="196"><b>Angel of Death</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">&quot;</td>
+  <td width="296"><font color="#FF9900">cmd angelod</font></td>
+  </tr>
+  
+  <tr>
+    <!-- Row 20 -->
+  
+  <td width="196"><b>Angel of Mercy</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">&quot;</td>
+  <td width="296"><font color="#FF9900">cmd angelom</font></td>
+  </tr>
+  
+  <tr>
+    <!-- Row 21 -->
+  
+
+  <td width="196"><b>Angel of Frost</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">&quot;</td>
+  <td width="296"><font color="#FF9900">cmd angelof</font></td>
+  </tr>
+  
+  <tr>
+
+    <!-- Row 22 -->
+  
+  <td width="196"><b>Angel of Plague</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">&quot;</td>
+  <td width="296"><font color="#FF9900">cmd angelop</font></td>
+  </tr>
+
+  
+  <tr>
+    <!-- Row 23 -->
+  
+  <td width="196"><b>Angel of Flame</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">&quot;</td>
+  <td width="296"><font color="#FF9900">cmd angeloflame</font></td>
+
+  </tr>
+  
+  <tr>
+    <!-- Row 24 -->
+  
+  <td width="196"><b>Angel of Horror</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">&quot;</td>
+  <td width="296"><font color="#FF9900">cmd angelohorror</font></td>
+  </tr>
+  
+  <tr>
+    <!-- Row 25 -->
+  
+  <td width="196"><b>Angel of
+    Blindness</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">&quot;</td>
+  <td width="296"><font color="#FF9900">cmd angeloblind</font></td>
+  </tr>
+  
+  <tr>
+    <!-- Row 26 -->
+  
+  <td width="196"><b>Angel of Revenge</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">&quot;</td>
+  <td width="296"><font color="#FF9900">cmd angelor</font></td>
+  </tr>
+  
+  <tr>
+    <!-- Row 27 -->
+  
+
+  <td width="196"><b>Angel of Unfreeze</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">&quot;</td>
+  <td width="296"><font color="#FF9900">cmd angelou</font></td>
+  </tr>
+<tr>
+  <td width="196"><b>Angel of Energy</b></td>
+  <td width="94">L</td>
+  <td width="93" align="center">&quot;</td>
+  <td width="296"><font color="#FF9900">cmd angeloe</font></td>
+</tr>
+  
+  <tr>
+    <!-- Row 28 -->
+  
+  <td width="196"><b>Flashlight</b> - Ever have problems with a camper hiding out in the dark, camping
+out and sniping everyone that he sees? Well with this you can find them and 
+put a stop to them.</td>
+  <td width="187" colspan="2">K</td>
+  <td width="296"><font color="#FF9900">cmd flashlight</font></td>
+  </tr>
+  
+  <tr>
+    <!-- Row 29 -->
+
+  
+  <td width="196"><b>Fake Death</b> - Just like it sounds, fake your own death!</td>
+  <td width="187" colspan="2">bind
+    your own key</td>
+  <td width="296"><font color="#FF9900">cmd feign</font></td>
+  </tr>
+  
+  <tr>
+
+    <!-- Row 30 -->
+  
+  <td width="196"><b>Player ID</b> - Just point your crosshairs at an enemy and you'll get their name,
+model and skin that they are using.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">cmd playerid</font></td>
+  </tr>
+  
+
+  <tr>
+    <!-- Row 31 -->
+  
+  <td width="196"><b>Height checker</b></td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">cmd height</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 32 -->
+  
+  <td width="196"><b>Invisibility</b> - Turn yourself invisible, but not completely! When you use it you
+become invisible to your opponents but your blip is still on the scanner.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">invis</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 33 -->
+  
+  <td width="196"><b>Cloak</b> - Use cloak to hide from the enemy scanner, homing missiles, trackers and turrets.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">cloak</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 34 -->
+  
+  <td width="196"><b>Tracker</b> - A head gib that shoots the same weapon you are currently shooting.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">tracker</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 34 -->
+  
+  <td width="196"><b>Tracker Count</b> - This toggles the trackercount HUD display on or off. Type trackercount into the console and if you have any trackers deployed it will display the number of trackers in the upper right corner of the display. When there are no trackers out it displays nothing.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">trackercount</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 34 -->
+  
+  <td width="196"><b>Turret</b> - Well we did it again, we added a LOX exclusive feature. Now you might be asking yourselves, what is so original about the LOX turrets, aren't they just like normal turrets? Well no they're not. When you drop one it will look like a skull gib, depending on what weapon you were using at the time is what it will shoot.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">turret</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 34 -->
+  
+  <td width="196"><b>Turret Count</b> - This toggles the turretcount HUD display on or off. Type turretcount into the console and if you have any turrets deployed it will display the number of turrets in the upper right corner of the display. When there are no turrets out it displays nothing.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">turretcount</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 35 -->
+  
+  <td width="196"><b>Airstrike</b> - Call down a hail of 10 missiles from the sky!</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">airstrike</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 36 -->
+  
+  <td width="196"><b>Fake Quad Damage</b> - Create a fake Quake damage.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">holoquad</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 36 -->
+  
+  <td width="196"><b>Fake Invulnerability</b> - Create a fake Invulnerability.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">holoinvul</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 36 -->
+  
+  <td width="196"><b>Fake Weapon</b> - Create a fake copy of your current weapon.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">holoweapon</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 37 -->
+  
+  <td width="196"><b>Range Finder</b> - Shows the distance from you and your enemy.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">rangefinder</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 38 -->
+  
+  <td width="196"><b>Check Stats</b> - Shows the health and armour status of your enemies.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">checkstats</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 39 -->
+  
+  <td width="196"><b>Sweeper Fire Mode</b> - Toggle your sweepers fire mode from low to high.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">sweeperfiremode</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 40 -->
+  
+  <td width="196"><b>Explosive</b> - Toggle the grenades explosive mode. You can only have one 
+grenade out at a time and when you fire a second grenade the old grenade will 
+detonate.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">explosive</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 41 -->
+  
+  <td width="196"><b>Detonate</b> - Detonate the explosive grenade.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">detonate</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 43 -->
+  
+  <td width="196"><b>Version</b> - Prints what version of LOX you are using.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">ver</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 44 -->
+  
+  <td width="196"><b>Skin List</b> - Show the names and skins of players.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">skinlist</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 45 -->
+  
+  <td width="196"><b>Time</b> - Show the current time of day. (Works on all platforms.)</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">time</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 46 -->
+  
+  <td width="196"><b>Time Left</b> - Shows the time remaining in the current match to the 
+client that issued the command.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">timeleft</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 47 -->
+  
+  <td width="196"><b>Time All</b> - Sends a message to all clients with the time remaining in the
+match plus the current date and time.</td>
+  <td width="187" colspan="2">bind your own key</td>
+  <td width="296"><font color="#FF9900">timeall</font></td>
+  </tr>
+
+  <tr>
+    <!-- Row 48 -->
+  
+  <td width="196"><b>Vote Map</b> - Initiate a vote for any map on the system. Now players can select
+a map that they would like to play and they don't need an admin to rcon it.</td>
+  <td width="187" colspan="2">type command in console</td>
+  <td width="296"><font color="#FF9900">vote map mapname</font></td>
+  </tr>
+
+    <!-- Row 48 -->
+  
+  <td width="196"><b>LBind</b> - If more than one command is used they must be enclosed in quotes. By using LBind effectively you can re-setup your playing environment if you happen to die, i.e. bring up the scanner, cloak yourself, choose your favorite angel, etc.</td>
+  <td width="187" colspan="2">Bind your own key</td>
+  <td width="296"><font color="#FF9900">lbind (ondeath|onrespawn|onenemydeath)</font></td>
+  </tr>
+
+<table cellSpacing="2" cellPadding="2" width="89%" border="2" bordercolordark="#996600" bordercolorlight="#CC6600">
+<tr>
+<td width="196"><b>Revenge Factor</b></td>
+<td width="483">Imagine, you are the person with the highest frag and every-
+body is looking for you, not because they miss you. But because you were the
+last person to kill them and because you are the person with the highest frag
+count. Sounds like fun huh. If you frag the person who fragged you last its
+worth two frag points to you. If you frag the person with the most frags then
+they are worth three frag points. So listen up kiddies this is where it gets
+fun. If the person with the most frags was also the person who fragged you 
+last and then you frag them you get a whooping five frags. Sounds like fun huh?
+Well that should put an end to those pesky campers. See <a href="server_cvars.htm">Server Cvars</a> for more information.</td>
+</tr>
+
+<tr>
+<td width="196"><b>Anti-Camper</b></td>
+<td width="483">Ever get really tired of all those campers? Well I have a solution for
+you. When you set the dmflag to enable this feature campers will have one warning
+before they are executed by the mod. Campers beware. See <a href="server_cvars.htm">Server Cvars</a> for more information.</td>
+</tr>
+
+<tr>
+<td width="196"><b>Day-Night System</b></td>
+<td width="483">You can now simulate the passing of time in WOD:LOX by enabling this
+feature in the DMFLAGS and setting the server cvars. Set the server cvar '<b>nightdaytime</b>' equal to 
+"timelimit" for one day per timelimit. Set it to 1/2 timelimit for 2 cycles per timelimit, etc. 
+Default value is 0 minutes, if you set it to 0 the day-night cycle is disabled. You can set it 
+down to 1 or even a fraction of a minute for some really bizarre effects, but keep in mind that 
+doing this causes the server to send a new configstring broadcast at every brightness change and 
+this can cause lag. Changing this cvar controls the daynight cycle immediately. If you set timelimit 
+to less than the current nightdaytime, the nightdaytime is automatically adjusted at the next map 
+change to equal the new lower timelimit so you get at least one daynight cycle in a time limited game.
+Set the server cvar '<b>minlevel</b>' to control the minimum light level that will be sent at "midnight" 
+of the day/night cycle. 0 is near total darkness, only the sky emits much light, 1 and 2 represent 
+twilight levels, allowing pads and powerups to glow. Max is 2, if you really don't want it brighter 
+than that don't bother cycling day/night. The number of server frames per light level is adjusted to 
+keep the day/night cycle at the value determined by nightdaytime. Changing this cvar controls the daynight 
+cycle immediately. See <a href="server_cvars.htm">Server Cvars</a> for more information.
+</td>
+</tr></table>
+
+</table></center>
+</div>
+  </tr>
+</table>
+<hr width="70%" size="1" align="center" noshade>
+<table width="80%" border="0" cellspacing="0" cellpadding="4" align="center">
+  <tr> 
+    <td width="20%"></td>
+    <td align="center" width="50%">Quake 2 LOX Docs. - <a href="http://www.clanwos.org">http://www.clanwos.org</a></td>
+    <td align="right" width="20%"></td>
+  </tr>
+</table>
+</tr>
+</table>
+</body>
+</html>
+

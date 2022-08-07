@@ -1,0 +1,443 @@
+<p>
+========<br>
+<b>Mod info<br></b>
+========<br>
+<br>
+New DLL(s): Yep<br>
+<br>
+New Sound(s): Yep<br>
+<br>
+New Model(s): Yep<br>
+
+<br>
+Known Bugs: I've fixed all the bugs I've received.<br>
+<br>
+=======<br>
+<b>Credits<br></b>
+=======<br>
+- Dave Martin opus@aracnet.com,javabean@aracnet.com,jblabs@aracnet.com<br>
+- Code Warrior using Visual Studio 5.0<br>
+- Dusty Lloyd<br>
+
+- Pseudo Code Warrior using Visual Studio 5.0<br>
+- Newest version of Modula-3 for the enhanced homer code<br>
+- Ada for the angel code<br>
+- Justin Sucharski<br>
+- Blind as A Bat Boy using Photoshop for skinning (we all know)<br>
+- Brendan McWalters winkel@zork.net<br>
+- Provided moral support and food and someone who we could smack around a bit, 
+with a wet trout of course.<br>
+
+Testers<br>
+- Rommel[RnR]<br>
+- Tiger's Cum Rag&lt;LOX&gt;<br>
+- Hippi&lt;LOX&gt;<br>
+- Winkel&lt;LOX&gt;<br>
+- Betrayal &lt;LOX&gt;<br>
+
+- PurityControl&lt;LOX&gt;<br>
+- All of Clan RAD<br>
+- Ed Gein and Clan OBD<br>
+<br>
+People to thank<br>
+- Clan RAD for being so supportive of my mod, without them the mod wouldn't be
+where it is today<br>
+- My girlfriend for being patient on those nights where I would get up from sleeping
+to fix a bug or two.<br>
+- Boarder for the Angel Of Revenge idea<br>
+- To everyone else who submitted a weapon or feature idea that I forgot to put in.<br>
+- Chaos Mod developers for being so understanding<br>
+- All the people who play the mod and keep it alive<br>
+<br>
+===================<br>
+<b>Mod Version History<br></b>
+===================<br>
+<br>
+<b>1.10<br></b>
+<br>
+- RELEASED: WoD:LOX Server Configuration Tool. There is a link to the zip file
+at the wodlox download page. This should help server admins configure their
+wod:lox servers.<br>
+- Added the Explosive Chaingun. Hehehehe this should make the game a little bit
+more interesting. Fires explosive bullets rather than than the regular shells.<br>
+- Added the Explosive Shotgun weapons. Each one of the shell weapons now have an
+explosive alternate. People should get a kick out of the new Explosive Streetsweeper.<br>
+- Got the Linux version to compile, but I am still getting Segmentation Faults
+right after someone connects. I am trying to get it to work. Another problem
+that we had was that the Torture Chamber was making it so the Linux binary would not
+load up. I had to take it out of both versions. Hopefully I can get it to work
+sometime in the future.<br>
+- It works, it works. After getting reports that the explosive and detonate
+command didn't work I was bummed. I thought that I had fixed the bloody thing. Then I
+noticed that when the explosive killed you, when you died, if you had an explosive out
+it had to be detonated, thus causing damage to you, killing you, and so on and
+so on. You can see how this could cause a server to crash, well this is fixed now.<br>
+- I added rocket armor and grenade armor. Though this does not protect you from
+the grenade or rocket splash damage.<br>
+- Fixed up the angel of death to fire the new weapons<br>
+- Fixed up the trackers to fire the new weapons<br>
+- Changed the Spiral Rocket Launcher, so when the rockets actually hit they will
+act like the flame rockets.<br>
+- added variables for revenge factor, revengeaward and highfraggeraward.
+Hopefully this should motivate people to use this feature of the mod.<br>
+- added the daynight server variable. It is set by default to 13 minutes. To
+change it just add the line 'set nightdaytime &lt;time in min&gt;' where &lt;time
+in min&gt; is the number of minutes you want the cycle to take. A cycle if you don't 
+remember is the time it takes for it to go from day -&gt; night -&gt; day.<br>
+- changed the MOD messages for the explosive weapons.<br>
+- Added 3 new commands that you guys will love. Well actually it is four
+commands. The first of the commands is lbind. This command is needed for the following three
+commands: onspawn, ondeath and onenemydeath. So if you can imagine these new
+commands will be very useful. For instance you no longer will have to set up your HUD each
+time after you die. Instead you can do 'lbind onspawn &quot;&lt;commands&gt;&quot; ' the
+commands have to be in quotes else it won't work properly. Enjoy.<br>
+- Added the Sticky Grenadesweeper<br>
+- Added Explosive Machinegun<br>
+- Added and fixed the High Fragger Ghost feature. Bascially what this does is
+create a ghost like<br>
+ effect above the person with the most frags.<br>
+- Added the positron grenade<br>
+- Added the Kaminit gun. Basically when you hit someone with this weapon it will
+initiate their kamakaze sequence.<br>
+- Added the Wall Piercing Railgun, so all of you who like hiding behind walls,
+beware.<br>
+- Added Angel Of Unfreeze per request of many people. I know that the Angel of
+Frost can become overly annoying when used. Well here is my answer to it.<br>
+- WoD:LOX Linux finally compiled and worked fine. Thank you gametoken, sigh.<br>
+<br>
+<b>1.09</b><br>
+<br>
+- I have fixed the explosives bug as well as I can. There is a server-client
+timing issue that the ID Software code has. I really don't know what to do.<br>
+- After play testing the trackers with some people we noticed that the rate of
+fire has been too fast. I slowed the rate of fire down. Plus the trackers now
+track a lot better.<br>
+- All the sweepers actually work correctly now. After tweaking their code a bit
+I have been able to make them work like the streetsweeper works. As long as
+you hold down the attack button down you will fire. <br>
+- If you have the sweeperfiremode enabled and have the attack button pressed
+while firing the attack button down you run the risk of having your sweeper
+explode. You have been warned.<br>
+- I have gotten sick of people asking me &quot;How do I do ....&quot; you can
+finish the rest.<br>
+ Well as a solution to this I have implemented a in WoD:LOX help system.
+Ask it a question about a feature, command or person and you will get a short
+description and the command to it. I hope this helps people.<br>
+
+08-14-99, wow I finished the commands part of the in game online manual.
+I am going to start on the weapons parts of it. It is looking really good.<br>
+
+08-15-99, The weapons part of the in game online manual is done now.<br>
+
+- Modified the scanner so it can be relocatible. Basically if you type in the
+console Scanner &lt;xpos&gt; &lt;ypos&gt;, you will be able to determine the
+location of the scanner. Try it, it is cool.<br>
+- Added Holo commands, now you can drop a decoy BFG, invulnerability and quad
+damage. You can use these to lure people out in the open. WoD:LOX sould be a
+little bit more interesting now. Hehehehe.<br>
+- I fixed the Trackers so they actually shoot the correct ammo now. So if you
+drop a tracker while using the blaster, it will shot blaster shots. Trackers can
+now be destroyed by shooting them. I also toned down the trackers. You can only 
+shoot 3 of them out and when they shoot their ammo they will shot a lot slower.<br>
+- Added the time command. Now you can see what time it is, useful for those long
+nights of fragging.<br>
+- Fixed the invisibility command. After playtesting it was noticed that you
+could be invisible and cloaked at the same time.<br>
+- Toned down the grenade and bazooka sweepers. After play testing it was noticed
+that excessive use of these sweepers made the servers crash.<br>
+- Added the Slug armor. This armor makes the player absorb the damage that any
+of the Slug weapons do.<br>
+- Added the Cell Armor. Same as Slug armor but absorbs the damage from any
+weapons that use cells.<br>
+- Added the Shell Armor. Same as Shell armor but absorbs the damage from any
+weapons that use shells.<br>
+- Added the Bullet Armor. Same as Bullet armor but absorbs the damage from any
+weapons that use bullets.<br>
+- Added the sonic railgun. Shoots when you release the attack button. The longer
+you hold the attack button down the more damage it does.<br>
+- Added the Spiral Rocket Launcher. Shoots 3 rockets. The one main rocket in the
+center with two outer rockets spiralling around the main one.<br>
+<br>
+<b>1.08<br></b>
+<br>
+- After getting reports that the explosives were not working correctly in the
+mods I desided to investigate the problem. And low and behold there was a
+problem in the code. I fixed the bug, in the process I created a second command
+called detonate. This is the command that you use to detonate a explosive from now on.<br>
+- Added the Durg gun, with this weapon you can make your opponents lose their
+current weapon.<br>
+- Added the Durgsweeper.<br>
+- Added the Angel of Revenge. <br>
+- Added the Double Impact weapon, shoots two grenades verses the one for the
+grenade launcher.<br>
+- Added the Tracker, WoD:LOX style turrents.<br>
+- Added the FBFG.<br>
+- Added Disruptor from the Wyrm ][ code. With that code in place I will be able
+to use its special effects to create some new weapons.<br>
+- Added the Vacuum Maker. This should make the game more interesting because now
+you are able to pull people and objects to you.<br>
+- Added the infamous energy vortex<br>
+- Added a time variable for the night-day system<br>
+<br>
+<b>1.06-1.07<br></b>
+<br>
+- Well I have been avoiding this for way to long so here is the lowdown on<br>
+ the new version of the mod. We have got 13 servers up and over 1000
+playing the mod now.<br>
+- Added three new angels, Angel Of Horror, Angel of Blindness and Angel of Flame<br>
+- Added a new grenade, Blindness Grenade, based on the Angel of Blindness<br>
+- Added the mace weapon, again based on the Angel of Blindness<br>
+- Fixed the day-night system. It seems like the day-night system was still
+not working together. Basically the system should have reset itself on
+each level load, but it did not. Well Now it does.<br>
+- Added the ver command<br>
+- Added the logplayers command. This command will display the players names, ip
+addresses, current weapon and current map. This is to help weed out the name spoofers.<br>
+- Added the Airstrike command. <br>
+- Added the Flamesweeper, new type of flamethrower.<br>
+- Added the chunkgun, new type of sweeper based on the Angel of plague. You
+can all thank Z'ha'dum for this one. <br>
+- Fixed the new angel code to make it more efficient and concice.<br>
+- Created a workaround for the Index Overflow error<br>
+- Started to work on two new angels, Angel of Evil and Angel of Revenge.<br>
+<br>
+<b>1.05<br></b>
+<br>
+- Fixed the annoying Angel Of Frost bug where if two people were playing with 
+the angel of frost active and one person froze the other person, the frozen 
+person's angel could still freeze people.<br>
+- Fixed the Day-Night bug where after a level ended with a change in the 
+lighting, the new level would start normal, then all of a sudden change 
+to the next light level.<br>
+- Added the new Angel Of Plague<br>
+- Added the new Icecube gun<br>
+- Fixed the Sticking Grenades so they will work with the explosive command<br>
+<br>
+<b>1.04a<br></b>
+<br>
+- Added the Anti-Camper Deterant System<br>
+- Added a new Angel, Angel of Frost<br>
+- Increased the Damage of the Guided Missiles<br>
+- Started the creation of Server Admin functions, remote map changing, 
+password protection, etc.<br>
+- Removed the egg weapons were causing the servers to crash<br>
+- added the Height function<br>
+<br>
+<b>1.04<br></b>
+<br>
+- Added the Day-Night system, look at the dmflags for that<br>
+- Added three angels, life, mercy and death.<br>
+- Added the flaregun<br>
+- Added the organic armor<br>
+- Per request, I have toned down the buckyballs and made it so the flares 
+cause no damage<br>
+<br>
+<b>1.03<br></b>
+<br>
+- Added the rangefinder.<br>
+- Added Player Id when player holds crosshairs over enemy<br>
+- Added checkstats command<br>
+- Added Revenge Factor<br>
+- Fixed up the feature, weapon and grenade banning, just set them up in the 
+server cfg file<br>
+<br>
+<b>1.02a<br></b>
+<br>
+- fixed the superblaster, it actually shoots normally now<br>
+- added two new functions invisibility and flashlight<br>
+- added a nailgun<br>
+- populated the buckyball death messages<br>
+<br>
+<b>1.02<br></b>
+<br>
+-Broadsword added<br>
+-Cloak command modified, added timer and coloring to person when using it<br>
+-added homer and rocket grenades<br>
+-explosive command added<br>
+<br>
+<b>WOD:LOX BORN<br></b>
+<b>1.01<br></b>
+<br>
+-New sweepers added<br>
+-Homing rocket code enhanced<br>
+-New grenades added<br>
+-Cloak command added<br>
+-Removed weallknow command<br>
+-Renamed the MOD from wod to LOX<br>
+<br>
+<b>6.02<br></b>
+<br>
+-Grenade launcher now fires all darKMajick grenades<br>
+-New alternate grenade-launcher weapon, the bazooka. Fires all darKMajick 
+grenades, but in a straight line.<br>
+-Lasers replaced with laser tripwires that fire all the 
+darKMajick grenades.<br>
+-Homing rockets can now be shot down, and only take 1 rocket per shot 
+(was 2 per shot).<br>
+-Doubled the amount of ammo backpacks &amp; bandoliers give.<br>
+-New plasma rifle.<br>
+-Fire now makes a sizzling sound.<br>
+-Added ZbotCheck 1.01 by the Lithium crew. (Windows version only: the 
+Linux version won't link &amp; they seem to be uninterested in providing 
+support.)<br>
+<br>
+<b>6.01<br></b>
+<br>
+-Added the allow_cataclysm server variable<br>
+-Sniper gun now takes 5 shells, not 2. Weapon balancing thing.<br>
+-Cataclysm device kills no longer credited to inflictor.<br>
+-Homing rocket radius explosion kills now credited to inflictor.<br>
+-Added &quot;You've been frozen&quot; message when player gets frozen.
+It's a lame hack until I rewrite the frozen code to make being frozen
+more intuitive.<br>
+-Fixed even more bugs -- spawnpoints no longer get thrown in explosions, 
+decoys work again, skin no longer gets hosed when you're frozen, the frozen 
+obituary message is accurate now, the lasersight gets cleaned up when the 
+player dies, and NoAmmoWeaponChange() is a little more intelligent.<br>
+-Officially released a Linux version, finally.<br>
+<br>
+<b>6.0<br></b>
+<br>
+Done by Hash Assassin, whatis@yyz.com, on or around 9/28/1998. My 
+first official version.<br>
+-Fixed an ungodly number of bugs, compiler warnings, and inefficiencies, some 
+in WoD code, some in the original Id code.<br>
+-Added streetsweeper<br>
+-Rewrote plasma rifle to be more like Doom II version<br>
+-Rewrote NoAmmoWeaponChange() to select some of the new weapons.<br>
+-Increased ammo capacities. Now more fragfest than ever!<br>
+-&quot;maplist&quot; feature. Just set the Q2 variable &quot;maplist&quot;
+to something non-zero, and the next map will be chosen out of the maplist.txt 
+file in your WOD dir. No more running maps in a boring old loop.<br>
+-Deathmatch players now invulnerable for 3 seconds when they spawn. Gives
+them a fighting chance &amp; protects against people putting laser tripwires on
+spawn spots.<br>
+-Balanced the weapons better. Now ammo usage is more in line with power.<br>
+-Added/modified client obituary messages.<br>
+-Laser sight brightens when on a player or monster. Hee hee.<br>
+-Removed triple hyperblaster. It's a nice weapon, just very laggy.
+And the machine rockets are already pushing the limits.<br>
+<br>
+<b>5.4a-<br></b>
+<br>
+-Fixed Crashing when dying with freeze gun.<br>
+<br>
+<b>5.4-<br></b>
+<br>
+-Added Freeze Gun<br>
+-Night Vision<br>
+-Re-added standard railgun<br>
+-Added new Grenade and Super Blaster effects<br>
+-No bugs needed to be fixed! Woohoo!<br>
+<br>
+<b>5.3:<br></b>
+<br>
+-Perfect Chasecam, I'm pretty sure it's bugless.<br>
+-Re-added standard Machine-Gun<br>
+-Added Burst Fire mode for Standard machine-gun<br>
+-Fixed Cluster Bomb bug<br>
+-Fixed kamikaze when dead bug<br>
+-Removed Viewable models, do to so many bugs [people wanted to use their 
+custom models, but got a white diamond on its ass, etc.]<br>
+<br>
+<b>5.2:<br></b>
+<br>
+-replaced detpipes with shrapnel grenade<br>
+-added sniper gun<br>
+-added decoy<br>
+-added plasma gun<br>
+-better rocket explosions<br>
+-replaced grappling hook with swinging grappling hook<br>
+-fixed tons of bugs<br>
+-removed ricocheting lasers and range finder- it lags net play horribly<br>
+<br>
+<b>5.0:<br></b>
+<br>
+-Added chasecam<br>
+-Added Visible Weapons<br>
+-Added sound for ricocheting lasers<br>
+-Added scanner<br>
+-MOTD support<br>
+-Fixed yet more bugs - Thanks Mike Fox<br>
+<br>
+<b>4.9b:<br></b>
+<br>
+-Fixed messages<br>
+-Fixed crashing when using super blaster<br>
+-Lowered number grenades picked up<br>
+<br>
+<b>4.9:<br></b>
+<br>
+-Fixed numerous deathmatch bugs.<br>
+<br>
+<b>4.8:<br></b>
+<br>
+-Re coded the WHOLE mod with the 3.14 source as a base. This should<br>
+fix all the deathmatch and coop bugs.<br>
+-Re added shotgun<br>
+-Enhanced flamethrower burn. It now uses a model for the burn animation.<br>
+<br>
+<b>4.7:<br></b>
+<br>
+-Now works with 3.12/3.13/3.14<br>
+-added Grappling Hook<br>
+-fixed 8 twice<br>
+-put fire model for fire on the ground<br>
+<br>
+<b>4.6 - minor update:<br></b>
+<br>
+-Updated flame thrower. It has a great new model.<br>
+<br>
+<b>4.5:<br></b>
+<br>
+-Removed super blaster model, so now there's no null skin error, and it 
+can run on servers without clients having the patch.<br>
+-Replaced Burst Railgun with Flamethrower<br>
+-Added Flame Grenade Launcher<br>
+-Replaced chain shotgun with Fire Rocket Launcher<br>
+-Changed Chain Shotgun to Flame Rocket Launcher<br>
+<br>
+<b>4.1 - small update:<br></b><br>
+<br>
+-(Re)Added random blue/red lasers to blaster<br>
+-(Re)Added long kickback for Super Shotgun.<br>
+<br>
+<b>4.0:<br></b>
+<br>
+-Removed Homing Rockets due to code conflicts<br>
+-Added modified model for Superblaster<br>
+-Removed Grenade Launcher proximity (see below)<br>
+-Added &quot;darKMajick&quot; grenades- Cluster, Floating Proximity <br>
+(improved from previous grenade launcher proximity), <br>
+Railbomb, Plasma Bomb, Napalm Grenade, and Cataclysm device<br>
+-Added kamikaze device<br>
+-Added ricocheting lasers sound<br>
+-Added Machine Gun Rockets<br>
+-Fixed entities covering up blaster laser effects<br>
+Other: This was a challenging task. I had to rewrite the whole code from<br>
+the base up to add in the darKMajick grenades.<br>
+<br>
+<b>Version 3.6:<br></b>
+<br>
+-Made the jetpack much better.<br>
+-Fixed crashing<br>
+<br>
+<b>Version 3:<br></b>
+<br>
+-Fixed the laser sight skin error problem<br>
+-Added Rangefinder<br>
+-Added &quot;Star Wars&quot; Lasers<br>
+-Added Zoom Commands<br>
+-Added Laser Tripwire<br>
+-Added Burst Fire shotgun<br>
+<br>
+<b>Version 2 :<br></b>
+<br>
+-Changed the super blaster trail effects so it looks like a blaster and not <br>
+a grenade.<br>
+-Changed the Cluster Bombs to a Triple Grenade launcher<br>
+-Balanced Railgun more.<br>
+-Detonatable Throwing Grenades!<br>
+<br>
+<b>Version 1: Initial release.</b>
+</p>

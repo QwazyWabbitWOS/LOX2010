@@ -1,0 +1,133 @@
+<html>
+<head>
+<title>Quake 2 LOX Mod - Server Setup for Linux</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META name="description" content="Quake 2 LOX mod documentation and information.">
+<META name="keywords" content="Quake 2, LOX, LOX mod, modification, documentation, LOX documentation, docs, readme">
+<style type="text/css">
+<!--
+body 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #FFFFFF; text-decoration: none; background-attachment: fixed; background-color: #FFFFFF}
+p,blockquote,li,ol,ul,td 	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #000000; text-decoration: none}
+a 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #999999; text-decoration: none}
+a:hover 			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #00CC33; text-decoration: underline overline}
+-->
+</style>
+</head>
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" bgcolor="#FFFFFF">
+<table border="0">
+<tr><td>
+<img src="images/loxdocmain2.gif" border="0">
+</td>&nbsp;&nbsp;
+<td valign="center" align="middle">
+<img src="images/loxdocmain.gif" border="0">
+</td>
+</table>
+<table border="0" align="left">
+<tr><td>
+<b>Main Menu</b>:<br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="index.htm">Home</a><br>
+<a href="installation.htm">Installation</a><br><a href="modes.htm">Game Modes</a><br>
+<a href="weapons.htm">Weapons</a><br>
+<a href="features.htm">Features</a><br>
+<a href="grenades.htm">Grenades</a><br>
+<a href="angels.htm">Angels</a><br>
+<a href="armour.htm">Armour</a><br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="history.htm">History</a><br>
+<a href="changelog.htm">Changelog</a><br>
+<hr width="15%" size="1" align="center" noshade>
+Server:<br>
+<a href="server_win.htm">Windows</a><br>
+<a href="server_linux.htm">Linux</a><br><a href="server_cvars.htm">Server Cvars</a><br><hr width="15%" size="1" align="center" noshade>Entities:<br><a href="ent.htm">.ent file How-To</a><br><a href="offworldtransport.htm">OffWorld Transport</a><br>
+<hr width="15%" size="1" align="center" noshade>
+</td>
+<table width="80%" border="0" cellspacing="2" cellpadding="4" align="center">
+  <tr> 
+    <td colspan="2" valign="top">
+	<img src="images/server_linux.jpg" width="230" height="195">
+	</td>
+
+    <td valign="top" width="100%">
+      <b>Quake 2 version 3.21 Installation</b><br><br>
+<p> 
+	Now we are going to configure and compile the newest version of Quake 2 for Linux, version 3.21 provided by <a href="http://icculus.org/quake2/">http://icculus.org/quake2/</a>.  This is very important for running the latest and greatest version of LOX v1.12.8, it will crash otherwise.<br><br>
+
+	11. You can download the files a few different ways, but for this example we will use the CVS method.  First let's prepare a place to work and download the files:
+    </p> 
+<pre><font color="#FF9900">
+# mkdir /home/q2user/new_q2
+# cd /home/q2user/new_q2
+</font></pre>
+<p>
+- Login to cvs.icculus.org with password: <font color="#FF9933">anonymous</font>
+</p>
+<pre><font color="#FF9900">
+# cvs -d:pserver:anonymous@cvs.icculus.org:/cvs/cvsroot login
+</font></pre>
+<p>
+- Download, via CVS, all the files into the directory "<font color="#FF9933">quake2</font>"
+
+</p>
+<pre><font color="#FF9900">
+# cvs -z3 -d:pserver:anonymous@cvs.icculus.org:/cvs/cvsroot co quake2
+</font></pre>	
+	<p>
+	12. Change directory to the "quake2" directory and edit the <b>Makefile</b> to better suit our needs of a dedicated lean and mean server only.  The <b>Makefile</b> controls which settings get compiled into the new binary.  Open up the <b>Makefile</b> with vi or any other editor and set <b>Build_Dedicated</b> to <b>YES</b> and the following items to <b>NO</b>:
+
+<pre><font color="#FF9900">
+# cd quake2
+# vi Makefile
+
+BUILD_SDLQUAKE2=NO      # sdlquake2 executable (uses SDL for cdrom and sound)
+BUILD_SVGA=NO           # SVGAlib driver. Seems to work fine.
+BUILD_X11=NO            # X11 software driver. Works somewhat ok.
+BUILD_GLX=NO            # X11 GLX driver. Works somewhat ok.
+BUILD_FXGL=NO           # FXMesa driver. Not tested. (used only for V1 and V2).
+BUILD_SDL=NO            # SDL software driver. Works fine for some people.
+BUILD_SDLGL=NO          # SDL OpenGL driver. Works fine for some people.
+BUILD_CTFDLL=NO         # game$(ARCH).so for ctf
+BUILD_XATRIX=NO         # game$(ARCH).so for xatrix (see README.r for details)
+BUILD_ROGUE=NO          # game$(ARCH).so for rogue (see README.r for details)
+BUILD_JOYSTICK=NO       # build in joystick support
+BUILD_ARTS=NO           # build in support for libaRts sound.
+BUILD_ALSA=NO           # build in support for ALSA (default sound on 2.6)
+BUILD_DEDICATED=YES     # build a dedicated quake2 server
+BUILD_AA=NO             # build the ascii soft renderer.
+BUILD_QMAX=NO           # build the fancier GL graphics
+BUILD_RETEXTURE=NO      # build a version supporting retextured graphics
+BUILD_REDBLUE=NO        # build a red-blue 3d glasses renderer...
+STATICSDL=NO
+</font></pre>
+	</p>
+<p>
+13. Now we'll build the new q2ded binary and gamei386.so files with the <b>make</b> command:
+</p>
+<pre><font color="#FF9900">
+# make
+</font></pre>
+<p>
+14. Rename and replace the old gamei386.so file and install the new <b>q2ded</b> server binary in the quake2 and baseq2 directories:
+
+</p>	
+<pre><font color="#FF9900">
+# mv /home/q2user/quake2/baseq2/gamei386.so /home/q2user/quake2/baseq2/gamei386.so.old
+# mv releasei386/gamei386.so /home/q2user/quake2/baseq2/
+# mv releasei386/q2ded /home/q2user/quake2/
+# chown -R  q2user:q2user /home/q2user/quake2/*
+</font></pre>
+  </tr>
+</table>
+<hr width="70%" size="1" align="center" noshade>
+<table width="80%" border="0" cellspacing="0" cellpadding="4" align="center">
+  <tr> 
+    <td width="20%"><a href="r1q2install.htm"><nobr>&lt;&lt; Previous</nobr></a></td>
+    <td align="center" width="50%"><b>1.</b><a href="server_linux.htm">Intro</a> - <b>2.</b><a href="tools.htm">Tools Needed</a> - <b>3.</b><a href="system.htm">System Prep</a> - <b>4.</b><a href="q2install.htm">Quake2 Install</a> - <b>5.</b><a href="r1q2install.htm">R1Q2 Install</a> - <i>6.</i><b>3.21 Install</b> - <b>7.</b><a href="loxinstall.htm">LOX Install</a> - <b>8.</b><a href="q2admininstall.htm">Q2Admin Install</a> - <b>9.</b><a href="bwainstall.htm">BW-Admin Install</a> - <b>10.</b><a href="linuxlinks.htm">Links</a></td>
+    <td align="right" width="20%"><a href="loxinstall.htm">Next &gt;&gt;</a></td>
+  </tr>
+</table>
+</tr>
+</table>
+</body>
+</html>
+

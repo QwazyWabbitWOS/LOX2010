@@ -1,0 +1,334 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Linux Server setup</title>
+<meta name="Microsoft Theme" content="safari 011, default">
+<meta name="Microsoft Border" content="tl, default">
+</head>
+
+<body background="_themes/safari/saftextr.jpg" bgcolor="#000000" text="#CCCCCC" link="#CC9933" vlink="#999966" alink="#FFCC33"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+
+<p align="center"><b><font face="Trebuchet MS, Arial, Helvetica" color="#cc6600" size="6">Weapons
+Of Destruction: Lethal Orifice eXamination</font></b>
+<p align="center">&nbsp;</p>
+<p align="center"></p>
+
+<!--mstheme--></font></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td valign="top" width="1%"><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+
+<script language="JavaScript"><!--
+MSFPhover = 
+  (((navigator.appName == "Netscape") && 
+  (parseInt(navigator.appVersion) >= 3 )) || 
+  ((navigator.appName == "Microsoft Internet Explorer") && 
+  (parseInt(navigator.appVersion) >= 4 ))); 
+function MSFPpreload(img) 
+{
+  var a=new Image(); a.src=img; return a; 
+}
+// --></script><script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav1n=MSFPpreload("_derived/binds.htm_cmp_safari010_hbtn.gif"); MSFPnav1h=MSFPpreload("_derived/binds.htm_cmp_safari010_hbtn_a.gif"); }
+// --></script><a href="binds.htm" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1h.src" onmouseout="if(MSFPhover) document['MSFPnav1'].src=MSFPnav1n.src"><img src="_derived/binds.htm_cmp_safari010_hbtn.gif" width="140" height="60" border="0" alt="Binding Commands" align="middle" name="MSFPnav1"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav2n=MSFPpreload("_derived/History.htm_cmp_safari010_hbtn.gif"); MSFPnav2h=MSFPpreload("_derived/History.htm_cmp_safari010_hbtn_a.gif"); }
+// --></script><a href="History.htm" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2h.src" onmouseout="if(MSFPhover) document['MSFPnav2'].src=MSFPnav2n.src"><img src="_derived/History.htm_cmp_safari010_hbtn.gif" width="140" height="60" border="0" alt="History" align="middle" name="MSFPnav2"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav3n=MSFPpreload("_derived/installation.htm_cmp_safari010_hbtn.gif"); MSFPnav3h=MSFPpreload("_derived/installation.htm_cmp_safari010_hbtn_a.gif"); }
+// --></script><a href="installation.htm" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3h.src" onmouseout="if(MSFPhover) document['MSFPnav3'].src=MSFPnav3n.src"><img src="_derived/installation.htm_cmp_safari010_hbtn.gif" width="140" height="60" border="0" alt="How to install" align="middle" name="MSFPnav3"></a> <img src="_derived/Linux%20Server%20setup.htm_cmp_safari010_hbtn_p.gif" width="140" height="60" border="0" alt="Linux Server setup" align="middle"> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav4n=MSFPpreload("_derived/LOX Development.htm_cmp_safari010_hbtn.gif"); MSFPnav4h=MSFPpreload("_derived/LOX Development.htm_cmp_safari010_hbtn_a.gif"); }
+// --></script><a href="LOX%20Development.htm" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4h.src" onmouseout="if(MSFPhover) document['MSFPnav4'].src=MSFPnav4n.src"><img src="_derived/LOX%20Development.htm_cmp_safari010_hbtn.gif" width="140" height="60" border="0" alt="LOX Development Progress" align="middle" name="MSFPnav4"></a> <script language="JavaScript"><!--
+if(MSFPhover) { MSFPnav5n=MSFPpreload("_derived/Weapons.htm_cmp_safari010_hbtn.gif"); MSFPnav5h=MSFPpreload("_derived/Weapons.htm_cmp_safari010_hbtn_a.gif"); }
+// --></script><a href="Weapons.htm" language="JavaScript" onmouseover="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5h.src" onmouseout="if(MSFPhover) document['MSFPnav5'].src=MSFPnav5n.src"><img src="_derived/Weapons.htm_cmp_safari010_hbtn.gif" width="140" height="60" border="0" alt="Weapons" align="middle" name="MSFPnav5"></a>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p align="center"><img border="0" src="images/skull_pile_and_sword_hires.bmp" width="120" height="260"></p>
+
+<!--mstheme--></font></td><td valign="top" width="24"></td><!--msnavigation--><td valign="top"><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">
+<i><b><img border="0" src="images/misc/loxlinuxlogo.gif" width="110" height="110"></b></i></font></p>
+<p><font face="Arial" size="2">My purpose in writing this tutorial is to give
+the Quake2 Community the tools and information needed to install, configure, and
+operate a fully functional Quake2 Server running <b>LOX</b> mod. Much of my
+knowledge has been accrued over a span of four years, most of which has been
+spent directly playing and operating Quake2 Servers. I have installed,
+configured and administered a variety of Quake2 Servers on Linux, FreeBSD, and
+Windows operating systems. I personally tend to use Windows for the Quake2
+client and Linux for the Quake2 Server. Linux provides a solid platform for
+running Q2 and can even be run on as little as a Pentium I 100mhz for a LAN
+game, but don't expect to get 32 people ;).<br>
+<br>
+This tutorial will be covering the main aspects of configuring a Quake2 Server,
+including installation all the updated server files, compiling a new q2ded
+binary, and installing <b>LOX</b> mod. Most importantly we'll cover aspects of
+Server security including cheat/bot protection and creating a different user to
+run the Q2 Server as. Many old tutorials run the Server as the root user and
+this is a path to the darkside. If there was one single thing you took away from
+this tutorial, I would hope you DO NOT RUN THE SERVER AS ROOT! Some, many, may
+think this is totally paranoid, but I feel this is a good step at securing your
+machine especially if it will be online. There are a couple of security flaws in
+Quake2 and minimizing the risks are the number one priority. I hope this
+tutorial will help the Quake2 Community to build, configure and operate 'safer',
+smoother running Q2:LOX Linux Servers.</font></p>
+<!--end content -->
+<p><font face="Arial" size="2">
+<br>
+<i><b><a href="mailto:deacon@deaconstomb.org?subject=Q2 Linux Tutorial">Deacon</a>&nbsp;&nbsp;</b></i></font></p>
+
+<!--msthemeseparator--><p align="left"><img src="_themes/safari/safsepa.gif" width="600" height="10"></p>
+<p><font face="Arial" size="2"><b>I. Tools Needed</b><br>
+<br>
+- Linux (Fedora Core 3 used in this tutorial).<br>
+- Quake2 CD or appropriate files from a Windows installation.<br>
+- Approximately 350Mb of disk space, more with mods, maps, and players.<br>
+<br>
+You'll also need an internet connection for downloading files if you want to
+follow along with the tutorial.<br>
+<br>
+<br>
+<br>
+<b>II. System and user preparation<br>
+<br>
+</b><i><font color="#008000">This is the important step of adding a new user for
+your Quake2 server to run under. Adding a new user gives a little protection
+incase the machine were to be taken over by hostile forces, this way they don't
+get your root account right off the bat.</font></i>
+<b><br>
+</b><br>
+1. Switch to the ‘root’ user and create a new user to run the Quake2 Server
+and set a <b><u>complex</u></b> password. When selecting a password use
+something with capitals, numbers, symbols, etc.<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # /bin/su root<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # /usr/sbin/adduser q2user<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # /usr/bin/passwd q2user<br>
+</font></p>
+<font face="Arial" size="2">2. The above <i>adduser</i> command on Fedora
+creates a home directory by default (in our case it created /home/q2user), if
+not, create one and change directory to the users home. Create a directory named
+<b>quake2</b> in your users home directory:</font>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # mkdir /home/q2user/quake2
+       # cd /home/q2user/quake2</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><!--mstheme--></font><pre>&nbsp;</pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><!--mstheme--></font><pre><font face="Arial"><b>III. </b></font><font face="Arial" size="2"><b>Linux Quake 2 Installation</b></font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><!--mstheme--></font><pre><font face="Arial" color="#008000"><i>Here we will install Quake 2 version 3.19, then update it to 3.20. Later in the next step we will compile and install version 3.21.</i></font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">3. Put the Q2 CD in your CD-Rom and mount the
+drive:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # mount /dev/cdrom
+</font><br>
+<font face="Arial" size="2"><br>
+<i><font color="#008000"><b>Note: Some older systems may require this command:</b></font></i></font></p>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # mount –t iso9660 /dev/cdrom /mnt/cdrom</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<font face="Arial" size="2">4. Make sure you are in the directory you created,
+ie. /home/q2user/quake2 and proceed to copy the files from the CD-Rom,&nbsp;<br>
+ don’t
+forget the “.” Period at the end to tell your machine to copy all files to
+the current location:</font>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # cp –r /media/cdrom/Install/Data/* .
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<font face="Arial" size="2">5. Now we want to get rid of all the windows files
+that we don’t need:</font>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # rm –rf /usr/local/games/quake2/*.dll
+       # rm –rf /usr/local/games/quake2/quake2.exe
+       # rm –rf /usr/local/games/quake2/baseq2/gamex386.dll
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<font face="Arial" size="2">6. Now, download the Quake2 Linux Binaries. There
+are a number of places that offer them for download, in this particular install
+we are using the quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz file, here are a
+couple download links:</font>
+<p><font face="Arial" size="2"><a href="ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz">ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz</a>
+&nbsp;
+<a href="ftp://ftp.deaconstomb.org/pub/q2/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz"><br>
+ftp://ftp.deaconstomb.org/pub/q2/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz</a></font>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # ncftpget ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz
+</font><b><font color="#008000" face="Arial" size="3"><i><u>
+or</u></i></font></b></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # wget
+ftp://ftp.idsoftware.com/idstuff/quake2/unix/quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz</font></p>
+<p><font size="2" face="Arial"><br>
+7. Untar the Quake2 Linux Binaries package:</font></p>
+<p><font size="2" face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # tar –zxvf
+quake2-3.20-glibc-i386-unknown-linux2.0.tar.gz<br>
+</font></p>
+<font size="2" face="Arial">8. The main files are now essentially setup for a
+working Quake2 Server and we should set permissions for the new user we created
+to be able to alter files and start the server, if all goes well this should
+start up a basic DM Quake2 Server:</font>
+<p><font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # chown –R
+q2user /usr/local/games/quake2 ; chgrp –R q2user /usr/local/games/quake2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # su q2user<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # ./quake2 +set dedicated 1 +map q2dm1</font></p>
+<p><font face="Arial" size="2">
+<br>
+<b>IV. Quake 2 version 3.21 Installation</b><br>
+<br>
+<font color="#008000"><i>Now we are going to configure and compile the newest
+version of Quake 2 for Linux, version 3.21 provided by <a href="http://icculus.org/quake2/">http://icculus.org/quake2/</a>.
+This is very important for running the latest and greatest version of LOX
+v1.12.8, it will crash otherwise.</i></font></font></p>
+<p><font face="Arial" size="2">9. You can download the files a few different
+ways, but for this example we will use the CVS method. First let's prepare a
+place to work and download the files:</font></p>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # mkdir /home/q2user/new_q2
+       # cd /home/q2user/new_q2
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">- Login to cvs.icculus.org with password: <font color="#ff9933">anonymous</font></font></p>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # cvs -d:pserver:anonymous@cvs.icculus.org:/cvs/cvsroot login
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">- Download, via CVS, all the files into the
+directory &quot;<font color="#ff9933">quake2</font>&quot;</font></p>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # cvs -z3 -d:pserver:anonymous@cvs.icculus.org:/cvs/cvsroot co quake2
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">10. Time to edit the <b>Makefile</b> to better
+suit our needs of a dedicated server only. The <b>Makefile</b> controls which
+settings get compiled into the new binary. Open up the <b>Makefile</b> with vi
+or any other editor and set <b>Build_Dedicated</b> to <b>YES</b> and the
+following to <b>NO</b>:</font>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # vi Makefile
+
+BUILD_SDLQUAKE2=NO      # sdlquake2 executable (uses SDL for cdrom and sound)
+BUILD_SVGA=NO           # SVGAlib driver. Seems to work fine.
+BUILD_X11=NO            # X11 software driver. Works somewhat ok.
+BUILD_GLX=NO            # X11 GLX driver. Works somewhat ok.
+BUILD_FXGL=NO           # FXMesa driver. Not tested. (used only for V1 and V2).
+BUILD_SDL=NO            # SDL software driver. Works fine for some people.
+BUILD_SDLGL=NO          # SDL OpenGL driver. Works fine for some people.
+BUILD_CTFDLL=NO         # game$(ARCH).so for ctf
+BUILD_XATRIX=NO         # game$(ARCH).so for xatrix (see README.r for details)
+BUILD_ROGUE=NO          # game$(ARCH).so for rogue (see README.r for details)
+BUILD_JOYSTICK=NO       # build in joystick support
+BUILD_ARTS=NO           # build in support for libaRts sound.
+BUILD_ALSA=NO           # build in support for ALSA (default sound on 2.6)
+BUILD_DEDICATED=YES     # build a dedicated quake2 server
+BUILD_AA=NO             # build the ascii soft renderer.
+BUILD_QMAX=NO           # build the fancier GL graphics
+BUILD_RETEXTURE=NO      # build a version supporting retextured graphics
+BUILD_REDBLUE=NO        # build a red-blue 3d glasses renderer...
+STATICSDL=NO
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><!--mstheme--></font><pre><font face="Arial" size="2">11. Now we'll change directory into the &quot;quake2&quot; directory and build the new q2ded binary and gamei386.so files with the <b>make</b> 
+command:</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><!--mstheme--></font><pre><font face="Arial" size="2">       # cd quake2
+       # make
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">12. Rename and replace the old gamei386.so file
+and install the new <b>q2ded</b> server binary in the quake2 and baseq2
+directories:</font></p>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # mv /home/q2user/quake2/baseq2/gamei386.so /home/q2user/quake2/baseq2/gamei386.so.old
+       # mv releasei386/gamei386.so /home/q2user/quake2/baseq2/
+       # mv releasei386/q2ded /home/q2user/quake2/
+       # chown -R  q2user:q2user /home/q2user/quake2/*
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><!--mstheme--></font><pre><font face="Arial" size="2"><b>V. LOX Installation</b></font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><!--mstheme--></font><pre><font face="Arial" size="2">13. To install LOX mod we need to download the necessary files, make sure you are in the main Quake2 directory, ie.
+ /usr/local/games/quake2 The example assumes you have ‘wget’, but you can download the files here also:</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">- <a href="http://www.clanwos.org/programs/lox_1_12_7_full.zip">http://www.clanwos.org/programs/lox_1_12_7_full.zip</a><br>
+- <a href="ftp://ftp.deaconstomb.org/pub/q2/mods/lox/lox_1_12_7_full.zip">ftp://ftp.deaconstomb.org/pub/q2/mods/lox/lox_1_12_7_full.zip</a></font></p>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # wget http://www.clanwos.org/programs/lox_1_12_7_full.zip
+       # unzip -a lox_1_12_7_full.zip
+       # cd lox
+        <font color="#008000"><i> <b>Note</b> - set file permissions for lox files:</i></font>
+       # chmod 644 * ; chmod 755 gamei386.so
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">14. Edit the Server.cfg file to change the Server
+name, edit the game variables, etc. We also need to enter in some vital information to better help administrate the Server.</font></p>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # vi testserver.cfg
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">-Edit the line “<font color="#ff9933">set
+rcon_password somepassword</font>” (now you can issue remote commands via the
+console, such as changing the map, ie. rcon map q2dm2) and enter in a unique
+rcon password.<br>
+<br>
+-Edit the <font color="#ff9933">server name</font> line to designate your
+server.<br>
+</font></p>
+<p><font face="Arial" size="2">15. Edit the motd.txt for a unique message when
+entering the server.</font></p>
+<!--mstheme--></font><pre><font face="Arial" size="2"># vi motd.txt
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">16. With the basic LOX mod setup we can check and
+see if we have a working LOX Server. Change to the main Quake2 directory and
+start the server:</font></p>
+<!--mstheme--></font><pre><font face="Arial" size="2">       # cd ..
+       # ./q2ded +set dedicated 1 +set game lox +exec testserver.cfg
+</font></pre><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<p><font face="Arial" size="2">You should see a lot more console feedback this
+time with the addition of the LOX mod. To verify some information, you can issue
+the commands, “serverinfo”, “status” and “game”. That’s about it
+for the general Server configuration, now’s it a matter of fine tuning the
+Server.cfg file variables and getting things just right.</font></p>
+<p>&nbsp;</p>
+<p><font face="Arial" size="2"><b>VI. BW-Admin Installation</b><br>
+</font></p>
+<p><font face="Arial" size="2">17. Download the BW-Admin files into your main
+quake2 directory, in this case it's /home/q2user/quake2 and you will also need
+to su to the new user you created, we are using 'q2user'.</font> </p>
+<p><font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # wget
+http://bw-admin.sourceforge.net/files/bw-admin.linux.v1.74.tar.gz<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # tar -zxvf bw-admin.linux.v1.74.tar.gz<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # cd bw-admin<br>
+</font></p>
+<p><font face="Arial" size="2">18. With BW-Admin installed we need to edit
+bw-admin.cfg to tell the BW-Admin DLL what the renamed LOX mod &quot;gamei386.so&quot; is named. More information about this procedure in the
+bw-admin.html file in the bw-admin directory.</font></p>
+<p><font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # vi
+bw-admin.cfg<br>
+</font></p>
+<p><font face="Arial" size="2">-Add on the second line:<br>
+<font color="#ff9933">dll = gamei386.so.real<br>
+</font><br>
+-Enable all logging features:<br>
+<font color="#ff9933">track_connect = 1<br>
+track_disconnect = 1<br>
+track_renames = 1<br>
+track_refused = 1<br>
+</font><br>
+-Uncomment the admin password:<br>
+<font color="#ff9933">admin = someG00Dp4ssword<br>
+</font></font></p>
+<p><font face="Arial" size="2">19. For each mod that we want to run BW-Admin on,
+we need to rename the original mod &quot;gamei386.so&quot; to
+&quot;gamei386.so.real&quot; and copy the BW-Admin &quot;gamei386.so&quot; to
+the mods main directory, in this example we are using <b>LOX</b>, ie:
+/home/q2user/quake2/lox , before we do anything, we will create a few backups,
+then copy all the neccessary files.</font></p>
+<p><font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # cp
+/home/q2user/quake2/lox/gamei386.so /home/q2user/quake2/lox/gamei386.so.bak<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # mv /home/q2user/quake2/lox/gamei386.so
+/home/q2user/quake2/lox/gamei386.so.real<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # cp /home/q2user/quake2/bw-admin/release/gamei386.so
+/home/q2user/quake2/lox/gamei386.so<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # cp /home/q2user/quake2/bw-admin/server_bans.txt
+/home/q2user/quake2/lox/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # cp /home/q2user/quake2/bw-admin/bw-admin.cfg
+/home/q2user/quake2/lox/<br>
+</font></p>
+<p><font face="Arial" size="2">20. All that's left now is to start up our BOT
+Protected server and fill it up with LOX hungry people.</font></p>
+<p><font face="Arial" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # cd ..<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # ./quake2 +set dedicated 1 +set game lox
++exec Server.cfg<br>
+</font></p>
+<p><font size="3"><b>Helpful Links:<br>
+</b></font></p>
+<!--mstheme--></font><!--msthemelist--><table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/safari/safbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><b>IDSoftware</b> - <a href="http://www.idsoftware.com/games/quake/quake2/">http://www.idsoftware.com/games/quake/quake2/</a><!--mstheme--></font><!--msthemelist--></td></tr>
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/safari/safbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><b>IDSoftware FTP</b> - <a href="ftp://ftp.idsoftware.com/idstuff/quake2">ftp://ftp.idsoftware.com/idstuff/quake2</a>
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/safari/safbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><b>BW-Admin</b> - <a href="http://bw-admin.sourceforge.net/">http://bw-admin.sourceforge.net/</a>
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/safari/safbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><b>Well of Souls - Clan WOS</b> - <a href="http://www.clanwos.org">http://www.clanwos.org</a>
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/safari/safbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><b>Well of Souls Message Boards - LOX Help Forums</b> - <a href="http://www.clanwos.org/forums">http://www.clanwos.org/forums</a>
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/safari/safbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><b>Quake 2 Linux Server Setup with LOX</b> - <a href="http://www.clanwos.org/docs/loxlinux/">http://www.clanwos.org/docs/loxlinux/</a>
+  <!--msthemelist--><tr><td valign="baseline" width="42"><img src="_themes/safari/safbul1a.gif" width="15" height="15" hspace="13"></td><td valign="top" width="100%"><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica"><b>Deacons|TOMB| FTP Warehouse</b> - <a href="ftp://ftp.deaconstomb.org">ftp://ftp.deaconstomb.org<br>
+    </a><!--mstheme--></font><!--msthemelist--></td></tr>
+<!--msthemelist--></table><!--mstheme--><font face="Trebuchet MS, Arial, Helvetica">
+<!--msthemeseparator--><p align="left"><img src="_themes/safari/safsepa.gif" width="600" height="10"></p>
+<p><font face="Arial" size="2">I hope this will help some of you who are trying to create Linux
+Quake2:<b><font color="#FF0000">LOX</font></b>
+Servers so that we can continue the <b>Q2:<font color="#FF0000">LOX</font></b> legacy.<br>
+<br>
+If you have any questions, comments, and/or suggestions <b> <a href="mailto:deacon@clanwos.org?subject=Q2 Linux Tutorial">please
+email me</a>  </b> or leave a message on the <b><a href="http://www.clanwos.org">WOS message board.</a>
+</b></font>
+<p><a href="http://clanwos.org/forums/profile.php?mode=viewprofile&amp;u=6"><img border="0" src="images/misc/dns.gif" width="202" height="60"></a>
+<p><font face="Arial" size="1">Lasted edited on <!--webbot bot="Timestamp"
+S-Type="EDITED" S-Format="%m/%d/%Y" startspan -->02/08/2005<!--webbot bot="Timestamp" endspan i-checksum="12618" -->
+</font><!--mstheme--></font><!--msnavigation--></td></tr><!--msnavigation--></table></body>
+
+</html>
+
+
+
+

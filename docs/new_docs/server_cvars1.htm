@@ -1,0 +1,4392 @@
+<h1>LOX Quake 2 Server Console Variables</h1>
+
+<h2>For the current LOX version, v1.12.9</h2>
+
+<h3><i>written by</i>: <b>QwazyWabbit</b></h2>
+
+<p>This is a list of the console variables (CVARS) available to
+LOX server administrators for LOX versions 1.12.8 and higher. At the time this
+document is being completed LOX is at version 1.12.8. You should make sure this list is the correct one
+for your version of LOX since earlier versions use different values for some of
+the weapon and feature bans and you will get unexpected results if you use the
+wrong values. The current list of weapon ban constants is found in the 
+server_readme.txt accompanying the LOX
+binary you downloaded. Not all constants are available in all versions of the
+mod. Not all server variables are listed here.
+<br>
+See the original Quake 2 CVAR list and any special lists for custom game
+engines like r1q2 for variables beyond the scope of this list.</p>
+
+
+
+<p>To test the existence of a CVAR, type its name in the
+console or RCON. For example, type loxweaponban
+in the console to get the current value of the loxweaponban CVAR. If you type 
+loxtest in the console the server
+will respond with Unknown command loxtest. You would normally type the
+constants without quotes. If you use quotes around the CVAR the server will
+respond just as well as without quotes. When the CVAR is setting a string value
+that string MUST be in quotes. CVAR set commands are always preceded with the
+word set. Typing set loxweaponban 0
+sets the value to zero. Some values can be set while the server is running and
+some must be set before the server begins, either by setting them on the
+command line that starts the server or else in the server.cfg file. </p>
+
+
+
+<p>Numeric values can be expressed in decimal, hexadecimal or
+octal bases by following the C Language syntax: Numbers beginning with 1
+through 9 are interpreted as decimal as in 1234, or 9500. The range of decimal
+digits is 0 through 9. Numbers beginning with 0 are interpreted as octal as in
+01777 or 064377. The range of octal digits is 0 thru 7. Numbers beginning with
+0x are interpreted as hexadecimal numbers as in 0x8AFF or 0x1EE8 or
+0xDEADBEEF. The range of hexadecimal digits is 0 through 9 and A through F
+which represents the 16 values a hexadecimal digit can contain. Sometimes its
+more convenient to represent very large decimal numbers as an 8-digit
+hexadecimal string. For example the decimal number 3735928559 is the
+hexadecimal 0xDEADBEEF.</p>
+
+
+
+<p>Each CVAR in the server.cfg file should be entered in a line
+by itself. Comments can be added by using the C++ comment delimiter //.
+Examples of this can be found in the sample server.cfg files as well as this
+document. Blank lines are permitted in the server.cfg file but if the line is
+not blank and not controlling a CVAR, it must be a comment line. The format of
+this document outlines the name of the CVAR, the default value the server will
+set, the range of values the CVAR can assume and what feature the CVAR controls
+and whether the CVAR can be modified while the game is running.</p>
+
+
+
+<p>When changing cvars with RCON or through the console on an
+active server its important to know that if you ban a weapon the effect of the
+ban may not become immediately apparent. The weapon and feature bans do not
+apply once a player has that item in his inventory. If a player already has the
+banned weapon he will be able to continue to use it until hes fragged. Once he
+re-spawns he will be denied the weapon or feature that was banned. </p>
+
+
+
+<p><b>campertime</b></p>
+
+<p><b>Range: </b>5 to 600</p>
+
+<p><b>
+Default:</b> 60</p>
+
+<p>Set any time.</p>
+
+<p>The number of seconds a player can stand in one spot before
+he's warned about camping. There is a 5 second countdown after the warning
+before the server kills him. This value is used only if DF_ANTICAMPER is set in
+DMFLAGS.</p>
+
+
+
+<p><b>coop </b></p>
+
+<p><b>Range: </b>0|1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Latched. Value is set at startup only.</p>
+
+<p>Make it a cooperative game. Human players vs. Strogg AIs.
+This game is restricted to the original 48 single-player maps. No custom maps
+allowed, set maplist 0. This is mutually exclusive with deathmatch and ctf
+modes. Only set one of them to 1 at a time.</p>
+
+
+
+<p><b>ctf </b></p>
+
+<p><b>
+Range: </b>0|1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Latched. Value is set at startup only.</p>
+
+<p>Make it a CTF (Extinction) game. Multi-player mode with
+teams. This mode pits teams against each other for spawn pads and territory.
+Red team vs. Blue team, the object is to tag spawn pads for your teams color
+until all pads are converted to your color while killing the opposing team.
+Once all pads are converted the game is won when all the other teams players
+are fragged and cant respawn. This is mutually exclusive with deathmatch and
+coop modes. Only set one of them to 1 at a time.</p>
+
+
+
+<p><b>custom_ents </b></p>
+
+<p><b>
+Range: </b>0|1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This allows deathmatch games to spawn custom entities from
+the .ent files for each map on your server. This flag takes effect only after a
+map change. See the documentation on how to create a custom ent file for
+details. Use this feature to add more weapons or powerups to maps without the
+need for changing the actual maps. In Extinction mode this flag has no effect.</p>
+
+
+
+<p><b>deathmatch </b></p>
+
+<p><b>
+Range: </b>0|1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Latched. Value is set at startup only.</p>
+
+<p>Make it a deathmatch game. This is the classic multiplayer
+mode. This is a free-for-all (FFA) mode or server can be set to recognize teams
+by model or teams by skin. Mutually exclusive with coop and ctf modes. Only set
+one of them to 1 at a time. Example: set deathmatch 1, set ctf 0, set coop 0 if
+running a deathmatch server.</p>
+
+
+
+<p><b>debugmodels </b></p>
+
+<p><b>
+Range: </b>0|1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>Print model debug info to server &amp; client consoles. This
+causes the server to print a debug message about the number of model indexes
+consumed by the game in progress. Usually not used on a live server. Quake 2
+limits the number of model indexes to 256. When this limit is exceeded some
+games can crash the server. The LOX mod checks the model indexes and when the
+limit is about to be reached it forces an EndDMLevel and cycles the game into
+the next map in order to avoid server crashes. Use this CVAR only to check a
+game map that seems to cause premature timeouts. Avoid using maps in your
+server that cause this scenario.</p>
+
+
+
+<p><b>dmflags </b></p>
+
+<p><b>
+Range: </b>0 ¦ 0xffffffff</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>Standard Quake 2 dmflags plus the additional LOX flags
+listed here. See server_readme.txt for more current information.</p>
+
+
+
+<p>DF_REVENGE_FACTOR = 65536</p>
+
+<p>DF_DAYNIGHT = 131072</p>
+
+<p>DF_ANTICAMPER = 262144</p>
+
+<p>DF_HIGHFRAGGER   = 524288</p>
+
+<p>DF_WEAPONHEAT   = 1048576</p>
+
+
+
+<p><b>electallowveto
+</b></p>
+
+<p><b>
+Range: </b>0 or 1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This controls whether a single NO vote can cancel an
+election. This allows a single player to cause the election to terminate by
+simply voting no. This can be abused. A majority of players may want a map
+change, but a single player can veto the map change if this is set. If you want
+elections to be unanimous, set electpercentage to 100. </p>
+
+
+
+<p><b>electduration</b></p>
+
+<p><b>
+Range: </b>10 to 120</p>
+
+<p><b>
+Default:</b> 30</p>
+
+<p>Set any time.</p>
+
+<p>This controls the duration of an election. Once an election
+starts only those players that were in the game at the start of the election
+can vote. The number of votes needed for the election to pass is set at the
+start of the election. The player will have electduration seconds to type yes
+or no in the consoles in order to vote. The election will remain open until
+this time expires or it becomes mathematically impossible for it to pass. If
+the vote passes the election action will take place immediately. At this time
+the only item that can be voted is map change.</p>
+
+
+
+<p><b>electpercentage </b></p>
+
+<p><b>
+Range: </b>0 to 100</p>
+
+<p><b>
+Default:</b> 55</p>
+
+<p>Percent of players required for a map change vote to pass.
+Use 0 to inhibit map voting. When a map vote is initiated with the vote map
+command the server counts the number of players, this count, times the
+percentage, determines how many yes votes are needed for the vote to pass.</p>
+
+
+
+<p><b>electreminders
+      </b></p>
+
+<p><b>
+Range: </b>0 to 6</p>
+
+<p><b>
+Default:</b> 3</p>
+
+<p>Set any time.</p>
+
+<p>This controls the number of reminders that will be sent
+during an election. The interval is controlled by electduration divided by
+electreminders. </p>
+
+
+
+<p><b>electstarts</b></p>
+
+<p><b>
+Range: </b>1 to 6</p>
+
+<p><b>
+Default:</b> 2</p>
+
+<p>Set any time.</p>
+
+<p>This controls the number of times per map a player can
+initiate an election. This prevents vote spamming. A counter is kept for each
+player and it is reset when a new map begins.</p>
+
+
+
+<p><b>ext_devt </b></p>
+
+<p><b>
+Range: </b>0 or 1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Latched, set at startup only.</p>
+
+<p>Normally 0, set this to 1 to enable extinction map
+development. This causes the server to print the names and locations of weapons
+on the console when you run over them. Use the laser tripwire command to
+identify particular map coordinates for placement of entities in ent files. Run
+this with a dedicated server, setting the game as you nomally would, then
+connect to the game and explore the map. The special server messages will be
+displayed in your console and you can then condump the information and use it
+for creating special ent files for adding weapons or other items to that map
+without modifying the map file itself. Never set this to 1 in a live server.</p>
+
+
+
+<p><b>featureban </b></p>
+
+<p><b>
+Range: </b>0 to 0xffffffff</p>
+
+<p><b>
+Default:</b> 5</p>
+
+<p>Set any time.</p>
+
+<p>This is a 32-bit integer representing the bitmap
+featurebans. Set the bit to ban the feature designated in the server_readme.txt
+file.</p>
+
+
+
+<p><b>fragban </b></p>
+
+<p><b>
+Range: </b>0 to 0xffffffff</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This is a 32-bit integer representing the bitmap fragbans.
+Set the bit to ban frags designated in the server_readme.txt file. Frag banning
+is an interesting way to allow the weapon in the game but to discourage
+frequent use of that weapon by preventing scoring for kills made with that
+weapon.</p>
+
+
+
+<p><b>fraglimit </b></p>
+
+<p><b>
+Range: </b>0 ¦unlimited</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>This sets the score that will end a game map session. Any
+reasonable limit is supported, set this above 100 at your own peril. Players
+condemned to eternal game sessions have been known to hunt down admins. Setting
+fraglimit to 0 sets no limit. When using coop mode timelimit and fraglimit
+should be set to zero to allow the players to progress through the game scenes
+along the story line.</p>
+
+
+
+<p><b>gravity </b></p>
+
+<p><b>
+Range: </b>0¦65535</p>
+
+<p><b>
+Default:</b> 800</p>
+
+<p>Set any time.</p>
+
+<p>Formerly sv_gravity,
+this controls the server gravity constant. 800 is full gravity. This CVAR is
+reset to default on each map change. Maps can change server gravity as well,
+for example, space.bsp sets server gravity to 100. Setting gravity to 0 leads
+to some very freaky spider-man effects, letting you cling or walk on vertical
+surfaces, etc. Setting gravity to a value greater than 32767 creates a negative
+gravity effect. The defining gravity parameter for physics in Q2 is a two-byte
+quantity (a short int), therefore the gravity is positive only when this number
+is less than 32767.</p>
+
+
+
+<p><b>g_nukes_takedamage</b></p>
+
+<p><b>
+Range: </b>0 or 1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>Setting this to 1 allows guided nukes to take damage and be
+shot down.</p>
+
+
+
+<p><b>g_rockets_takedamage </b></p>
+
+<p><b>
+Range: </b>0 or 1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>Setting this to 1 allows guided rockets to take damage and
+be shot down.</p>
+
+
+
+<p><b>highfraggerreward </b></p>
+
+<p><b>
+Range: </b>0 to ?</p>
+
+<p><b>
+Default:</b> 2</p>
+
+<p>This is the number of bonus points awarded to a player for
+fragging the current high fragger. Set DF_HIGHFRAGGER in dmflags to enable this
+feature.</p>
+
+
+
+<p><b>homerseekowner </b></p>
+
+<p><b>
+Range: </b>0|1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Determines whether homing and skipper rockets will seek the
+player who launched them if a better target cant be found.</p>
+
+
+
+<p><b>hostname </b></p>
+
+<p><b>
+Range:</b> any text</p>
+
+<p>&quot;Server Name&quot; </p>
+
+<p>Set the server's name string. This is the name of the server
+as it will appear in game browsers like GameSpy or AllSeeingEye.</p>
+
+
+
+<p><b>kamifrozen </b></p>
+
+<p><b>
+Range: </b>0|1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>This allows clients to go kamikaze if frozen or become
+kamikaze from the kaminit weapon if they are frozen.</p>
+
+
+
+<p><b>logarstats </b></p>
+
+<p><b>
+Range: </b>0|1|2</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>This tells the server to log ARSG compatible frag and
+statistical information. See <a href="http://www.alteredrealms.com/">http://www.alteredrealms.com/</a>
+for more information. Setting logarstats to 0 turns it off, 1 makes the server
+log the data to lox/arsg.log and 2 makes it thread the statistics in the
+qconsole.log file with the other logged information. You should leave it off or
+log it separately. If you dont care to collect player statistics, leave it
+off. This feature was added at special request but soon thereafter support of ARSG
+by AlteredRealms was discontinued. We were told that ARSG would be modified to
+include support for LOX but this did not materialize. At this late stage in the
+life of Q2 it was not surprising.</p>
+
+
+
+<p><b>logfile_name </b></p>
+
+<p><b>
+Range: </b>any valid filename</p>
+
+<p><b>
+Default:</b> qconsole.log</p>
+
+<p>Set anytime. Usually set in server.cfg.</p>
+
+<p>This tells the server what file name to use when logging
+game information such as chats, kills, statistics, RCON commands, etc. in
+dedicated server mode. This is a server engine CVAR not a LOX CVAR. Refer to
+your server documentation.</p>
+
+
+
+<p><b>logstats </b></p>
+
+<p><b>
+Range: </b>0|1</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>This tells the server to log summary player statistics in
+the server log between maps. This information is distinct from the ARSG
+statistics.</p>
+
+
+
+<p><b>loxarmorban </b></p>
+
+<p><b>
+Range: </b>0 to 0xffffffff</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This is a 32-bit integer representing the bitmap
+loxarmorbans. Set the bit to ban the armor designated in the server_readme.txt
+file. </p>
+
+
+
+<p><b>loxgrenadeban </b></p>
+
+<p><b>
+Range: </b>0 to 0xfffffff</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This is a 32-bit integer representing the bitmap grenade
+bans. Set the bit to ban the grenade type designated in the server_readme.txt
+file.</p>
+
+
+
+<p><b>loxfeatureban </b></p>
+
+<p><b>
+Range: </b>0 to 0xffffffff</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This is a 32-bit integer representing the bitmap
+featurebans. Set the bit to ban the feature designated in the server_readme.txt
+file.</p>
+
+
+
+<p><b>loxsweeperban </b></p>
+
+<p><b>
+Range: </b>0 to 0xffffffff</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This is a 32-bit integer representing the bitmap
+loxsweeperbans. Set the bit to ban the sweeper designated in the
+server_readme.txt file. Sweepers are the most-loved and the most-hated weapon
+in LOX. You love it when you have it and you hate it when you dont. If your
+server is infested with sweeper lovers that just cant learn about the other
+fine weapons in LOX, this is your control.</p>
+
+
+
+<p><b>loxtrackerban </b></p>
+
+<p><b>
+Range: </b>0 to 0xffffffff</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This is a 32-bit integer representing the bitmap tracker
+bans. Set the bit to ban the feature designated in the server_readme.txt file.
+Trackers are mini-bots in the LOX game. Think of them as smart grenades. They
+are deployed with the tracker command and the weapon they fire is the same
+class of weapon the player was holding when the tracker was deployed. When a
+tracker is banned it cannot be launched while holding a weapon of the banned
+class. This makes it possible to allow a weapon but ban its use as a tracker.
+Several weapons are permanently banned in LOX and they do not appear in the
+tracker bans. </p>
+
+
+
+<p><b>loxturretban </b></p>
+
+<p><b>
+Range: </b>0 to 0xffffffff</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This is a 32-bit integer representing the bitmap turret bans.
+Set the bit to ban the feature designated in the server_readme.txt file.
+Turrets are mini-bots in the LOX game and they are sticky trackers. They can be
+stuck on walls or ceilings where players are likely to be but not be likely to
+see in time. They are deployed with the turret command and the weapon they
+fire is the same class of weapon the player was holding when the turret was
+deployed. When a turret is banned it cannot be launched while holding a weapon
+of the banned class. This makes it possible to allow a weapon but ban its use
+as a turret. Several weapons are permanently banned in LOX and they do not
+appear in the turret bans. </p>
+
+
+
+<p><b>loxweaponban </b></p>
+
+<p><b>
+Range: </b>0 to 0xffffffff</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This is a 32-bit integer representing the bitmap loxweaponbans.
+Set the bit to ban the LOX weapon associated with that weapon as designated in
+the server_readme.txt file. This CVAR is used to control what LOX weapons are
+available in the game when those weapons dont fit another category of bans.</p>
+
+
+
+<p><b>maplist </b></p>
+
+<p><b>
+Range: </b>1 to ??</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This is both a Boolean value and an index to the line in the
+server maplist.txt file. When set to zero, map list rotation will not occur.
+This is used for coop servers where the standard map exits are used to change
+
+maps instead of a custom map list. When set to 1 or greater, it allows the
+server to use the maplist.txt file for selection of custom map rotation. This
+value is incremented with every map change and points to the current map in the
+maplist.txt file.</p>
+
+
+
+<p><b>maplistfile </b></p>
+
+<p><b>
+Range: </b>text</p>
+
+<p><b>
+Default:</b> maplist.txt</p>
+
+<p>Set any time.</p>
+
+<p>This is the name of the maplist
+file you want to use for the map rotation. The default is maplist.txt and the 
+maplist variable points to the line in
+the file naming the current map. The names of the maps are entered, one per
+line, without the .bsp extension. The server will select the maps from this
+file in sequence until the end of the file and then begin again at line 1.</p>
+
+
+
+<p><b>maxclients </b></p>
+
+<p><b>
+Range: </b>0 to 64</p>
+
+<p><b>
+Default:</b> 4</p>
+
+<p>This sets the maximum number of clients that can be
+connected to the server. The upper limit of this is 64 players or the limit of
+your hosting server.</p>
+
+
+
+<p><b>maxfloatingmines</b></p>
+
+<p><b>
+Range: </b>0 to 10</p>
+
+<p><b>
+Default:</b> 7</p>
+
+<p>This sets the maximum allowed floating mines per user. It
+limits the number of deployed floating mines a player can have out at a time.</p>
+
+
+
+<p><b>maxlasertrips</b></p>
+
+<p><b>
+Range: </b>0 to 10</p>
+
+<p><b>
+Default:</b> 4</p>
+
+<p>Allowed max laser tripwire per user. This controls the
+number of deployed tripwires a player can have out at a time.</p>
+
+
+
+<p><b>maxspectators </b></p>
+
+<p><b>
+Range: </b>0 to maxclients</p>
+
+<p><b>
+Default:</b> 4</p>
+
+<p>This controls the maximum number of spectators that can be
+connected to the server. The upper limit is the active number of maxclients.</p>
+
+
+
+<p><b>maxtrackers </b></p>
+
+<p><b>
+Range: </b>0 to 10</p>
+
+<p><b>
+Default:</b> 3</p>
+
+<p>Allowed max trackers per user. This controls the number of
+deployed trackers a player can have out at a time.</p>
+
+
+
+<p><b>maxturrets </b></p>
+
+<p><b>
+
+Range: </b>0 to 10</p>
+
+<p><b>
+Default:</b> 3</p>
+
+<p>Allowed max turrets per user. This controls the number of
+deployed turrets a player can have out at a time.</p>
+
+
+
+<p><b>motdfile </b></p>
+
+<p><b>
+Range: </b>any valid filename</p>
+
+<p><b>
+Default:</b> motd.txt</p>
+
+<p>Controls the name of the motto of the day (motd) file the
+server will display when a new player connects to the server. Fill the motd
+file with your servers banner or pointers to your clan website.</p>
+
+
+
+<p><b>nightdaytime</b></p>
+
+<p><b>
+Range: </b>0 for off, 0.5 to timelimit to enable</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This controls the time in minutes for one day-night-day cycle during a match. Set it equal to "timelimit" for one day per timelimit. Set it to 1/2 timelimit for 2 cycles per timelimit, etc. Default value is 0 minutes, if you set it to 0 the day-night cycle is disabled. You can set it down to 1 or even a fraction of a minute for some really bizarre effects, but keep in mind that doing this causes the server to send a new configstring broadcast at every brightness change and this can cause lag. Changing this cvar controls the daynight cycle immediately. If you set timelimit to less than the current nightdaytime, the nightdaytime is automatically adjusted at the next map change to equal the new lower timelimit so you get at least one daynight cycle in a time limited game.</p>
+
+
+
+<p><b>minlevel </b></p>
+
+<p><b>
+Range: </b>0 to 2</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This controls the minimum light level that will be sent at "midnight" of the day/night cycle. 0 is near total darkness, only the sky emits much light, 1 and 2 represent twilight levels, allowing pads and powerups to glow. Max is 2, if you really don't want it brighter than that don't bother cycling day/night. The number of server frames per light level is adjusted to keep the day/night cycle at the value determined by nightdaytime. Changing this cvar controls the daynight cycle immediately.</p>
+
+
+
+<p><b>password </b></p>
+
+<p><b>
+Range: </b>text</p>
+
+<p><b>
+Default:</b> empty</p>
+
+<p>Set any time.</p>
+
+<p>Causes server to require a password from clients in order to
+connect. Typically used for tournament games or private servers.</p>
+
+
+
+<p><b>public </b></p>
+
+<p><b>
+Range: </b>0|1</p>
+
+<p><b>
+Default:</b> 0 </p>
+
+<p>Set any time.</p>
+
+<p>Causes server to send heartbeats and announce itself as a
+public server to be listed on master servers. Not a LOX CVAR, this is listed
+here for reference. This is a Quake 2 server CVAR.</p>
+
+
+
+<p><b>respawn_protect </b></p>
+
+<p><b>
+Range: </b>0 to 6</p>
+
+<p><b>
+Default:</b> 5</p>
+
+<p>Set any time.</p>
+
+<p>Spawning players remain invulnerable for the number of
+seconds specified in this constant. The purpose of spawn protection is to allow
+re-spawned players time to grab the nearest weapon and get into the action.
+Increase or decrease this value according to your own criteria for game action.
+Too high, and the protection favors re-spawners who might select the best
+default weapon and frag vulnerable players in range. Too low, and re-spawning
+players dont have enough time to get to weapons and powerups.</p>
+
+
+
+<p><b>revengereward </b></p>
+
+<p><b>
+Range: </b>0 to 6</p>
+
+<p><b>
+Default:</b> 1</p>
+
+<p>This sets the number of frags a player gets for scoring
+against another player while flying the angle of revenge.</p>
+
+
+
+<p><b>setmaster </b></p>
+
+<p><b>
+Range:</b> any text</p>
+
+<p>Usually q2master.planetquake.com master0.gamespy.com
+satan.idsoftware.com udp.speakeasy.net or other master servers. This is the
+list of master servers the server will send heartbeats to if public is 1.</p>
+
+
+
+<p><b>skill </b></p>
+
+<p><b>
+Range: </b>1 to 3</p>
+
+<p><b>
+Default:</b> 1</p>
+
+<p>Latched.</p>
+
+<p>This sets the skill level of the game in single player mode
+or in cooperative mode. This controls the intelligence, number and accuracy of
+the monsters. Set skill to 3 for maximum monster effects in coop. As it is, the
+monsters wont stand a chance against the LOX weaponry.</p>
+
+
+
+<p><b>spectator_password </b></p>
+
+<p><b>
+Range: </b>Text</p>
+
+<p><b>
+Default:</b> empty</p>
+
+<p>Set any time.</p>
+
+<p>Sets the password required from a client in order to become
+a spectator. Usually used for tournament games or to restrict spectator mode to
+authorized players.</p>
+
+
+
+<p><b>timelimit </b></p>
+
+<p><b>
+Range: </b>0¦ ?</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This sets the time that a map will be played if no player
+hits the frag limit. Any reasonable limit is supported, set this above 60 at
+your own peril. Players condemned to eternal game sessions have been known to
+hunt down admins. Setting timelimit to 0 sets no limit. When using coop mode
+timelimit and fraglimit should be set to zero to allow the players to progress
+through the game scenes along the story line.</p>
+
+
+
+<p><b>weaponban</b></p>
+
+<p><b>
+Range: </b>0 to 0xffffffff</p>
+
+<p><b>
+Default:</b> 0</p>
+
+<p>Set any time.</p>
+
+<p>This is a 32-bit integer representing the bitmap weaponbans.
+Set the bit to ban the weapon designated. See server_readme.txt for
+documentation of the bits.</p>
+
+
+<h1>Flag definitions and constants</h1>
+
+
+
+<table border=1 cellspacing=0 cellpadding=0 border-collapse:collapse;
+ border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><b>// dmflags<o:p></o:p></b></p>
+  </td>
+  <td width=171 valign=top width:128.55pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+ </tr>
+ <tr>
+  <td width=367 colspan=2 valign=top width:275.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>// These turn features ON as opposed to banning them.</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_NO_HEALTH</p>
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>1</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_NO_ITEMS</p>
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>2</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_WEAPONS_STAY</p>
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>4</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_NO_FALLING</p>
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>8</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>DF_INSTANT_ITEMS</p>
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>16</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>DF_SAME_LEVEL</p>
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>32</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>DF_SKINTEAMS</p>
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>64</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>DF_MODELTEAMS</p>
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>128</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_NO_FRIENDLY_FIRE</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>256</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_SPAWN_FARTHEST</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>512</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_FORCE_RESPAWN</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>1024</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_NO_ARMOR</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>2048</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_ALLOW_EXIT</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>4096</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_INFINITE_AMMO</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>8192</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_QUAD_DROP</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>16384</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_FIXED_FOV</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>32768</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_REVENGE_FACTOR</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>65536</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_DAYNIGHT</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>131072</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_ANTICAMPER</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>262144</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_HIGHFRAGGER</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>524288</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>DF_WEAPONHEAT</p>
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>1048576</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=196 valign=top width:146.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=171 valign=top width:128.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+</table>
+<br>
+<table border=1 cellspacing=0 cellpadding=0 width=466 style='width:4.85in;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=466 colspan=3 valign=top style='width:4.85in;border:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  // Weapon banning flags.</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=466 colspan=3 valign=top style='width:4.85in;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <b>//weaponbans<o:p></o:p></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_SUPERBLASTER</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+
+  0x00000001</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //1</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  WB_SHOTGUN</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000002</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //2</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_SNIPERGUN</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000004</p>
+
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //4</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_SUPERSHOTGUN</p>
+
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000008</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //8</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_FREEZEGUN</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000010</p>
+
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //16</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_MACHINEGUN</p>
+
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000020</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //32</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_MACHINEROCKETGUN</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000040</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+
+  //64</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_BURSTMACHINEGUN</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+
+  0x00000080</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //128</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_CHAINGUN</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000100</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+
+  //256</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_STREETSWEEPER</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+
+  0x00000200</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //512</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  WB_GRENADE</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000400</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //1024</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_CLUSTERGRENADE</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000800</p>
+
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //2048</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_RAILBOMB</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00001000</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //4096</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_PLASMAGRENADE</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00002000</p>
+
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //8192</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_NAPALMGRENADE</p>
+
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00004000</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //16384</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_SHRAPNELGRENADE</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00008000</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+
+  //32768</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+
+  
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_GRENADELAUNCHER</p>
+
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00010000</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //65536</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_BAZOOKA</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00020000</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+
+  //131072</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_ROCKETLAUNCHER</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+
+  0x00040000</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //262144</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  WB_HOMINGROCKETLAUNCHER</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00080000</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //524288</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_HYPERBLASTER</p>
+  </td>
+
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00100000</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //1048576</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_PLASMARIFLE</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00200000</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //2097152</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_RAILGUN</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00400000</p>
+
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //4194304</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_FLAMETHROWER</p>
+
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00800000</p>
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //8388608</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  WB_BFG10K</p>
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x01000000</p>
+
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  //16777216</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=278 valign=top style='width:208.4pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=94 valign=top style='width:70.8pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+  <td width=93 valign=top style='width:70.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+</table>
+
+<br>
+// Banning flags for the WoD:LOX weapon extensions</p>
+<br>
+
+<table border=1 cellspacing=0 cellpadding=0 width=487 style='width:365.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+
+  <b>//loxweaponban<o:p></o:p></b></p>
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  LWB_AIRFIST</p>
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000001 //1</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  LWB_SWORD</p>
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000002 //2</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  LWB_PULSERIFLE</p>
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000004 //4</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  LWB_NAILGUN</p>
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000008 //8</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_BUCKY</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000010 //16</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_SKIPPERHOMINGROCKET</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000020 //32</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_CATACLYSMDEVICE</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000040 //64</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_GUIDEDNUKE</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000080 //128</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_GUIDEDMISSILE</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000100 //256</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_POSITRON</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000200 //512</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_STICKGRENADELAUNCHER</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000400 //1024</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_ICECUBEGUN</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00000800 //2048</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_DURG</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00001000 //4096</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_LIGHTNINGGUN</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00002000 //8192</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_DOUBLEIMPACT</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00004000 //16384</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_FBFG</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00008000 //32768</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_DISINTEGRATOR</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00010000 //65536</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_VACUUMMAKER</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00020000 //131072</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_ENERGYVORTEX</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00040000 //262144</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_SPIRALROCKETLAUNCHER</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00080000 //524288</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_SONICRAILGUN</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00100000 //1048576</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_EXPLOSIVESHOTGUN</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00200000 //2097152</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_EXPLOSIVESUPERSHOTGUN</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00400000 //4194304</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_EXPLOSIVEMACHINEGUN</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x00800000 //8388608</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_KAMINIT</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x01000000 //16777216</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_WALLPIERCINGRAILGUN</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x02000000 //33554432</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_NUKE</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x04000000 //67108864</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_FLOATINGMINELAUNCHER</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x08000000 //134217728</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_ANTIMATTERCANNON</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x10000000 //268435456</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_SUPERRAILSHOTGUN</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x20000000 //536870912</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=271 valign=top style='width:203.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  LWB_FREEZATRON</p>
+
+  </td>
+  <td width=216 valign=top style='width:161.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  0x40000000 //1073741824</p>
+  </td>
+ </tr>
+</table>
+<br>
+
+<table border=1 cellspacing=0 cellpadding=0 width=439 style='width:329.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><b>// loxsweeperban <o:p></o:p></b></p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LSB_SUPERBLASTERSWEEPER</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000001</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LSB_FREEZERSWEEPER</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000002</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LSB_GRENADESWEEPER</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000004</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LSB_BAZOOKASWEEPER</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000008</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LSB_RAILGUNSWEEPER</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000010</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LSB_FLAMESWEEPER</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000020</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LSB_DURGSWEEPER</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000040</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LSB_CHUNKGUN</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000080</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LSB_SNIPERSWEEPER</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000100</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LSB_EXPLOSIVECHAINGUN</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000200</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LSB_EXPLOSIVESTREETSWEEPER</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000400</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LSB_STICKYGRENADESWEEPER</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000800</p>
+  </td>
+ </tr>
+</table>
+
+<br>
+
+<table border=1 cellspacing=0 cellpadding=0 width=439 style='width:329.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=439 colspan=2 valign=top style='width:329.4pt;border:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><b>// loxgrenadeban </b></p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LGB_PLASMACLUSTERGRENADE</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000001</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LGB_TELEGRENADE</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000002</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LGB_FREEZEGRENADE</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000004</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LGB_HOMERGRENADE</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000008</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LGB_ROCKETGRENADE</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000010</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LGB_BLINDINGGRENADE</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000020</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LGB_POSITRONGRENADE</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000040</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LGB_SPINNINGRAILBOMB</p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000080</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LGB_MIDNIGHTGRENADE</p>
+
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000100</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LGB_BANZAIGRENADE</p>
+
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000200</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=270 valign=top style='width:202.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LGB_FREEZATRONGRENADE</p>
+
+  </td>
+  <td width=169 valign=top style='width:126.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000400</p>
+  </td>
+ </tr>
+</table>
+
+<br>
+
+<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+ border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=343 colspan=2 valign=top style='width:257.4pt;border:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><b>// loxarmorban <o:p></o:p></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=190 valign=top style='width:142.15pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LAB_ORGANICARMOR</p>
+
+  </td>
+  <td width=154 valign=top style='width:115.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000001</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=190 valign=top style='width:142.15pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LAB_SLUGARMOR</p>
+
+  </td>
+  <td width=154 valign=top style='width:115.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000002</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=190 valign=top style='width:142.15pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LAB_CELLARMOR</p>
+
+  </td>
+  <td width=154 valign=top style='width:115.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000004</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=190 valign=top style='width:142.15pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LAB_SHELLARMOR</p>
+
+  </td>
+  <td width=154 valign=top style='width:115.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000008</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=190 valign=top style='width:142.15pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+  <td width=154 valign=top style='width:115.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=190 valign=top style='width:142.15pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LAB_BULLETARMOR</p>
+
+  </td>
+  <td width=154 valign=top style='width:115.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000010</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=190 valign=top style='width:142.15pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LAB_ROCKETARMOR</p>
+
+  </td>
+  <td width=154 valign=top style='width:115.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000020</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=190 valign=top style='width:142.15pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LAB_GRENADEARMOR</p>
+
+  </td>
+  <td width=154 valign=top style='width:115.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000040</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=190 valign=top style='width:142.15pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+  <td width=154 valign=top style='width:115.25pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<br>
+
+<table border=1 cellspacing=0 cellpadding=0 width=343 style='width:257.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=343 colspan=2 valign=top style='width:257.4pt;border:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><b>// loxfeatureban <o:p></o:p></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LFB_CLOAK</p>
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000001</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LFB_EXPLOSIVE</p>
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000002</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LFB_INVISIBILITY</p>
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000004</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>LFB_FLASHLIGHT</p>
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000008</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_CHECKSTATS</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000010</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_RANGEFINDER</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000020</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_PLAYERID</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000040</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_FEIGNDEATH</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000080</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOD</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000100</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOL</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000200</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOM</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000400</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOF</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000800</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOP</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00001000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_SWEEPERFIREMODE</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00002000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_HEIGHT</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00004000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOB</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00008000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOH</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00010000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOBLIND</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00020000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_AIRSTRIKE</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00040000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_FPH</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00080000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_TRACKER</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00100000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOR</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00200000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_BATON</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00400000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_HOLO</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00800000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_CHAMBER</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x01000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_REGENHEALTH</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x02000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOU</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x04000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_VAMPIHEALTH</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x08000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_ANGELOE</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x10000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_TURRET</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x20000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_NUMTRKR</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x40000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=206 valign=top style='width:154.85pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>LFB_NUMTRRT</p>
+
+  </td>
+  <td width=137 valign=top style='width:102.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x80000000</p>
+  </td>
+ </tr>
+</table>
+<br>
+
+<table border=1 cellspacing=0 cellpadding=0 width=463 style='width:347.4pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><b>// fragban <o:p></o:p></b></p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_CATACLYSMDEVICE</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000001 //1</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_SUPERBLASTER</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000002 //2</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_FREEZATRONGRENADE</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000004 //4</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_SUPERRAILSHOTGUN</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000008 //8</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_FREEZEGUN</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000010 //16</p>
+  </td>
+
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_MACHINEGUN</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000020 //32</p>
+  </td>
+
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_MACHINEROCKETGUN</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000040 //64</p>
+  </td>
+
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_BURSTMACHINEGUN</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000080 //128</p>
+  </td>
+
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_CHAINGUN</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000100 //256</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_SWEEPERS</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000200 //512</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_GRENADE</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000400 //1024</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_CLUSTERGRENADE</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000800 //2048</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_RAILBOMB</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00001000 //4096</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_PLASMAGRENADE</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00002000 //8192</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_NAPALMGRENADE</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00004000 //16384</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_SHRAPNELGRENADE</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00008000 //32768</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>WFB_FREEZEGRENADE</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00010000 //65536</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>WFB_BAZOOKASWEEPER</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00020000 //131072</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>WFB_ROCKETLAUNCHER</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00040000 //262144</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>WFB_HOMINGROCKETLAUNCHER</p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00080000 //524288</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_BLINDINGGRENADE</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00100000 //1048576</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_PLASMARIFLE</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00200000 //2097152</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_POSITRONGRENADE</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00400000 //4194304</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_FLAMETHROWER</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00800000 //8388608</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_BFG10K</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x01000000 //16777216</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_PLASMACLUSTERGRENADE</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x02000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_HOMERGRENADE</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x04000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_TELEFRAG</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x08000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_KAMIKAZE</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x10000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_HOOK</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x20000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_CHUNKGUN</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x40000000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=274 valign=top style='width:205.5pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>WFB_ROCKETGRENADE</p>
+
+  </td>
+  <td width=189 valign=top style='width:141.9pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x80000000</p>
+  </td>
+ </tr>
+</table>
+
+<br>
+
+<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+ border:none;mso-border-alt:solid windowtext .5pt;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>// Feature banning flags.</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><b>//featureban<o:p></o:p></b></p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_BANDOLIER</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000001</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_AMMOPACK</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000002</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_SILENCER</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000004</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_REBREATHER</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000008</p>
+
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_ENVIROSUIT</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000010</p>
+  </td>
+
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_ADRENALINE</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000020</p>
+  </td>
+
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_MEGAHEALTH</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000040</p>
+  </td>
+
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_POWERARMOR</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000080</p>
+  </td>
+
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_INVULNERABILITY</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000100</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_DECOY</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000200</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_HOOK</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000400</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_ID</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00000800</p>
+  </td>
+ </tr>
+
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_KAMIKAZE</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00001000</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_LASERSIGHT</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00002000</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_TRIPLASER</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00004000</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p>FB_NIGHTVISION</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00008000</p>
+  </td>
+ </tr>
+ <tr>
+
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>FB_PUSHPULL</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00010000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>FB_SCANNER</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00020000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>FB_ZOOM</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00040000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p>FB_JETPACK</p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p>0x00080000</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=188 valign=top style='width:140.8pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=143 valign=top style='width:107.6pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+

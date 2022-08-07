@@ -1,0 +1,656 @@
+<html>
+<head>
+<title>Quake 2 LOX Mod - Angels</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META name="description" content="Quake 2 LOX mod documentation and information.">
+<META name="keywords" content="Quake 2, LOX, LOX mod, modification, documentation, LOX documentation, docs, readme">
+<style type="text/css">
+<!--
+body 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #FFFFFF; text-decoration: none; background-attachment: fixed; background-color: #FFFFFF}
+p,blockquote,li,ol,ul,td 	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #000000; text-decoration: none}
+a 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #999999; text-decoration: none}
+a:hover 			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #00CC33; text-decoration: underline overline}
+-->
+</style>
+</head>
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" bgcolor="#FFFFFF">
+<table border="0">
+<tr><td>
+<img src="images/loxdocmain2.gif" border="0">
+</td>&nbsp;&nbsp;
+<td valign="center" align="middle">
+<img src="images/loxdocmain.gif" border="0">
+</td>
+</tr>
+</table>
+<table border="0" align="left">
+<tr><td>
+<b>Main Menu</b>:<br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="index.htm">Home</a><br>
+<a href="installation.htm">Installation</a><br><a href="modes.htm">Game Modes</a><br>
+<a href="weapons.htm">Weapons</a><br>
+<a href="features.htm">Features</a><br>
+<a href="grenades.htm">Grenades</a><br>
+<a href="angels.htm">Angels</a><br>
+<a href="armour.htm">Armour</a><br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="history.htm">History</a><br>
+<a href="changelog.htm">Changelog</a><br>
+<hr width="15%" size="1" align="center" noshade>
+Server:<br>
+<a href="server_win.htm">Windows</a><br>
+<a href="server_linux.htm">Linux</a><br><a href="server_cvars.htm">Server Cvars</a><br><hr width="15%" size="1" align="center" noshade>Entities:<br><a href="ent.htm">.ent file How-To</a><br><a href="offworldtransport.htm">OffWorld Transport</a><br>
+<hr width="15%" size="1" align="center" noshade>
+</td>
+<table width="80%" border="0" cellspacing="2" cellpadding="4" align="center">
+  <tr> 
+    <td colspan="2" valign="top">
+	<img src="images/changelog.jpg" width="230" height="195">
+	</td>
+    <td valign="top" width="100%">
+<B>LOX Mod Changelog:</B><BR>
+<P>
+<B>Changes made by <i>QwazyWabbit</i></B>
+</P>
+<p><b>12/12/2003</b> -<br> P_client.c(731) changed &quot;reaped&quot; to &quot;ripped&quot; and took out extra spaces
+ in the text.
+
+<p><b>12/21/2003</b> -<br> Fixed decoy bug causing homer rockets, trackers and skippers to crash server.
+
+<p><b>12/30/2003</b> -<br> Fixed decoy bug. Skin of decoy was always skin of client 0, the first client
+ to connect to the server. Modified g_monster.c, monster_start(). The
+ decoy spawn code was setting the proper self-&gt;skinnum, but monster_start()
+ was setting it to 0. Decoys now have the skin of their owners.
+
+<p><b>12/31/2003</b> -<br> Fixed hook bug. Grapple and chain lingered if player disconnected with
+ hook engaged.
+
+<p><b>01/10/2004</b> -<br> Limit number of deployable lasertrips to 3. (Now a variable, see 1/17/04 below.)
+ Added lasertrip member to gclient_s in g_local.h.
+
+<p><b>01/10/2004</b> -<br> Floating mines (g_weapon.c), limit is 7. TODO: Test mines, check for bugs.
+ Essentially no code change so far. Oops, no floating mine launcher object?
+ FML works in cheat mode (give all) but how to pick up launcher in normal game?
+
+<p><b>01/15/2004</b> -<br> Debugged lasertrip limiting. Tested OK with downlevel client (1.11) and
+ mod-less Mac client, no bugs.
+
+<p><b>01/15/2004</b> -<br> New cvar, debugmodels. Set it to 1 in server.cfg if you want console output of
+ model information. Now this can be turned off or on at runtime.
+
+<p><b>01/17/2004</b> -<br> New cvars, max_trackers and max_lasertrips. This allows server.cfg to set the
+ maximum allowable trackers or laser tripwires a user can deploy.
+ New commands for config: set maxtrackers n and set maxlasertrips n.
+
+<p><b>01/18/2004</b> -<br> Revisited debug model checking. Do the check always in deathmatch dedicated
+ maplist mode as before but only print the messages if debugmodels is set.
+
+<p><b>01/20/2004</b> -<br> Enabled BFG weapon in unlimited ammo mode. See dmflags parsing in g_items.c.
+ Was a hack to disable them long time ago. Need to make sure weapon banning
+ will work. This might take some work since banning BFG and FBFG will also
+ affect the vortex and other weps that depend on the BFG objects. This
+ complication is probably the reason for the original hack in the dmflags.
+ Note: Need to check wep select code and do selection based on weapban
+ and keep the bfg object, just don't allow its selection.
+
+<p><b>01/21/2004</b> -<br> Deadman reports shortening gamename fixes nagging Info string length exceeded
+ message. This is coming from Info_SetValueForKey() in q_shared.c when the
+ server has to send the server information to a client like Gamespy. This
+ message is caused by the server detecting that it needs to send a big
+ frame to a client. Threshold is 512 bytes. Max key/value size is 64 but
+ LOX sends a lot of extra server keys that other mods don't.
+ Lay one or two proxy DLL's on top of it and you get lots of status info.
+
+<p><b>02/14/2004</b> -<br> Added server configuration varable kami_frozen to allow clients
+ to go kamikaze even if frozen. Use &quot;set kamifrozen 1&quot; to allow.
+
+<p><b>03/07/2004</b> -<br> Re-invented guided grenades. Added g_weapon.h for interface into calling
+ the g_weapon.c functions from within l_rockets.c. Added server configuration
+ variable disruptor_trackers to allow trackers to be launched if you are
+ carrying disruptor. Use set disruptortrackers 1 to allow them.
+
+<p><b>03/09/2004</b> Added time and timeleft/timeremaining commands. Command &quot;time&quot; tells you
+ what time it is using _strtime(). Command &quot;timeremaining&quot; tells you how
+ many minutes are left in the match.
+
+<p><b>03/10/2004</b> -<br> Changed gamename to shorter text. Removed revengereward, highfraggerreward
+ and sv_bestplayer from the CVAR_SERVERINFO class of variables. This keeps
+ the status frame under 512 bytes and gets rid of annoying &quot;Info string
+ length exceeded&quot; messages. I don't think these needed to be serverinfo vars anyway.
+
+<p>Fixed Cmd_Time_f function. Originally commented out, I blindly recovered it for use.
+ I must confess I didn't do the homework right away. _strtime is non-portable. Fixed
+ the glaring error with ANSI C time() and ctime() calls instead. Now it even prints the
+ day, date and time real purty-like.
+
+<p><b>03/11/2004</b> -<br> Fixed bugs in time functions. They used gi.bprintf() and this broadcasts too all
+ users... oops. Use gi.cprintf() instead. It's not a bug, it's a feature.
+ I might consider creating a broadcast version of the time commands later.
+ Maybe something like &quot;It's &lt;timedate&gt; at the &lt;servername&gt; server, but it's
+ &lt;clienttime&gt; at &lt;playername&gt;'s and there's only &lt;minutes&gt; left
+ in this match&quot;. With appropriate spam limiting, of course.
+
+<p><b>03/13/2004</b> -<br> Replaced some player obituary texts.
+ Fixed some spelling and tried to add a little humor.
+
+<p><b>03/17/2004</b> -<br> Set a hard coded floor of 1 and ceiling of 10 trackers in the tracker limiter.
+ It was possible to set huge tracker limits on rcon and lag the server.
+
+<p> Reset tracker initial damage to zero. Setting it to 10 caused lag when
+ a bunch of them died all at once.
+
+<p> Fixed up some more text formatting in obituary texts.
+
+<p><b>03/20/2004</b> -<br> Increased damage radius of vacuum maker by 20% (1000 -&gt; 1200) and
+ increased damage to 250.
+ Doubled Kamikaze damage from 300 to 600.
+
+<p> Released as Version 1.12.1.
+
+<p><b>03/20/2004</b> -<br> Version 1.12.2 commences.
+ Decreased damage from 1000 to 500 on homer rockets.
+ More messing with obituary texts.
+
+<p><b>03/23/2004</b> -<br> Released 1.12.2
+
+<p><b>03/27/2004</b> -<br> Spell-checked help (man) text.
+ Reorganized Cmd_Help function.
+
+<p><b>04/03/2004</b> -<br> Split guided, homing and guided nuke rockets into separate files.
+
+<p><b>04/22/2004</b> -<br> Added code for addition of floating mine launcher to inventory when player
+ picks up a grenade launcher.
+
+<p><b>05/29/2004</b> -<br> Fixup nuke, guided nuke, guided rocket classnames. Enabled angel of mercy
+ to catch nukes. Still working on guided grabs. When angelom catches an eligible
+ projectile it calls G_FreeEdict on that entity and this blows the logic of the
+ guided rockets and guided nukes leaving the player who fired the guided rocket
+ in the floor or somewhere in limbo. The only way to unlock it is to command kill.
+ Keeping the class names distict for each weapon takes care of a lot of interaction
+ issues with angels and trackers and whatnot.
+
+<p>Fix for Floating Mine Launcher select. Users need to change bind in bindings.cfg
+ for grenade launcher to read:
+ alias grenadelauncher5 &quot;use double impact;wait;bind 6 grenadelauncher6&quot;
+ alias grenadelauncher6 &quot;use floating mine launcher;wait;bind 6 grenadelauncher1&quot;
+
+<p><b>05/31/2004</b> -<br> Released 1.12.3 for Windows and Linux.
+
+<p><b>06/13/2004</b> -<br> Re-release of rebuilt LOX 1.12.3 for Windows and Linux.
+
+<p><b>06/19/2004</b> -<br> Coded configurable limit for floating mines. Default limit is seven
+ mines. Set maxfloatingmines in server config to change. Maximum allowed
+ per player is hard coded at 10, minumum is 1.
+
+<p><b>06/26/2004</b> -<br> Denial of Service bug found by Tommy&lt;WOS&gt;. Can crash server every time
+ under certain conditions. Affects all versions of LOX prior to 1.12.4.
+
+<p> Fixed angelom code that had test code in it that printed diagnostic messages
+ in 1.12.3 release of the mod.
+
+<p>Defined manifest constants for darKMajick grenade types.
+
+<p>Allow floating mine launcher to fire most kinds of darKMajick grenades.
+ FML now works with all grenades except the teleport grenades, if you're
+ holding teleports, it launches normal grenades instead.
+
+<p>Released 1.12.4 for Windows and Linux.
+
+<p><b>06/30/2004</b> -<br> Version 1.12.5 commences.
+ Added Angel of Energy.
+
+<p>Divided angels into their own source files to make maintenance a little
+ easier (I hope). Now we can pull an angel if we don't need it anymore or
+ modify it without scrolling through a long file to find it.
+ Added function prototypes and constants to angels.h
+ Modified all other modules that refer to angels to include angels.h.
+ Added AngelOE and AngelOU help text.
+
+<p>Improved HOOK help text, added a description of the binds you need to
+ write to make it work. This helps oldtimers tell newbs to the mod how
+ to do the bind. This is a FAQ, so now users can say &quot;type 'man hook'
+ at the console&quot; and the server will explain it for them.
+
+<p><b>07/02/2004</b> -<br> Modified the angels quite a bit. Angel of Revenge now depletes other
+ players health by 50% while in contact with the opponent until their
+ health is reduced to about 25 points. This even works against regeneration
+ holders.
+
+<p>Angel of Mercy or Angel of Revenge deflect the Angel of Revenge.
+
+<p>Angel of Unfreeze or Angel of Mercy deflects the Angel of Frost.
+
+<p>Angel of Plague rapidly depletes your opponent's health until
+ he has only 10 health points left, making him an easy kill. The
+ range of the angel is 100 quake units. Flying the Angel of Life
+ gives immunity to plague. Plague rate of decay is set at 5 health
+ points per client cycle.
+
+<p>Being cloaked does not hide you from any angels.
+
+<p><b>07/04/2004</b> -<br> Freeze grenade modified. It now inflicts damage directly on the
+ target on detonation.
+
+<p>Fixed up GuidedRocket_Explode function to simply call Grenade_Explode_dM()
+ for explosion effects. Now all the darKMajick grenades are maintained in
+ one place.
+
+<p><b>08/20/2004</b> -<br> Removed durgsweeper.
+
+<p><b>08/30/2004</b> -<br> Added Kaminit, super rail shotgun, and disruptor trackers.
+ Fixed up a lot of code and headers.
+
+<p><b>09/04/2004</b> -<br> Adding map voting to allow players to elect a new map instead of depending
+ on admins to use the RCON command.
+
+<p><b>09/12/2004</b> -<br> Fixed up some manipulations of cvars.
+ Perfected map voting and documented electpercentage,
+ electduration, electreminders.
+ Bounds checks for these variables so we don't do silly things.
+ Sanity check of linux Makefile to be sure we can still build it right.
+
+<p><b>09/14/2004</b> -<br> Compiled under Linux, fixed up EOL's in files as needed.
+ Nice clean compile under Linux now, fixing up warnings in VC6 @ W4.
+ Need to check guided missiles, weaker damage actually increases health
+ of targets at long ranges. Kinda cool, need to find out why though.
+
+<p><b>09/19/2004</b> -<br> Added cvar campertime, default value 5 second timeout for anticamper.
+
+<p><b>10/18/2004</b> -<br> Found a bug that was causing cloak to be ineffective against homers/skippers.
+ In rockets.c the line if((blip-&gt;cloaked == 1) || (blip-&gt;oldmodel == 1)) continue;
+ was: if(blip-&gt;cloaked == 1 || blip-&gt;oldmodel == 1) continue;
+ WAY too subtle!
+
+<p><b>10/23/2004</b> -<br> Fixed angelom vs. guided missiles. Angel of mercy now successfully defends
+ against guided rockets without sending the POV of the guided rocket owner
+ into the floor or some other weird space.
+ Changed sound file for kaminit or kamikaze to play kamikaze.wav.
+
+<p><b>10/26/2004</b> -<br> Fixed angelom vs. guided nuke bug.
+ Fixed a lingering map voting bug. Server would crash if a non-existant map
+ passed the vote. Map would not change, but intermission would crash it.
+
+<p><b>10/28/2004</b> -<br> Fixed freeing of angel edicts on player death.
+
+<p><b>10/29/2004</b> -<br> 1.12.5 Released for use on Loxophilia and later for the rest of world.
+
+<p><b>11/14/2004</b> -<br> Begin LOX 1.12.6 codebase. Version 1.12.5 will probably never be released
+ beyond its test use on Loxophilia.
+ Changed all wepban and featureban logic in order to fix float/int conversion
+ problems long since described in the the notes.txt. Created several i_vars
+ that contain the int-converted strings received by the game and stored in the
+ cvars as floats and string members. Now the game checks ints against ints
+ without casts and all the attendant overhead. See UpdateBans() for info.
+ 
+11/20/2004</b> -<br> Changed default maxentities to 2048 (g_save.c).
+
+<p><b>11/23/2004</b> -<br> Changed map vote logic to stop spamming. A player can only initiate two
+ map votes in a session by default. Server admins can configure the cvar
+ electstarts to allow from 1 to 6 election starts per player.
+ Added veto power for a single no vote.
+ Clipped out YES/NO vote updates, too many updates when everyone is voting.
+ Now it updates on the timer. Player voting doesn't increase the frequency.
+ Voting stops on veto or when a winning vote is mathematically impossible.
+ After observation of 1.12.6 on Loxophilia, changed maxentities back to 1024.
+
+<p><b>11/27/2004</b> -<br> Added a mapchange and timestamp to the log at intermission time. (EndDMLevel)
+
+<p><b>11/28/2004</b> -<br> Fixed superblaster sweeper that was using 0 damage and not fragging.
+ Started splitting out some of the LOX weapons into their own files to get
+ rid of some of these tiresome big weapon files.
+
+<p><b>12/04/2004</b> -<br> Added 6 second timer to decoy code to prevent spamming of decoys.
+
+<p><b>12/09/2004</b> -<br> Modified MaplistNext function to scan for stock maps and for existence
+ of map file when using maplists. This will prevent server crash if the
+ bsp file called for in the maplist.txt file doesn't exist. The new function
+ skips that line in the maplist and tries the next one and logs the event.
+ 
+ Tweaked weapon heat parameters for all sweepers. Created manifest constants
+ for WEPHEAT_HIGH, WEPHEAT_LOW and WEPHEAT_COOLING to control the time constants.
+ Sweepers heat up and blow the shooter kamikaze-style in both low speed and
+ high speed sweeper fire modes. This should allow firing bursts of
+ sweepers long enough to be effective but still discourage continuous
+ sweeper firing in unlimited ammo mode.
+
+<p><b>12/12/2004</b> -<br> Modified skipper and homing rockets to allow them to betray owner if
+ he's not careful. The rockets will home in on uncloaked enemies but
+ if the owner becomes a more tempting target they will start to home in
+ on him instead.
+
+<p>Angel of flame deflects frost. Angel of frost deflects flame.
+
+<p>Fixed weapon pickups so dropped weapons all get picked up as the weapon
+ they were when the fragged player dropped them.
+
+<p>Angel of life will ignore base weapons if they are banned. It used to
+ fly off orbit and go off into space. Now you have to run over the weapon
+ to get the LOX weapons if the basic quake2 weapon is banned.
+
+<p>Release Version 1.12.6 This marks the one year anniversary since
+ QwazyWabbit began work on WOD:LOX.
+
+<p><b>12/17/2004</b> -<br> Fixed conflict between rangefinder and CTF HUD variables and tokens. Now
+ the game correctly displays CTF icons and scores.
+ Added rangefinder to HUD in CTF Extinction.
+ Set CTF cloaking colors to red and blue so players can tell each other
+ apart when cloaked. Need orange glow for invulnerability?
+ Fixed lightning gun effect on grappling hook chain in CTF mode.
+ Fixed OnSameTeam function to properly handle skin teams and CTF teams.
+
+<p><b>12/22/2004</b> -<br> Added skinlist command. This lists the player's skins by client number
+ for all players in the game. I added this to get around the fact that
+ R1CH's R1Q2 client hack kills the skins command in that version of the
+ client.
+
+<p><b>12/26/2004</b> -<br> Fixed the tracker lock bug at last.
+
+<p><b>12/27/2004</b> -<br> 1.12.6 Version tagged for release for Linux and Windows.
+
+<p><b>12/30/2004</b> -<br> Fixed up HUD, now using manifest constants in strings so game can keep
+ the messgages straight without a lot of programmer work. Created a
+ unified initialization function for the HUD in all modes.
+ FPM, Rangefinder, Height and playerid toggles all survive across respawns.
+ Eliminated redundant HUD functions in CTF code.
+ Changed FPM to FPH. (Frags per Hour)
+ Made ext_devt cvar to enable users to use the lasertrips to get point locationals
+ for extinction map ents and weapon placements. The old way used a compile-time
+ define to create a special build for it. This provides a runtime switch anyone
+ can use.
+
+<p><b>01/14/2005</b> -<br> Fixed cheats testing in coop mode. Disallow cheat commands if we're in coop mode
+ and the cheats flag is not set.
+ Fixed several different server-crashing bugs in coop mode.
+
+<p><b>01/16/2005</b> -<br> LOX Version 1.12.7 Released.
+
+<p><b>02/08/2005</b> -<br> Fixed several instances of gi.multicast calls that didn't have gi.writebyte calls
+ first. This was causing r1q2 to crash with &quot;SV_Multicast: no data&quot; fatal errors. Good
+ catch by r1q2, but fatal errors are no fun. The calls in LOX were due to programmers
+ commenting out some lines and failing to comment out the gi.multicast calls with them.
+ Apparently there are quite a few mods out there with this kind of error because there
+ were several complaints about servers running r1q2 getting this error. R1ch said he's
+ going to log this error and make it non-fatal in newer releases (b4449 crashes).
+
+<p><b>02/19/2005</b> -<br> Changed voting function to use gamemap command instead of map command
+ for r1q2 compatibility.
+ 
+02/23/2005</b> -<br> Floating mines stop glowing when they stop moving. This makes the napalms, plasmas
+ and other DarKMajick types harder to see and avoid.
+
+<p><b>02/28/2005</b> -<br> IP addresses of say and say_team commands are logged in Linux and Windows.
+
+<p><b>03/02/2005</b> -<br> Fixed vote map command to disallow .bsp in command to avoid extra .bsp being
+ added to the map name. The mod automatically appends .bsp to the name. If
+ it's passed to the server with two extensions the server will crash.
+
+<p><b>03/09/2005</b> -<br> Sniper trackers would launch and track but didn't fire on targets. Fixed.
+
+<p><b>03/14/2005</b> -<br> Added a 45 second time delay after a level change before the game
+ will accept a vote command from a client. This prevents map vote
+ cheating where someone could force a vote before all the players
+ are reconnected. Using the gamemap command and r1q2ded closes the
+ cheat window nicely, but this ensures servers that don't run
+ r1q2ded aren't vulnerable.
+
+<p><b>03/17/2005</b> -<br> Filter some chars, like /, \, ; and . in vote map commands to prevent
+ server crashing due to malicious user input causing map not found errors.
+ Still need to revisit this and make sure we catch all bogus chars.
+
+<p><b>03/19/2005</b> -<br> Created CN_* classnum values for determining weapon/entity class numbers
+ instead of doing string compares on classnames.
+
+<p><b>03/25/2005</b> -<br> Modfied UpdateBans function to allow the function to be called in the server
+ loop so a weapon ban will be activated immediately when it's changed via
+ an rcon command instead of on the next map change.
+
+<p>Added the homerseekowner cvar so admins can turn off the owner-homing
+ feature of homing rockets and skippers if they like. The default state is 1
+ (on) so current admins don't have to do anything to maintain existing LOX, setting
+ it to 0 disables the owner-seek and the rockets behave as they did in
+ version 1.12.4 and earlier.
+
+<p>Added LogPlayerStats function. Player &amp; map information is logged for
+ statistics collection. Setting logstats 0 turns it off.
+
+<p><b>05/04/2005</b> -<br> Fixed LogPlayerStats so it doesn't print disconnected players in the summary.
+ Started adding ARSG compatible output for statistics logging.
+
+<p><b>05/07/2005</b> -<br> Finished ARSG logging function and documented means of death. Three
+ logging modes: logarstats 0 means no statistics logging (default mode), 1 writes
+ a lox/arsg.log file, 2 puts the statistics into the qconsole stream.
+
+<p><b>05/10/2005</b> -<br> Fixed MaplistNext function. Map selection now handles blank lines in
+ the maplist.txt file and won't stick on the last good map. If changing maplist
+ file contents on a 'hot' server the maplist variable will wrap back to 1
+ if it was pointing past the end of the revised maplist file.
+
+<p>Fixed vote map logic. Game now checks to see if the map exists before
+ it starts a vote on it. Warns the player who initiated the vote if the
+ map name can't be found on the server. Voting now prints the YES/NO votes
+ when the vote passes or fails. Added code to prevent new joining players
+ from initiating a map vote less than 45 seconds after they join the game.
+
+<p><b>05/12/2005</b> -<br> Fixed output format specification in ARSG logging to add leading zeros
+ to the time/date fields.
+
+<p><b>05/24/2005</b> -<br> Changed sign of roll angle in jetpack. It now rolls in direction of
+ strafe instead of opposite.
+
+<p><b>05/27/2005</b> -<br> Fixed door_blocked bug. A blocked door could pass a NULL activator to the
+ G_UseTargets function when blocked by a player. This caused server to crash.
+ Modified door_blocked function to use ent-&gt;enemy as activator if ent-&gt;activator
+ is NULL. This should prevent a null activator from being passed into G_UseTargets.
+ Enhanced the G_UseTargets function to print diagnostics to log so map developers
+ can know which entity to fix.
+
+<p><b>06/05/2005</b> -<br> Used X7's loxtestmap to check spawn functions of all weapons and items. Fixed
+ a lot of missing spawns in the grenades and weapons.
+ Fixed voting yet again. New players can't initiate vote for 45 seconds after
+ joining a game in progress unless they are the only player. A player who joins
+ a game where a vote is already in progress can't vote for that election, he is
+ not counted in the head count for the duration of the election. This prevents
+ reconnect cheating on the votes.
+
+<p><b>06/12/2005</b> -<br> Drop cells on death when holding blaster or superblaster.
+
+<p>Partially fixed NULL ent-&gt;think bug, server now logs the event but doesn't crash.
+
+<p>Expanded the information that is logged for diagnostic purposes.
+ (SV_RunThink in g_phys.c) Still need to find the real cause of this but I suspect
+ we have some map bugs as well as G_FreeEdict() sync problems. Perhaps related to
+ angelom or angeloe freeing entities that still need think cycles? In any case
+ the server won't just crash.
+
+<p>Made jetpack droppable. One interesting feature, dropping jetpack while flying
+ keeps you flying. Pick up the dropped jetpack and get a new fuel load.
+
+<p><b>06/17/2005</b> -<br> Fixed guided missile entity so it uses bazooka grenade instead of head gib.
+ Use dM grenade glow too. Created SetGrenadeEffects function so even bazooka
+ sweeper could use them if we wanted. (not sure this is a good idea)
+ 
+ Fixed dM grenade functions to use separate dmg and dm_type to fix unknown
+ grenade type bug that arose from using dmg to contain the dm grenade type.
+ I think the grenade functions still need some good cleaning, but this can
+ be done as the grenades are improved.
+
+<p>The shrapnel grenade now inflicts damage and radius damage consistent with
+ the size and scope of its explosion.
+
+<p><b>06/21/2005</b> -<br> Fixed CTF spectator no-pitch bug.
+ Fixed CTF spectator visible bug.
+
+<p><b>06/21/2005</b> -<br> Fixed laser sight glow.
+
+<p><b>06/26/2005</b> -<br> Added respawn_protect cvar, allow server admin to control how much time
+ the respawn invincibility lasts. max. 6 secs.
+
+<p><b>06/30/2005</b> -<br> Added g_nukes_takedamage and g_rockets_takedamage cvars to allow admins
+ to control whether guided nukes or rockets can be shot down.
+
+<p><b>07/02/2005</b> -<br> Fixed bad modelindex in PBM_FlameCloud2 function in x_fire.c causing
+ placeholder entities in the nuke explosions. Credit to Mr.BovineOrdure
+ for spotting this.
+
+<p><b>07/04/2005</b> -<br> Fixed bug in revenge factor. It was using i_featureban, not dmflags
+ and conflicted with FB_PUSHPULL.
+
+<p><b>07/10/2005</b> -<br> Added deployed Tracker and Turret HUD counters.
+ Documented some of the HUD layout stuff so I don't have to keep
+ figuring it out each time I go back to it.
+ Use turretcount and trackercount to display them in the hud.
+
+<p><b>07/23/2005</b> -<br> Added push/pull text so players know who push/pulled them.
+
+<p><b>08/01/2005</b> -<br> Angel of Energy now protects against push/pull.
+
+<p><b>09/25/2005</b> -<br> Fixed bug in lbinds where new connecting client would inherit old disconnected
+ client's lbinds. Strings are initialized to null at client connect. User must
+ initiate lbind commands after connection and they will persist thereafter.
+
+<p>Fixed a server crash bug where a character string could kill the server.
+
+<p>Re-arranged a BUNCH of fragban constants that were overlapping and not
+ functioning due to borrowing from the weapon bans. There are only 32 bits
+ in the fragban but we have 90+ MODs, can't ban them all, need to select from
+ the most likely to be needed.
+
+<p><b>10/31/2005</b> -<br> Minor fixups of lbind code. Using strncpy instead of memcpy, memcpy
+ was putting garbage in. Protected against buffer overflow if malicious
+ user decides to try long string inputs.
+ Added a numeric readout to weapon heat bar.
+
+<p><b>11/05/2005</b> -<br> Fixup weapon heat.
+ Added player count to summary log stats at map end.
+
+<p><b>11/08/2005</b> -<br> Fixed angelom and angeloe code to pick off guided nukes and missiles.
+ Used this opportunity to make the two classes more identical in structure.
+
+<p><b>12/08/2005</b> -<br> Fixup tracker and turret bug discovered by DontKillMe. Trackers were
+ not retaining the grenade types when the owner switched grenade types
+ and were following the change to the new type. Set the dm_type when the
+ tracker/turret is spawned and use it instead of the owner's dM_grenade
+ type.
+
+<p><b>12/09/2005</b> -<br> Fixup vamp, regen and armor probabilities.
+
+<p><b>01/21/2006</b> -<br> Set default maxclients and maxspectators to 12.
+
+<p><b>02/19/2006</b>  - Fixed laser tripwires to despawn when player dies/respawns to keep
+ the number of active tripwires per player down to the configured limit.
+
+<p><b>03/09/2006</b>  - Decreased radius damage and damage radius on shrapnel grenades.
+
+<p><b>03/09/2006</b> -<br> LOX Version 1.12.9 Released.
+
+<p><b>04/18/2006</b> -<br> Refined voting functions a bit. Added a cvar electautoyes to allow
+ admins to control whether vote initiator automatically votes yes or not.
+ Deleted jetpack drop capability.
+
+<p><b>Changes made by <i>TheLopez</i></b>
+
+<p><b>06/22/2005</b> -<br> Fixed lbind command.
+ Updated lines 95, 107, 120 to use G_CopyString instead
+ of a straight assignment. Verified fix.
+
+<p><b>06/24/2005</b> -<br> Added sticky trackers (turrets).
+
+<p><b>06/25/2005</b> -<br> Added anti-flare gun. When fired it will create an area that dark instead
+ of lit up like the flare gun.
+
+<p><b>06/27/2005</b> -<br> Added midnight grenade. Launches 12 anti-flares.
+
+<p><b>06/28/2005</b> -<br> Added freezatron and freezatron grenades. The freezatron is like the positron
+ except for the damage has been toned down and it will freeze you
+ if it touches you. The longer it touches you the longer you will be
+ frozen.
+
+<p><b>06/30/2005</b> -<br> Added Banzai and Floating Rail Grenade. The two grenades are launched like
+ normal but after landing on the ground they will rise up into
+ the air and then fire their deadly payload. Banzai grenade will
+ fire the same ammo as the kaminit and Floating Rail Grenade will
+ fire a rail shot.
+
+<p><b>07/04/2005</b> -<br> Prevent trackers/turrets from launching teleport or midnight grenades.
+ - Updated rise rate and time for the Banzai and Floating Rail Grenades. They
+ now take 0.3 seconds to rise to their appropriate heights.
+ - Fixed bug that would cause Banzai and Floating Rail Grenades to float when
+ fired by anything else than the grenade launcher.
+
+<p><b>07/06/2005</b> -<br> Update spinning rail grenade to have a better rail shot distribution and speed
+ - Update LBind commands, they will now persist between map loads. Before players
+ would have to reset their LBinds after loading back into a map.
+
+<p><b>07/15/2005</b> -<br> Updated and expanded airstrike. It will now use some of the selected dm
+ grenades. The airstrike strike location and speed is also now
+ randomized but it will hit in the general area of the lsight. Also
+ lsight is automatically turned on when the airstrike is called and
+ turned off if the airstrike is intercepted or when the airstrike
+ arrives.
+
+<p><b>07/20/2005</b> -<br> Updated banzai grenades, they will now only fire 12 shots but those shots will
+ target the nearest player.
+
+<p><b>08/01/2005</b> -<br> Updated freezer grenades, they are launched like normal but after landing on
+ the ground they will rise up into the air and then fire 12 shots but those
+ shots will target the nearest player.
+
+
+<p><b>Changes made by <i>Phlem</i></b>
+
+<p><b>09/13/2004</b> -<br> Changed spiral rocket model to gibs/head2/tris.md2
+
+<p><b>09/13/2004</b> -<br> Changed rocket model to gibs/skull/tris.md2 in l_rocket.c
+
+<p><b>11/26/2004</b> -<br> Updated kill messages in p_client.c:
+<p> - new message text for most of the messages
+<p> - &quot;repair&quot; of gender id on a couple of messages
+<p> - Addition of stuff / say for two or three more death types
+
+<p><b>08/29/2005</b> -<br> Added &quot;offworld teleporter&quot; syntaxt to enable interserver game transfer.
+
+<p><b>09/03/2005</b> -<br> Added options entity loading at map load time. (new file: g_ent.c)
+<br><br>
+============================================
+<br>
+<p><b>Project notes:</b>
+
+<p><b>Note:</b> Project settings for local debugging: (Debugging tab/General settings)
+
+<p>Executable name for debug session: c:\quake2\quake2.exe
+Working directory: c:\quake2
+Command line arguments: +set port 27912 +set dedicated 1 +set game lox +set deathmatch 1 +set maplist 1 +exec server.cfg
+
+<p><b>Post-build step:</b> copy Debug\gamex86.real.dll c:\Quake2\lox (assuming we are using GameCam 1.04 as
+the proxy dll. Just use gamex86.dll if this is the only game extension dll.
+
+<p>Remote debugging, add this:
+
+<p>Remote Executable path and file name: c:\quake2\quake2.exe
+
+<p>Use MSVCMON.EXE on the remote target to open debugging server on target.
+Use Build | Remote debugger connection to configure IDE for tcp/ip connection.
+
+<p>Using GameCam 1.04 from Avi Rosen. This is a transparent cascade proxy so it's
+name is gamex86.dll and it lives in the directory of the mod we are playing.
+Consequently the game mod dll gets renamed to gamex86.real.dll and the GameCam
+loads this on initialization.
+
+<p>Beware the post-build commands in the project.
+The post-build commands copy the game dll to the working directory for debugging.
+<br>
+  </tr>
+</table>
+<hr width="70%" size="1" align="center" noshade>
+<table width="80%" border="0" cellspacing="0" cellpadding="4" align="center">
+  <tr> 
+    <td width="20%"></td>
+    <td align="center" width="50%">Quake 2 LOX Docs. - <a href="http://www.clanwos.org">http://www.clanwos.org</a></td>
+    <td align="right" width="20%"></td>
+  </tr>
+</table>
+</tr>
+</table>
+</body>
+</html>

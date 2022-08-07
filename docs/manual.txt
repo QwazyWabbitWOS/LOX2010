@@ -1,0 +1,182 @@
+PLEASE READ ALL OF THIS DOCUMENT BEFORE INSTALLING OR USING POSTNUKE
+
+
+
+PostNuke: The Phoenix Release (0.7.5.0)
+=======================================
+
+   PostNuke is an open source, open developement content management system
+(CMS).  PostNuke started as a fork from PHPNuke (http://www.phpnuke.org) and
+provides many enhancements and improvements over the PHP-Nuke system.  PostNuke
+is still undergoing development but a large number of core functions are now
+stabilising and a complete API for third-party developers is now in place.
+
+   If you would like to help develop this software, please visit our homepage
+at http://noc.postnuke.com/
+
+   Or at the Community Forums located at:
+   http://forums.postnuke.com/
+
+
+New Installation
+================
+
+   PostNuke has a fully graphical install process to provide a simple set of
+steps to get your site up and running. 
+
+   Prior to running the installer ensure that both config.php and config-old.php
+are world writable. Further ensure that pnTemp and it's subdirectories are also 
+world writable. World writable means a permission setting of 777 or 666 depending 
+on your system if the system is unix based.
+
+   To install your PostNuke system run install.php from your browser to start
+the installation process.  The exact url depends on your site, but for example
+if your site is www.foo.com and PostNuke is installed in the 'bar' directory
+then the URL will be
+
+   http://www.foo.com/bar/install.php
+
+   Follow the instructions in the installation script and when prompted for
+either a new install or an upgrade select 'new install'.  The installer will
+create the required database tables and obtain information about the super-user
+login.  Once complete you should be able to start using your PostNuke site
+immediately.
+
+Note: it is important to remember in the case of new installs, that are also to create 
+the database, that the mysql user, most have full rights to create new databases, if not
+then first create the database and grant the intended mysql user full rights to it, so 
+that it becomes possible for the installer and modules to interact freely, with the new
+database and work correctly.
+   
+   PostNuke now supports the new php 4.2.x+ security standard of
+register_globals turned off and Apache 2.0.x.
+
+ADDENDUM: For those that asked the mysql dump has been included if you use this
+instead of the installer then take note that the admin user is: "Admin" and its
+password is "Password", both case sensitive.
+
+In order to install PostNuke this way you need to have shell access to your server
+and issue the following commands.
+
+mysqladmin create your_db_name -p
+
+Then:
+
+mysql your_db_name<Phoenix-0.7.5.0.sql
+
+That will load the sql to your newly created database and you can visit your new
+portal, please remember to change the Admin password.
+
+This way of installing is not recommended since if you forget to make this password
+name you would leave you system open to attacks.
+So please just use as a last resort.
+
+
+Upgrade
+=======
+
+   PostNuke supports upgrading from all earlier official versions of PostNuke,
+together with a large number of other Nuke variants.
+
+   Before doing anything else, BACK UP YOUR DATABASE AND FILES.  This cannot be 
+stressed enough.  If there is a problem with the upgrade procedure then a backup 
+helps you in two ways.  First, you can go back to a pre-upgrade state and your 
+site can keep working on the old code.  Second, the development team might want 
+to get a copy of your database to trace the exact problem and fix the upgrade
+procedures that caused you problems in the first place.
+
+   Second, ensure that your default site theme or the theme for your admin user 
+(if allowing user theme overrides) is set to ExtraLite. All other themes in this
+release are Xanthia themes that require initialisation from the Admin panel.
+
+   Third, take a copy of your config.php file and store it somewhere safe;
+you'll need it in a minute.
+
+   Fourth, If your uprgrading from a earlier release candidate or from an earlier
+release with XTE installed then ensure that all cache and compile directories in 
+pnTemp are emptied.
+
+   Firth, remove all of the files in your PostNuke distribution.  All of them.
+Again a backup of the files would be a good idea, or just move the old
+directory out of the way and install the new one in place of this one.
+
+   Sixth, take your config.php that you saved a couple of steps ago and copy
+it to the postnuke base directory (the one with config.php and config-old.php).
+This will be used in the upgrade process
+
+While you are at this step make sure you set permissions for the config-old.php
+and config.php to 777 or 666 depending on your system. 
+
+This is needed in order to allow php to update this files, after installation is
+over please change this permissions to 644.
+
+   Seventh, There are also several new entries in config.php that need adding.
+Add the following to just below $pnconfig['encoded']
+
+$pnconfig['pconnect'] = '0';
+$pnconfig['temp'] = 'pnTemp';
+
+and add the following just below $pndebug['debug_sql']      = 0;
+
+$pndebug['pagerendertime'] = 0;
+
+   Eighth, run install.php from your browser to start the installation process.
+The exact url depends on your site, but for example if your site is www.foo.com
+and PostNuke is installed in the 'bar' directory then the URL will be
+
+   http://www.foo.com/bar/install.php
+
+   Follow the instructions in the installation script and when prompted for
+either a new install or an upgrade select 'upgrade', then pick the version of
+PostNuke (or another Nuke variant) which you wish to upgrade from.  The rest of
+the procedure should be automatic.
+
+Once installation is complete you will need to re-add your custom modules and 
+regenerate from the modules admin. As part of the upgrade some modules may be
+ugraded. From the modules admin Upgrade and re-activate any modules require it.
+
+
+Caution
+=======
+
+   Previous versions of PostNuke and other derivatives often include plugins
+that alter the database core tables through adding fields, changing names, etc.
+It should be noted that PostNuke does not support any modification of the core
+tables (those that come with this PostNuke distribution) or direct access to
+the core database tables.  APIs are provided for developers to use for these
+purposes, so that future planned changes will have a minimal impact on
+third-party added functionality, and should be used at all times.
+
+
+Common Installation Errors
+==========================
+
+   config.php and config-old.php not world-writable - these files need to be
+writable by the webserver process during the install/upgrade to ensure that
+certain configuration parameters are stored.  The install procedure should
+check for this and inform you if the files are not writable.  Note that once
+the install/upgrade has been completed these files can be re-set to read-only.
+
+   Problems creating or populating the datbase  - this is often due to
+incorrect MySQL privileges on the database.  If you are unsure if this might be
+the case then try to access your MySQL database manually with the username and
+password that you have and attempt to create a database and table to ensure
+that the user exists, has a correct password, and is able to carry out the
+operations that PostNuke needs for installation.
+
+   Problems logging in - this is normally due to access the postnuke site with
+an unqualified host name e.g. http://localhost/index.php or a domain name e.g.
+http://foo.com/index.php  PostNuke requires that the site name is
+fully-qualified e.g. http://www.foo.com/index.php  Instructions on setting up a
+fully-qualified hostname for your local server can be found on the PostNuke
+documentation site at http://docs.postnuke.com  Alternatively you can set the
+'intranet' option when installing or upgrading PostNuke, which will allow you
+to run PostNuke without a fully-qualified domain name but without the ability
+to filter cookies from similar domains.  In most cases where PostNuke is run
+like this it should not be an issue, however setting your site to run as an
+intranet site when it is directly connected to the internet is not recommended.
+
+Enjoy!
+Cheers
+
+The PostNuke Development Team

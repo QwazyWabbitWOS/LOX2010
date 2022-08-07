@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>Quake 2 LOX Mod - LOX Game Modes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<META name="description" content="Quake 2 LOX mod documentation and information.">
+<META name="keywords" content="Quake 2, LOX, LOX mod, modification, documentation, LOX documentation, docs, readme">
+<style type="text/css">
+<!--
+body 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #FFFFFF; text-decoration: none; background-attachment: fixed; background-color: #FFFFFF}
+p,blockquote,li,ol,ul,td 	{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none; color: #000000; text-decoration: none}
+a 				{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #999999; text-decoration: none}
+a:hover 			{  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; line-height: normal; font-weight: bold; font-variant: normal; text-transform: none; color: #00CC33; text-decoration: underline overline}
+-->
+</style>
+</head>
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0" bgcolor="#FFFFFF">
+<table border="0">
+<tr><td>
+<img src="images/loxdocmain2.gif" border="0">
+</td>&nbsp;&nbsp;
+<td valign="center" align="middle">
+<img src="images/loxdocmain.gif" border="0">
+</td>
+</tr>
+</table>
+<table border="0" align="left">
+<tr><td>
+<b>Main Menu</b>:<br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="index.htm">Home</a><br>
+<a href="installation.htm">Installation</a><br><a href="modes.htm">Game Modes</a><br>
+<a href="weapons.htm">Weapons</a><br>
+<a href="features.htm">Features</a><br>
+<a href="grenades.htm">Grenades</a><br>
+<a href="angels.htm">Angels</a><br>
+<a href="armour.htm">Armour</a><br>
+<hr width="15%" size="1" align="center" noshade>
+<a href="history.htm">History</a><br>
+<a href="changelog.htm">Changelog</a><br>
+<hr width="15%" size="1" align="center" noshade>
+Server:<br>
+<a href="server_win.htm">Windows</a><br>
+<a href="server_linux.htm">Linux</a><br><a href="server_cvars.htm">Server Cvars</a><br><hr width="15%" size="1" align="center" noshade>Entities:<br><a href="ent.htm">.ent file How-To</a><br><a href="offworldtransport.htm">OffWorld Transport</a><br>
+<hr width="15%" size="1" align="center" noshade>
+</td>
+<table width="80%" border="0" cellspacing="2" cellpadding="4" align="center">
+  <tr> 
+    <td colspan="2" valign="top">
+	<img src="images/modes.jpg" width="230" height="195">
+	</td>
+    <td valign="top" width="100%">
+      <b>Game Modes</b><br><br>
+Quake 2 LOX Mod has four game modes, Single Player, Death Match, CTF (aka LOX Extinction), and Coop.
+<br>
+<ul>
+<li><b>Single Player</b> -</li>
+The Strogg won't know what hit them.  To make things a little more fair, you might want to select Nightmare skill level -- type   "skill 3" at your Q2 console.<br><br>
+<li><b>DeathMatch</b> -</li>
+The classic way.  Get a bunch of your friends together and blow each other to smithereens.  Or join a public server and wreak chaos on  total strangers.  Either way is fun.<br><br>
+<li><b>Coop</b> -</li>
+Your team of humans fights the Stroggs in the original game maps.
+  Best played at skill level 3, the LOX weapons make quick work of the
+  Stroggs. The standard Q2 weapons like rockets and grenades are enhanced
+  in LOX so the Stroggs have more powerful weaponry.  See <a href="server_cvars.htm">server cvars</a> for details
+on the settings for coop LOX servers.<br><br>
+<li><b>CTF:LOX</b> -</li>
+The current versions, beginning with 1.12.6 now supports CTF Extinction, a two team variation of CTF without the flags. Red team and blue team compete head-to-head for control of all the spawn pads in the map. At the beginning of a map, all the pads are green, as each player runs over a pad the pad changes to his team's color. Once all the players have spawned for the first time they can only respawn on pads belonging to their team. There can only be as many players on that team as there are pads of that team's color. Once all the pads are claimed by a team the other team must convert them to their own color by running over them. The game is won on two levels: total frags and extinction of the other team. To win the game you must convert all the pads to your color and frag all the other team's players into extinction. Each map is played in two rounds with each team initially spawning at opposite ends of the map and trading ends for round two. The mode is set in a dedicated server by setting ctf to 1 and setting some other variables. The Extinction maps need special entities added in order to play well, these entities can be added to any map by creating special "ent" files containing the necessary entities and they will be added to the map when the server loads it. Each ent file bears the name of the map it's for. For example,  carena.bsp is the map, carena.ent is the ent file for it. The ent files are stored in the quake2/ent folder and retrieved as each map is loaded. Some sample ent files are included with the new package.<br><br>
+</ul>
+  </tr>
+</table>
+<hr width="70%" size="1" align="center" noshade>
+<table width="80%" border="0" cellspacing="0" cellpadding="4" align="center">
+  <tr> 
+    <td width="20%"></td>
+    <td align="center" width="50%">Quake 2 LOX Docs. - <a href="http://www.clanwos.org">http://www.clanwos.org</a></td>
+    <td align="right" width="20%"></td>
+  </tr>
+</table>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Quake 2 LOX Mod Installation on Linux</title>
+<meta name="description" content="Tutorial about installing Quake 2 LOX mod on Linux from start to finish.">
+<meta name="keywords" content="Quake 2, Quake2, quake2, quake 2, q2, LOX, LOX mod, Lethal Orifice Examination, linux, game servers, tutorials">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="loxlinuxinstall.css" type="text/css">
+</head>
+<body> 
+<div id="masthead"> 
+  <h1 id="siteName">Quake 2 LOX Mod Installation on Linux</h1> 
+  <div id="globalNav">     
+  </div> 
+</div> 
+<!-- end masthead --> 
+<div id="content"> 
+  <div id="breadCrumb"> 
+    <a href="http://www.clanwos.org">WOS Home</a> / <a href="http://www.clanwos.org/forums">Forums</a> / <a href="http://www.deaconstomb.org">Q2 Downloads</a> /
+  </div> 
+  <!-- start content area -->
+  <h2 id="pageName">Quake 2 version 3.21 Installation ..</h2> 
+  <div class="feature"> 
+    <img src="http://www.clanwos.org/images/deacon/loxlinuxlogo.gif" alt="LOX Linux Docs" width="110" height="110"> 
+    <h3></h3> 
+    <p> 
+	Now we are going to configure and compile the newest version of Quake 2 for Linux, version 3.21 provided by <a href="http://icculus.org/quake2/">http://icculus.org/quake2/</a>.  This is very important for running the latest and greatest version of LOX v1.12.8, it will crash otherwise.<br><br>
+	11. You can download the files a few different ways, but for this example we will use the CVS method.  First let's prepare a place to work and download the files:
+    </p> 
+<pre>
+# mkdir /home/q2user/new_q2
+# cd /home/q2user/new_q2
+</pre>
+<p>
+- Login to cvs.icculus.org with password: <font color="#FF9933">anonymous</font>
+</p>
+<pre>
+# cvs -d:pserver:anonymous@cvs.icculus.org:/cvs/cvsroot login
+</pre>
+<p>
+- Download, via CVS, all the files into the directory "<font color="#FF9933">quake2</font>"
+</p>
+<pre>
+# cvs -z3 -d:pserver:anonymous@cvs.icculus.org:/cvs/cvsroot co quake2
+</pre>	
+	<p>
+	12. Change directory to the "quake2" directory and edit the <b>Makefile</b> to better suit our needs of a dedicated lean and mean server only.  The <b>Makefile</b> controls which settings get compiled into the new binary.  Open up the <b>Makefile</b> with vi or any other editor and set <b>Build_Dedicated</b> to <b>YES</b> and the following items to <b>NO</b>:
+<pre>
+# cd quake2
+# vi Makefile
+
+BUILD_SDLQUAKE2=NO      # sdlquake2 executable (uses SDL for cdrom and sound)
+BUILD_SVGA=NO           # SVGAlib driver. Seems to work fine.
+BUILD_X11=NO            # X11 software driver. Works somewhat ok.
+BUILD_GLX=NO            # X11 GLX driver. Works somewhat ok.
+BUILD_FXGL=NO           # FXMesa driver. Not tested. (used only for V1 and V2).
+BUILD_SDL=NO            # SDL software driver. Works fine for some people.
+BUILD_SDLGL=NO          # SDL OpenGL driver. Works fine for some people.
+BUILD_CTFDLL=NO         # game$(ARCH).so for ctf
+BUILD_XATRIX=NO         # game$(ARCH).so for xatrix (see README.r for details)
+BUILD_ROGUE=NO          # game$(ARCH).so for rogue (see README.r for details)
+BUILD_JOYSTICK=NO       # build in joystick support
+BUILD_ARTS=NO           # build in support for libaRts sound.
+BUILD_ALSA=NO           # build in support for ALSA (default sound on 2.6)
+BUILD_DEDICATED=YES     # build a dedicated quake2 server
+BUILD_AA=NO             # build the ascii soft renderer.
+BUILD_QMAX=NO           # build the fancier GL graphics
+BUILD_RETEXTURE=NO      # build a version supporting retextured graphics
+BUILD_REDBLUE=NO        # build a red-blue 3d glasses renderer...
+STATICSDL=NO
+</pre>
+	</p>
+<p>
+13. Now we'll build the new q2ded binary and gamei386.so files with the <b>make</b> command:
+</p>
+<pre>
+# make
+</pre>
+<p>
+14. Rename and replace the old gamei386.so file and install the new <b>q2ded</b> server binary in the quake2 and baseq2 directories:
+</p>	
+<pre>
+# mv /home/q2user/quake2/baseq2/gamei386.so /home/q2user/quake2/baseq2/gamei386.so.old
+# mv releasei386/gamei386.so /home/q2user/quake2/baseq2/
+# mv releasei386/q2ded /home/q2user/quake2/
+# chown -R  q2user:q2user /home/q2user/quake2/*
+</pre>
+
+  </div> 
+</div> 
+<!--end content --> 
+<div id="navBar"> 
+  <div id="sectionLinks"> 
+    <ul> 
+      <li><a href="loxnew_docs.htm">Introduction</a></li> 
+      <li><a href="tools.htm">Tools Needed</a></li> 
+	  <li><a href="system.htm">System Prep</a></li>
+      <li><a href="q2install.htm">Quake2 Install</a></li>
+      <li><a href="r1q2install.htm">R1Q2 Install</a></li>
+      <li><a href="321install.htm">3.21 Install</a></li>
+      <li><a href="loxinstall.htm">LOX Install</a></li> 
+      <li><a href="q2admininstall.htm">Q2Admin Install</a></li> 
+      <li><a href="bwainstall.htm">BW-Admin Install</a></li>
+	  <li><a href="links.htm">Helpful Links</a></li>
+      <li><a href="contactinfo.htm">Contact Info</a></li> 
+    </ul>
+  </div> 
+  <div id="advert"> 
+        <script type="text/javascript"><!--
+google_ad_client = "pub-2330509524152411";
+google_ad_width = 120;
+google_ad_height = 240;
+google_ad_format = "120x240_as";
+google_ad_channel ="0375101078";
+google_ad_type = "text_image";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "000000";
+google_color_url = "666666";
+google_color_text = "333333";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+  </div> 
+</div> 
+<!--end navbar --> 
+<div id="siteInfo"> 
+  <a href="http://www.datacabin.com"><img src="http://datacabin.com/images/dc1_88x31.gif" alt="DataCabin web hosting" title="DataCabin web hosting" width="88" height="31" border="0"></a><img src="http://clanwos.org/images/deacon/wos_button1.gif" alt="Clan WOS" width="88" height="31"> <a href="http://www.clanwos.org">WOS Home</a> | <a href="http://www.clanwos.org/forums">Forums</a> | Well of Souls Gaming Community
+</div> 
+<br> 
+</body>
+</html>
