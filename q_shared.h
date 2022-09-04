@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #ifdef _WIN32
 #pragma warning(disable : 4244)	// conversion from 'type1' to 'type2', possible loss of data
 #pragma warning(disable : 4100)	// unreferenced formal parameter
-#pragma warning(disable : 4996)	// disable warnings from VS 2010 about deprecated CRT functions (_CRT_SECURE_NO_WARNINGS).
+#pragma warning(disable : 4996)	// deprecated CRT functions (_CRT_SECURE_NO_WARNINGS).
 #endif /* _WIN32 */
 
 #include "performance.h" //QW// included here so all modules may use it.

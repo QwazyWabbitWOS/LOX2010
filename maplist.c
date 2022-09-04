@@ -28,11 +28,6 @@
 #include "maplist.h"
 
 
-//private
-static int  Maplist_CountPlayers(void);
-static void Maplist_VariableLoad(void);
-static void Maplist_VariesMonthly(void);
-
 // This module gracefully handles maplist file errors such as
 // extra blank lines, spaces at the end of names and it
 // protects against non-existent maps.
@@ -362,16 +357,16 @@ static void Maplist_VariesMonthly(void)
 #if 0	//This is sample code. Don't enable!!
 
 //create a target_changelevel entitity for the next map
-edict_t* CreateTargetChangeLevel(char* map)
-{
-	edict_t* ent;
-
-	ent = G_Spawn();
-	ent->classname = "target_changelevel";
-	Com_sprintf(level.nextmap, sizeof(level.nextmap), "%s", map);
-	ent->map = level.nextmap;
-	return ent;
-}
+//edict_t* CreateTargetChangeLevel(char* map)
+//{
+//	edict_t* ent;
+//
+//	ent = G_Spawn();
+//	ent->classname = "target_changelevel";
+//	Com_sprintf(level.nextmap, sizeof(level.nextmap), "%s", map);
+//	ent->map = level.nextmap;
+//	return ent;
+//}
 
 // Compatible with CTF and coop mods
 // =================
@@ -380,42 +375,42 @@ edict_t* CreateTargetChangeLevel(char* map)
 // The timelimit or fraglimit has been exceeded
 // =================
 //
-void EndDMLevel(void)
-{
-	edict_t* ent;
-
-	// go to round 2 if CTF
-	if (ctf->value && TeamplayCheckRound1())
-	{
-		TeamplayStartRound2();
-		return;
-	}
-
-	// stay on same level flag
-	else if ((int)dmflags->value & DF_SAME_LEVEL)
-		ent = CreateTargetChangeLevel(level.mapname);
-
-	// get the next one out of the maplist
-	else if (Maplist_Next()) //returns true if maplist in use and map exists
-		ent = CreateTargetChangeLevel(level.nextmap);
-
-	// go to a specific map
-	else if (level.nextmap[0])
-		ent = CreateTargetChangeLevel(level.nextmap);
-
-	// search for a changelevel within the current map.
-	// this is for the single-player or coop game.
-	else
-	{
-		ent = G_Find(NULL, FOFS(classname), "target_changelevel");
-		if (!ent)
-			// the map designer didn't include a changelevel,
-			// so create a fake ent that goes back to the same level
-			ent = CreateTargetChangeLevel(level.mapname);
-	}
-
-	gi.dprintf("Map is changing to %s\n", level.nextmap);
-
-	BeginIntermission(ent);
-}
+//void EndDMLevel(void)
+//{
+//	edict_t* ent;
+//
+//	// go to round 2 if CTF
+//	if (ctf->value && TeamplayCheckRound1())
+//	{
+//		TeamplayStartRound2();
+//		return;
+//	}
+//
+//	// stay on same level flag
+//	else if ((int)dmflags->value & DF_SAME_LEVEL)
+//		ent = CreateTargetChangeLevel(level.mapname);
+//
+//	// get the next one out of the maplist
+//	else if (Maplist_Next()) //returns true if maplist in use and map exists
+//		ent = CreateTargetChangeLevel(level.nextmap);
+//
+//	// go to a specific map
+//	else if (level.nextmap[0])
+//		ent = CreateTargetChangeLevel(level.nextmap);
+//
+//	// search for a changelevel within the current map.
+//	// this is for the single-player or coop game.
+//	else
+//	{
+//		ent = G_Find(NULL, FOFS(classname), "target_changelevel");
+//		if (!ent)
+//			// the map designer didn't include a changelevel,
+//			// so create a fake ent that goes back to the same level
+//			ent = CreateTargetChangeLevel(level.mapname);
+//	}
+//
+//	gi.dprintf("Map is changing to %s\n", level.nextmap);
+//
+//	BeginIntermission(ent);
+//}
 #endif
