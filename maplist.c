@@ -43,75 +43,75 @@
 // these are the 48 stock quake2 maps in pak0.pak, pak1.pak and pak3,pak
 static char* stockmaps[] =
 {
-	"base1", "base2", "base3", "biggun", "boss1",
-	"boss2", "bunk1", "city1", "city2", "city3",
-	"command", "cool1", "fact1", "fact2", "fact3",
-	"hangar1", "hangar2", "jail1", "jail2", "jail3",
-	"jail4", "jail5", "lab", "mine1", "mine2",
-	"mine3", "mine4", "mintro", "power1", "power2",
-	"security", "space", "strike", "train", "ware1",
-	"ware2", "waste1", "waste2", "waste3", "q2dm1",
-	"q2dm2", "q2dm3", "q2dm4", "q2dm5", "q2dm6",
-	"q2dm7", "q2dm8", // pak1.pak
-	"match1" //pak3.pak
+    "base1", "base2", "base3", "biggun", "boss1",
+    "boss2", "bunk1", "city1", "city2", "city3",
+    "command", "cool1", "fact1", "fact2", "fact3",
+    "hangar1", "hangar2", "jail1", "jail2", "jail3",
+    "jail4", "jail5", "lab", "mine1", "mine2",
+    "mine3", "mine4", "mintro", "power1", "power2",
+    "security", "space", "strike", "train", "ware1",
+    "ware2", "waste1", "waste2", "waste3", "q2dm1",
+    "q2dm2", "q2dm3", "q2dm4", "q2dm5", "q2dm6",
+    "q2dm7", "q2dm8", // pak1.pak
+    "match1" //pak3.pak
 };
 
 // Called by InitGame() to
 // instantiate cvars for maplists and set defaults
 void Maplist_InitVars(void)
 {
-	//QW// custom maplist cvars
-	// when maplistvaries = 0, maplist.txt is used for rotation
-	maplist = gi.cvar("maplist", "0", 0); // current line
-	maplist1 = gi.cvar("maplist1", "1", 0); // secondary counters (low)
-	maplist2 = gi.cvar("maplist2", "1", 0); // med
-	maplist3 = gi.cvar("maplist3", "1", 0); // high
-	maplistfile = gi.cvar("maplistfile", "maplist.txt", 0); // standard maplist
-	maplistfile1 = gi.cvar("maplistfile1", "maplist_low.txt", 0); // low player count maps
-	maplistfile2 = gi.cvar("maplistfile2", "maplist_med.txt", 0);	// medium load maps
-	maplistfile3 = gi.cvar("maplistfile3", "maplist_high.txt", 0);	// lots of players
-	maplistvaries = gi.cvar("maplistvaries", "0", 0);	// maplist file changes with load or per month
-	map_lowcount = gi.cvar("map_lowcount", "6", 0);	// default low load upper threshold
-	map_medcount = gi.cvar("map_medcount", "12", 0);	// default medium load upper threshold
-	gamedir = gi.cvar("gamedir", "", CVAR_NOSET);	// created by engine, we need to expose it for mod
-	basedir = gi.cvar("basedir", "", CVAR_NOSET);	// strictly read-only
+    //QW// custom maplist cvars
+    // when maplistvaries = 0, maplist.txt is used for rotation
+    maplist = gi.cvar("maplist", "0", 0); // current line
+    maplist1 = gi.cvar("maplist1", "1", 0); // secondary counters (low)
+    maplist2 = gi.cvar("maplist2", "1", 0); // med
+    maplist3 = gi.cvar("maplist3", "1", 0); // high
+    maplistfile = gi.cvar("maplistfile", "maplist.txt", 0); // standard maplist
+    maplistfile1 = gi.cvar("maplistfile1", "maplist_low.txt", 0); // low player count maps
+    maplistfile2 = gi.cvar("maplistfile2", "maplist_med.txt", 0);	// medium load maps
+    maplistfile3 = gi.cvar("maplistfile3", "maplist_high.txt", 0);	// lots of players
+    maplistvaries = gi.cvar("maplistvaries", "0", 0);	// maplist file changes with load or per month
+    map_lowcount = gi.cvar("map_lowcount", "6", 0);	// default low load upper threshold
+    map_medcount = gi.cvar("map_medcount", "12", 0);	// default medium load upper threshold
+    gamedir = gi.cvar("gamedir", "", CVAR_NOSET);	// created by engine, we need to expose it for mod
+    basedir = gi.cvar("basedir", "", CVAR_NOSET);	// strictly read-only
 }
 
 // input argument is pointer to selected map
 // returns true if it is a stock map, else false
 qboolean Maplist_CheckStockmaps(char* thismap)
 {
-	int i;
+    int i;
 
-	for (i = 0; i < sizeof stockmaps / sizeof stockmaps[0]; i++)
-	{
-		if (strcmp(thismap, stockmaps[i]) == 0)
-			return true; 	// it's a stock map
-	}
-	return false;
+    for (i = 0; i < sizeof stockmaps / sizeof stockmaps[0]; i++)
+    {
+        if (strcmp(thismap, stockmaps[i]) == 0)
+            return true;    // it's a stock map
+    }
+    return false;
 }
 
 qboolean Maplist_CheckFileExists(char* mapname)
 {
-	FILE* mf;
-	char buffer[MAX_QPATH];
+    FILE* mf;
+    char buffer[MAX_QPATH];
 
-	// check basedir
-	sprintf(buffer, "%s/baseq2/maps/%s.bsp", basedir->string, mapname);
-	mf = fopen(buffer, "r");
-	if (mf != NULL) {
-		fclose(mf);
-		return true;
-	}
+    // check basedir
+    sprintf(buffer, "%s/baseq2/maps/%s.bsp", basedir->string, mapname);
+    mf = fopen(buffer, "r");
+    if (mf != NULL) {
+        fclose(mf);
+        return true;
+    }
 
-	// check gamedir
-	sprintf(buffer, "%s/maps/%s.bsp", gamedir->string, mapname);
-	mf = fopen(buffer, "r");
-	if (mf != NULL) {
-		fclose(mf);
-		return true;
-	}
-	return false; // no file found
+    // check gamedir
+    sprintf(buffer, "%s/maps/%s.bsp", gamedir->string, mapname);
+    mf = fopen(buffer, "r");
+    if (mf != NULL) {
+        fclose(mf);
+        return true;
+    }
+    return false;
 }
 
 /*
@@ -124,177 +124,177 @@ qboolean Maplist_CheckFileExists(char* mapname)
 */
 qboolean Maplist_Next(void)
 {
-	long i;
-	int	ilp;
-	long offset;
-	FILE* in;
-	char* res_cp;
-	char buffer[MAX_QPATH] = { 0 };
-	qboolean ok = false;
+    long i;
+    int	ilp;
+    long offset;
+    FILE* in;
+    char* res_cp;
+    char buffer[MAX_QPATH] = { 0 };
+    qboolean ok = false;
 
-	// Make sure we can find the game directory.
-	if (!gamedir || !gamedir->string[0]) {
-		gi.dprintf("No maplist -- can't find gamedir\n");
-		return false;
-	}
+    // Make sure we can find the game directory.
+    if (!gamedir || !gamedir->string[0]) {
+        gi.dprintf("No maplist -- can't find gamedir\n");
+        return false;
+    }
 
-	// Make sure we can find the maplist file name.
-	if (!maplistfile || !maplistfile->string[0]) {
-		gi.dprintf("Error: Maplist file name is null.\n");
-		return false;
-	}
+    // Make sure we can find the maplist file name.
+    if (!maplistfile || !maplistfile->string[0]) {
+        gi.dprintf("Error: Maplist file name is null.\n");
+        return false;
+    }
 
-	// Get the offset in the maplist.txt file.  
-	// Zero means maplist is turned off.
-	offset = (int)(maplist->value);
-	if (offset <= 0)
-		return false;
+    // Get the offset in the maplist.txt file.  
+    // Zero means maplist is turned off.
+    offset = (int)(maplist->value);
+    if (offset <= 0)
+        return false;
 
-	Maplist_VariableLoad();	// use player load sense if enabled.
-	Maplist_VariesMonthly();	// test and use monthly map lists
-	offset = (int)(maplist->value); //get the updated value if list was switched
+    Maplist_VariableLoad();     // use player load sense if enabled.
+    Maplist_VariesMonthly();    // test and use monthly map lists
+    offset = (int)(maplist->value); //get the updated value if list was switched
 
-	ilp = 0;
-	do	// now we get the map name from the maplist file
-	{
-		sprintf(buffer, "./%s/%s", gamedir->string, mymaplistfile->string);
-		in = fopen(buffer, "r");
-		if (in == NULL)
-		{
-			gi.dprintf("No maplist -- can't open ./%s/%s\n",
-				gamedir->string, mymaplistfile->string);
-			return false;
-		}
+    ilp = 0;
+    do	// now we get the map name from the maplist file
+    {
+        sprintf(buffer, "./%s/%s", gamedir->string, mymaplistfile->string);
+        in = fopen(buffer, "r");
+        if (in == NULL)
+        {
+            gi.dprintf("No maplist -- can't open ./%s/%s\n",
+                gamedir->string, mymaplistfile->string);
+            return false;
+        }
 
-		i = 0;
-		do	// index line by line to match offset else hit EOF and wrap around
-		{
-			res_cp = fgets(buffer, sizeof(buffer), in);
-			if (res_cp == NULL)
-			{
-				// End-of-file errors are OK.
-				if (feof(in))
-				{
-					i = 0;  // begin at the beginning
-					offset = 1;
-					fseek(in, 0L, SEEK_SET);
-					if (ilp++ < 1)	// infinite loop prevention
-						continue;
-					else
-					{
-						gi.dprintf("ERROR: Maplist file is empty! /%s/%s\n",
-							gamedir->string, mymaplistfile->string);
-						return false;
-					}
-				}
-				// Other errors are not OK.
-				gi.dprintf("No maplist -- error reading ./%s/%s\n",
-					gamedir->string, mymaplistfile->string);
-				return false;	// abort map change
-			}
-			i++;
-		} while (i < offset); // we found the line we want
+        i = 0;
+        do	// index line by line to match offset else hit EOF and wrap around
+        {
+            res_cp = fgets(buffer, sizeof(buffer), in);
+            if (res_cp == NULL)
+            {
+                // End-of-file errors are OK.
+                if (feof(in))
+                {
+                    i = 0;  // begin at the beginning
+                    offset = 1;
+                    fseek(in, 0L, SEEK_SET);
+                    if (ilp++ < 1)	// infinite loop prevention
+                        continue;
+                    else
+                    {
+                        gi.dprintf("ERROR: Maplist file is empty! /%s/%s\n",
+                            gamedir->string, mymaplistfile->string);
+                        return false;
+                    }
+                }
+                // Other errors are not OK.
+                gi.dprintf("No maplist -- error reading ./%s/%s\n",
+                    gamedir->string, mymaplistfile->string);
+                return false;	// abort map change
+            }
+            i++;
+        } while (i < offset); // we found the line we want
 
-		if (in != NULL)
-			fclose(in);
-		ok = true; // we think we have a map name
+        if (in != NULL)
+            fclose(in);
+        ok = true; // we think we have a map name
 
-		// Trim any newline(s) or spaces from the end of the string.
-		res_cp = buffer + strlen(buffer) - 1;
-		while (res_cp >= buffer && (*res_cp == '\n' || *res_cp == ' ' || *res_cp == '\r'))
-		{
-			*res_cp = '\0';
-			res_cp--;
-		}
+        // Trim any newline(s) or spaces from the end of the string.
+        res_cp = buffer + strlen(buffer) - 1;
+        while (res_cp >= buffer && (*res_cp == '\n' || *res_cp == ' ' || *res_cp == '\r'))
+        {
+            *res_cp = '\0';
+            res_cp--;
+        }
 
-		if (strlen(buffer) == 0) // oops, buffer line is blank, warn and recover at next line
-		{
-			gi.bprintf(PRINT_HIGH,
-				"WARNING: Maplist line %i is blank, using next map in list.\n", offset);
-			offset++;
-			ok = false;
-			continue;
-		}
+        if (strlen(buffer) == 0) // oops, buffer line is blank, warn and recover at next line
+        {
+            gi.bprintf(PRINT_HIGH,
+                "WARNING: Maplist line %i is blank, using next map in list.\n", offset);
+            offset++;
+            ok = false;
+            continue;
+        }
 
-		if (!Q_stricmp(buffer, level.mapname)) //if nextmap is same map, skip to next one
-		{
-			gi.bprintf(PRINT_HIGH,
-				"WARNING: Skipping double map, using next map in list.\n", offset);
-			offset++;
-			ok = false;
-			continue;
-		}
+        if (!Q_stricmp(buffer, level.mapname)) //if nextmap is same map, skip to next one
+        {
+            gi.bprintf(PRINT_HIGH,
+                "WARNING: Skipping double map, using next map in list.\n", offset);
+            offset++;
+            ok = false;
+            continue;
+        }
 
-		// If we get this far we have a string that is supposed to be a valid map name.
-		// Check the list of 48 stock Quake 2 maps and see if it's one of them.
-		// If it isn't a stock map, check for the existence of a map file (bsp)
-		if (!Maplist_CheckStockmaps(buffer) && !Maplist_CheckFileExists(buffer))
-		{
-			gi.bprintf(PRINT_HIGH,
-				"WARNING: Maplist line %i, map %s was not found. Using next map in list.\n", offset, buffer);
-			offset++;
-			ok = false;
-			continue; // try next one in list
-		}
-	} while (!ok); //exit do-while if ok.
+        // If we get this far we have a string that is supposed to be a valid map name.
+        // Check the list of 48 stock Quake 2 maps and see if it's one of them.
+        // If it isn't a stock map, check for the existence of a map file (bsp)
+        if (!Maplist_CheckStockmaps(buffer) && !Maplist_CheckFileExists(buffer))
+        {
+            gi.bprintf(PRINT_HIGH,
+                "WARNING: Maplist line %i, map %s was not found. Using next map in list.\n", offset, buffer);
+            offset++;
+            ok = false;
+            continue; // try next one in list
+        }
+    } while (!ok);
 
-	// passed all the tests and we have a file
-	strcpy(level.nextmap, buffer); // stuff it into the nextmap member
-	offset++;
-	sprintf(buffer, "%ld", offset);	//save the current counter in the maplist pointer cvar
-	maplist = gi.cvar_set(maplist->name, buffer);//no matter what maplist counter we are using
-	return true;	// good to go
+    // passed all the tests and we have a file
+    strcpy(level.nextmap, buffer); // stuff it into the nextmap member
+    offset++;
+    sprintf(buffer, "%ld", offset);	//save the current counter in the maplist pointer cvar
+    maplist = gi.cvar_set(maplist->name, buffer);//no matter what maplist counter we are using
+    return true;	// good to go
 }
 
 int Maplist_CountPlayers(void)
 {
-	int i, count;
-	edict_t* e;
+    int i, count;
+    edict_t* e;
 
-	count = 0;
-	for (i = 1; i <= maxclients->value; i++) {
-		e = g_edicts + i;
-		if (e->inuse)	//only active players
-			count++;
-	}
-	return (count);
+    count = 0;
+    for (i = 1; i <= maxclients->value; i++) {
+        e = g_edicts + i;
+        if (e->inuse)   //only active players
+            count++;
+    }
+    return (count);
 }
 
 // maplist varies with number of players
 void Maplist_VariableLoad(void)
 {
-	int num;
+    int num;
 
-	// running load sensing.
-	if (maplistvaries->value == 1)
-	{
-		num = Maplist_CountPlayers();
-		gi.bprintf(PRINT_HIGH, "QwazyWabbit's load sensing counted %i players.\n", num);
+    // running load sensing.
+    if (maplistvaries->value == 1)
+    {
+        num = Maplist_CountPlayers();
+        gi.bprintf(PRINT_HIGH, "QwazyWabbit's load sensing counted %i players.\n", num);
 
-		// maplist points to the cvar based on the load sensed
-		if (num <= map_lowcount->value)
-		{
-			maplist = maplist1;
-			mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile1->string); // the file name
-		}
-		if (num <= map_medcount->value && num > map_lowcount->value)
-		{
-			maplist = maplist2;
-			mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile2->string);
-		}
-		if (num > map_medcount->value)
-		{
-			maplist = maplist3;
-			mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile3->string);
-		}
-	}
-	else if (maplistvaries->value != 2)
-	{
-		// the active maplist is the flat load maplist
-		mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile->string);
-		// recover maplist pointer in case we changed maplistvaries
-		maplist = gi.cvar("maplist", "0", 0);
-	}
+        // maplist points to the cvar based on the load sensed
+        if (num <= map_lowcount->value)
+        {
+            maplist = maplist1;
+            mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile1->string); // the file name
+        }
+        if (num <= map_medcount->value && num > map_lowcount->value)
+        {
+            maplist = maplist2;
+            mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile2->string);
+        }
+        if (num > map_medcount->value)
+        {
+            maplist = maplist3;
+            mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile3->string);
+        }
+    }
+    else if (maplistvaries->value != 2)
+    {
+        // the active maplist is the flat load maplist
+        mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile->string);
+        // recover maplist pointer in case we changed maplistvaries
+        maplist = gi.cvar("maplist", "0", 0);
+    }
 }
 
 // automatic monthly maplist rotation
@@ -303,49 +303,50 @@ void Maplist_VariableLoad(void)
 // maplist file.
 void Maplist_VariesMonthly(void)
 {
-	time_t	ct;
-	struct	tm* lt;
-	char	month[32];
-	char	file[MAX_QPATH];
-	char	buff[MAX_QPATH];
-	FILE* mf;
+    time_t  ct;
+    struct  tm* lt;
+    char    month[32];
+    char    file[MAX_QPATH];
+    char    buff[MAX_QPATH];
+    FILE* mf;
 
-	// running monthly auto rotation
-	if (maplistvaries->value == 2)
-	{
-		time(&ct);
-		lt = localtime(&ct);
-		if (lt != NULL)
-		{
-			sprintf(month, "%02i", lt->tm_mon + 1); //JAN thru DEC = 01 thru 12
-			sprintf(file, "maplist%s.txt", month); // maplistNN.txt
-			mymaplistfile = gi.cvar_set("mymaplistfile", file);
-			sprintf(buff, "%s/%s", gamedir->string, mymaplistfile->string);
-			mf = fopen(buff, "r");		// check maplist file exists
-			if (mf == NULL) // oops, nope
-			{
-				gi.dprintf("Error: Maplist file %s doesn't exist. Monthly autorotation disabled.\n", buff);
-				maplistvaries = gi.cvar_set("maplistvaries", "0");
-				mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile->string);
-			}
-			else
-				fclose(mf);
-		}
-		else //lt is NULL
-		{
-			// clock time erred, can't trust it.
-			maplistvaries = gi.cvar_set("maplistvaries", "0");
-			mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile->string);
-			gi.dprintf("Error: Maplist detected bad clock time. Monthly autorotation disabled.\n");
-		}
-	}
-	else if (maplistvaries->value != 1)
-	{
-		// the active maplist is the flat load maplist
-		mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile->string);
-		// recover maplist pointer in case we changed maplistvaries
-		maplist = gi.cvar("maplist", "0", 0);
-	}
+    // running monthly auto rotation
+    if (maplistvaries->value == 2)
+    {
+        time(&ct);
+        lt = localtime(&ct);
+        if (lt != NULL)
+        {
+            sprintf(month, "%02i", lt->tm_mon + 1); //JAN thru DEC = 01 thru 12
+            sprintf(file, "maplist%s.txt", month);  // maplistNN.txt
+            mymaplistfile = gi.cvar_set("mymaplistfile", file);
+            sprintf(buff, "%s/%s", gamedir->string, mymaplistfile->string);
+            mf = fopen(buff, "r");  // check maplist file exists
+            if (mf == NULL)         // oops, nope
+            {
+                gi.dprintf("Game error: Maplist file %s doesn't exist. Monthly autorotation disabled.\n", buff);
+                gi.dprintf("Game error: Maplist file %s doesn't exist. Monthly autorotation disabled.\n", buff);
+                maplistvaries = gi.cvar_set("maplistvaries", "0");
+                mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile->string);
+            }
+            else
+                fclose(mf);
+        }
+        else //lt is NULL
+        {
+            // clock time erred, can't trust it.
+            maplistvaries = gi.cvar_set("maplistvaries", "0");
+            mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile->string);
+            gi.dprintf("Game error: Maplist detected bad clock time. Monthly autorotation disabled.\n");
+        }
+    }
+    else if (maplistvaries->value != 1)
+    {
+        // the active maplist is the flat load maplist
+        mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile->string);
+        // recover maplist pointer in case we changed maplistvaries
+        maplist = gi.cvar("maplist", "0", 0);
+    }
 }
 
 //QW// CODE SAMPLE CreateTargetChangeLevel() and EndDMLevel() //QW//
