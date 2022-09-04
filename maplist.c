@@ -246,7 +246,7 @@ qboolean Maplist_Next(void)
 	return true;	// good to go
 }
 
-static int Maplist_CountPlayers(void)
+int Maplist_CountPlayers(void)
 {
 	int i, count;
 	edict_t* e;
@@ -261,7 +261,7 @@ static int Maplist_CountPlayers(void)
 }
 
 // maplist varies with number of players
-static void Maplist_VariableLoad(void)
+void Maplist_VariableLoad(void)
 {
 	int num;
 
@@ -301,7 +301,7 @@ static void Maplist_VariableLoad(void)
 // tests to be sure maplist files exist for each month
 // and if not, disable the rotation and go back to single
 // maplist file.
-static void Maplist_VariesMonthly(void)
+void Maplist_VariesMonthly(void)
 {
 	time_t	ct;
 	struct	tm* lt;
