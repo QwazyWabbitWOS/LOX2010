@@ -52,7 +52,7 @@ void FireGrenade_Explode(edict_t* ent)
 		mod |= MOD_NOFRAG;
 
 	//FIXME: if we are onground then raise our Z just a bit since we are a point?
-	T_RadiusDamage(ent, ent->owner, ent->dmg, NULL, ent->dmg_radius, mod);
+	T_RadiusDamage(ent, ent->owner, (float)ent->dmg, NULL, ent->dmg_radius, mod);
 	// Flame cloud.
 	PBM_FlameCloud(ent->owner, ent->s.origin, cloud, timer, true, 70, damage,
 		radius_damage, 100, 75);
