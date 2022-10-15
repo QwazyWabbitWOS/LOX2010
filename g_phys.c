@@ -380,7 +380,7 @@ typedef struct pushed_s
 {
 	edict_t* ent;
 	vec3_t	origin;
-	vec3_t	angles;
+	vec3_t	angles;		// [pitch], [yaw], [roll] y,z,x axis rotations
 	float	deltayaw;
 } pushed_t;
 
