@@ -504,7 +504,7 @@ void SP_viewthing(edict_t* ent)
 	VectorSet(ent->maxs, 16, 16, 32);
 	ent->s.modelindex = gi.modelindex("models/objects/banner/tris.md2");
 	gi.linkentity(ent);
-	ent->nextthink = level.time + 0.5;
+	ent->nextthink = level.time + 0.5f;
 	ent->think = TH_viewthing;
 	return;
 }
@@ -755,7 +755,7 @@ void func_explosive_explode(edict_t* self, edict_t* inflictor, edict_t* attacker
 	self->takedamage = DAMAGE_NO;
 
 	if (self->dmg)
-		T_RadiusDamage(self, attacker, self->dmg + 0.0, NULL, self->dmg + 40.0, MOD_EXPLOSIVE);
+		T_RadiusDamage(self, attacker, self->dmg + 0.0f, NULL, self->dmg + 40.0f, MOD_EXPLOSIVE);
 
 	VectorSubtract(self->s.origin, inflictor->s.origin, self->velocity);
 	VectorNormalize(self->velocity);
@@ -1271,7 +1271,7 @@ void misc_viper_bomb_touch(edict_t* self, edict_t* other, cplane_t* plane, csurf
 	G_UseTargets(self, self->activator);
 
 	self->s.origin[2] = self->absmin[2] + 1;
-	T_RadiusDamage(self, self, self->dmg + 0.0, NULL, self->dmg + 40.0, MOD_BOMB);
+	T_RadiusDamage(self, self, self->dmg + 0.0f, NULL, self->dmg + 40.0f, MOD_BOMB);
 	BecomeExplosion2(self);
 }
 
@@ -1286,7 +1286,7 @@ void misc_viper_bomb_prethink(edict_t* self)
 	if (diff < -1.0)
 		diff = -1.0;
 
-	VectorScale(self->moveinfo.dir, 1.0 + diff, v);
+	VectorScale(self->moveinfo.dir, 1.0f + diff, v);
 	v[2] = diff;
 
 	diff = self->s.angles[2];
