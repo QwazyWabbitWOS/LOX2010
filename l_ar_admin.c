@@ -13,12 +13,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-cvar_t* logarstats;		// Enable AlteredRealm player stats log (default = 0)
-cvar_t* statsfile;			// the name of the AlteredRealm stats log file ("stats.log")
-cvar_t* statsfile_rename;	// how often we rename the file
-cvar_t* logfile_name;		// the server or qconsole.log file
-cvar_t* logfile;			// the logfile mode control
-cvar_t* logfile_rename;	// how often we rename the server log file
+cvar_t* logarstats;         // Enable AlteredRealm player stats log (default = 0)
+cvar_t* statsfile;          // the name of the AlteredRealm stats log file ("stats.log")
+cvar_t* statsfile_rename;   // how often we rename the file
+cvar_t* logfile_name;       // the server or qconsole.log file
+cvar_t* logfile;            // the logfile mode control
+cvar_t* logfile_rename;     // how often we rename the server log file
 
 //#define AR_DEBUG
 
@@ -55,7 +55,7 @@ void ARLog_Stats(const char* fmt, ...)
 	char	logpath[MAX_QPATH];
 	FILE* f;
 
-	if (logarstats->value == 0)
+	if (logarstats->value == 0)	// 0 = no log, 1 = separate log, 2 = mix with console log
 		return;
 
 	va_start(argptr, fmt);
@@ -95,7 +95,7 @@ void ARLog_Stats(const char* fmt, ...)
 
 }
 
-// Check local time and return true if it's midnight
+// Check local time and return true only if it's midnight
 int	CheckLocalMidnight(void)
 {
 	time_t	long_time;
@@ -103,15 +103,11 @@ int	CheckLocalMidnight(void)
 
 	time(&long_time);
 	ltime = localtime(&long_time);
-
-	if (ltime->tm_hour == 0 && ltime->tm_min == 0 && ltime->tm_sec == 0)
-		return true;
-	else
-		return false;
+	return (ltime->tm_hour == 0 && ltime->tm_min == 0 && ltime->tm_sec == 0);
 }
 
-// this renames the stats file from lox/stats.log (or whatever)
-// to lox/stats/YYYYMMDD-stats.log. The lox/stats/ folder MUST exist.
+// This renames the stats file from lox/stats.log (or whatever)
+// to lox/stats/YYYYMMDD-stats.log. The ./stats/ folder MUST exist.
 void RenameStatsLog(void)
 {
 	char	logpath[MAX_QPATH];
