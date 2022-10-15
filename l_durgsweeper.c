@@ -37,7 +37,7 @@ void weapon_durggunsweeper_fire(edict_t* ent)
 	VectorScale(forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -2;
 
-	VectorSet(offset, 0, 8, ent->viewheight - 8);
+	VectorSet(offset, 0, 8, ent->viewheight - 8.0f);
 	P_ProjectSource(ent->client, ent->s.origin, offset, forward, right, start);
 
 	if (is_quad)
