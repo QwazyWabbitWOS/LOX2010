@@ -1084,9 +1084,9 @@ void G_SetStats(edict_t* ent)
 	if (ent->client->resp.locationactive)
 	{
 		gi.configstring(CS_GENERAL + (ent - g_edicts - 1),
-			va("%4.0f %4.0f %4.0f Angle %3.3f",
+			va("%4.0f %4.0f %4.0f Angles %03.3f %03.3f",
 				ent->s.origin[0], ent->s.origin[1], ent->s.origin[2],
-				ent->client->ps.viewangles[1]));
+				ent->client->ps.viewangles[0], ent->client->ps.viewangles[1])); //QW// Elevation, Azimuth
 		ent->client->ps.stats[STAT_LOCATION] = CS_GENERAL + (ent - g_edicts - 1);
 	}
 	//QW// show texture name at crosshair in HUD 

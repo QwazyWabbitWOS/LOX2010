@@ -1487,7 +1487,7 @@ void weapon_grenade_fire(edict_t* ent, qboolean held)
 	float	radius;
 	int		typ;
 
-	radius = damage + 40.0;
+	radius = damage + 40.0f;
 	if (is_quad)
 		damage *= 4;
 

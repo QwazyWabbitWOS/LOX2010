@@ -128,7 +128,7 @@ void Cmd_LBind_f(edict_t* ent)
 				gi.cprintf(ent, PRINT_HIGH, "ondeath is not set\n");
 		}
 		else
-			strncpy(ent->client->pers.ondeath, gi.argv(2), sizeof(ent->client->pers.ondeath) - 1);
+			Q_strncpyz(ent->client->pers.ondeath, sizeof(ent->client->pers.ondeath), gi.argv(2));
 	}
 
 	if (Q_stricmp(gi.argv(1), "onrespawn") == 0)
@@ -141,7 +141,10 @@ void Cmd_LBind_f(edict_t* ent)
 				gi.cprintf(ent, PRINT_HIGH, "onrespawn is not set\n");
 		}
 		else
-			strncpy(ent->client->pers.onrespawn, gi.argv(2), sizeof(ent->client->pers.onrespawn) - 1);
+			if (Q_strncpyz(ent->client->pers.onrespawn, sizeof(ent->client->pers.onrespawn), gi.argv(2)) != strlen(ent->client->pers.onrespawn))
+				gi.cprintf(ent, PRINT_HIGH, "Input string exceeds buffer size, truncated.\n");
+			else
+				gi.cprintf(ent, PRINT_HIGH, "onrespawn set to %s\n", ent->client->pers.onrespawn);
 	}
 
 	if (Q_stricmp(gi.argv(1), "onenemydeath") == 0)
@@ -155,7 +158,7 @@ void Cmd_LBind_f(edict_t* ent)
 
 		}
 		else
-			strncpy(ent->client->pers.onenemydeath, gi.argv(2), sizeof(ent->client->pers.onenemydeath) - 1);
+			Q_strncpyz(ent->client->pers.onenemydeath, sizeof(ent->client->pers.onenemydeath), gi.argv(2));
 	}
 }
 
@@ -204,10 +207,10 @@ void Cmd_SkinList_f(edict_t* ent)
 				continue;
 			skin = Info_ValueForKey(edict->client->pers.userinfo, "skin");
 			name = Info_ValueForKey(edict->client->pers.userinfo, "name");
-			sprintf(string, "%3i %16s %s\n", i, name, skin);
+			Com_sprintf(string, sizeof string, "%3i %16s %s\n", i, name, skin);
 			gi.cprintf(ent, PRINT_HIGH, string);
 		}
-		sprintf(string, "\n");
+		Com_sprintf(string, sizeof string, "\n");
 		gi.cprintf(ent, PRINT_HIGH, string);
 	}
 }
@@ -3630,7 +3633,7 @@ void Cmd_Say_f(edict_t* ent, qboolean team, qboolean arg0)
 			return;
 		}
 
-		i = (cl->flood_whenhead - flood_msgs->value + 1);
+		i = (cl->flood_whenhead - (int)flood_msgs->value + 1);
 
 		if (i < 0)
 			i = ((int)sizeof(cl->flood_when) / (int)sizeof(cl->flood_when[0])) + i;
