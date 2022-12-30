@@ -103,7 +103,7 @@ void MatchplaySpawnEntities(char* mapname, char* entities, char* spawnpoint)
 {
 	FILE* f;
 	char	szFile[MAX_QPATH];
-	size_t	nEntSize;
+	long	nEntSize;
 	size_t	nRead;
 	char* pszCustomEnt;
 
@@ -159,10 +159,9 @@ void MatchplaySpawnEntities(char* mapname, char* entities, char* spawnpoint)
 		return;
 	}
 	nRead = fread(pszCustomEnt, 1, nEntSize, f);
-	if (nRead != nEntSize)
+	if (nRead != (size_t)nEntSize)
 	{
-		gi.dprintf("%s: fread %s (%d/%d)\n",
-			__func__, szFile, nRead, nEntSize);
+		gi.dprintf("%s: fread %s (%d/%d)\n", __func__, szFile, nRead, nEntSize);
 		gi.TagFree(pszCustomEnt);
 		fclose(f);
 		return;

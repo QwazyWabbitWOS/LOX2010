@@ -230,7 +230,7 @@ static void SVCmd_ListIP_f(void)
 	gi.cprintf(NULL, PRINT_HIGH, "Filter list:\n");
 	for (i = 0; i < numipfilters; i++)
 	{
-		for (j = 0; j < sizeof b; j++)
+		for (j = 0; j < (int)sizeof b; j++)
 		{
 			b[j] = (ipfilters[i].compare >> (j * 8)) & 0xff;
 		}
@@ -268,7 +268,7 @@ static void SVCmd_WriteIP_f(void)
 
 	for (i = 0; i < numipfilters; i++)
 	{
-		for (j = 0; j < sizeof b; j++)
+		for (j = 0; j < (int)sizeof b; j++)
 		{
 			b[j] = (ipfilters[i].compare >> (j * 8)) & 0xff;
 		}

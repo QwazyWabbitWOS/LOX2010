@@ -1747,7 +1747,8 @@ gitem_t gI_item_armor_body =
 		IT_ARMOR,
 		&bodyarmor_info,
 		ARMOR_BODY,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_armor_combat (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1770,7 +1771,8 @@ gitem_t gI_item_armor_combat =
 		IT_ARMOR,
 		&combatarmor_info,
 		ARMOR_COMBAT,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_armor_jacket (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1793,7 +1795,8 @@ gitem_t gI_item_armor_jacket =
 		IT_ARMOR,
 		&jacketarmor_info,
 		ARMOR_JACKET,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_armor_shard (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1816,7 +1819,8 @@ gitem_t gI_item_armor_shard =
 		IT_ARMOR,
 		NULL,
 		ARMOR_SHARD,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 
@@ -1840,7 +1844,8 @@ gitem_t gI_item_power_screen =
 		IT_ARMOR,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_power_shield (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1863,7 +1868,8 @@ gitem_t gI_item_power_shield =
 		IT_ARMOR,
 		NULL,
 		0,
-		/* precache */ "misc/power2.wav misc/power1.wav"
+		/* precache */ "misc/power2.wav misc/power1.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -1892,7 +1898,8 @@ gitem_t gI_weapon_blaster =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav"
+		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav",
+		0 // Filled by InitItems
 };
 
 /* weapon_blaster (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1916,7 +1923,8 @@ gitem_t gI_weapon_mace =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav"
+		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav",
+		0 // Filled by InitItems
 };
 
 /* weapon_flaregun (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1939,7 +1947,8 @@ gitem_t gI_weapon_flaregun = {
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav"
+		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav",
+		0 // Filled by InitItems
 };
 
 /* weapon_antiflaregun (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -1962,7 +1971,8 @@ gitem_t gI_weapon_antiflaregun = {
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav"
+		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -1986,7 +1996,8 @@ gitem_t gI_weapon_airfist =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav"
+		/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_shotgun (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2009,7 +2020,8 @@ gitem_t gI_weapon_shotgun =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav"
+		/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_explosiveshotgun =
@@ -2030,7 +2042,8 @@ gitem_t gI_weapon_explosiveshotgun =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav"
+		/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_sword =
@@ -2051,8 +2064,8 @@ gitem_t gI_weapon_sword =
 		IT_WEAPON,
 		NULL,
 		0,
-		"models/weapons/v_sword/tris.md2 models/weapons/g_sword/tris.md2 weapons/blastf1a.wav misc/lasfly.wav" //The sound of the blaster
-								//This is precached
+		"models/weapons/v_sword/tris.md2 models/weapons/g_sword/tris.md2 weapons/blastf1a.wav misc/lasfly.wav",
+		 0 // Filled by InitItems
 };
 
 /*QUAKED weapon_supershotgun (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2075,7 +2088,8 @@ gitem_t gI_weapon_supershotgun =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/sshotf1b.wav"
+		/* precache */ "weapons/sshotf1b.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -2099,7 +2113,8 @@ gitem_t gI_weapon_superrailshotgun =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/sshotf1b.wav"
+		/* precache */ "weapons/sshotf1b.wav",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_explosivesupershotgun =
@@ -2120,7 +2135,8 @@ gitem_t gI_weapon_explosivesupershotgun =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/sshotf1b.wav"
+		/* precache */ "weapons/sshotf1b.wav",
+		0 // Filled by InitItems
 };
 
 /*gitem_t gI_weapon_egggun = {
@@ -2163,7 +2179,8 @@ gitem_t gI_weapon_machine =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav"
+		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_machine (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2186,7 +2203,8 @@ gitem_t gI_weapon_machinerocketgun =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav"
+		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_nailgun (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2209,6 +2227,7 @@ gitem_t gI_weapon_nailgun = {
 		NULL,
 		0,
 		/* precache */ "models/nail/tris.md2 weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_explosivemachinegun (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2231,9 +2250,9 @@ gitem_t gI_weapon_explosivemachinegun = {
 		NULL,
 		0,
 		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav",
-
-
+		0 // Filled by InitItems
 };
+
 //Wyrm: new weapon from rogue
 /*QUAKED weapon_pulserifle (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
@@ -2258,6 +2277,7 @@ gitem_t gI_weapon_pulserifle =
 		NULL,
 		0,
 		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav weapons/pulse1.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_machinegun (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2280,7 +2300,8 @@ gitem_t gI_weapon_machinegun =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav"
+		/* precache */ "weapons/machgf1b.wav weapons/machgf2b.wav weapons/machgf3b.wav weapons/machgf4b.wav weapons/machgf5b.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_freezer (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2303,7 +2324,8 @@ gitem_t gI_weapon_freezer =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav sound/weapons/frozen.wav"
+		/* precache */ "weapons/blastf1a.wav misc/lasfly.wav sound/weapons/frozen.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -2327,7 +2349,8 @@ gitem_t gI_weapon_chaingun =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/chngnl1a.wav weapons/machgf3b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/chngnl1a.wav weapons/machgf3b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_explosivechaingun =
@@ -2348,7 +2371,8 @@ gitem_t gI_weapon_explosivechaingun =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/chngnl1a.wav weapons/machgf3b.wav` weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/chngnl1a.wav weapons/machgf3b.wav` weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -2372,7 +2396,8 @@ gitem_t gI_weapon_streetsweeper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 /*QUAKED weapon_streetsweeper (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
@@ -2394,7 +2419,8 @@ gitem_t gI_weapon_explosivestreetsweeper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_streetsweeper (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2417,7 +2443,8 @@ gitem_t gI_weapon_stickygrenadesweeper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -2441,7 +2468,8 @@ gitem_t gI_weapon_superblastersweeper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_grenadesweeper =
@@ -2462,7 +2490,8 @@ gitem_t gI_weapon_grenadesweeper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_chunkgun =
@@ -2483,7 +2512,8 @@ gitem_t gI_weapon_chunkgun =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_freezersweeper =
@@ -2504,7 +2534,8 @@ gitem_t gI_weapon_freezersweeper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -2526,7 +2557,8 @@ gitem_t gI_weapon_flamesweeper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_bazookasweeper (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2549,7 +2581,8 @@ gitem_t gI_weapon_bazookasweeper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -2573,7 +2606,8 @@ gitem_t gI_weapon_railgunsweeper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_snipersweeper (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2596,7 +2630,8 @@ gitem_t gI_weapon_snipersweeper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav"
+		/* precache */ "weapons/chngnu1a.wav weapons/shotgf1b.wav weapons/shotgr1b.wav weapons/chngnd1a.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -2620,7 +2655,8 @@ gitem_t gI_ammo_grenades =
 		IT_AMMO | IT_WEAPON,
 		NULL,
 		AMMO_GRENADES,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_clustergrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2643,7 +2679,8 @@ gitem_t gI_weapon_blindinggrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_clustergrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2666,7 +2703,8 @@ gitem_t gI_weapon_clustergrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_railbomb (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2689,7 +2727,8 @@ gitem_t gI_weapon_railbomb =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_plasmagrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2712,7 +2751,8 @@ gitem_t gI_weapon_plasmagrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_napalmgrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2735,7 +2775,8 @@ gitem_t gI_weapon_napalmgrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_shrapnelgrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2758,7 +2799,8 @@ gitem_t gI_weapon_shrapnelgrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_cataclysm (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2781,7 +2823,8 @@ gitem_t gI_weapon_cataclysm =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_plasmaclustergrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2804,7 +2847,8 @@ gitem_t gI_weapon_plasmaclustergrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_telegrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2827,7 +2871,8 @@ gitem_t gI_weapon_telegrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_freezegrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2850,7 +2895,8 @@ gitem_t gI_weapon_freezegrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_homergrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2873,7 +2919,8 @@ gitem_t gI_weapon_homergrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_rocketgrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2896,7 +2943,8 @@ gitem_t gI_weapon_rocketgrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_positrongrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2919,7 +2967,8 @@ gitem_t gI_weapon_positrongrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_midnightgrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2942,7 +2991,8 @@ gitem_t gI_weapon_midnightgrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_freezatrongrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2965,7 +3015,8 @@ gitem_t gI_weapon_freezatrongrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_banzaigrenade (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -2988,7 +3039,8 @@ gitem_t gI_weapon_banzaigrenade =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 
@@ -3012,7 +3064,8 @@ gitem_t gI_weapon_spinningrailbomb =
 		IT_WEAPON,
 		NULL,
 		0,
-		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav "
+		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED ammo_nukegrenades (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3037,6 +3090,7 @@ gitem_t gI_weapon_nukegrenades =
 		NULL,
 		0,
 		/* precache */ "weapons/hgrent1a.wav weapons/hgrena1b.wav weapons/hgrenc1b.wav weapons/hgrenb1a.wav weapons/hgrenb2a.wav misc/bigtele.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_grenadelauncher (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3059,7 +3113,8 @@ gitem_t gI_weapon_grenadelauncher =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav"
+		/* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_stickinggrenadelauncher (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3081,7 +3136,8 @@ gitem_t gI_weapon_stickinggrenadelauncher = {
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/hgproxy/tris.md2 sound/misc/giggle1.wav sound/misc/giggle2.wav sound/misc/giggle3.wav sound/misc/giggle4.wav sound/misc/giggle5.wav sound/misc/giggle6.wav sound/misc/giggle10.wav sound/misc/giggle7.wav sound/misc/giggle8.wav sound/misc/giggle9.wav sound/misc/giggle10.wav"
+		/* precache */ "models/objects/hgproxy/tris.md2 sound/misc/giggle1.wav sound/misc/giggle2.wav sound/misc/giggle3.wav sound/misc/giggle4.wav sound/misc/giggle5.wav sound/misc/giggle6.wav sound/misc/giggle10.wav sound/misc/giggle7.wav sound/misc/giggle8.wav sound/misc/giggle9.wav sound/misc/giggle10.wav",
+		0 // Filled by InitItems
 };
 
 /* weapon_bucky (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3105,7 +3161,8 @@ gitem_t gI_weapon_bucky =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/hgproxy/tris.md2 sound/misc/giggle1.wav sound/misc/giggle2.wav sound/misc/giggle3.wav sound/misc/giggle4.wav sound/misc/giggle5.wav sound/misc/giggle6.wav sound/misc/giggle10.wav sound/misc/giggle7.wav sound/misc/giggle8.wav sound/misc/giggle9.wav sound/misc/giggle10.wav"
+		/* precache */ "models/objects/hgproxy/tris.md2 sound/misc/giggle1.wav sound/misc/giggle2.wav sound/misc/giggle3.wav sound/misc/giggle4.wav sound/misc/giggle5.wav sound/misc/giggle6.wav sound/misc/giggle10.wav sound/misc/giggle7.wav sound/misc/giggle8.wav sound/misc/giggle9.wav sound/misc/giggle10.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -3129,7 +3186,8 @@ gitem_t gI_weapon_floatingminelauncher =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav sound/flyer/flyidle1.wav"
+		/* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav sound/flyer/flyidle1.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_bazooka (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3152,7 +3210,8 @@ gitem_t gI_weapon_bazooka =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav sound/flyer/flyidle1.wav"
+		/* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav sound/flyer/flyidle1.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_doubleimpact (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3174,7 +3233,8 @@ gitem_t gI_weapon_doubleimpact = {
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/sshotf1b.wav"
+		/* precache */ "weapons/sshotf1b.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_rocketlauncher (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3197,7 +3257,8 @@ gitem_t gI_weapon_rocketlauncher =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
+		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_spiralrocketlauncher =
@@ -3218,7 +3279,8 @@ gitem_t gI_weapon_spiralrocketlauncher =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
+		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_homing (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3240,7 +3302,8 @@ gitem_t gI_weapon_homing = {
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
+		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_skipper (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3263,7 +3326,8 @@ gitem_t gI_weapon_skipper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
+		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_guided (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3286,7 +3350,8 @@ gitem_t gI_weapon_guided =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
+		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2",
+		0 // Filled by InitItems
 };
 
 
@@ -3310,7 +3375,8 @@ gitem_t gI_weapon_guidednuke =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2"
+		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_lightninggun (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3332,7 +3398,8 @@ gitem_t gI_weapon_lightninggun = {
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "light/lhit.wav light/lstart.wav models/proj/lightning/tris.md2"
+		/* precache */ "light/lhit.wav light/lstart.wav models/proj/lightning/tris.md2",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_antimattercannon (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3355,6 +3422,7 @@ gitem_t gI_weapon_antimattercannon = {
 		NULL,
 		0,
 		/* precache */ "light/lhit.wav light/lstart.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_positron (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3376,7 +3444,8 @@ gitem_t gI_weapon_positron = {
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav"
+		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_freezatron (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3398,7 +3467,8 @@ gitem_t gI_weapon_freezatron = {
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav"
+		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_hyperblaster (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3420,7 +3490,8 @@ gitem_t gI_weapon_hyperblaster = {
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav"
+		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_icecubegun (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3442,7 +3513,8 @@ gitem_t gI_weapon_icecubegun = {
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav"
+		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -3466,7 +3538,8 @@ gitem_t gI_weapon_superblaster =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2 sound/weapons/tris.md2"
+		/* precache */ "models/objects/rocket/tris.md2 weapons/rockfly.wav weapons/rocklf1a.wav weapons/rocklr1b.wav models/objects/debris2/tris.md2 sound/weapons/tris.md2",
+		0 // Filled by InitItems
 };
 // end 4.8 super blaster
 
@@ -3490,7 +3563,8 @@ gitem_t gI_weapon_railgun =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/rg_hum.wav"
+		/* precache */ "weapons/rg_hum.wav",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_kaminit =
@@ -3511,7 +3585,8 @@ gitem_t gI_weapon_kaminit =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/rg_hum.wav"
+		/* precache */ "weapons/rg_hum.wav",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_wallpiercingrailgun =
@@ -3532,7 +3607,8 @@ gitem_t gI_weapon_wallpiercingrailgun =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/rg_hum.wav"
+		/* precache */ "weapons/rg_hum.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -3555,7 +3631,8 @@ gitem_t gI_weapon_sonicrailgun =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/rg_hum.wav"
+		/* precache */ "weapons/rg_hum.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_railgun2 (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3581,7 +3658,8 @@ gitem_t gI_weapon_railgun2 =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/rg_hum.wav"
+		/* precache */ "weapons/rg_hum.wav",
+		0 // Filled by InitItems
 };
 
 //Wyrm: new weapon from Rogue
@@ -3605,6 +3683,7 @@ gitem_t gI_weapon_disintegrator = {
 		NULL,
 		0,
 		/* precache */ "weapons/hyprbu1a.wav weapons/hyprbl1a.wav weapons/hyprbf1a.wav weapons/hyprbd1a.wav misc/lasfly.wav",
+		0 // Filled by InitItems
 };
 
 gitem_t gI_weapon_durg =
@@ -3625,7 +3704,8 @@ gitem_t gI_weapon_durg =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/rg_hum.wav"
+		/* precache */ "weapons/rg_hum.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_nuke (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3648,6 +3728,7 @@ gitem_t gI_weapon_nuke = {
 		NULL,
 		0,
 		/* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/bfg__f1y.wav weapons/bfg__l1a.wav weapons/bfg__x1b.wav weapons/bfg_hum.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_energyvortex (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3671,6 +3752,7 @@ gitem_t gI_weapon_energyvortex =
 		NULL,
 		0,
 		/* precache */ "models/items/keys/pyramid/tris.md2 grav_new.wav ",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_vacuummaker (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3694,6 +3776,7 @@ gitem_t gI_weapon_vacuummaker =
 		NULL,
 		0,
 		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_bfg (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3716,7 +3799,8 @@ gitem_t gI_weapon_bfg =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/bfg__f1y.wav weapons/bfg__l1a.wav weapons/bfg__x1b.wav weapons/bfg_hum.wav"
+		/* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/bfg__f1y.wav weapons/bfg__l1a.wav weapons/bfg__x1b.wav weapons/bfg_hum.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_bfg (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3739,7 +3823,8 @@ gitem_t gI_weapon_fbfg =
 		IT_WEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/bfg__f1y.wav weapons/bfg__l1a.wav weapons/bfg__x1b.wav weapons/bfg_hum.wav"
+		/* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/bfg__f1y.wav weapons/bfg__l1a.wav weapons/bfg__x1b.wav weapons/bfg_hum.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_sniper (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3762,7 +3847,8 @@ gitem_t gI_weapon_sniper =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/rg_hum.wav models/monsters/parasite/tip/tris.md2"
+		/* precache */ "weapons/rg_hum.wav models/monsters/parasite/tip/tris.md2",
+		0 // Filled by InitItems
 };
 
 /*QUAKED weapon_plasmarifle (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3785,7 +3871,8 @@ gitem_t gI_weapon_plasma =
 		IT_WEAPON | IT_ALTWEAPON | IT_STAY_COOP,
 		NULL,
 		0,
-		/* precache */ "weapons/rg_hum.wav"
+		/* precache */ "weapons/rg_hum.wav",
+		0 // Filled by InitItems
 };
 
 
@@ -3813,7 +3900,8 @@ gitem_t gI_ammo_shells =
 		IT_AMMO,
 		NULL,
 		AMMO_SHELLS,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED ammo_bullets (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3836,7 +3924,8 @@ gitem_t gI_ammo_bullets =
 		IT_AMMO,
 		NULL,
 		AMMO_BULLETS,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED ammo_cells (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3859,7 +3948,8 @@ gitem_t gI_ammo_cells =
 		IT_AMMO,
 		NULL,
 		AMMO_CELLS,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED ammo_rockets (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3882,7 +3972,8 @@ gitem_t gI_ammo_rockets =
 		IT_AMMO,
 		NULL,
 		AMMO_ROCKETS,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED ammo_slugs (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3905,7 +3996,8 @@ gitem_t gI_ammo_slugs =
 		IT_AMMO,
 		NULL,
 		AMMO_CELLS,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 //
@@ -3934,7 +4026,8 @@ gitem_t gI_item_jetpack =
 		NULL,
 		0,
 		/* precache */
-		"hover/hovidle1.wav items/damage.wav items/damage2.wav items/damage3.wav"
+		"hover/hovidle1.wav items/damage.wav items/damage2.wav items/damage3.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_quad (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3957,7 +4050,8 @@ gitem_t gI_item_quad =
 		IT_POWERUP,
 		NULL,
 		0,
-		/* precache */ "items/damage.wav items/damage2.wav items/damage3.wav"
+		/* precache */ "items/damage.wav items/damage2.wav items/damage3.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_invulnerability (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -3980,7 +4074,8 @@ gitem_t gI_item_invulnerability =
 		IT_POWERUP,
 		NULL,
 		0,
-		/* precache */ "items/protect.wav items/protect2.wav items/protect4.wav"
+		/* precache */ "items/protect.wav items/protect2.wav items/protect4.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_silencer (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -4003,7 +4098,8 @@ gitem_t gI_item_silencer =
 		IT_POWERUP,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_breather (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -4026,7 +4122,8 @@ gitem_t gI_item_breather =
 		IT_STAY_COOP | IT_POWERUP,
 		NULL,
 		0,
-		/* precache */ "items/airout.wav"
+		/* precache */ "items/airout.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_enviro (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -4049,7 +4146,8 @@ gitem_t gI_item_enviro =
 		IT_STAY_COOP | IT_POWERUP,
 		NULL,
 		0,
-		/* precache */ "items/airout.wav"
+		/* precache */ "items/airout.wav",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_ancient_head (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -4073,7 +4171,8 @@ gitem_t gI_item_ancient_head =
 		IT_NOT_DM,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_adrenaline (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -4097,7 +4196,8 @@ gitem_t gI_item_adrenaline =
 		0,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_bandolier (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -4120,7 +4220,8 @@ gitem_t gI_item_bandolier =
 		0,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED item_pack (.3 .3 1) (-16 -16 -16) (16 16 16)
@@ -4143,7 +4244,8 @@ gitem_t gI_item_pack =
 		0,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 //
@@ -4170,7 +4272,8 @@ gitem_t gI_key_data_cd =
 		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED key_power_cube (0 .5 .8) (-16 -16 -16) (16 16 16) TRIGGER_SPAWN NO_TOUCH
@@ -4194,7 +4297,8 @@ gitem_t gI_key_power_cube =
 		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED key_pyramid (0 .5 .8) (-16 -16 -16) (16 16 16)
@@ -4218,7 +4322,8 @@ gitem_t gI_key_pyramid =
 		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED key_data_spinner (0 .5 .8) (-16 -16 -16) (16 16 16)
@@ -4242,7 +4347,8 @@ gitem_t gI_key_data_spinner =
 		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED key_pass (0 .5 .8) (-16 -16 -16) (16 16 16)
@@ -4266,7 +4372,8 @@ gitem_t gI_key_pass =
 		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED key_blue_key (0 .5 .8) (-16 -16 -16) (16 16 16)
@@ -4290,7 +4397,8 @@ gitem_t gI_key_blue_key =
 		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems
 };
 
 /*QUAKED key_red_key (0 .5 .8) (-16 -16 -16) (16 16 16)
@@ -4314,7 +4422,8 @@ gitem_t gI_key_red_key =
 		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems 
 };
 
 /*QUAKED key_commander_head (0 .5 .8) (-16 -16 -16) (16 16 16)
@@ -4338,7 +4447,9 @@ gitem_t gI_key_commander_head =
 		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems 
+
 };
 
 /*QUAKED key_airstrike_target (0 .5 .8) (-16 -16 -16) (16 16 16)
@@ -4362,7 +4473,8 @@ gitem_t gI_key_airstrike_target =
 		IT_STAY_COOP | IT_KEY | IT_NOT_DM,
 		NULL,
 		0,
-		/* precache */ ""
+		/* precache */ "",
+		0 // Filled by InitItems 
 };
 
 gitem_t gI_item_health =
@@ -4383,7 +4495,8 @@ gitem_t gI_item_health =
 		0,
 		NULL,
 		0,
-		/* precache */ "items/s_health.wav items/n_health.wav items/l_health.wav items/m_health.wav"
+		/* precache */ "items/s_health.wav items/n_health.wav items/l_health.wav items/m_health.wav",
+		0 // Filled by InitItems 
 };
 
 gitem_t gI_item_null2 =

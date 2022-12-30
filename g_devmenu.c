@@ -107,7 +107,7 @@ void Cmd_DevMenu_f(char* scmd, edict_t* ent)
 
 	else if (Q_stricmp(scmd, "reset") == 0)
 	{
-		for (i = 0; i < (sizeof(testmenu) / sizeof(pmenu_t)); i++)
+		for (i = 0; i < ((int)(sizeof(testmenu) / sizeof(pmenu_t))); i++)
 		{
 			strcpy(testmenu[i].text, ""); // blank the line
 			testmenu[i].align = PMENU_ALIGN_CENTER;

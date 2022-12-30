@@ -18,8 +18,6 @@ void fire_superrailshotgun(edict_t* self, vec3_t start, vec3_t aimdir, int damag
 	if (!self || !self->client)
 		return;
 
-	kick = 0;
-
 	// Set up the means of death.
 	mod = MOD_SUPERRAILSHOTGUN;
 	// no point awarded if fragbanned

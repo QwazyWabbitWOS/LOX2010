@@ -1044,7 +1044,7 @@ extern	cvar_t* loxarmorban;
 extern	cvar_t* loxsweeperban;
 extern	cvar_t* loxtrackerban;	//QW//
 extern	cvar_t* loxturretban;	//TheLopez//
-extern	cvar_t* p_pickup_regen;//QW//
+extern	cvar_t* p_pickup_regen;	//QW//
 extern	cvar_t* p_pickup_vampiric;
 extern	cvar_t* p_pickup_invulnerability;
 extern	cvar_t* p_pickup_organic_armor;
@@ -1127,6 +1127,7 @@ extern	cvar_t* minlevel;			// lowest light level to apply
 // fields are needed for spawning from the entity string
 // and saving / loading games
 //
+#define FFL_SPAWNNORM		0
 #define FFL_SPAWNTEMP		1
 #define FFL_NOSPAWN			2
 

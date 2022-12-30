@@ -83,7 +83,7 @@ qboolean Maplist_CheckStockmaps(char* thismap)
 {
     int i;
 
-    for (i = 0; i < sizeof stockmaps / sizeof stockmaps[0]; i++)
+    for (i = 0; i < (int)(sizeof stockmaps / sizeof stockmaps[0]); i++)
     {
         if (strcmp(thismap, stockmaps[i]) == 0)
             return true;    // it's a stock map
