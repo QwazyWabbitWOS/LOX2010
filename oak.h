@@ -79,14 +79,15 @@ void OakAI_Salute(edict_t *self);
 void OakAI_Taunt(edict_t *self);
 void OakAI_Wave(edict_t *self);
 
-int oak_sound_pain;
-int oak_sound_die;
-int oak_sound_idle;
-int oak_sound_punch;
-int oak_sound_sight;
-int oak_sound_search;
-int oak_sound_sight1;
-int oak_sound_sight2;
-int oak_sound_death;
+//QW// Soundindex globals for oak.c and oakai.c
+extern int oak_sound_pain;
+extern int oak_sound_die;
+extern int oak_sound_idle;
+extern int oak_sound_punch;
+extern int oak_sound_sight;
+extern int oak_sound_search;
+extern int oak_sound_sight1;
+extern int oak_sound_sight2;
+extern int oak_sound_death;
 
 #endif

@@ -35,6 +35,17 @@
 #include "g_local.h"
 #include "oak.h"
 
+//QW// Soundindex globals for oak.c and oakai.c
+int oak_sound_pain;
+int oak_sound_die;
+int oak_sound_idle;
+int oak_sound_punch;
+int oak_sound_sight;
+int oak_sound_search;
+int oak_sound_sight1;
+int oak_sound_sight2;
+int oak_sound_death;
+
 /************************************************
 *
 * Function:	Oak_Check_SP
