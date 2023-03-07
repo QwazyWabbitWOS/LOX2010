@@ -653,8 +653,6 @@ typedef struct gitem_s
 } gitem_t;
 
 
-char statusbar[1390];	// this is the status bar (HUD) buffer for DM and CTF //QW//
-
 //
 // this structure is left intact through an entire game
 // it should be initialized at dll load time, and read/written to
@@ -1165,8 +1163,8 @@ extern int	power_shield_index;
 extern	gitem_armor_t	jacketarmor_info;//	= { 25,  50, .30, .00, ARMOR_JACKET};
 extern	gitem_armor_t	combatarmor_info;//	= { 50, 100, .60, .30, ARMOR_COMBAT};
 extern	gitem_armor_t	bodyarmor_info;//	= {100, 200, .80, .60, ARMOR_BODY};
-qboolean is_quad;
-byte     is_silenced;
+extern	qboolean is_quad;
+extern	byte     is_silenced;
 
 extern	field_t fields[];
 extern	gitem_t* itemlist[];

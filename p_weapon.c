@@ -27,6 +27,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // darKMajick definitions
 #include "l_dm_grenades.h"
 
+//QW// Globals
+qboolean is_quad;
+byte     is_silenced;
+//QW//
+
 void SetSweeperMode(edict_t* ent);
 
 #define DEFAULT_EXBULLET_HSPREAD  500

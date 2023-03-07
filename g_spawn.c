@@ -759,6 +759,8 @@ below it. This seems to give a nice uniform leading between lines.
 
 // ===================================================================
 
+char statusbar[1390];	// this is the status bar (HUD) buffer for DM and CTF //QW//
+
 // This function is executed once in SP_worldspawn
 void CreateStatusBar(void)
 {
