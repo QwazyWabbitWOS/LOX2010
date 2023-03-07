@@ -495,7 +495,6 @@ current
 void ShowGun(edict_t* ent)
 {
 	char heldmodel[128];
-	int n;
 
 	if (!ent->client->pers.weapon)
 	{
@@ -511,7 +510,7 @@ void ShowGun(edict_t* ent)
 	strcat(heldmodel, ".md2");
 
 	// held model is mapped onto the player skinnum
-	n = (gi.modelindex(heldmodel) - vwep_index) << 8;
+	int n = (gi.modelindex(heldmodel) - vwep_index) << 8;
 	ent->s.skinnum &= 0xFF;
 	ent->s.skinnum |= n;
 	//DbgPrintf("ShowGun: %s index 0x%x\n", heldmodel, n);

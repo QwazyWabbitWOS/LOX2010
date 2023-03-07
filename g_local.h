@@ -1156,11 +1156,11 @@ typedef struct field_s
 	int		flags;
 } field_t;
 
-int	jacket_armor_index;
-int	combat_armor_index;
-int	body_armor_index;
-int	power_screen_index;
-int	power_shield_index;
+extern int	jacket_armor_index;
+extern int	combat_armor_index;
+extern int	body_armor_index;
+extern int	power_screen_index;
+extern int	power_shield_index;
 
 extern	gitem_armor_t	jacketarmor_info;//	= { 25,  50, .30, .00, ARMOR_JACKET};
 extern	gitem_armor_t	combatarmor_info;//	= { 50, 100, .60, .30, ARMOR_COMBAT};

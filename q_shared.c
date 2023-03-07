@@ -861,6 +861,18 @@ size_t Q_strncatz(char* dst, size_t dstSize, const char* src)
 	return (dLen + (s - src));    // returned count excludes NULL terminator
 }
 
+// Convert a string to lowercase
+size_t Q_strlower(char* string)
+{
+	size_t i;
+	
+	for (i = 0; string[i] != 0; i++)
+	{
+		Q_tolower(string[i]);
+	}
+	return i;
+}
+
 /**
  Safer, uses large buffer.
  //QW// The big buffer allows us to safely dump

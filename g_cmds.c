@@ -3371,12 +3371,12 @@ void Cmd_Push_f(edict_t* ent)
 	VectorMA(start, 8192, forward, end);
 	tr = gi.trace(start, NULL, NULL, end, ent, MASK_SHOT);
 
-	if (tr.ent->client != NULL && tr.ent->client->pers.special == AOENERGY)
+	if (tr.ent->client && tr.ent->client->pers.special == AOENERGY)
 		return; //QW// target flying angeloe blocks the pusher
 
-	if (tr.ent && ((tr.ent->svflags & SVF_MONSTER)
+	if ((tr.ent->svflags & SVF_MONSTER)
 		/* || (tr.ent->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM)) */
-		|| (tr.ent->client)))
+		|| (tr.ent->client))
 	{
 		// Show a trail from the pusher to the pushee.
 		gi.WriteByte(svc_temp_entity);
@@ -3391,8 +3391,7 @@ void Cmd_Push_f(edict_t* ent)
 		gi.multicast(ent->s.origin, MULTICAST_PHS);
 
 		// Have the pusher emit a sound.
-		gi.sound(ent, CHAN_WEAPON, gi.soundindex("items/damage3.wav"), 1,
-			ATTN_NORM, 0);
+		gi.sound(ent, CHAN_WEAPON, gi.soundindex("items/damage3.wav"), 1, ATTN_NORM, 0);
 
 		// Now push them.
 		VectorScale(forward, 2500, forward);
@@ -3441,12 +3440,12 @@ void Cmd_Pull_f(edict_t* ent)
 	VectorMA(start, 8192, forward, end);
 	tr = gi.trace(start, NULL, NULL, end, ent, MASK_SHOT);
 
-	if (tr.ent->client != NULL && tr.ent->client->pers.special == AOENERGY)
+	if (tr.ent->client && tr.ent->client->pers.special == AOENERGY)
 		return; //QW// target flying angeloe blocks the puller
 
-	if (tr.ent && ((tr.ent->svflags & SVF_MONSTER)
+	if ((tr.ent->svflags & SVF_MONSTER)
 		// (tr.ent->spawnflags & (DROPPED_ITEM | DROPPED_PLAYER_ITEM))
-		|| (tr.ent->client)))
+		|| (tr.ent->client))
 	{
 		// Show a trail from the puller to the pullee.
 		gi.WriteByte(svc_temp_entity);

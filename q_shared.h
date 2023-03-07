@@ -170,7 +170,7 @@ void R_ConcatTransforms(float in1[3][4], float in2[3][4], float out[3][4]);
 void AngleVectors(vec3_t angles, vec3_t forward, vec3_t right, vec3_t up);
 int BoxOnPlaneSide(vec3_t emins, vec3_t emaxs, struct cplane_s* plane);
 float	anglemod(float a);
-float LerpAngle(float a1, float a2, float frac);
+float LerpAngle(float a2, float a1, float frac);
 
 #define BOX_ON_PLANE_SIDE(emins, emaxs, p) (((p)->type < 3)?(((p)->dist <= (emins)[(p)->type])?1:(((p)->dist >= (emaxs)[(p)->type])?2:3)):BoxOnPlaneSide( (emins), (emaxs), (p)))
 
@@ -220,6 +220,7 @@ int Q_stricmp(const char* s1, const char* s2);
 int Q_strnicmp(const char* s1, const char* s2, size_t count);
 size_t Q_strncpyz(char* dst, size_t dstSize, const char* src);
 size_t Q_strncatz(char* dst, size_t dstSize, const char* src);
+size_t Q_strlower(char* string);
 
 #define Q_strncpy(dst, src, len) \
 do { \

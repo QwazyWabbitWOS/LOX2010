@@ -72,10 +72,7 @@ void offworld_teleporter_touch(edict_t* self, edict_t* other, cplane_t* plane, c
 	//
 	//=================================================================================
 
-	int			i, j, k;
 	char		external_server[80];
-	char		exit_message[256];
-	char		connect_message[120];
 
 	if (!other->client) // touched by someone we don't know :)
 		return;
@@ -84,7 +81,10 @@ void offworld_teleporter_touch(edict_t* self, edict_t* other, cplane_t* plane, c
 
 	if (strstr(external_server, "q2@") != NULL)  // we have a match for remote q2 server
 	{
-		i = sprintf(exit_message, "say Offworld transport to %s ...\n", external_server);
+		char		connect_message[120];
+		char		exit_message[256];
+
+		int i = sprintf(exit_message, "say Offworld transport to %s ...\n", external_server);
 		if (i != -1)
 			stuffcmd(other, exit_message);
 		else
@@ -92,9 +92,9 @@ void offworld_teleporter_touch(edict_t* self, edict_t* other, cplane_t* plane, c
 			gi.cprintf(other, PRINT_HIGH, "Server exit message format error.\n");
 			return;
 		}
-		k = (int)strlen(external_server);
+		int k = (int)strlen(external_server);
 
-		for (j = 3; j < k; j++)
+		for (int j = 3; j < k; j++)
 			external_server[j - 3] = external_server[j];
 
 		external_server[k - 3] = 0;
