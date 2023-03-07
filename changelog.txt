@@ -638,18 +638,28 @@ xx/xx/xxxx - LOX Version 1.12.16 Released
 
 03/09/2018 - Added givehook command. This gives the aliases the +hook
              command needs to operate. Player can now type givehook to the console
-			 and receive all the aliases needed to operate the hook.
-			 
-			 Fixed the rotation of the hyperblaster weapons. The default
-			 weapon select rotation wasn't correct, lightninggun, freezatron
-			 and disruptor weren't being selected.
+             and receive all the aliases needed to operate the hook.
 
-			 Moved the lightning gun into the hyperblaster class where
-			 it belonged per the docs. It was erroneously picking up 
-			 with the railgun.
-			 
-			 Mods to the help text per the changes.
-			 LOX Version 1.12.21
+             Fixed the rotation of the hyperblaster weapons. The default
+             weapon select rotation wasn't correct, lightninggun, freezatron
+             and disruptor weren't being selected.
+
+             Moved the lightning gun into the hyperblaster class where
+             it belonged per the docs. It was erroneously picking up 
+             with the railgun.
+             
+             Mods to the help text per the changes.
+             LOX Version 1.12.21
+
+04/23/2021 - LOX version 1.12.23
+             Added wall inspect command.
+
+03/06/2023 - LOX version 1.12.24
+             GCC versions 10 and later now set -fno-common by default.
+             Declarations in headers need extern now and definition in
+             the .c files where they're instantiated.
+             Standardized on C17 and changed GNUmakefile.
+
 
 ==============================================================================
 
