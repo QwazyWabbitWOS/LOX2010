@@ -58,12 +58,12 @@ typedef struct voting_s
 
 } voting_t;
 
-cvar_t	*electpercentage;	// default is 55%, set to 0 to disable elections
-cvar_t	*electduration;		// duration of an election (seconds)
-cvar_t	*electreminders;	// number of reminders to send in an election
-cvar_t	*electallowveto;	// whether a single NO vote can veto the election
-cvar_t	*electstarts;		// the number of times per map a player can start an election
-cvar_t	*electautoyes;		// configuration to allow automatic yes vote from player who starts it
+extern cvar_t	*electpercentage;	// default is 55%, set to 0 to disable elections
+extern cvar_t	*electduration;		// duration of an election (seconds)
+extern cvar_t	*electreminders;	// number of reminders to send in an election
+extern cvar_t	*electallowveto;	// whether a single NO vote can veto the election
+extern cvar_t	*electstarts;		// the number of times per map a player can start an election
+extern cvar_t	*electautoyes;		// configuration to allow automatic yes vote from player who starts it
 
 #define MIN_VOTERS	1	// minimum number of players need for voting to proceed.
 						// 1 means a single player can vote himself a map.

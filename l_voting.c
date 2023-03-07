@@ -64,6 +64,13 @@
 #include "l_voting.h"
 #include "maplist.h"
 
+cvar_t* electpercentage;	// default is 55%, set to 0 to disable elections
+cvar_t* electduration;		// duration of an election (seconds)
+cvar_t* electreminders;		// number of reminders to send in an election
+cvar_t* electallowveto;		// whether a single NO vote can veto the election
+cvar_t* electstarts;		// the number of times per map a player can start an election
+cvar_t* electautoyes;		// configuration to allow automatic yes vote from player who starts it
+
 //private
 static void Voting_WinElection(void);
 static int Voting_CountPlayers(void);
