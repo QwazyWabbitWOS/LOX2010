@@ -112,10 +112,12 @@ depend:
 depends:
 	$(CC) $(CFLAGS) -MM *.c > dependencies
 
-all:
-	make clean
+all:	# build i386 and native, clean up when done.
 	make depends
+	make clean
+	setarch i386 make
+	make clean
 	make
+	make clean
 
 -include dependencies
-
