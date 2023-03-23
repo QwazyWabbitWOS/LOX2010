@@ -660,6 +660,9 @@ xx/xx/xxxx - LOX Version 1.12.16 Released
              the .c files where they're instantiated.
              Standardized on C17 and changed GNUmakefile.
 
+03/22/2023 - LOX version 1.12.25
+             Add cvar 'spriral_heads' to select head gib model vs rocket model for spiral rockets.
+             Default is rockets.
 
 ==============================================================================
 

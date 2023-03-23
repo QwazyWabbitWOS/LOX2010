@@ -30,6 +30,7 @@ cvar_t* fraglimit;
 cvar_t* timelimit;
 cvar_t* scoreboardtime;
 cvar_t* cycle_always;
+cvar_t* spiral_heads;
 
 cvar_t* spectator_password;
 cvar_t* needpass;

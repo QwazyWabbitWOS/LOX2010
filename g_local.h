@@ -58,7 +58,7 @@ _CrtMemState startup1;	// memory diagnostics, link with debug lib (/MDd)
 #define BUILD	"Debug  "
 #endif
 
-#define VERSION	"1.12.24"	//QW// single instance of version string
+#define VERSION	"1.12.25"	//QW// single instance of version string
 
 // the "gameversion" client command will print this plus compile date
 #define	GAMEVERSION		"WOD:LOX, "VERSION	//deathmatch
@@ -997,6 +997,7 @@ extern	cvar_t* fraglimit;
 extern	cvar_t* timelimit;
 extern	cvar_t* scoreboardtime;
 extern	cvar_t* cycle_always;
+extern	cvar_t* spiral_heads;
 extern	cvar_t* spectator_password;
 extern	cvar_t* needpass;
 extern	cvar_t* g_select_empty;

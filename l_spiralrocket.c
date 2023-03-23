@@ -60,7 +60,13 @@ void mod_fire_rocket2(edict_t* self, vec3_t start, vec3_t dir,
 	rocket->s.effects |= EF_ROCKET;
 	VectorClear(rocket->mins);
 	VectorClear(rocket->maxs);
-	rocket->s.modelindex = gi.modelindex("models/objects/gibs/head2/tris.md2");
+	
+	//QW// added selection of rocket model
+	if(spiral_heads->value)
+		rocket->s.modelindex = gi.modelindex("models/objects/gibs/head2/tris.md2");
+	else
+		rocket->s.modelindex = gi.modelindex("models/objects/rocket/tris.md2");
+
 	rocket->owner = self;
 	rocket->touch = firerocket_touch;
 	rocket->nextthink = level.time + 0.1f;

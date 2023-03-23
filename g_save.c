@@ -232,6 +232,9 @@ void InitGame(void)
 	filterban = gi.cvar("filterban", "1", 0);
 	scoreboardtime = gi.cvar("scoreboardtime", "15", 0);
 	cycle_always = gi.cvar("cycle_always", "0", 0);
+	
+	//QW// Selector for spiral rocket head gibs vs normal rocket
+	spiral_heads = gi.cvar("spiral_heads", "0", 0);
 
 	g_select_empty = gi.cvar("g_select_empty", "0", CVAR_ARCHIVE);
 
