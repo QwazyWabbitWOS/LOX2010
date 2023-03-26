@@ -46,7 +46,6 @@ void Cmd_PlayerID(edict_t* ent);
 void Cmd_FPH(edict_t* ent);
 void Cmd_Rangefinder(edict_t* ent);
 void Cmd_SweeperFireMode(edict_t* ent);
-void Cmd_Ver_f(edict_t* ent);
 void Cmd_Tracker_f(edict_t* ent);
 void Cmd_TrackerCounter(edict_t* ent);
 void Cmd_Turret_f(edict_t* ent);
@@ -749,12 +748,6 @@ void Cmd_Airstrike_f(edict_t* ent)
 		SP_LaserSight(ent);
 	gi.cprintf(ent, PRINT_HIGH, "Airstrike on it's way! Light on the target. ETA 5 seconds.\n");
 	gi.sound(ent, CHAN_ITEM, gi.soundindex("world/pilot3.wav"), 0.8f, ATTN_NORM, 0);
-}
-
-// Print the LOX version info on command
-void Cmd_Ver_f(edict_t* ent)
-{
-	gi.cprintf(ent, PRINT_HIGH, loxbanner);
 }
 
 // Toggle the sweeper fire mode
@@ -4106,8 +4099,8 @@ void ClientCommand(edict_t* ent)
 			else
 				Cmd_NotRecognized(ent);	//bad subcommand
 		}
-		else if (Q_stricmp(cmd, "ver") == 0)
-			Cmd_Ver_f(ent);
+		else if (Q_stricmp(cmd, "ver") == 0) // LOX version command
+			gi.cprintf(ent, PRINT_HIGH, loxbanner, VERSION, BUILD, __DATE__, __TIME__);
 		else
 			Cmd_NotRecognized(ent);
 		break;
