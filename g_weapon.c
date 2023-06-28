@@ -415,7 +415,7 @@ static void fire_lead(edict_t* self, vec3_t start, vec3_t aimdir, int damage, in
 				{
 					gi.WriteByte(svc_temp_entity);
 					gi.WriteByte(TE_SPLASH);
-					gi.WriteByte(8);
+					gi.WriteByte(8); //count
 					gi.WritePosition(tr.endpos);
 					gi.WriteDir(tr.plane.normal);
 					gi.WriteByte(color);
@@ -569,8 +569,8 @@ void fire_explosive_lead(edict_t* self, vec3_t start, vec3_t aimdir, int damage,
 				if (color != SPLASH_UNKNOWN)
 				{
 					gi.WriteByte(svc_temp_entity);
-					gi.WriteByte(TE_SPLASH);
-					gi.WriteByte(8);
+					gi.WriteByte(TE_SPLASH); //type
+					gi.WriteByte(8);  //count
 					gi.WritePosition(tr.endpos);
 					gi.WriteDir(tr.plane.normal);
 					gi.WriteByte(color);
@@ -1556,7 +1556,7 @@ void bfg_think(edict_t* self)
 			{
 				gi.WriteByte(svc_temp_entity);
 				gi.WriteByte(TE_LASER_SPARKS);
-				gi.WriteByte(4);
+				gi.WriteByte(4);  //count
 				gi.WritePosition(tr.endpos);
 				gi.WriteDir(tr.plane.normal);
 				gi.WriteByte(self->s.skinnum & 255);

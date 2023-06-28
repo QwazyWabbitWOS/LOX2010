@@ -520,10 +520,10 @@ void floater_zap(edict_t* self)
 	//FIXME use the flash, Luke
 	gi.WriteByte(svc_temp_entity);
 	gi.WriteByte(TE_SPLASH);
-	gi.WriteByte(32);
+	gi.WriteByte(32);  //count
 	gi.WritePosition(origin);
 	gi.WriteDir(dir);
-	gi.WriteByte(1);	//sparks
+	gi.WriteByte(SPLASH_SPARKS);	//sparks
 	gi.multicast(origin, MULTICAST_PVS);
 
 	T_Damage(self->enemy, self, self, dir, self->enemy->s.origin, vec3_origin, 5 + rand() % 6, -10, DAMAGE_ENERGY, MOD_UNKNOWN);

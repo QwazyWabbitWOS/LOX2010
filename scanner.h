@@ -27,12 +27,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define	PIC_SCANNER_TAG                "scanner/scanner"
 #define	PIC_DOT                        "pics/scanner/dot.pcx"
 #define	PIC_DOT_TAG                    "scanner/dot"
-#define PIC_FARDOT					   "pics/scanner/fardot.pcx"
-#define PIC_FARDOT_TAG				   "scanner/fardot"
-#define PIC_FARTHERDOT				   "pics/scanner/fartherdot.pcx"
-#define PIC_FARTHERDOT_TAG			   "scanner/fartherdot"
-#define PIC_FARTHESTDOT				   "pics/scanner/farthestdot.pcx"
-#define PIC_FARTHESTDOT_TAG			   "scanner/farthestdot"
+#define PIC_FARDOT                     "pics/scanner/fardot.pcx"
+#define PIC_FARDOT_TAG                 "scanner/fardot"
+#define PIC_FARTHERDOT                 "pics/scanner/fartherdot.pcx"
+#define PIC_FARTHERDOT_TAG             "scanner/fartherdot"
+#define PIC_FARTHESTDOT                "pics/scanner/farthestdot.pcx"
+#define PIC_FARTHESTDOT_TAG            "scanner/farthestdot"
 #define	PIC_ACIDDOT                    "pics/scanner/aciddot.pcx"
 #define	PIC_ACIDDOT_TAG                "scanner/aciddot"
 #define	PIC_INVDOT                     "pics/scanner/invdot.pcx"
@@ -49,9 +49,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define	LAYOUT_MAX_LENGTH              1400
 
 // scanner function prototypes
-void		ClearScanner(gclient_t *client);
-void		Toggle_Scanner (edict_t *ent);
-void		ShowScanner(edict_t *ent,char *layout);
+void ClearScanner(gclient_t *client);
+void Toggle_Scanner (edict_t *ent);
+void ShowScanner(edict_t *ent,char *layout);
 //qboolean	Pickup_Scanner (edict_t *ent, edict_t *other);
 
 #endif

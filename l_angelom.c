@@ -96,7 +96,7 @@ void AOM_Think(edict_t* ent)
 			{
 				// this correctly deletes the guided missile and pilot edicts 
 				// so the owner of the rocket doesn't end up in limbo space.
-				if (!(strcmp(ent->goalentity->classname, "guided rocket")))
+				if (ent->goalentity->classnum == CN_GUIDEDROCKET)
 				{
 					RemoveGuided(ent->goalentity);
 					G_FreeEdict(ent->goalentity);
@@ -104,7 +104,7 @@ void AOM_Think(edict_t* ent)
 				}
 				// this correctly deletes the guided missile and pilot edicts 
 				// so the owner of the guided nuke doesn't end up in limbo space.
-				else if (!(strcmp(ent->goalentity->classname, "guided nuke")))
+				else if (ent->goalentity->classnum == CN_GUIDEDNUKE)
 				{
 					RemoveNuke(ent->goalentity);
 					G_FreeEdict(ent->goalentity);

@@ -91,8 +91,8 @@ void fire_asha(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick,
 				if (color != SPLASH_UNKNOWN)
 				{
 					gi.WriteByte(svc_temp_entity);
-					gi.WriteByte(TE_SPLASH);
-					gi.WriteByte(8);
+					gi.WriteByte(TE_SPLASH);	// type
+					gi.WriteByte(8);	// count
 					gi.WritePosition(tr.endpos);
 					gi.WriteDir(tr.plane.normal);
 					gi.WriteByte(color);

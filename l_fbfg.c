@@ -181,7 +181,7 @@ void fbfg_think(edict_t* self)
 			{
 				gi.WriteByte(svc_temp_entity);
 				gi.WriteByte(TE_LASER_SPARKS);
-				gi.WriteByte(4);
+				gi.WriteByte(4);  //count
 				gi.WritePosition(tr.endpos);
 				gi.WriteDir(tr.plane.normal);
 				gi.WriteByte(self->s.skinnum & 255);
