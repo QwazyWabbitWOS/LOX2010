@@ -589,7 +589,6 @@ void G_RunFrame(void)
 	// exit intermissions
 	if (level.exitintermission)
 	{
-		gi.dprintf("Peak edicts usage: %i\n", game.peak_edicts);
 		ExitLevel();
 		return;
 	}

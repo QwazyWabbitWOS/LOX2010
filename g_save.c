@@ -210,7 +210,7 @@ void InitGame(void)
 	coop = gi.cvar("coop", "0", CVAR_LATCH | CVAR_SERVERINFO);
 	skill = gi.cvar("skill", "3", CVAR_LATCH);
 	noscore = gi.cvar("noscore", "0", CVAR_LATCH); // for the new scoreboard logic
-	maxentities = gi.cvar("maxentities", "1024", CVAR_LATCH);
+	maxentities = gi.cvar("maxentities", "1024", CVAR_LATCH); // must equal MAX_EDICTS.
 	dumpents = gi.cvar("dumpents", "0", 0);		//QW// create entfiles as we go
 	custom_ents = gi.cvar("custom_ents", "0", 0);		//QW// allow custom ents in DM
 	ext_devt = gi.cvar("ext_devt", "0", CVAR_LATCH);	//QW// set this for extinction development
@@ -350,7 +350,6 @@ void InitGame(void)
 	game.maxclients = maxclients->value;
 	game.clients = gi.TagMalloc(game.maxclients * sizeof(game.clients[0]), TAG_GAME);
 	globals.num_edicts = game.maxclients + 1;
-	game.peak_edicts = globals.num_edicts;
 	gi.dprintf("Space for %s clients allocated. (%i bytes)\n", maxclients->string, game.maxclients * sizeof(game.clients[0]));
 	gi.dprintf("Bytes per client: %i\n", sizeof(game.clients[0]));
 

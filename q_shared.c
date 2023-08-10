@@ -775,6 +775,23 @@ void Com_PageInMemory(byte* buffer, int size)
 ============================================================================
 */
 
+/** Case sensitive string compare.
+ If s1 is contained within s2 then return 0, they are "equal".
+ else return the lexicographic difference between them.
+*/
+int Q_strcmp(const char* s1, const char* s2)
+{
+	const unsigned char
+		* uc1 = (const unsigned char*)s1,
+		* uc2 = (const unsigned char*)s2;
+
+	while (*uc1 == *uc2++)
+		if (*uc1++ == '\0') {
+			return (0);
+		}
+	return (*uc1 - *--uc2);
+}
+
 /** Case independent string compare.
  If s1 is contained within s2 then return 0, they are "equal".
  else return the lexicographic difference between them.

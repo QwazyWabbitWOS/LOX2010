@@ -58,7 +58,7 @@ _CrtMemState startup1;	// memory diagnostics, link with debug lib (/MDd)
 #define BUILD	"Debug  "
 #endif
 
-#define VERSION	"1.12.25"	//QW// single instance of version string
+#define VERSION	"1.12.26"	//QW// single instance of version string
 
 // the "gameversion" client command will print this plus compile date
 #define	GAMEVERSION		"WOD:LOX, "VERSION	//deathmatch
@@ -675,7 +675,6 @@ typedef struct game_locals_s
 	int			maxclients;
 	int			maxentities;
 	int			num_clients;
-	int			peak_edicts;	// max num_edicts used
 
 	// cross level triggers
 	int			serverflags;
@@ -1064,7 +1063,6 @@ extern	cvar_t* push_kill_award;
 extern	cvar_t* push_kill_delay;
 extern	cvar_t* autoweaponselect; //QW// for coop pickup_weapon
 extern	cvar_t* fast_weapon_change;	//QW//enable/disable fast weapon change
-extern	cvar_t* peak_edicts;		//QW// the max number of edicts used in the game to date
 extern	cvar_t* max_cats;		//QW// maximum cataclysm devices per player per level
 extern	cvar_t* zbot_check;	//QW// enable/disable internal zbot checking
 extern	cvar_t* console_chat;

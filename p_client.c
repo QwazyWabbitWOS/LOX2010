@@ -1987,9 +1987,9 @@ void ClientBegin(edict_t* ent)
 	}
 
 	//initialize the lbind strings to zero on new client connect
-	memset(ent->client->pers.ondeath, '\0', MAX_INFO_STRING);
-	memset(ent->client->pers.onrespawn, '\0', MAX_INFO_STRING);
-	memset(ent->client->pers.onenemydeath, '\0', MAX_INFO_STRING);
+	memset(ent->client->pers.ondeath, 0, MAX_INFO_STRING);
+	memset(ent->client->pers.onrespawn, 0, MAX_INFO_STRING);
+	memset(ent->client->pers.onenemydeath, 0, MAX_INFO_STRING);
 	//	*ent->client->pers.ondeath = '\0';
 	//	*ent->client->pers.onrespawn = '\0';
 	//	*ent->client->pers.onenemydeath = '\0';
@@ -2214,9 +2214,9 @@ void ClientDisconnect(edict_t* ent)
 	gi.WriteByte(MZ_LOGOUT);
 	gi.multicast(ent->s.origin, MULTICAST_PVS);
 
-	memset(ent->client->pers.ondeath, '\0', MAX_INFO_STRING);
-	memset(ent->client->pers.onrespawn, '\0', MAX_INFO_STRING);
-	memset(ent->client->pers.onenemydeath, '\0', MAX_INFO_STRING);
+	memset(ent->client->pers.ondeath, 0, MAX_INFO_STRING);
+	memset(ent->client->pers.onrespawn, 0, MAX_INFO_STRING);
+	memset(ent->client->pers.onenemydeath, 0, MAX_INFO_STRING);
 
 	gi.unlinkentity(ent);
 	ent->s.modelindex = 0;

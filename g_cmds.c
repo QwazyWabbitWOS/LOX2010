@@ -110,54 +110,60 @@ void Cmd_LBind_f(edict_t* ent)
 	if (gi.argc() == 3)
 	{
 		length = strlen(gi.argv(2));
-		if (length > MAX_INFO_STRING)
+		if (length > 150) //QW// We limit it here to prevent malicious text.
 		{
 			gi.cprintf(ent, PRINT_HIGH, "Command string is too long!\n");
 			return;
 		}
 	}
 
-	if (Q_stricmp(gi.argv(1), "ondeath") == 0)
+	if (Q_strcmp(gi.argv(1), "ondeath") == 0)
 	{
 		if (gi.argc() == 2)
 		{
 			if (strlen(ent->client->pers.ondeath) != 0)
-				gi.cprintf(ent, PRINT_HIGH, "ondeath is set to: %s\n", ent->client->pers.ondeath);
+				gi.cprintf(ent, PRINT_HIGH, "ondeath is set to: \"%s\"\n", ent->client->pers.ondeath);
 			else
 				gi.cprintf(ent, PRINT_HIGH, "ondeath is not set\n");
 		}
 		else
-			Q_strncpyz(ent->client->pers.ondeath, sizeof(ent->client->pers.ondeath), gi.argv(2));
+			if(Q_strncpyz(ent->client->pers.ondeath, sizeof(ent->client->pers.ondeath), gi.argv(2)) != strlen(gi.argv(2)))
+				gi.cprintf(ent, PRINT_HIGH, "Input string exceeds buffer size, truncated. Using: %s\n", ent->client->pers.ondeath);
+			else
+				gi.cprintf(ent, PRINT_HIGH, "ondeath set to \"% s\"\n", ent->client->pers.ondeath);
 	}
 
-	if (Q_stricmp(gi.argv(1), "onrespawn") == 0)
+	if (Q_strcmp(gi.argv(1), "onrespawn") == 0)
 	{
 		if (gi.argc() == 2)
 		{
 			if (strlen(ent->client->pers.onrespawn) != 0)
-				gi.cprintf(ent, PRINT_HIGH, "onrespawn is set to: %s\n", ent->client->pers.onrespawn);
+				gi.cprintf(ent, PRINT_HIGH, "onrespawn is set to: \"%s\"\n", ent->client->pers.onrespawn);
 			else
 				gi.cprintf(ent, PRINT_HIGH, "onrespawn is not set\n");
 		}
 		else
-			if (Q_strncpyz(ent->client->pers.onrespawn, sizeof(ent->client->pers.onrespawn), gi.argv(2)) != strlen(ent->client->pers.onrespawn))
-				gi.cprintf(ent, PRINT_HIGH, "Input string exceeds buffer size, truncated.\n");
+			if (Q_strncpyz(ent->client->pers.onrespawn, sizeof(ent->client->pers.onrespawn), gi.argv(2)) != strlen(gi.argv(2)))
+				gi.cprintf(ent, PRINT_HIGH, "Input string exceeds buffer size, truncated. Using: %s\n", ent->client->pers.onrespawn);
 			else
-				gi.cprintf(ent, PRINT_HIGH, "onrespawn set to %s\n", ent->client->pers.onrespawn);
+				gi.cprintf(ent, PRINT_HIGH, "onrespawn set to \"% s\"\n", ent->client->pers.onrespawn);
 	}
 
-	if (Q_stricmp(gi.argv(1), "onenemydeath") == 0)
+	if (Q_strcmp(gi.argv(1), "onenemydeath") == 0)
 	{
 		if (gi.argc() == 2)
 		{
 			if (strlen(ent->client->pers.onenemydeath) != 0)
-				gi.cprintf(ent, PRINT_HIGH, "onenemydeath is set to: %s\n", ent->client->pers.onenemydeath);
+				gi.cprintf(ent, PRINT_HIGH, "onenemydeath is set to: \"%s\"\n", ent->client->pers.onenemydeath);
 			else
 				gi.cprintf(ent, PRINT_HIGH, "onenemydeath is not set\n");
 
 		}
 		else
-			Q_strncpyz(ent->client->pers.onenemydeath, sizeof(ent->client->pers.onenemydeath), gi.argv(2));
+			if(Q_strncpyz(ent->client->pers.onenemydeath, sizeof(ent->client->pers.onenemydeath), gi.argv(2)) != strlen(gi.argv(2)))
+				gi.cprintf(ent, PRINT_HIGH, "Input string exceeds buffer size, truncated. Using: %s\n", ent->client->pers.onenemydeath);
+			else
+				gi.cprintf(ent, PRINT_HIGH, "onenemydeath set to \"% s\"\n", ent->client->pers.onenemydeath);
 	}
 }
 
