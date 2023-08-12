@@ -163,7 +163,7 @@ void M_CheckGround(edict_t* ent)
 }
 
 
-void M_CatagorizePosition(edict_t* ent)
+void M_CategorizePosition(edict_t* ent)
 {
 	vec3_t		point = { 0 };
 	int			cont;
@@ -308,7 +308,7 @@ void M_droptofloor(edict_t* ent)
 
 	gi.linkentity(ent);
 	M_CheckGround(ent);
-	M_CatagorizePosition(ent);
+	M_CategorizePosition(ent);
 }
 
 
@@ -420,7 +420,7 @@ void monster_think(edict_t* self)
 		self->monsterinfo.linkcount = self->linkcount;
 		M_CheckGround(self);
 	}
-	M_CatagorizePosition(self);
+	M_CategorizePosition(self);
 	M_WorldEffects(self);
 	M_SetEffects(self);
 
