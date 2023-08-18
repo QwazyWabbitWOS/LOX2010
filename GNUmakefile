@@ -113,9 +113,8 @@ depends:
 	$(CC) $(CFLAGS) -MM *.c > dependencies
 
 all:
-	make depends
-	make clean
-	make
-	make clean
+	$(MAKE) depends
+	$(MAKE)
+	$(MAKE) clean
 
 -include dependencies

@@ -247,40 +247,6 @@ void Info_RemoveKey(char* s, char* key);
 void Info_SetValueForKey(char* s, char* key, char* value);
 qboolean Info_Validate(char* s);
 
-/*
-==============================================================
-
-SYSTEM SPECIFIC
-
-==============================================================
-*/
-
-extern	int	curtime;		// time returned by last Sys_Milliseconds
-
-int		Sys_Milliseconds(void);
-void	Sys_Mkdir(char* path);
-
-// large block stack allocation routines
-void* Hunk_Begin(int maxsize);
-void* Hunk_Alloc(int size);
-void	Hunk_Free(void* buf);
-int		Hunk_End(void);
-
-// directory searching
-#define SFF_ARCH    0x01
-#define SFF_HIDDEN  0x02
-#define SFF_RDONLY  0x04
-#define SFF_SUBDIR  0x08
-#define SFF_SYSTEM  0x10
-
-/*
-** pass in an attribute mask of things you wish to REJECT
-*/
-//QW//char	*Sys_FindFirst (char *path, unsigned musthave, unsigned canthave );
-//QW//char	*Sys_FindNext ( unsigned musthave, unsigned canthave );
-//QW//void	Sys_FindClose (void);
-
-
 // this is only here so the functions in q_shared.c and q_shwin.c can link
 //QW//void Sys_Error (char *error, ...);
 void Com_Printf(char* msg, ...);

@@ -94,6 +94,8 @@ l_chunkgun.o: l_chunkgun.c g_local.h q_shared.h performance.h game.h \
  g_weapon.h p_menu.h m_player.h l_angels.h
 l_daynight.o: l_daynight.c g_local.h q_shared.h performance.h game.h \
  g_weapon.h p_menu.h
+l_deathray.o: l_deathray.c g_local.h q_shared.h performance.h game.h \
+ g_weapon.h p_menu.h l_angels.h l_deathray.h
 l_disintegrator.o: l_disintegrator.c g_local.h q_shared.h performance.h \
  game.h g_weapon.h p_menu.h l_disintegrator.h
 l_dm_grenades.o: l_dm_grenades.c g_local.h q_shared.h performance.h \

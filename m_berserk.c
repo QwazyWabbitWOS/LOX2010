@@ -27,8 +27,8 @@ void berserk_search(edict_t* self)
 	gi.sound(self, CHAN_VOICE, sound_search, 1, ATTN_NORM, 0);
 }
 
-
 void berserk_fidget(edict_t* self);
+
 mframe_t berserk_frames_stand[] =
 {
 	{ai_stand, 0, berserk_fidget},

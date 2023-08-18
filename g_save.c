@@ -169,8 +169,8 @@ void InitGame(void)
 	_CrtMemCheckpoint(&startup1);
 #endif
 
-	gi.dprintf("==== InitGame (LOX %s %s %s) ====\n", VERSION, BUILD, __DATE__);
-	gi.dprintf(loxbanner, VERSION, BUILD, __DATE__, __TIME__);
+	gi.dprintf("==== InitGame (LOX %s %s %s) ====\n", VERSION, __DATE__, BUILD);
+	gi.dprintf(loxbanner, VERSION, __DATE__, __TIME__, BUILD);
 	version = gi.cvar("version", "", CVAR_NOSET);
 	if (version)
 		gi.dprintf("LOX detected engine: %s\n", version->string);
