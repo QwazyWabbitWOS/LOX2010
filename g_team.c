@@ -692,9 +692,9 @@ void CTFTeam_f(edict_t* ent)
 		return;
 	}
 
-	if (Q_stricmp(t, "red") == 0)
+	if (strcmp(t, "red") == 0)
 		desired_team = CTF_TEAM1;
-	else if (Q_stricmp(t, "blue") == 0)
+	else if (strcmp(t, "blue") == 0)
 		desired_team = CTF_TEAM2;
 	else
 	{
@@ -1089,12 +1089,12 @@ int CTFUpdateJoinMenu(edict_t* ent)
 
 	if (ctf_forcejoin->string && *ctf_forcejoin->string)
 	{
-		if (Q_stricmp(ctf_forcejoin->string, "red") == 0)
+		if (strcmp(ctf_forcejoin->string, "red") == 0)
 		{
 			joinmenu[6].text = NULL;
 			joinmenu[6].SelectFunc = NULL;
 		}
-		else if (Q_stricmp(ctf_forcejoin->string, "blue") == 0)
+		else if (strcmp(ctf_forcejoin->string, "blue") == 0)
 		{
 			joinmenu[4].text = NULL;
 			joinmenu[4].SelectFunc = NULL;

@@ -453,9 +453,9 @@ void Toggle_Decoy_f(edict_t* self)
 		return;
 
 	string = gi.args();
-	if (Q_stricmp(string, "on") == 0)
+	if (strcmp(string, "on") == 0)
 		turnon = true;
-	else if (Q_stricmp(string, "off") == 0)
+	else if (strcmp(string, "off") == 0)
 		turnon = false;
 	else
 	{  //toggle status

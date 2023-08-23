@@ -40,7 +40,7 @@ pmenu_t testmenu[] =
 // to be assigned in PMenu_Open
 
 // Call in ClientCommand: 
-//		if (Q_stricmp (cmd, "devmenu") == 0)
+//		if (strcmp (cmd, "devmenu") == 0)
 //			Cmd_DevMenu_f(cmd, ent);
 
 // Command format:
@@ -59,19 +59,19 @@ void Cmd_DevMenu_f(char* scmd, edict_t* ent)
 	// the command is passed in full (devmenu xxx "xxx" l j)
 	scmd = gi.argv(1); // the second level command
 
-	if (Q_stricmp(scmd, "open") == 0)
+	if (strcmp(scmd, "open") == 0)
 	{
 		// allocate some space for the dynamic menu
 		ent->client->devmenu = testmenu;
 		PMenu_Open(ent, ent->client->devmenu, 0, sizeof(testmenu) / sizeof(pmenu_t));
 	}
 
-	else if (Q_stricmp(scmd, "close") == 0)
+	else if (strcmp(scmd, "close") == 0)
 	{
 		PMenu_Close(ent);
 	}
 
-	else if (Q_stricmp(scmd, "text") == 0)
+	else if (strcmp(scmd, "text") == 0)
 	{
 		if (gi.argc() == 4 || gi.argc() == 5)
 		{
@@ -105,7 +105,7 @@ void Cmd_DevMenu_f(char* scmd, edict_t* ent)
 			gi.cprintf(ent, PRINT_HIGH, "Number and text must be supplied (ex: devmenu text \"hello\" 3 l|c|r)\n");
 	}
 
-	else if (Q_stricmp(scmd, "reset") == 0)
+	else if (strcmp(scmd, "reset") == 0)
 	{
 		for (i = 0; i < ((int)(sizeof(testmenu) / sizeof(pmenu_t))); i++)
 		{
@@ -157,17 +157,17 @@ void Cmd_DevMenu_f(char* scmd, edict_t* ent)
 	// the command is passed in full (devmenu xxx "xxx" l j)
 	scmd = gi.argv(1); // ptr to the second level command
 
-	if (Q_stricmp(scmd, "open") == 0)
+	if (strcmp(scmd, "open") == 0)
 	{
 		hnd = PMenu_Open(ent, testmenu, 0, sizeof(testmenu) / sizeof(pmenu_t), NULL);
 	}
 
-	else if (Q_stricmp(scmd, "close") == 0)
+	else if (strcmp(scmd, "close") == 0)
 	{
 		PMenu_CloseIt(ent);
 	}
 
-	else if (Q_stricmp(scmd, "text") == 0)
+	else if (strcmp(scmd, "text") == 0)
 	{
 		if (ent->client->menu)	// menu must be open
 		{
@@ -207,7 +207,7 @@ void Cmd_DevMenu_f(char* scmd, edict_t* ent)
 			gi.cprintf(ent, PRINT_HIGH, "Menu must be open first.\n");
 	}
 
-	else if (Q_stricmp(scmd, "reset") == 0)
+	else if (strcmp(scmd, "reset") == 0)
 	{
 		if (ent->client->menu)	// menu must be open
 		{

@@ -360,7 +360,7 @@ void ED_ParseField(char* key, char* value, edict_t* ent)
 
 	for (f = fields; f->name; f++)
 	{
-		if (!Q_stricmp(f->name, key))
+		if (!strcmp(f->name, key))
 		{	// found it
 			if (f->flags & FFL_SPAWNTEMP)
 				b = (byte*)&st;
@@ -596,9 +596,9 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 		entities = ED_ParseEdict(entities, ent);
 
 		// yet another map hack
-		if (ent && !Q_stricmp(level.mapname, "command") &&
-			!Q_stricmp(ent->classname, "trigger_once") &&
-			!Q_stricmp(ent->model, "*27"))
+		if (ent && !strcmp(level.mapname, "command") &&
+			!strcmp(ent->classname, "trigger_once") &&
+			!strcmp(ent->model, "*27"))
 			ent->spawnflags &= ~SPAWNFLAG_NOT_HARD;
 
 		// remove things (except the world) from different skill levels or deathmatch

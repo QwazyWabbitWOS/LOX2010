@@ -63,7 +63,7 @@ static void SP_FixCoopSpots(edict_t* self)
 		VectorSubtract(self->s.origin, spot->s.origin, d);
 		if (VectorLength(d) < 384)
 		{
-			if ((!self->targetname) || Q_stricmp(self->targetname, spot->targetname) != 0)
+			if ((!self->targetname) || strcmp(self->targetname, spot->targetname) != 0)
 			{
 				//gi.dprintf("FixCoopSpots changed %s at %s targetname from %s to %s\n", self->classname, vtos(self->s.origin), self->targetname, spot->targetname);
 				self->targetname = spot->targetname;
@@ -81,7 +81,7 @@ static void SP_CreateCoopSpots(edict_t* self)
 {
 	edict_t* spot;
 
-	if (Q_stricmp(level.mapname, "security") == 0)
+	if (strcmp(level.mapname, "security") == 0)
 	{
 		spot = G_Spawn();
 		spot->classname = "info_player_coop";
@@ -117,7 +117,7 @@ The normal starting point for a level.
 */
 void SP_info_player_start(edict_t* self)
 {
-	if (coop->value && Q_stricmp(level.mapname, "security") == 0)
+	if (coop->value && strcmp(level.mapname, "security") == 0)
 	{
 		// invoke one of our gross, ugly, disgusting hacks
 		self->think = SP_CreateCoopSpots;
@@ -155,20 +155,20 @@ void SP_info_player_coop(edict_t* self)
 		return;
 	}
 
-	if ((Q_stricmp(level.mapname, "jail2") == 0)   ||
-		(Q_stricmp(level.mapname, "jail4") == 0)   ||
-		(Q_stricmp(level.mapname, "mine1") == 0)   ||
-		(Q_stricmp(level.mapname, "mine2") == 0)   ||
-		(Q_stricmp(level.mapname, "mine3") == 0)   ||
-		(Q_stricmp(level.mapname, "mine4") == 0)   ||
-		(Q_stricmp(level.mapname, "lab") == 0)     ||
-		(Q_stricmp(level.mapname, "boss1") == 0)   ||
-		(Q_stricmp(level.mapname, "fact3") == 0)   ||
-		(Q_stricmp(level.mapname, "biggun") == 0)  ||
-		(Q_stricmp(level.mapname, "space") == 0)   ||
-		(Q_stricmp(level.mapname, "command") == 0) ||
-		(Q_stricmp(level.mapname, "power2") == 0)  ||
-		(Q_stricmp(level.mapname, "strike") == 0))
+	if ((strcmp(level.mapname, "jail2") == 0)   ||
+		(strcmp(level.mapname, "jail4") == 0)   ||
+		(strcmp(level.mapname, "mine1") == 0)   ||
+		(strcmp(level.mapname, "mine2") == 0)   ||
+		(strcmp(level.mapname, "mine3") == 0)   ||
+		(strcmp(level.mapname, "mine4") == 0)   ||
+		(strcmp(level.mapname, "lab") == 0)     ||
+		(strcmp(level.mapname, "boss1") == 0)   ||
+		(strcmp(level.mapname, "fact3") == 0)   ||
+		(strcmp(level.mapname, "biggun") == 0)  ||
+		(strcmp(level.mapname, "space") == 0)   ||
+		(strcmp(level.mapname, "command") == 0) ||
+		(strcmp(level.mapname, "power2") == 0)  ||
+		(strcmp(level.mapname, "strike") == 0))
 	{
 		// invoke one of our gross, ugly, disgusting hacks
 		self->think = SP_FixCoopSpots;
@@ -788,7 +788,7 @@ void ClientObituary(edict_t* self, edict_t* inflictor, edict_t* attacker)
 							//gi.bprintf(PRINT_MEDIUM, "Highfragger is %s\n", temp->client->pers.netname);
 							if (self->client->killedby != NULL)
 							{
-								if (Q_stricmp(self->client->killedby->client->pers.netname, attacker->client->pers.netname) == 0)
+								if (strcmp(self->client->killedby->client->pers.netname, attacker->client->pers.netname) == 0)
 								{
 									attacker->client->resp.score = 1 + game.revengereward + attacker->client->resp.score;
 									gi.bprintf(PRINT_MEDIUM, "%s awarded extra point for getting revenge on %s\n",
@@ -797,7 +797,7 @@ void ClientObituary(edict_t* self, edict_t* inflictor, edict_t* attacker)
 
 							}
 
-							if (Q_stricmp(hifragger->client->pers.netname, self->client->pers.netname) == 0)
+							if (strcmp(hifragger->client->pers.netname, self->client->pers.netname) == 0)
 							{
 								attacker->client->resp.score = 1 + game.highfraggeraward + attacker->client->resp.score;
 								gi.bprintf(PRINT_MEDIUM, "%s awarded extra points for killing %s\n",
@@ -941,13 +941,13 @@ void player_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage
 	int		n;
 
 	// execute the ondeath string if there is one
-	if (Q_stricmp(self->client->pers.ondeath, "") != 0)
+	if (strcmp(self->client->pers.ondeath, "") != 0)
 		stuffcmd(self, self->client->pers.ondeath);
 
 	// execute the attacker's onenemydeath string if there is one
 	if (attacker->client != NULL)
 	{
-		if (Q_stricmp(attacker->client->pers.onenemydeath, "") != 0)
+		if (strcmp(attacker->client->pers.onenemydeath, "") != 0)
 			stuffcmd(attacker, attacker->client->pers.onenemydeath);
 	}
 
@@ -1462,7 +1462,7 @@ edict_t* SelectCoopSpawnPoint(edict_t* ent)
 		target = spot->targetname;
 		if (!target)
 			target = "";
-		if (Q_stricmp(game.spawnpoint, target) == 0)
+		if (strcmp(game.spawnpoint, target) == 0)
 		{	// this is a coop spawn point for one of the clients here
 			index--;
 			if (!index)
@@ -1499,7 +1499,7 @@ void SelectSpawnPoint(edict_t* ent, vec3_t origin, vec3_t angles)
 			if (!game.spawnpoint[0] || !spot->targetname)
 				continue;
 
-			if (Q_stricmp(game.spawnpoint, spot->targetname) == 0)
+			if (strcmp(game.spawnpoint, spot->targetname) == 0)
 				break;
 		}
 

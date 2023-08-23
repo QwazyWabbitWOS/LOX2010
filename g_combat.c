@@ -449,7 +449,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir,
 		if (attacker->client != NULL
 			&& attacker->client->pers.weapon != NULL
 			&& attacker->client->pers.weapon->ammo != NULL
-			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname, "ammo_slugs") == 0)
+			&& strcmp(attacker->client->pers.weapon->ammo->classname, "ammo_slugs") == 0)
 		{
 			SpawnDamage(TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;
@@ -462,7 +462,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir,
 		if (attacker->client != NULL
 			&& attacker->client->pers.weapon != NULL
 			&& attacker->client->pers.weapon->ammo != NULL
-			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname, "ammo_cells") == 0)
+			&& strcmp(attacker->client->pers.weapon->ammo->classname, "ammo_cells") == 0)
 		{
 			SpawnDamage(TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;
@@ -475,7 +475,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir,
 		if (attacker->client != NULL
 			&& attacker->client->pers.weapon != NULL
 			&& attacker->client->pers.weapon->ammo != NULL
-			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname, "ammo_shells") == 0)
+			&& strcmp(attacker->client->pers.weapon->ammo->classname, "ammo_shells") == 0)
 		{
 			SpawnDamage(TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;
@@ -488,7 +488,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir,
 		if (attacker->client != NULL
 			&& attacker->client->pers.weapon != NULL
 			&& attacker->client->pers.weapon->ammo != NULL
-			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname, "ammo_bullets") == 0)
+			&& strcmp(attacker->client->pers.weapon->ammo->classname, "ammo_bullets") == 0)
 		{
 			SpawnDamage(TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;
@@ -501,7 +501,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir,
 		if (attacker->client != NULL
 			&& attacker->client->pers.weapon != NULL
 			&& attacker->client->pers.weapon->ammo != NULL
-			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname, "ammo_rockets") == 0)
+			&& strcmp(attacker->client->pers.weapon->ammo->classname, "ammo_rockets") == 0)
 		{
 			SpawnDamage(TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;
@@ -514,7 +514,7 @@ void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir,
 		if (attacker->client != NULL
 			&& attacker->client->pers.weapon != NULL
 			&& attacker->client->pers.weapon->ammo != NULL
-			&& Q_stricmp(attacker->client->pers.weapon->ammo->classname, "ammo_grenades") == 0)
+			&& strcmp(attacker->client->pers.weapon->ammo->classname, "ammo_grenades") == 0)
 		{
 			SpawnDamage(TE_SHIELD_SPARKS, point, normal, damage);
 			targ->powerarmor_time = level.time + 0.2f;

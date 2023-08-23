@@ -216,9 +216,7 @@ inline int Q_tolower(int c)
 	return c;
 }
 
-int Q_strcmp(const char* s1, const char* s2);
 int Q_stricmp(const char* s1, const char* s2);
-int Q_strnicmp(const char* s1, const char* s2, size_t count);
 size_t Q_strncpyz(char* dst, size_t dstSize, const char* src);
 size_t Q_strncatz(char* dst, size_t dstSize, const char* src);
 size_t Q_strlower(char* string);

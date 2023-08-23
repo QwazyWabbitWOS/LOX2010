@@ -392,7 +392,7 @@ void Cmd_Hook_f(edict_t* ent)
 	// create intermediate value
 	hookstate = &ent->client->hookstate;
 
-	if ((!(*hookstate & HOOK_ON)) && (Q_stricmp(s, "action") == 0))
+	if ((!(*hookstate & HOOK_ON)) && (strcmp(s, "action") == 0))
 	{
 		// flags hook as being active 
 		*hookstate = HOOK_ON;
@@ -404,7 +404,7 @@ void Cmd_Hook_f(edict_t* ent)
 	if (*hookstate & HOOK_ON)
 	{
 		// release hook	
-		if (Q_stricmp(s, "action") == 0)
+		if (strcmp(s, "action") == 0)
 		{
 			*hookstate = HOOK_READY;
 			return;
@@ -425,14 +425,14 @@ void Cmd_Hook_f(edict_t* ent)
 		//		}
 
 				// deactivate chain growth or shrink
-		if (Q_stricmp(s, "stop") == 0)
+		if (strcmp(s, "stop") == 0)
 		{
 			*hookstate -= *hookstate & (GROW_ON | SHRINK_ON);
 			return;
 		}
 
 		// activate chain growth
-		if (Q_stricmp(s, "grow") == 0)
+		if (strcmp(s, "grow") == 0)
 		{
 			*hookstate |= GROW_ON;
 			*hookstate -= *hookstate & SHRINK_ON;
@@ -440,7 +440,7 @@ void Cmd_Hook_f(edict_t* ent)
 		}
 
 		// activate chain shrinking
-		if (Q_stricmp(s, "shrink") == 0)
+		if (strcmp(s, "shrink") == 0)
 		{
 			*hookstate |= SHRINK_ON;
 			*hookstate -= *hookstate & GROW_ON;

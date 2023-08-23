@@ -233,7 +233,7 @@ qboolean Maplist_Next(void)
             continue;
         }
 
-        if (!Q_stricmp(buffer, level.mapname)) //if nextmap is same map, skip to next one
+        if (!strcmp(buffer, level.mapname)) //if nextmap is same map, skip to next one
         {
             gi.bprintf(PRINT_HIGH,
                 "WARNING: Skipping double map, using next map in list.\n", offset);

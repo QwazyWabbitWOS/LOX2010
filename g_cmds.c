@@ -117,7 +117,7 @@ void Cmd_LBind_f(edict_t* ent)
 		}
 	}
 
-	if (Q_strcmp(gi.argv(1), "ondeath") == 0)
+	if (strcmp(gi.argv(1), "ondeath") == 0)
 	{
 		if (gi.argc() == 2)
 		{
@@ -133,7 +133,7 @@ void Cmd_LBind_f(edict_t* ent)
 				gi.cprintf(ent, PRINT_HIGH, "ondeath set to \"% s\"\n", ent->client->pers.ondeath);
 	}
 
-	if (Q_strcmp(gi.argv(1), "onrespawn") == 0)
+	if (strcmp(gi.argv(1), "onrespawn") == 0)
 	{
 		if (gi.argc() == 2)
 		{
@@ -149,7 +149,7 @@ void Cmd_LBind_f(edict_t* ent)
 				gi.cprintf(ent, PRINT_HIGH, "onrespawn set to \"% s\"\n", ent->client->pers.onrespawn);
 	}
 
-	if (Q_strcmp(gi.argv(1), "onenemydeath") == 0)
+	if (strcmp(gi.argv(1), "onenemydeath") == 0)
 	{
 		if (gi.argc() == 2)
 		{
@@ -168,7 +168,7 @@ void Cmd_LBind_f(edict_t* ent)
 }
 
 /*
-if (Q_stricmp(gi.argv(1),"effects") == 0)
+if (strcmp(gi.argv(1),"effects") == 0)
 {
 	if (ent->client->pers.effects != 0)
 		gi.cprintf(ent, PRINT_HIGH,"effects is set to: %i\n",ent->client->pers.effects);
@@ -179,7 +179,7 @@ if (Q_stricmp(gi.argv(1),"effects") == 0)
   else
   ent->client->pers.effects = (int)atoi(gi.argv(2));
 
-	else if (Q_stricmp(gi.argv(1),"renderfx") == 0)
+	else if (strcmp(gi.argv(1),"renderfx") == 0)
 	{
 	if (ent->client->pers.renderfx != 0)
 	gi.cprintf(ent, PRINT_HIGH,"renderfx is set to: %i\n",ent->client->pers.renderfx);
@@ -388,200 +388,200 @@ void Cmd_Help(edict_t* ent)
 	{
 
 	case 'a':
-		if (Q_stricmp(query, "airstrike") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Airstrike_Text);
-		else if (Q_stricmp(query, "angel") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Angel_Text);
-		else if (Q_stricmp(query, "angels") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Angel_Text);
-		else if (Q_stricmp(query, "angelob") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOBlind_Text);
-		else if (Q_stricmp(query, "angeloblind") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOBlind_Text);
-		else if (Q_stricmp(query, "angelod") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOD_Text);
-		else if (Q_stricmp(query, "angeloe") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOE_Text);
-		else if (Q_stricmp(query, "angelof") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOF_Text);
-		else if (Q_stricmp(query, "angeloflame") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOB_Text);
-		else if (Q_stricmp(query, "angeloh") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOH_Text);
-		else if (Q_stricmp(query, "angelohorror") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOH_Text);
-		else if (Q_stricmp(query, "angelol") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOL_Text);
-		else if (Q_stricmp(query, "angelom") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOM_Text);
-		else if (Q_stricmp(query, "angelop") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOP_Text);
-		else if (Q_stricmp(query, "angelor") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOR_Text);
-		else if (Q_stricmp(query, "angelou") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOU_Text);
-		else if (Q_stricmp(query, "anticamper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AntiCamper_Text);
-		else if (Q_stricmp(query, "anti-flaregun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AntiFlareGun_Text);
+		if (strcmp(query, "airstrike") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Airstrike_Text);
+		else if (strcmp(query, "angel") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Angel_Text);
+		else if (strcmp(query, "angels") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Angel_Text);
+		else if (strcmp(query, "angelob") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOBlind_Text);
+		else if (strcmp(query, "angeloblind") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOBlind_Text);
+		else if (strcmp(query, "angelod") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOD_Text);
+		else if (strcmp(query, "angeloe") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOE_Text);
+		else if (strcmp(query, "angelof") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOF_Text);
+		else if (strcmp(query, "angeloflame") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOB_Text);
+		else if (strcmp(query, "angeloh") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOH_Text);
+		else if (strcmp(query, "angelohorror") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOH_Text);
+		else if (strcmp(query, "angelol") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOL_Text);
+		else if (strcmp(query, "angelom") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOM_Text);
+		else if (strcmp(query, "angelop") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOP_Text);
+		else if (strcmp(query, "angelor") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOR_Text);
+		else if (strcmp(query, "angelou") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AngelOU_Text);
+		else if (strcmp(query, "anticamper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AntiCamper_Text);
+		else if (strcmp(query, "anti-flaregun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_AntiFlareGun_Text);
 		break;
 
 	case 'b':
-		if (Q_stricmp(query, "banzai grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BanzaiGrenade_Text);
-		else if (Q_stricmp(query, "baton") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Baton_Text);
-		else if (Q_stricmp(query, "bazooka sweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BazookaSweeper_Text);
-		else if (Q_stricmp(query, "blindness grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BlindnessGrenade_Text);
-		else if (Q_stricmp(query, "bazooka") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Bazooka_Text);
-		else if (Q_stricmp(query, "buckyball") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BuckyballLauncher_Text);
-		else if (Q_stricmp(query, "buckyball launcher") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BuckyballLauncher_Text);
+		if (strcmp(query, "banzai grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BanzaiGrenade_Text);
+		else if (strcmp(query, "baton") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Baton_Text);
+		else if (strcmp(query, "bazooka sweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BazookaSweeper_Text);
+		else if (strcmp(query, "blindness grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BlindnessGrenade_Text);
+		else if (strcmp(query, "bazooka") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Bazooka_Text);
+		else if (strcmp(query, "buckyball") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BuckyballLauncher_Text);
+		else if (strcmp(query, "buckyball launcher") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_BuckyballLauncher_Text);
 		break;
 
 	case 'c':
-		if (Q_stricmp(query, "cloak") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Cloak_Text);
-		else if (Q_stricmp(query, "checkstats") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Checkstats_Text);
-		else if (Q_stricmp(query, "chasecam") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Chasecam_Text);
-		else if (Q_stricmp(query, "chunkgun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_ChunkGun_Text);
-		else if (Q_stricmp(query, "cluster grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_ClusterGrenade_Text);
-		else if (Q_stricmp(query, "cataclysm device") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_CataclysmDevice_Text);
-		else if (Q_stricmp(query, "cat") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_CataclysmDevice_Text);
+		if (strcmp(query, "cloak") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Cloak_Text);
+		else if (strcmp(query, "checkstats") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Checkstats_Text);
+		else if (strcmp(query, "chasecam") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Chasecam_Text);
+		else if (strcmp(query, "chunkgun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_ChunkGun_Text);
+		else if (strcmp(query, "cluster grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_ClusterGrenade_Text);
+		else if (strcmp(query, "cataclysm device") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_CataclysmDevice_Text);
+		else if (strcmp(query, "cat") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_CataclysmDevice_Text);
 		break;
 
 	case 'd':
-		if (Q_stricmp(query, "drop") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Drop_Text);
-		else if (Q_stricmp(query, "decoy") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Decoy_Text);
-		else if (Q_stricmp(query, "detonate") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Detonate_Text);
-		else if (Q_stricmp(query, "day") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_DayNight_Text);
-		else if (Q_stricmp(query, "night") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_DayNight_Text);
-		else if (Q_stricmp(query, "daynight") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_DayNight_Text);
-		else if (Q_stricmp(query, "doubleimpact") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_DoubleImpact_Text);
-		else if (Q_stricmp(query, "durggun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_DurgGun_Text);
-		else if (Q_stricmp(query, "disruptor") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Disruptor_Text);
+		if (strcmp(query, "drop") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Drop_Text);
+		else if (strcmp(query, "decoy") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Decoy_Text);
+		else if (strcmp(query, "detonate") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Detonate_Text);
+		else if (strcmp(query, "day") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_DayNight_Text);
+		else if (strcmp(query, "night") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_DayNight_Text);
+		else if (strcmp(query, "daynight") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_DayNight_Text);
+		else if (strcmp(query, "doubleimpact") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_DoubleImpact_Text);
+		else if (strcmp(query, "durggun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_DurgGun_Text);
+		else if (strcmp(query, "disruptor") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Disruptor_Text);
 		break;
 
 	case 'e':
-		if (Q_stricmp(query, "explosive") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Explosive_Text);
-		else if (Q_stricmp(query, "energy vortex") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_EnergyVortex_Text);
+		if (strcmp(query, "explosive") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Explosive_Text);
+		else if (strcmp(query, "energy vortex") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_EnergyVortex_Text);
 		break;
 
 	case 'f':
-		if (Q_stricmp(query, "flashlight") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Flashlight_Text);
-		else if (Q_stricmp(query, "feign") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FeignDeath_Text);
-		else if (Q_stricmp(query, "fph") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FPH_Text);
-		else if (Q_stricmp(query, "firemode") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FireMode_Text);
-		else if (Q_stricmp(query, "flamesweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FlameSweeper_Text);
-		else if (Q_stricmp(query, "floating") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FloatingMines_Text);
-		else if (Q_stricmp(query, "floating mine launcher") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FloatingMines_Text);
-		else if (Q_stricmp(query, "freezersweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezerSweeper_Text);
-		else if (Q_stricmp(query, "freezer") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezeGun_Text);
-		else if (Q_stricmp(query, "freezegun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezeGun_Text);
-		else if (Q_stricmp(query, "flaregun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FlareGun_Text);
-		else if (Q_stricmp(query, "freezegrenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezeGrenade_Text);
-		else if (Q_stricmp(query, "flamethrower") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FlameThrower_Text);
-		else if (Q_stricmp(query, "fbfg") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FBFG_Text);
-		else if (Q_stricmp(query, "freezatron") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Freezatron_Text);
-		else if (Q_stricmp(query, "freezatron grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezatronGrenade_Text);
+		if (strcmp(query, "flashlight") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Flashlight_Text);
+		else if (strcmp(query, "feign") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FeignDeath_Text);
+		else if (strcmp(query, "fph") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FPH_Text);
+		else if (strcmp(query, "firemode") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FireMode_Text);
+		else if (strcmp(query, "flamesweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FlameSweeper_Text);
+		else if (strcmp(query, "floating") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FloatingMines_Text);
+		else if (strcmp(query, "floating mine launcher") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FloatingMines_Text);
+		else if (strcmp(query, "freezersweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezerSweeper_Text);
+		else if (strcmp(query, "freezer") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezeGun_Text);
+		else if (strcmp(query, "freezegun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezeGun_Text);
+		else if (strcmp(query, "flaregun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FlareGun_Text);
+		else if (strcmp(query, "freezegrenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezeGrenade_Text);
+		else if (strcmp(query, "flamethrower") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FlameThrower_Text);
+		else if (strcmp(query, "fbfg") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FBFG_Text);
+		else if (strcmp(query, "freezatron") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Freezatron_Text);
+		else if (strcmp(query, "freezatron grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_FreezatronGrenade_Text);
 		break;
 
 	case 'g':
-		if (Q_stricmp(query, "grenadesweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_GrenadeSweeper_Text);
-		else if (Q_stricmp(query, "grapple") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Hook_f_Text);
-		else if (Q_stricmp(query, "grenades") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Grenades_Text);
-		else if (Q_stricmp(query, "grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Grenades_Text);
-		else if (Q_stricmp(query, "darkmajickgrenades") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Grenades_Text);
-		else if (Q_stricmp(query, "guided missile") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_GuidedMissile_Text);
+		if (strcmp(query, "grenadesweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_GrenadeSweeper_Text);
+		else if (strcmp(query, "grapple") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Hook_f_Text);
+		else if (strcmp(query, "grenades") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Grenades_Text);
+		else if (strcmp(query, "grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Grenades_Text);
+		else if (strcmp(query, "darkmajickgrenades") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Grenades_Text);
+		else if (strcmp(query, "guided missile") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_GuidedMissile_Text);
 		break;
 
 	case 'h':
-		if (Q_stricmp(query, "help") == 0)
+		if (strcmp(query, "help") == 0)
 		{
 			gi.cprintf(ent, PRINT_MEDIUM, Info_Man_Text1);	// help on the man functs split into 
 			gi.cprintf(ent, PRINT_MEDIUM, Info_Man_Text2);	// segments because it's just too big
 			gi.cprintf(ent, PRINT_MEDIUM, Info_Man_Text3);	// to be transmitted in 1 frame.
 		}
-		else if (Q_stricmp(query, "height") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Height_Text);
-		else if (Q_stricmp(query, "hook") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Hook_f_Text);
-		else if (Q_stricmp(query, "homer grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_HomerGrenade_Text);
-		else if (Q_stricmp(query, "homing rocket launcher") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_HomingRocketLauncher_Text);
-		else if (Q_stricmp(query, "holoquad") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Holoquad_Text);
-		else if (Q_stricmp(query, "holoinvul") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Holoinvul_Text);
-		else if (Q_stricmp(query, "holobfg") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Holobfg_Text);
-		else if (Q_stricmp(query, "holoweapon") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Holoweapon_Text);
+		else if (strcmp(query, "height") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Height_Text);
+		else if (strcmp(query, "hook") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Hook_f_Text);
+		else if (strcmp(query, "homer grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_HomerGrenade_Text);
+		else if (strcmp(query, "homing rocket launcher") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_HomingRocketLauncher_Text);
+		else if (strcmp(query, "holoquad") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Holoquad_Text);
+		else if (strcmp(query, "holoinvul") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Holoinvul_Text);
+		else if (strcmp(query, "holobfg") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Holobfg_Text);
+		else if (strcmp(query, "holoweapon") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Holoweapon_Text);
 		break;
 
 	case 'i':
-		if (Q_stricmp(query, "id") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlayerID_Text);
-		else if (Q_stricmp(query, "inspect") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Inspect_Text);
-		else if (Q_stricmp(query, "invis") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_NewCloak_Text);
-		else if (Q_stricmp(query, "icecube gun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_IcecubeGun_Text);
+		if (strcmp(query, "id") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlayerID_Text);
+		else if (strcmp(query, "inspect") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Inspect_Text);
+		else if (strcmp(query, "invis") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_NewCloak_Text);
+		else if (strcmp(query, "icecube gun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_IcecubeGun_Text);
 		break;
 
 	case 'k':
-		if (Q_stricmp(query, "kamikaze") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Kamikaze_Text);
+		if (strcmp(query, "kamikaze") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Kamikaze_Text);
 		break;
 
 	case 'l':
-		if (Q_stricmp(query, "lbind") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LBind_Text);
-		else if (Q_stricmp(query, "location") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Location_Text);
-		else if (Q_stricmp(query, "lox") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LOX_Text);
-		else if (Q_stricmp(query, "lsight") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LaserSight_Text);
-		else if (Q_stricmp(query, "laser") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlaceLaserTripwire_Text);
-		else if (Q_stricmp(query, "logplayers") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LogPlayers_Text);
-		else if (Q_stricmp(query, "lightning gun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LightningGun_Text);
+		if (strcmp(query, "lbind") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LBind_Text);
+		else if (strcmp(query, "location") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Location_Text);
+		else if (strcmp(query, "lox") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LOX_Text);
+		else if (strcmp(query, "lsight") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LaserSight_Text);
+		else if (strcmp(query, "laser") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlaceLaserTripwire_Text);
+		else if (strcmp(query, "logplayers") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LogPlayers_Text);
+		else if (strcmp(query, "lightning gun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_LightningGun_Text);
 		break;
 
 	case 'm':
-		if (Q_stricmp(query, "mace") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Mace_Text);
-		else if (Q_stricmp(query, "machine rocket gun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_MachineRocketGun_Text);
-		else if (Q_stricmp(query, "machinegun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_MachineGun_Text);
-		else if (Q_stricmp(query, "midnight grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_MidnightGrenade_Text);
+		if (strcmp(query, "mace") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Mace_Text);
+		else if (strcmp(query, "machine rocket gun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_MachineRocketGun_Text);
+		else if (strcmp(query, "machinegun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_MachineGun_Text);
+		else if (strcmp(query, "midnight grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_MidnightGrenade_Text);
 		break;
 
 	case 'n':
-		if (Q_stricmp(query, "nightvision") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Lowlight_Text);
-		else if (Q_stricmp(query, "nailgun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Nailgun_Text);
-		else if (Q_stricmp(query, "napalm grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_NapalmGrenade_Text);
+		if (strcmp(query, "nightvision") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Lowlight_Text);
+		else if (strcmp(query, "nailgun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Nailgun_Text);
+		else if (strcmp(query, "napalm grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_NapalmGrenade_Text);
 		break;
 
 	case 'o':
-		if (Q_stricmp(query, "organic") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_OrganicArmor_Text);
-		else if (Q_stricmp(query, "organic armor") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_OrganicArmor_Text);
+		if (strcmp(query, "organic") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_OrganicArmor_Text);
+		else if (strcmp(query, "organic armor") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_OrganicArmor_Text);
 		break;
 
 	case 'p':
-		if (Q_stricmp(query, "push") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Tractor_Text);
-		else if (Q_stricmp(query, "pull") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Tractor_Text);
-		else if (Q_stricmp(query, "playerid") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlayerID_Text);
-		else if (Q_stricmp(query, "plasma grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlasmaGrenade_Text);
-		else if (Q_stricmp(query, "plasma cluster grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlasmaClusterGrenade_Text);
-		else if (Q_stricmp(query, "plasma rifle") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlasmaRifle_Text);
-		else if (Q_stricmp(query, "positron") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Positron_Text);
-		else if (Q_stricmp(query, "positron grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PositronGrenade_Text);
+		if (strcmp(query, "push") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Tractor_Text);
+		else if (strcmp(query, "pull") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Tractor_Text);
+		else if (strcmp(query, "playerid") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlayerID_Text);
+		else if (strcmp(query, "plasma grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlasmaGrenade_Text);
+		else if (strcmp(query, "plasma cluster grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlasmaClusterGrenade_Text);
+		else if (strcmp(query, "plasma rifle") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PlasmaRifle_Text);
+		else if (strcmp(query, "positron") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Positron_Text);
+		else if (strcmp(query, "positron grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_PositronGrenade_Text);
 		break;
 
 	case 'r':
-		if (Q_stricmp(query, "range") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Rangefinder_Text);
-		else if (Q_stricmp(query, "revenge") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Revenge_Text);
-		else if (Q_stricmp(query, "railgun sweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_RailgunSweeper_Text);
-		else if (Q_stricmp(query, "rocket grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_RocketGrenade_Text);
-		else if (Q_stricmp(query, "railbomb") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_RailBomb_Text);
+		if (strcmp(query, "range") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Rangefinder_Text);
+		else if (strcmp(query, "revenge") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Revenge_Text);
+		else if (strcmp(query, "railgun sweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_RailgunSweeper_Text);
+		else if (strcmp(query, "rocket grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_RocketGrenade_Text);
+		else if (strcmp(query, "railbomb") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_RailBomb_Text);
 		break;
 
 	case 's':
-		if (Q_stricmp(query, "scanner") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Scanner_Text);
-		else if (Q_stricmp(query, "score") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Score_Text);
-		else if (Q_stricmp(query, "shrapnel grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_ShrapnelGrenade_Text);
-		else if (Q_stricmp(query, "skinlist") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Skinlist_Text);
-		else if (Q_stricmp(query, "skipper homing rocket") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SkipperHomingRocket_Text);
-		else if (Q_stricmp(query, "slugarmor") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SlugArmor_Text);
-		else if (Q_stricmp(query, "snipergun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SniperGun_Text);
-		else if (Q_stricmp(query, "streetsweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_StreetSweeper_Text);
-		else if (Q_stricmp(query, "spinning rail grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SpinningRailGrenade_Text);
-		else if (Q_stricmp(query, "sticking grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_StickingGrenade_Text);
-		else if (Q_stricmp(query, "superblaster") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Superblaster_Text);
-		else if (Q_stricmp(query, "superblastersweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SuperblasterSweeper_Text);
-		else if (Q_stricmp(query, "sweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Sweepers_Text);
-		else if (Q_stricmp(query, "sweeperfiremode") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SweeperFireMode_Text);
+		if (strcmp(query, "scanner") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Scanner_Text);
+		else if (strcmp(query, "score") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Score_Text);
+		else if (strcmp(query, "shrapnel grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_ShrapnelGrenade_Text);
+		else if (strcmp(query, "skinlist") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Skinlist_Text);
+		else if (strcmp(query, "skipper homing rocket") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SkipperHomingRocket_Text);
+		else if (strcmp(query, "slugarmor") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SlugArmor_Text);
+		else if (strcmp(query, "snipergun") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SniperGun_Text);
+		else if (strcmp(query, "streetsweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_StreetSweeper_Text);
+		else if (strcmp(query, "spinning rail grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SpinningRailGrenade_Text);
+		else if (strcmp(query, "sticking grenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_StickingGrenade_Text);
+		else if (strcmp(query, "superblaster") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Superblaster_Text);
+		else if (strcmp(query, "superblastersweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SuperblasterSweeper_Text);
+		else if (strcmp(query, "sweeper") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Sweepers_Text);
+		else if (strcmp(query, "sweeperfiremode") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_SweeperFireMode_Text);
 		break;
 
 	case 't':
-		if (Q_stricmp(query, "tracker") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Tracker_Text);
-		else if (Q_stricmp(query, "teleportgrenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_TeleportGrenade_Text);
-		else if (Q_stricmp(query, "time") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Time_Text);
-		else if (Q_stricmp(query, "timeleft") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Timeleft_Text);
-		else if (Q_stricmp(query, "timeremaining") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Timeleft_Text);
-		else if (Q_stricmp(query, "timeall") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Timeall_Text);
-		else if (Q_stricmp(query, "turret") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Turret_Text);
-		else if (Q_stricmp(query, "trackercount") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_TrackerCount_Text);
-		else if (Q_stricmp(query, "turretcount") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_TurretCount_Text);
+		if (strcmp(query, "tracker") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Tracker_Text);
+		else if (strcmp(query, "teleportgrenade") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_TeleportGrenade_Text);
+		else if (strcmp(query, "time") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Time_Text);
+		else if (strcmp(query, "timeleft") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Timeleft_Text);
+		else if (strcmp(query, "timeremaining") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Timeleft_Text);
+		else if (strcmp(query, "timeall") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Timeall_Text);
+		else if (strcmp(query, "turret") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Turret_Text);
+		else if (strcmp(query, "trackercount") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_TrackerCount_Text);
+		else if (strcmp(query, "turretcount") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_TurretCount_Text);
 		break;
 
 	case 'v':
-		if (Q_stricmp(query, "ver") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Ver_Text);
-		else if (Q_stricmp(query, "vacuummaker") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_VacuumMaker_Text);
-		else if (Q_stricmp(query, "vote") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Voting_Text);
-		else if (Q_stricmp(query, "voting") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Voting_Text);
+		if (strcmp(query, "ver") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Ver_Text);
+		else if (strcmp(query, "vacuummaker") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_VacuumMaker_Text);
+		else if (strcmp(query, "vote") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Voting_Text);
+		else if (strcmp(query, "voting") == 0) gi.cprintf(ent, PRINT_MEDIUM, Info_Voting_Text);
 		break;
 
 	default:
@@ -1571,7 +1571,7 @@ qboolean OnSameTeam(edict_t* ent1, edict_t* ent2)
 		Q_strncpy(ent1Team, ClientTeam(ent1), sizeof(ent1Team) - 1);
 		Q_strncpy(ent2Team, ClientTeam(ent2), sizeof(ent2Team) - 1);
 
-		if (Q_stricmp(ent1Team, ent2Team) == 0)
+		if (strcmp(ent1Team, ent2Team) == 0)
 			return true;
 	}
 	return false;
@@ -1700,12 +1700,12 @@ void Cmd_Give_f(edict_t* ent)
 
 	name = gi.args();
 
-	if (Q_stricmp(name, "all") == 0)
+	if (strcmp(name, "all") == 0)
 		give_all = true;
 	else
 		give_all = false;
 
-	if (give_all || Q_stricmp(gi.argv(1), "health") == 0)
+	if (give_all || strcmp(gi.argv(1), "health") == 0)
 	{
 		if (gi.argc() == 3)
 			ent->health = atoi(gi.argv(2));
@@ -1715,7 +1715,7 @@ void Cmd_Give_f(edict_t* ent)
 			return;
 	}
 
-	if (give_all || Q_stricmp(name, "weapons") == 0)
+	if (give_all || strcmp(name, "weapons") == 0)
 	{
 		for (i = 0; i < game.num_items; i++)
 		{
@@ -1730,7 +1730,7 @@ void Cmd_Give_f(edict_t* ent)
 			return;
 	}
 
-	if (give_all || Q_stricmp(name, "ammo") == 0)
+	if (give_all || strcmp(name, "ammo") == 0)
 	{
 		for (i = 0; i < game.num_items; i++)
 		{
@@ -1745,7 +1745,7 @@ void Cmd_Give_f(edict_t* ent)
 			return;
 	}
 
-	if (give_all || Q_stricmp(name, "armor") == 0)
+	if (give_all || strcmp(name, "armor") == 0)
 	{
 		gitem_armor_t* info;
 
@@ -1763,7 +1763,7 @@ void Cmd_Give_f(edict_t* ent)
 			return;
 	}
 
-	if (give_all || Q_stricmp(name, "Power Shield") == 0)
+	if (give_all || strcmp(name, "Power Shield") == 0)
 	{
 		it = &gI_item_power_shield;
 		it_ent = G_Spawn();
@@ -3794,20 +3794,20 @@ void ClientCommand(edict_t* ent)
 	// Only a few commands are available during intermissions.
 	if (level.intermissiontime)
 	{
-		if (Q_stricmp(cmd, "players") == 0)
+		if (strcmp(cmd, "players") == 0)
 			Cmd_Players_f(ent);
-		else if (Q_stricmp(cmd, "say") == 0)
+		else if (strcmp(cmd, "say") == 0)
 			Cmd_Say_f(ent, false, false);
-		else if (Q_stricmp(cmd, "say_team") == 0
-			|| Q_stricmp(cmd, "steam") == 0)
+		else if (strcmp(cmd, "say_team") == 0
+			|| strcmp(cmd, "steam") == 0)
 		{
 			Cmd_Say_f(ent, true, false);
 		}
-		else if (Q_stricmp(cmd, "score") == 0)
+		else if (strcmp(cmd, "score") == 0)
 			Cmd_Score_f(ent);
-		else if (Q_stricmp(cmd, "help") == 0)
+		else if (strcmp(cmd, "help") == 0)
 			Cmd_Help_f(ent);
-		else if (Q_stricmp(cmd, "checkstats") == 0)
+		else if (strcmp(cmd, "checkstats") == 0)
 			Cmd_CheckStats_f(ent);
 
 		// Those are the only commands we allow now.
@@ -3821,179 +3821,179 @@ void ClientCommand(edict_t* ent)
 	{
 	case 'a':
 		// Angels provided by the Superheros II MOD
-		if (Q_stricmp(cmd, "angelod") == 0) Cmd_AngelOD(ent);		//death
-		else if (Q_stricmp(cmd, "angelol") == 0) Cmd_AngelOL(ent);	//life
-		else if (Q_stricmp(cmd, "angelom") == 0) Cmd_AngelOM(ent);	//mercy
-		else if (Q_stricmp(cmd, "angeloe") == 0) Cmd_AngelOE(ent);	//energy
-		else if (Q_stricmp(cmd, "angelof") == 0) Cmd_AngelOF(ent);	//frost
-		else if (Q_stricmp(cmd, "angelop") == 0) Cmd_AngelOP(ent);	//plague
-		else if (Q_stricmp(cmd, "angeloflame") == 0) Cmd_AngelOB(ent);	//flame
-		else if (Q_stricmp(cmd, "angeloh") == 0) Cmd_AngelOH(ent);	//horror
-		else if (Q_stricmp(cmd, "angelohorror") == 0) Cmd_AngelOH(ent);	//horror
-		else if (Q_stricmp(cmd, "angelob") == 0) Cmd_AngelOBlind(ent);	//blindness
-		else if (Q_stricmp(cmd, "angeloblind") == 0) Cmd_AngelOBlind(ent);	//blindness
-		else if (Q_stricmp(cmd, "angelor") == 0) Cmd_AngelOR(ent);		//revenge
-		else if (Q_stricmp(cmd, "angelou") == 0) Cmd_AngelOU(ent);	//unfreeze
+		if (strcmp(cmd, "angelod") == 0) Cmd_AngelOD(ent);		//death
+		else if (strcmp(cmd, "angelol") == 0) Cmd_AngelOL(ent);	//life
+		else if (strcmp(cmd, "angelom") == 0) Cmd_AngelOM(ent);	//mercy
+		else if (strcmp(cmd, "angeloe") == 0) Cmd_AngelOE(ent);	//energy
+		else if (strcmp(cmd, "angelof") == 0) Cmd_AngelOF(ent);	//frost
+		else if (strcmp(cmd, "angelop") == 0) Cmd_AngelOP(ent);	//plague
+		else if (strcmp(cmd, "angeloflame") == 0) Cmd_AngelOB(ent);	//flame
+		else if (strcmp(cmd, "angeloh") == 0) Cmd_AngelOH(ent);	//horror
+		else if (strcmp(cmd, "angelohorror") == 0) Cmd_AngelOH(ent);	//horror
+		else if (strcmp(cmd, "angelob") == 0) Cmd_AngelOBlind(ent);	//blindness
+		else if (strcmp(cmd, "angeloblind") == 0) Cmd_AngelOBlind(ent);	//blindness
+		else if (strcmp(cmd, "angelor") == 0) Cmd_AngelOR(ent);		//revenge
+		else if (strcmp(cmd, "angelou") == 0) Cmd_AngelOU(ent);	//unfreeze
 
 		// CCH: new command for calling airstrikes
-		else if (Q_stricmp(cmd, "airstrike") == 0)
+		else if (strcmp(cmd, "airstrike") == 0)
 			Cmd_Airstrike_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'b':
-		if (Q_stricmp(cmd, "baton") == 0)
+		if (strcmp(cmd, "baton") == 0)
 			Cmd_Baton_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'c':
-		if (Q_stricmp(cmd, "cloak") == 0)
+		if (strcmp(cmd, "cloak") == 0)
 			Cmd_cloak_f(ent);
 		// CCH: new command 'checkstats'
-		else if (Q_stricmp(cmd, "checkstats") == 0)
+		else if (strcmp(cmd, "checkstats") == 0)
 			Cmd_CheckStats_f(ent);
-		else if (Q_stricmp(cmd, "chasecam") == 0)
+		else if (strcmp(cmd, "chasecam") == 0)
 			Cmd_Third_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'd':
-		if (Q_stricmp(cmd, "drop") == 0)
+		if (strcmp(cmd, "drop") == 0)
 			Cmd_Drop_f(ent);
-		else if (Q_stricmp(cmd, "droparmor") == 0)
+		else if (strcmp(cmd, "droparmor") == 0)
 			Cmd_DropArmor_f(ent);
-		else if (Q_stricmp(cmd, "decoy") == 0)
+		else if (strcmp(cmd, "decoy") == 0)
 			Toggle_Decoy_f(ent);
-		else if (Q_stricmp(cmd, "detonate") == 0)
+		else if (strcmp(cmd, "detonate") == 0)
 			Cmd_Detonate_f(ent);
-		else if (Q_stricmp(cmd, "devmenu") == 0)
+		else if (strcmp(cmd, "devmenu") == 0)
 			Cmd_DevMenu_f(cmd, ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'e':
-		if (Q_stricmp(cmd, "explosive") == 0)
+		if (strcmp(cmd, "explosive") == 0)
 			Cmd_Explosive(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'f':
-		if (Q_stricmp(cmd, "flashlight") == 0)
+		if (strcmp(cmd, "flashlight") == 0)
 			Cmd_Flashlight(ent);
-		else if (Q_stricmp(cmd, "feign") == 0)
+		else if (strcmp(cmd, "feign") == 0)
 			Cmd_FeignDeath(ent);
-		else if (Q_stricmp(cmd, "fph") == 0)
+		else if (strcmp(cmd, "fph") == 0)
 			Cmd_FPH(ent);
-		else if (Q_stricmp(cmd, "firemode") == 0)
+		else if (strcmp(cmd, "firemode") == 0)
 			Cmd_FireMode_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'g':
-		if (Q_stricmp(cmd, "give") == 0)
+		if (strcmp(cmd, "give") == 0)
 			Cmd_Give_f(ent);
-		if (Q_stricmp(cmd, "givehook") == 0)
+		if (strcmp(cmd, "givehook") == 0 || strcmp(cmd, "give_hook") == 0)
 			HookGiveBinds_f(ent);
-		else if (Q_stricmp(cmd, "god") == 0)
+		else if (strcmp(cmd, "god") == 0)
 			Cmd_God_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'h':
-		if (Q_stricmp(cmd, "help") == 0)
+		if (strcmp(cmd, "help") == 0)
 			Cmd_Help_f(ent);
-		else if (Q_stricmp(cmd, "height") == 0)
+		else if (strcmp(cmd, "height") == 0)
 			Cmd_Height(ent);
-		else if (Q_stricmp(cmd, "hook") == 0)
+		else if (strcmp(cmd, "hook") == 0)
 			Cmd_Hook_f(ent);
-		else if (Q_stricmp(cmd, "holoquad") == 0)
+		else if (strcmp(cmd, "holoquad") == 0)
 			Cmd_Holoquad_f(ent);
-		else if (Q_stricmp(cmd, "holoinvul") == 0)
+		else if (strcmp(cmd, "holoinvul") == 0)
 			Cmd_Holoinvul_f(ent);
-		else if (Q_stricmp(cmd, "holobfg") == 0)
+		else if (strcmp(cmd, "holobfg") == 0)
 			Cmd_Holobfg_f(ent);
-		else if (Q_stricmp(cmd, "holoweapon") == 0)
+		else if (strcmp(cmd, "holoweapon") == 0)
 			Cmd_Holoweapon_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'i':
-		if (Q_stricmp(cmd, "id") == 0)
+		if (strcmp(cmd, "id") == 0)
 			Cmd_PlayerID(ent);
-		else if (Q_stricmp(cmd, "inspect") == 0)
+		else if (strcmp(cmd, "inspect") == 0)
 			Cmd_Inspect_f(ent);
-		else if (Q_stricmp(cmd, "invis") == 0)
+		else if (strcmp(cmd, "invis") == 0)
 			Cmd_Invisible(ent);
-		else if (Q_stricmp(cmd, "inven") == 0)
+		else if (strcmp(cmd, "inven") == 0)
 			Cmd_Inven_f(ent);
-		else if (Q_stricmp(cmd, "invnext") == 0)
+		else if (strcmp(cmd, "invnext") == 0)
 			SelectNextItem(ent, -1);
-		else if (Q_stricmp(cmd, "invprev") == 0)
+		else if (strcmp(cmd, "invprev") == 0)
 			SelectPrevItem(ent, -1);
-		else if (Q_stricmp(cmd, "invnextw") == 0)
+		else if (strcmp(cmd, "invnextw") == 0)
 			SelectNextItem(ent, IT_WEAPON);
-		else if (Q_stricmp(cmd, "invprevw") == 0)
+		else if (strcmp(cmd, "invprevw") == 0)
 			SelectPrevItem(ent, IT_WEAPON);
-		else if (Q_stricmp(cmd, "invnextp") == 0)
+		else if (strcmp(cmd, "invnextp") == 0)
 			SelectNextItem(ent, IT_POWERUP);
-		else if (Q_stricmp(cmd, "invprevp") == 0)
+		else if (strcmp(cmd, "invprevp") == 0)
 			SelectPrevItem(ent, IT_POWERUP);
-		else if (Q_stricmp(cmd, "invuse") == 0)
+		else if (strcmp(cmd, "invuse") == 0)
 			Cmd_InvUse_f(ent);
-		else if (Q_stricmp(cmd, "invdrop") == 0)
+		else if (strcmp(cmd, "invdrop") == 0)
 			Cmd_InvDrop_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'k':
-		if (Q_stricmp(cmd, "kill") == 0)
+		if (strcmp(cmd, "kill") == 0)
 			Cmd_Kill_f(ent);
-		else if (Q_stricmp(cmd, "kamikaze") == 0)
+		else if (strcmp(cmd, "kamikaze") == 0)
 			Cmd_Kamikaze_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'l':
-		if (Q_stricmp(cmd, "lsight") == 0)
+		if (strcmp(cmd, "lsight") == 0)
 			SP_LaserSight(ent);
-		else if (Q_stricmp(cmd, "laser") == 0)
+		else if (strcmp(cmd, "laser") == 0)
 			PlaceLaserTripwire(ent);
-		else if (Q_stricmp(cmd, "logplayers") == 0)
+		else if (strcmp(cmd, "logplayers") == 0)
 			Cmd_LogPlayers_f(ent);
-		else if (Q_stricmp(cmd, "lbind") == 0)
+		else if (strcmp(cmd, "lbind") == 0)
 			Cmd_LBind_f(ent);
-		else if (Q_stricmp(cmd, "location") == 0)
+		else if (strcmp(cmd, "location") == 0)
 			Cmd_Location_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'm':
-		if (Q_stricmp(cmd, "man") == 0)
+		if (strcmp(cmd, "man") == 0)
 			Cmd_Help(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'n':
-		if (Q_stricmp(cmd, "notarget") == 0)
+		if (strcmp(cmd, "notarget") == 0)
 			Cmd_Notarget_f(ent);
-		else if (Q_stricmp(cmd, "noclip") == 0)
+		else if (strcmp(cmd, "noclip") == 0)
 			Cmd_Noclip_f(ent);
-		else if (Q_stricmp(cmd, "nightvision") == 0)
+		else if (strcmp(cmd, "nightvision") == 0)
 			Cmd_Lowlight_f(ent);
-		else if (Q_stricmp(cmd, "no") == 0)
+		else if (strcmp(cmd, "no") == 0)
 			Voting_CmdVote_f(ent, NO);
 		else
 			Cmd_NotRecognized(ent);
@@ -4001,140 +4001,139 @@ void ClientCommand(edict_t* ent)
 
 		// For oakbot, bot code not debugged.
 	case 'o':
-		if (Q_stricmp(cmd, "oak") == 0) //spawn oak bot
+		if (strcmp(cmd, "oak") == 0) //spawn oak bot
 			SP_Oak_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'p':
-		if (Q_stricmp(cmd, "push") == 0)
+		if (strcmp(cmd, "push") == 0)
 			Cmd_Push_f(ent);
-		else if (Q_stricmp(cmd, "pull") == 0)
+		else if (strcmp(cmd, "pull") == 0)
 			Cmd_Pull_f(ent);
-		else if (Q_stricmp(cmd, "putaway") == 0)
+		else if (strcmp(cmd, "putaway") == 0)
 			Cmd_PutAway_f(ent);
-		else if (Q_stricmp(cmd, "players") == 0)
+		else if (strcmp(cmd, "players") == 0)
 			Cmd_Players_f(ent);
-		else if (Q_stricmp(cmd, "playerlist") == 0)
+		else if (strcmp(cmd, "playerlist") == 0)
 			Cmd_PlayerList_f(ent);
-		else if (Q_stricmp(cmd, "playerid") == 0)
+		else if (strcmp(cmd, "playerid") == 0)
 			Cmd_PlayerID(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'r':
-		if (Q_stricmp(cmd, "range") == 0)
+		if (strcmp(cmd, "range") == 0)
 			Cmd_Rangefinder(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 's':
-		if (Q_stricmp(cmd, "say") == 0)
+		if (strcmp(cmd, "say") == 0)
 			Cmd_Say_f(ent, false, false);
-		else if (Q_stricmp(cmd, "say_team") == 0
-			|| Q_stricmp(cmd, "steam") == 0)
+		else if (strcmp(cmd, "say_team") == 0 || strcmp(cmd, "steam") == 0)
 			Cmd_Say_f(ent, true, false);
-		else if (Q_stricmp(cmd, "scanner") == 0)
+		else if (strcmp(cmd, "scanner") == 0)
 			Toggle_Scanner(ent);
-		else if (Q_stricmp(cmd, "score") == 0)
+		else if (strcmp(cmd, "score") == 0)
 			Cmd_Score_f(ent);
-		else if (Q_stricmp(cmd, "skinlist") == 0)
+		else if (strcmp(cmd, "skinlist") == 0)
 		{
 			Cmd_SkinList_f(ent);
 			ent->spamtimer = level.time + 4.0f;	// anti spammage
 		}
-		else if (Q_stricmp(cmd, "sweeperfiremode") == 0)
+		else if (strcmp(cmd, "sweeperfiremode") == 0)
 			Cmd_SweeperFireMode(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 't':
-		if (Q_stricmp(cmd, "thirdx") == 0)
+		if (strcmp(cmd, "thirdx") == 0)
 			Cmd_ThirdX_f(ent);
-		else if (Q_stricmp(cmd, "thirdz") == 0)
+		else if (strcmp(cmd, "thirdz") == 0)
 			Cmd_ThirdZ_f(ent);
-		else if (Q_stricmp(cmd, "team") == 0)
+		else if (strcmp(cmd, "team") == 0)
 			CTFTeam_f(ent);
-		else if (Q_stricmp(cmd, "tracker") == 0)
+		else if (strcmp(cmd, "tracker") == 0)
 			Cmd_Tracker_f(ent);
-		else if (Q_stricmp(cmd, "trackercount") == 0)
+		else if (strcmp(cmd, "trackercount") == 0)
 			Cmd_TrackerCounter(ent);
-		else if (Q_stricmp(cmd, "turretcount") == 0)
+		else if (strcmp(cmd, "turretcount") == 0)
 			Cmd_TurretCounter(ent);
-		else if (Q_stricmp(cmd, "time") == 0)
+		else if (strcmp(cmd, "time") == 0)
 		{
 			Cmd_Time_f(ent);
 			ent->spamtimer = level.time + 6.0f;	// anti spammage
 		}
-		else if ((Q_stricmp(cmd, "timeremaining") == 0) || (Q_stricmp(cmd, "timeleft") == 0))
+		else if ((strcmp(cmd, "timeremaining") == 0) || (strcmp(cmd, "timeleft") == 0))
 		{
 			Cmd_TimeRemaining_f(ent);
 			ent->spamtimer = level.time + 6.0f;	// anti spammage
 		}
-		else if (Q_stricmp(cmd, "timeall") == 0)
+		else if (strcmp(cmd, "timeall") == 0)
 		{
 			Cmd_TimeAll_f(ent);
 			ent->spamtimer = level.time + 6.0f;	// anti spammage
 		}
-		else if (Q_stricmp(cmd, "turret") == 0)
+		else if (strcmp(cmd, "turret") == 0)
 			Cmd_Turret_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'u':
-		if (Q_stricmp(cmd, "use") == 0)
+		if (strcmp(cmd, "use") == 0)
 			Cmd_Use_f(ent);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'v':
-		if (Q_stricmp(cmd, "vote") == 0)		// command is gi.argv(0)
+		if (strcmp(cmd, "vote") == 0)		// command is gi.argv(0)
 		{
-			if (Q_stricmp(gi.argv(1), "map") == 0)	// gi.argv(1) determines election type
+			if (strcmp(gi.argv(1), "map") == 0)	// gi.argv(1) determines election type
 				Voting_BeginElection(ent, ELECT_MAP);	// set the vote type flag and who started it.
-			else if (Q_stricmp(gi.argv(1), "yes") == 0)	// 'vote yes' command
+			else if (strcmp(gi.argv(1), "yes") == 0)	// 'vote yes' command
 				Voting_CmdVote_f(ent, YES);
-			else if (Q_stricmp(gi.argv(1), "no") == 0)	// 'vote no' command
+			else if (strcmp(gi.argv(1), "no") == 0)	// 'vote no' command
 				Voting_CmdVote_f(ent, NO);
 			else
 				Cmd_NotRecognized(ent);	//bad subcommand
 		}
-		else if (Q_stricmp(cmd, "ver") == 0) // LOX version command
+		else if (strcmp(cmd, "ver") == 0) // LOX version command
 			gi.cprintf(ent, PRINT_HIGH, loxbanner, VERSION, BUILD, __DATE__, __TIME__);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'w':
-		if (Q_stricmp(cmd, "weapprev") == 0)
+		if (strcmp(cmd, "weapprev") == 0)
 			Cmd_WeapPrev_f(ent);
-		else if (Q_stricmp(cmd, "weapnext") == 0)
+		else if (strcmp(cmd, "weapnext") == 0)
 			Cmd_WeapNext_f(ent);
-		else if (Q_stricmp(cmd, "weaplast") == 0)
+		else if (strcmp(cmd, "weaplast") == 0)
 			Cmd_WeapLast_f(ent);
-		else if (Q_stricmp(cmd, "wave") == 0)
+		else if (strcmp(cmd, "wave") == 0)
 			Cmd_Wave_f(ent);
-		else if (Q_stricmp(cmd, "weallknow") == 0)
+		else if (strcmp(cmd, "weallknow") == 0)
 			Cmd_WWW_f();
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'y':
-		if (Q_stricmp(cmd, "yes") == 0)
+		if (strcmp(cmd, "yes") == 0)
 			Voting_CmdVote_f(ent, YES);
 		else
 			Cmd_NotRecognized(ent);
 		break;
 
 	case 'z':
-		if (Q_stricmp(cmd, "zoom") == 0)
+		if (strcmp(cmd, "zoom") == 0)
 			Cmd_Zoom_f(ent);
 		else
 			Cmd_NotRecognized(ent);
