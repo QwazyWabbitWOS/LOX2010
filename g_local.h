@@ -2003,7 +2003,7 @@ void	G_TouchSolids(edict_t* ent);
 char* G_CopyString(char* in);
 void StuffCmd(edict_t* ent, char* text);
 
-float* tv(float x, float y, float z);
+//QW//float* tv(float x, float y, float z);
 char* vtos(vec3_t v);
 
 float vectoyaw(vec3_t vec);
