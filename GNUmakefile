@@ -29,8 +29,8 @@ CC = gcc -std=c17 -Wall -Wpedantic
 # This is for native build
 CFLAGS=-O3 -DARCH="$(ARCH)" -DSTDC_HEADERS
 # This is for 32-bit build on 64-bit host
-ifeq ($(ARCH),i386)
-CFLAGS =-m32 -O3 -DARCH="$(ARCH)" -DSTDC_HEADERS -I/usr/include
+ifeq ($(ARCH), i386)
+CFLAGS += -m32 -I/usr/include
 endif
 
 # use this when debugging
@@ -113,8 +113,8 @@ depends:
 	$(CC) $(CFLAGS) -MM *.c > dependencies
 
 all:
+	$(MAKE) clean
 	$(MAKE) depends
 	$(MAKE)
-	$(MAKE) clean
 
 -include dependencies
