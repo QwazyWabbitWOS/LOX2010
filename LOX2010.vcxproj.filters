@@ -548,9 +548,6 @@
     <ClInclude Include="l_stickinggrenades.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="l_superrailshotgun.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="l_sword.h">
       <Filter>Header Files</Filter>
     </ClInclude>

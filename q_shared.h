@@ -907,6 +907,7 @@ typedef enum temp_event_n
 #define STAT_TEAM1_HEADER		STAT_CTF_TEAM1_HEADER		//24
 #define STAT_TEAM2_HEADER		STAT_CTF_TEAM2_HEADER		//25
 #define STAT_NOTCAPPED			STAT_CTF_NOTCAPPED			//26
+#define STAT_CTF_ID_VIEW		STAT_PLAYER					//27
 
 // MAX_STATS, I'm not sure if this is an absolute limit or arbitrary. //QW//
 

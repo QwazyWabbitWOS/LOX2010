@@ -4,7 +4,6 @@
 //*****************************
 
 #include "g_local.h"
-#include "l_superrailshotgun.h"
 
 void fire_superrailshotgun(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int kick)
 {

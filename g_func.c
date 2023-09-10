@@ -763,8 +763,6 @@ void button_killed(edict_t* self, edict_t* inflictor, edict_t* attacker, int dam
 	button_fire(self);
 }
 
-void botButtonThink(edict_t* ent);
-
 void SP_func_button(edict_t* ent)
 {
 	vec3_t	abs_movedir = { 0 };

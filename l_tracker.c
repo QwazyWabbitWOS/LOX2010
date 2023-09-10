@@ -365,6 +365,10 @@ void Tracker_Fire(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int sp
 	speed = 0;		//keep this at the end of the function
 }
 
+void Tracker_Touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
+{
+}
+
 //deploy up to (max_trackers) trackers
 void Tracker_Weapon_Fire(edict_t* ent)
 {

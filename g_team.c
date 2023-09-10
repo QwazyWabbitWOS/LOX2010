@@ -482,70 +482,67 @@ void CTFCalcScores(void)
 	}
 }
 
-/*
-void CTFID_f (edict_t *ent)
+void CTFID_f(edict_t* ent)
 {
-// No player ID if it's been banned.
-if (i_featureban & FB_ID)
-return;
+	// No player ID if it's been banned.
+	if (i_featureban & FB_ID)
+		return;
 
-if (ent->client->resp.id_state)
-{
-gi.cprintf(ent, PRINT_HIGH, "Disabling player identification display.\n");
-ent->client->resp.id_state = false;
-}
-else
-{
-gi.cprintf(ent, PRINT_HIGH, "Activating player identification display.\n");
-ent->client->resp.id_state = true;
-}
-}
-*/
-/*
-static void CTFSetIDView(edict_t *ent)
-{
-vec3_t	forward, dir;
-trace_t	tr;
-edict_t	*who, *best;
-float	bd = 0, d;
-int i;
-
-ent->client->ps.stats[STAT_CTF_ID_VIEW] = 0;
-
-AngleVectors(ent->client->v_angle, forward, NULL, NULL);
-VectorScale(forward, 1024, forward);
-VectorAdd(ent->s.origin, forward, forward);
-
-tr = gi.trace(ent->s.origin, NULL, NULL, forward, ent, MASK_SOLID);
-if (tr.fraction < 1 && tr.ent && tr.ent->client)
-{
-ent->client->ps.stats[STAT_CTF_ID_VIEW] =
-CS_PLAYERSKINS + (ent - g_edicts - 1);
-return;
+	if (ent->client->resp.id_state)
+	{
+		gi.cprintf(ent, PRINT_HIGH, "Disabling player identification display.\n");
+		ent->client->resp.id_state = false;
+	}
+	else
+	{
+		gi.cprintf(ent, PRINT_HIGH, "Activating player identification display.\n");
+		ent->client->resp.id_state = true;
+	}
 }
 
-AngleVectors(ent->client->v_angle, forward, NULL, NULL);
-best = NULL;
-for (i = 1; i <= maxclients->value; i++)
+static void CTFSetIDView(edict_t* ent)
 {
-who = g_edicts + i;
-if (!who->inuse)
-continue;
-VectorSubtract(who->s.origin, ent->s.origin, dir);
-VectorNormalize(dir);
-d = DotProduct(forward, dir);
-if (d > bd && loc_CanSee(ent, who))
-{
-bd = d;
-best = who;
-}
-}
-if (bd > 0.90)
-ent->client->ps.stats[STAT_CTF_ID_VIEW] =
-CS_PLAYERSKINS + (best - g_edicts - 1);
+	vec3_t	forward, dir;
+	trace_t	tr;
+	edict_t* who, * best;
+	float	bd = 0, d;
+	int i;
+
+	ent->client->ps.stats[STAT_CTF_ID_VIEW] = 0;
+
+	AngleVectors(ent->client->v_angle, forward, NULL, NULL);
+	VectorScale(forward, 1024, forward);
+	VectorAdd(ent->s.origin, forward, forward);
+
+	tr = gi.trace(ent->s.origin, NULL, NULL, forward, ent, MASK_SOLID);
+	if (tr.fraction < 1 && tr.ent && tr.ent->client)
+	{
+		ent->client->ps.stats[STAT_CTF_ID_VIEW] =
+			CS_PLAYERSKINS + (ent - g_edicts - 1);
+		return;
+	}
+
+	AngleVectors(ent->client->v_angle, forward, NULL, NULL);
+	best = NULL;
+	for (i = 1; i <= maxclients->value; i++)
+	{
+		who = g_edicts + i;
+		if (!who->inuse)
+			continue;
+		VectorSubtract(who->s.origin, ent->s.origin, dir);
+		VectorNormalize(dir);
+		d = DotProduct(forward, dir);
+		if (d > bd && loc_CanSee(ent, who))
+		{
+			bd = d;
+			best = who;
+		}
+	}
+	if (bd > 0.90)
+		ent->client->ps.stats[STAT_CTF_ID_VIEW] =
+		CS_PLAYERSKINS + (best - g_edicts - 1);
 
 }
-*/
 
 void SetCTFStats(edict_t* ent)
 {

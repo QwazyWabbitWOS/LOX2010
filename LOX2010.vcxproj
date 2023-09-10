@@ -441,7 +441,6 @@
     <ClInclude Include="l_rockets.h" />
     <ClInclude Include="l_spiralrocket.h" />
     <ClInclude Include="l_stickinggrenades.h" />
-    <ClInclude Include="l_superrailshotgun.h" />
     <ClInclude Include="l_sword.h" />
     <ClInclude Include="l_tracker.h" />
     <ClInclude Include="l_turret.h" />

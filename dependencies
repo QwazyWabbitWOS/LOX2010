@@ -182,7 +182,7 @@ l_superblaster.o: l_superblaster.c g_local.h q_shared.h performance.h \
 l_superblastersweeper.o: l_superblastersweeper.c g_local.h q_shared.h \
  performance.h game.h g_weapon.h p_menu.h m_player.h l_angels.h
 l_superrailshotgun.o: l_superrailshotgun.c g_local.h q_shared.h \
- performance.h game.h g_weapon.h p_menu.h l_superrailshotgun.h
+ performance.h game.h g_weapon.h p_menu.h
 l_sword.o: l_sword.c g_local.h q_shared.h performance.h game.h g_weapon.h \
  p_menu.h l_sword.h
 l_tracker.o: l_tracker.c g_local.h q_shared.h performance.h game.h \

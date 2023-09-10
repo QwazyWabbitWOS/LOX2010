@@ -47,7 +47,7 @@ void jorg_search(edict_t* self)
 
 void jorg_dead(edict_t* self);
 void jorgBFG(edict_t* self);
-void jorgMachineGun(edict_t* self);
+//void jorgMachineGun(edict_t* self);
 void jorg_firebullet(edict_t* self);
 void jorg_reattack1(edict_t* self);
 void jorg_attack1(edict_t* self);
