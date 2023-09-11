@@ -40,32 +40,31 @@ void stuffcmd(edict_t* ent, char* s)
 }
 
 /*--------------------------------------------------------------------------*/
-/*
-static qboolean loc_CanSee (edict_t *targ, edict_t *inflictor)
-{
-trace_t	trace;
-vec3_t	targpoint;
-int i;
-vec3_t viewpoint;
+//static qboolean loc_CanSee(edict_t* targ, edict_t* inflictor)
+//{
+//	trace_t	trace;
+//	vec3_t	targpoint;
+//	int i;
+//	vec3_t viewpoint;
+//
+//	if (targ->movetype == MOVETYPE_PUSH)
+//		return false; // bmodels not supported
+//
+//		// Find the center of the target.
+//	for (i = 0; i < 3; i++)
+//		targpoint[i] = (targ->mins[i] + targ->maxs[i]) / 2.0;
+//
+//	VectorCopy(inflictor->s.origin, viewpoint);
+//	viewpoint[2] += inflictor->viewheight;
+//
+//	trace = gi.trace(viewpoint, vec3_origin, vec3_origin, targpoint,
+//		inflictor, MASK_SOLID);
+//	if (trace.fraction == 1.0)
+//		return true;
+//
+//	return false;
+//}
 
-if (targ->movetype == MOVETYPE_PUSH)
-return false; // bmodels not supported
-
-// Find the center of the target.
-for (i = 0; i < 3; i++)
-targpoint[i] = (targ->mins[i] + targ->maxs[i]) / 2.0;
-
-VectorCopy(inflictor->s.origin, viewpoint);
-viewpoint[2] += inflictor->viewheight;
-
-trace = gi.trace (viewpoint, vec3_origin, vec3_origin, targpoint,
-inflictor, MASK_SOLID);
-if (trace.fraction == 1.0)
-return true;
-
-return false;
-}
-*/
 /*--------------------------------------------------------------------------*/
 
 void CTFInit(void)
@@ -500,49 +499,49 @@ void CTFID_f(edict_t* ent)
 	}
 }
 
-static void CTFSetIDView(edict_t* ent)
-{
-	vec3_t	forward, dir;
-	trace_t	tr;
-	edict_t* who, * best;
-	float	bd = 0, d;
-	int i;
-
-	ent->client->ps.stats[STAT_CTF_ID_VIEW] = 0;
-
-	AngleVectors(ent->client->v_angle, forward, NULL, NULL);
-	VectorScale(forward, 1024, forward);
-	VectorAdd(ent->s.origin, forward, forward);
-
-	tr = gi.trace(ent->s.origin, NULL, NULL, forward, ent, MASK_SOLID);
-	if (tr.fraction < 1 && tr.ent && tr.ent->client)
-	{
-		ent->client->ps.stats[STAT_CTF_ID_VIEW] =
-			CS_PLAYERSKINS + (ent - g_edicts - 1);
-		return;
-	}
-
-	AngleVectors(ent->client->v_angle, forward, NULL, NULL);
-	best = NULL;
-	for (i = 1; i <= maxclients->value; i++)
-	{
-		who = g_edicts + i;
-		if (!who->inuse)
-			continue;
-		VectorSubtract(who->s.origin, ent->s.origin, dir);
-		VectorNormalize(dir);
-		d = DotProduct(forward, dir);
-		if (d > bd && loc_CanSee(ent, who))
-		{
-			bd = d;
-			best = who;
-		}
-	}
-	if (bd > 0.90)
-		ent->client->ps.stats[STAT_CTF_ID_VIEW] =
-		CS_PLAYERSKINS + (best - g_edicts - 1);
-
-}
+//static void CTFSetIDView(edict_t* ent)
+//{
+//	vec3_t	forward, dir;
+//	trace_t	tr;
+//	edict_t* who, * best;
+//	float	bd = 0, d;
+//	int i;
+//
+//	ent->client->ps.stats[STAT_CTF_ID_VIEW] = 0;
+//
+//	AngleVectors(ent->client->v_angle, forward, NULL, NULL);
+//	VectorScale(forward, 1024, forward);
+//	VectorAdd(ent->s.origin, forward, forward);
+//
+//	tr = gi.trace(ent->s.origin, NULL, NULL, forward, ent, MASK_SOLID);
+//	if (tr.fraction < 1 && tr.ent && tr.ent->client)
+//	{
+//		ent->client->ps.stats[STAT_CTF_ID_VIEW] =
+//			CS_PLAYERSKINS + (ent - g_edicts - 1);
+//		return;
+//	}
+//
+//	AngleVectors(ent->client->v_angle, forward, NULL, NULL);
+//	best = NULL;
+//	for (i = 1; i <= maxclients->value; i++)
+//	{
+//		who = g_edicts + i;
+//		if (!who->inuse)
+//			continue;
+//		VectorSubtract(who->s.origin, ent->s.origin, dir);
+//		VectorNormalize(dir);
+//		d = DotProduct(forward, dir);
+//		if (d > bd && loc_CanSee(ent, who))
+//		{
+//			bd = d;
+//			best = who;
+//		}
+//	}
+//	if (bd > 0.90)
+//		ent->client->ps.stats[STAT_CTF_ID_VIEW] =
+//		CS_PLAYERSKINS + (best - g_edicts - 1);
+//
+//}
 
 void SetCTFStats(edict_t* ent)
 {
