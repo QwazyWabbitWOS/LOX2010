@@ -3688,7 +3688,8 @@ void Cmd_Lowlight_f(edict_t* ent)
 	if (i_featureban & FB_NIGHTVISION)
 		return;
 
-	if (ent->client->lowlight ^= 1)
+	ent->client->lowlight ^= 1;
+	if (ent->client->lowlight)
 	{
 		gi.cvar_forceset("gl_saturatelighting", "1");
 		gi.cvar_forceset("r_fullbright", "1");
