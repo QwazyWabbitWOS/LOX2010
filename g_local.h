@@ -61,9 +61,10 @@ _CrtMemState startup1;	// memory diagnostics, link with debug lib (/MDd)
 #define VERSION	"1.12.26"	//QW// single instance of version string
 
 // the "gameversion" client command will print this plus compile date
-#define	GAMEVERSION		"WOD:LOX, "VERSION	//deathmatch
-#define	GAMEVERSION_E	"CTF:LOX, "VERSION	//teamplay or CTF
-#define	GAMEVERSION_C	"COOP:LOX, "VERSION	//cooperative mode
+#define	GAMEVERSION		"WOD:LOX, " VERSION	//deathmatch
+#define	GAMEVERSION_E	"CTF:LOX, " VERSION	//teamplay or CTF
+#define	GAMEVERSION_C	"COOP:LOX, " VERSION	//cooperative mode
+
 
 //============================================================================
 
@@ -1066,12 +1067,13 @@ extern	cvar_t* fast_weapon_change;	//QW//enable/disable fast weapon change
 extern	cvar_t* max_cats;		//QW// maximum cataclysm devices per player per level
 extern	cvar_t* zbot_check;	//QW// enable/disable internal zbot checking
 extern	cvar_t* console_chat;
-extern	cvar_t* flashlightmode; //QW/ mode for flashlight code.
-//QW//
+extern	cvar_t* flashlightmode; //QW// mode for flashlight code.
 
-// these contain the conversion of the strings in the corresponding
+//QW// Integer representations of the ban flags.
+// These contain the conversion of the strings in the corresponding
 // cvars so we can bitwise AND them with the weapon ban constants.
 // they are defined in g_main.c
+
 extern unsigned long i_weaponban;
 extern unsigned long i_featureban;
 extern unsigned long i_fragban;
@@ -1106,8 +1108,6 @@ extern	cvar_t* g_nukes_takedamage;	// admin config. guided nukes take damage
 // controls for day-night cycling
 extern	cvar_t* nightdaytime;		// duration of a "day"
 extern	cvar_t* minlevel;			// lowest light level to apply
-
-//HACK
 
 #define world	(&g_edicts[0])
 

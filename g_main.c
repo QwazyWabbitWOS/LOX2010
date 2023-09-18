@@ -127,8 +127,12 @@ cvar_t* autoweaponselect;	//enable/disable auto select on weapon pickup in coop
 cvar_t* fast_weapon_change;	//enable/disable fast weapon change
 //cvar_t	*passwd;
 
-// these contain the conversion of the strings in the corresponding
+//QW// Integer representations of the ban flags.
+// These contain the conversion of the strings in the corresponding
 // cvars so we can bitwise AND them with the weapon ban constants.
+// Some mods add integer members to the cvar_t but this creates dependencies
+// on engines like q2pro or Yamagi that support it. This method preserves
+// engine independence at the cost of running UpdateBans periodically.
 
 unsigned long i_weaponban;
 unsigned long i_featureban;
