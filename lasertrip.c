@@ -136,7 +136,7 @@ void PlaceLaserTripwire(edict_t* ent)
 	gitem_t* it;
 	int	type;
 
-	int  laser_colour[] =
+	unsigned int  laser_colour[] =
 	{
 		0xf2f2f0f0,             // red
 		0xd0d1d2d3,             // green
@@ -163,15 +163,18 @@ void PlaceLaserTripwire(edict_t* ent)
 		return;
 
 	// cells for laser ?
-	if (ent->client->pers.inventory[ITEM_INDEX(&gI_ammo_cells)] < 5)
+	if (ent->client->pers.inventory[ITEM_INDEX(&gI_ammo_cells)] < 5) // Minimum 5 cells needed.
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Not enough cells to set a laser tripwire.\n");
 		return;
 	}
 
 	//QW// Limit the number of tripwires the user can set
-	if (max_lasertrips->value > 10) gi.cvar_set("max_lasertrips", "10");  //set a reasonable hard coded limit.
-	if (max_lasertrips->value < 1) gi.cvar_set("max_lasertrips", "1");  //use weaponban to disable them
+	if (max_lasertrips->value > 10)
+		gi.cvar_set("max_lasertrips", "10");  //set a reasonable hard coded limit.
+	if (max_lasertrips->value < 1)
+		gi.cvar_set("max_lasertrips", "1");  //use weaponban to disable them
+	
 	if (ent->client->lasertrips >= max_lasertrips->value)
 	{
 		gi.cprintf(ent, PRINT_HIGH, "Too many tripwires activated\n");
@@ -326,7 +329,7 @@ void PlaceLaserTripwire(edict_t* ent)
 	laser->classname = "lasertrip_laser";
 	laser->s.frame = 2;    // beam diameter
 	laser->owner = grenade;
-	laser->s.skinnum = laser_colour[((int)(random() * 1000)) % 5];
+	laser->s.skinnum = laser_colour[((int)(random() * 1000)) % (int)(sizeof laser_colour/sizeof(unsigned int))];
 
 	// Set orgin of laser to point of contact with wall
 	VectorCopy(tr.endpos, laser->s.origin);
