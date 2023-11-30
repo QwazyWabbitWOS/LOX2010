@@ -55,10 +55,6 @@ Uses Quake 2's gi.dprintf to output to the Quake 2 console.
 */
 void DbgPrintf(char* msg, ...)
 {
-	//To use: DbgPrintf("%s was called.\n", __func__);
-	//In Linux, this function becomes a call to gi.dprintf but
-	//it outputs only if developer cvar is set.
-
 	va_list	argptr;
 	char	text[1024];//QW// keep within protocol limits
 

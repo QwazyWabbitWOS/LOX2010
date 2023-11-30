@@ -679,7 +679,7 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="changelog.txt" />
-    <None Include="GNUmakefile" />
+    <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
