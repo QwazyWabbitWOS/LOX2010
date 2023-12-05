@@ -342,7 +342,6 @@ void Maplist_VariesMonthly(void)
             if (mf == NULL)         // oops, nope
             {
                 gi.dprintf("Game error: Maplist file %s doesn't exist. Monthly autorotation disabled.\n", buff);
-                gi.dprintf("Game error: Maplist file %s doesn't exist. Monthly autorotation disabled.\n", buff);
                 maplistvaries = gi.cvar_set("maplistvaries", "0");
                 mymaplistfile = gi.cvar_set("mymaplistfile", maplistfile->string);
             }
