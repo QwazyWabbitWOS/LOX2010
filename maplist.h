@@ -56,15 +56,9 @@ extern cvar_t *maplistfile3;	// name of high load list
 extern cvar_t *map_lowcount;		// upper bound of low load
 extern cvar_t *map_medcount;		// upper bound of medium
 
-//public
 qboolean	Maplist_Next (void);
 void		Maplist_InitVars(void);
 qboolean	Maplist_CheckStockmaps(char *thismap);
 qboolean	Maplist_CheckFileExists(char *mapname);
-
-//private
-int  Maplist_CountPlayers(void);
-void Maplist_VariableLoad(void);
-void Maplist_VariesMonthly(void);
 
 #endif

@@ -27,6 +27,10 @@
 #include "g_local.h"
 #include "maplist.h"
 
+static int  Maplist_CountPlayers(void);
+static void Maplist_VariableLoad(void);
+static void Maplist_VariesMonthly(void);
+
 // basic maplist handling
 cvar_t* maplist;		//line pointer
 cvar_t* maplistfile;	// the file name when not load sensing
@@ -263,7 +267,7 @@ qboolean Maplist_Next(void)
     return true;	// good to go
 }
 
-int Maplist_CountPlayers(void)
+static int Maplist_CountPlayers(void)
 {
     int i, count;
     edict_t* e;
@@ -278,7 +282,7 @@ int Maplist_CountPlayers(void)
 }
 
 // maplist varies with number of players
-void Maplist_VariableLoad(void)
+static void Maplist_VariableLoad(void)
 {
     int num;
 
@@ -318,7 +322,7 @@ void Maplist_VariableLoad(void)
 // tests to be sure maplist files exist for each month
 // and if not, disable the rotation and go back to single
 // maplist file.
-void Maplist_VariesMonthly(void)
+static void Maplist_VariesMonthly(void)
 {
     time_t  ct;
     struct  tm* lt;
