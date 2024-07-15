@@ -247,13 +247,7 @@ float LerpAngle(float a2, float a1, float frac)
 
 float	anglemod(float a)
 {
-#if 0
-	if (a >= 0)
-		a -= 360 * (int)(a / 360);
-	else
-		a += 360 * (1 + (int)(-a / 360));
-#endif
-	a = (360.0 / 65536) * ((int)(a * (65536 / 360.0)) & 65535);
+	a = (360.0f / 65536) * ((int)(a * (65536 / 360.0f)) & 65535);
 	return a;
 }
 
