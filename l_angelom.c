@@ -47,8 +47,7 @@ void AOM_Think(edict_t* ent)
 	ent->groundentity = NULL;
 
 	if (ent->owner->client->angel != ent ||
-		(ent->owner->client->pers.special != AOMERCY &&
-			ent->owner->client->pers.special != MAGE))
+		(ent->owner->client->pers.special != AOMERCY))
 	{
 		G_FreeEdict(ent);
 		return;

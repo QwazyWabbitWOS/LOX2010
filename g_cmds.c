@@ -31,6 +31,7 @@ void Cmd_Invisible(edict_t* ent);
 void Cmd_CheckStats_f(edict_t* ent);
 
 void Cmd_Height(edict_t* ent);
+void Cmd_Angel(edict_t* ent, AngelType type, int featureBanFlag, const char* angelName);
 void Cmd_AngelOD(edict_t* ent);
 void Cmd_AngelOL(edict_t* ent);
 void Cmd_AngelOM(edict_t* ent);
@@ -51,6 +52,7 @@ void Cmd_TrackerCounter(edict_t* ent);
 void Cmd_Turret_f(edict_t* ent);
 void Cmd_Baton_f(edict_t* ent);
 void Cmd_Help(edict_t* ent);
+void Cmd_HoloItem_f(edict_t* ent, gitem_t* item, int featureBanFlag);
 void Cmd_Holoquad_f(edict_t* ent);
 void Cmd_Holoinvul_f(edict_t* ent);
 void Cmd_Holobfg_f(edict_t* ent);
@@ -62,6 +64,12 @@ void Cmd_DropArmor_f(edict_t* ent);
 
 void Cmd_DropArmor_f(edict_t* ent)
 {
+	if (!ent || !ent->client)
+	{
+		gi.cprintf(ent, PRINT_HIGH, "Invalid entity or client in %s.\n", __func__);
+		return;
+	}
+
 	ent->client->organicarmor = 0;
 	ent->client->slugarmor = 0;
 	ent->client->cellarmor = 0;
@@ -70,29 +78,6 @@ void Cmd_DropArmor_f(edict_t* ent)
 	ent->client->rocketarmor = 0;
 	ent->client->grenadearmor = 0;
 	ent->client->loxarmor = 0;
-}
-
-// Strip unwanted characters from a string.
-// Copy string s into d removing the chars found in string q
-// d is pointer to destination string
-// s is pointer to source string
-// q is pointer to array of characters to filter out
-void stripem(char* d, const char* s, const char* q)
-{
-	const char* r = q;	// Everybody remember where we parked.
-	while (*s) {
-		while (*q) {
-			if (*s != *q)
-				q++;
-			else {
-				s++;
-				q = r;	//reset and recompare
-			}
-		}
-		q = r;
-		*d++ = *s++;
-	}
-	*d = '\0';
 }
 
 //LOX binds
@@ -277,98 +262,52 @@ void Log_Time(void)
 	gi.dprintf("%s", ctime(&tmpbuf)); //time string already contains a \n.
 }
 
-void Cmd_Holoweapon_f(edict_t* ent)
+void Cmd_HoloItem_f(edict_t* ent, gitem_t* item, int featureBanFlag)
 {
 	edict_t* drop;
 
-	if (i_loxfeatureban & LFB_HOLO)
+	if (i_loxfeatureban & featureBanFlag)
 		return;
 	if (!ent->client || ent->health <= 0)
 		return;
 
+	if (ent->client->holo != NULL)
+		G_FreeEdict(ent->client->holo);
+
+	drop = Drop_Item(ent, item);
+	drop->spawnflags |= DROPPED_PLAYER_ITEM;
+	drop->touch = Touch_Item;
+	drop->nextthink = level.time + 30;
+	drop->think = G_FreeEdict;
+	drop->owner = ent;
+	ent->client->holo = drop;
+	drop->holo = 1;
+}
+
+void Cmd_Holoweapon_f(edict_t* ent)
+{
 	if (ent->client->pers.weapon == &gI_weapon_blaster ||
 		ent->client->pers.weapon == &gI_weapon_superblaster ||
 		ent->client->pers.weapon == &gI_weapon_mace ||
 		ent->client->pers.weapon == &gI_weapon_flaregun)
 		return;
 
-	if (ent->client->holo != NULL)
-		G_FreeEdict(ent->client->holo);
-
-	drop = Drop_Item(ent, ent->client->pers.weapon);
-	drop->spawnflags |= DROPPED_PLAYER_ITEM;
-	drop->touch = Touch_Item;
-	drop->nextthink = level.time + 30;
-	drop->think = G_FreeEdict;
-	drop->owner = ent;
-	ent->client->holo = drop;
-	drop->holo = 1;
+	Cmd_HoloItem_f(ent, ent->client->pers.weapon, LFB_HOLO);
 }
 
 void Cmd_Holobfg_f(edict_t* ent)
 {
-	edict_t* drop;
-
-	if (i_loxfeatureban & LFB_HOLO)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if (ent->client->holo != NULL)
-		G_FreeEdict(ent->client->holo);
-
-	drop = Drop_Item(ent, &gI_weapon_bfg);
-	drop->spawnflags |= DROPPED_PLAYER_ITEM;
-	drop->touch = Touch_Item;
-	drop->nextthink = level.time + 30;
-	drop->think = G_FreeEdict;
-	drop->owner = ent;
-	ent->client->holo = drop;
-	drop->holo = 1;
+	Cmd_HoloItem_f(ent, &gI_weapon_bfg, LFB_HOLO);
 }
 
 void Cmd_Holoinvul_f(edict_t* ent)
 {
-	edict_t* drop;
-
-	if (i_loxfeatureban & LFB_HOLO)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if (ent->client->holo != NULL)
-		G_FreeEdict(ent->client->holo);
-
-	drop = Drop_Item(ent, &gI_item_invulnerability);
-	drop->spawnflags |= DROPPED_PLAYER_ITEM;
-	drop->touch = Touch_Item;
-	drop->nextthink = level.time + 30;
-	drop->think = G_FreeEdict;
-	drop->owner = ent;
-	ent->client->holo = drop;
-	drop->holo = 1;
+	Cmd_HoloItem_f(ent, &gI_item_invulnerability, LFB_HOLO);
 }
 
 void Cmd_Holoquad_f(edict_t* ent)
 {
-	edict_t* drop;
-
-	if (i_loxfeatureban & LFB_HOLO)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if (ent->client->holo != NULL)
-		G_FreeEdict(ent->client->holo);
-
-	drop = Drop_Item(ent, &gI_item_quad);
-	drop->spawnflags |= DROPPED_PLAYER_ITEM;
-	drop->touch = Touch_Item;
-	drop->nextthink = level.time + 30;
-	drop->think = G_FreeEdict;
-	drop->owner = ent;
-	ent->client->holo = drop;
-	drop->holo = 1;
+	Cmd_HoloItem_f(ent, &gI_item_quad, LFB_HOLO);
 }
 
 void Cmd_Help(edict_t* ent)
@@ -915,356 +854,85 @@ void Cmd_PlayerID(edict_t* ent)
 	}
 }
 
-// Angel of Unfreeze
-void Cmd_AngelOU(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELOUNFREEZE)
+// Angel initialization and toggles
+void Cmd_Angel(edict_t* ent, AngelType type, int featureBanFlag, const char* angelName) {
+	if (i_loxfeatureban & featureBanFlag)
 		return;
 	if (!ent->client || ent->health <= 0)
 		return;
 
-	if ((ent->client->pers.special != AOUNFREEZE) && ent->client->angel != NULL)
-	{
+	if ((ent->client->pers.special != type) && ent->client->angel != NULL) {
 		G_FreeEdict(ent->client->angel);
 		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
+		ent->client->pers.special = AONONE;
 	}
 
-	if (ent->client->angel != NULL)
-	{
+	if (ent->client->angel != NULL) {
 		G_FreeEdict(ent->client->angel);
 		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Unfreeze De-activated\n");
+		ent->client->pers.special = AONONE;
+		gi.cprintf(ent, PRINT_HIGH, "%s De-activated\n", angelName);
 	}
-
-	else
-	{
-		ent->client->pers.special = AOUNFREEZE;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Unfreeze Activated\n");
+	else {
+		ent->client->pers.special = type;
+		gi.cprintf(ent, PRINT_HIGH, "%s Activated\n", angelName);
 		Spawn_Angel(ent);
 	}
+}
+
+// Angel of Unfreeze
+void Cmd_AngelOU(edict_t* ent) {
+	Cmd_Angel(ent, AOUNFREEZE, LFB_ANGELOUNFREEZE, "Angel Of Unfreeze");
 }
 
 // Angel of Revenge
-void Cmd_AngelOR(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELOREVENGE)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if ((ent->client->pers.special != AOREVENGE) && ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-	}
-
-	if (ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Revenge De-activated\n");
-	}
-
-	else
-	{
-		ent->client->pers.special = AOREVENGE;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Revenge Activated\n");
-		Spawn_Angel(ent);
-	}
+void Cmd_AngelOR(edict_t* ent) {
+	Cmd_Angel(ent, AOREVENGE, LFB_ANGELOREVENGE, "Angel Of Revenge");
 }
 
 // Angel of Horror
-void Cmd_AngelOH(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELOHORROR)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if ((ent->client->pers.special != AOHORROR) && ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-	}
-
-	if (ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Horror De-activated\n");
-	}
-
-	else
-	{
-		ent->client->pers.special = AOHORROR;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Horror Activated\n");
-		Spawn_Angel(ent);
-	}
+void Cmd_AngelOH(edict_t* ent) {
+	Cmd_Angel(ent, AOHORROR, LFB_ANGELOHORROR, "Angel Of Horror");
 }
 
 // Angel of Blindness
-void Cmd_AngelOBlind(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELOBLIND)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if ((ent->client->pers.special != AOBLIND) && ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-	}
-
-	if (ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Blindness De-activated\n");
-	}
-
-	else
-	{
-		ent->client->pers.special = AOBLIND;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Blindness Activated\n");
-		Spawn_Angel(ent);
-	}
+void Cmd_AngelOBlind(edict_t* ent) {
+	Cmd_Angel(ent, AOBLIND, LFB_ANGELOBLIND, "Angel Of Blindness");
 }
 
 // Angel of Plague
-void Cmd_AngelOP(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELOPLAGUE)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if ((ent->client->pers.special != AOPLAGUE) && ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-	}
-
-	if (ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Plague De-activated\n");
-	}
-
-	else
-	{
-		ent->client->pers.special = AOPLAGUE;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Plague Activated\n");
-		Spawn_Angel(ent);
-	}
+void Cmd_AngelOP(edict_t* ent) {
+	Cmd_Angel(ent, AOPLAGUE, LFB_ANGELOPLAGUE, "Angel Of Plague");
 }
 
 // Angel of Flame
-void Cmd_AngelOB(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELOFLAME)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if ((ent->client->pers.special != AOFLAME) && ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-	}
-
-	if (ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Flame De-activated\n");
-	}
-
-	else
-	{
-		ent->client->pers.special = AOFLAME;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Flame Activated\n");
-		Spawn_Angel(ent);
-	}
+void Cmd_AngelOB(edict_t* ent) {
+	Cmd_Angel(ent, AOFLAME, LFB_ANGELOFLAME, "Angel Of Flame");
 }
 
 // Angel of Death
-void Cmd_AngelOD(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELODEATH)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if ((ent->client->pers.special != AODEATH) && ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-	}
-
-	if (ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Death De-activated\n");
-	}
-
-	else
-	{
-		ent->client->pers.special = AODEATH;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Death Activated\n");
-		Spawn_Angel(ent);
-	}
+void Cmd_AngelOD(edict_t* ent) {
+	Cmd_Angel(ent, AODEATH, LFB_ANGELODEATH, "Angel Of Death");
 }
 
 // Angel of Life
-void Cmd_AngelOL(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELOLIFE)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if ((ent->client->pers.special != AOLIFE) && ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-	}
-
-	if (ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Life De-activated\n");
-	}
-
-	else
-	{
-		ent->client->pers.special = AOLIFE;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Life Activated\n");
-		Spawn_Angel(ent);
-	}
+void Cmd_AngelOL(edict_t* ent) {
+	Cmd_Angel(ent, AOLIFE, LFB_ANGELOLIFE, "Angel Of Life");
 }
 
 //Angel of Mercy
-void Cmd_AngelOM(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELOMERCY)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if ((ent->client->pers.special != AOMERCY) && ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-	}
-
-	if (ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Mercy De-activated\n");
-	}
-
-	else
-	{
-		ent->client->pers.special = AOMERCY;
-		gi.cprintf(ent, PRINT_HIGH, "Angel of Mercy Activated\n");
-		Spawn_Angel(ent);
-	}
+void Cmd_AngelOM(edict_t* ent) {
+	Cmd_Angel(ent, AOMERCY, LFB_ANGELOMERCY, "Angel Of Mercy");
 }
 
 // Angel of Frost
-void Cmd_AngelOF(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELOFROST)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if ((ent->client->pers.special != AOFROST) && ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-	}
-
-	if (ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Frost De-activated\n");
-	}
-
-	else
-	{
-		ent->client->pers.special = AOFROST;
-		gi.cprintf(ent, PRINT_HIGH, "Angel of Frost Activated\n");
-		Spawn_Angel(ent);
-	}
+void Cmd_AngelOF(edict_t* ent) {
+	Cmd_Angel(ent, AOFROST, LFB_ANGELOFROST, "Angel Of Frost");
 }
 
 // Angel of Energy
-void Cmd_AngelOE(edict_t* ent)
-{
-
-	if (i_loxfeatureban & LFB_ANGELOENERGY)
-		return;
-	if (!ent->client || ent->health <= 0)
-		return;
-
-	if ((ent->client->pers.special != AOENERGY) && ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-	}
-
-	if (ent->client->angel != NULL)
-	{
-		G_FreeEdict(ent->client->angel);
-		ent->client->angel = NULL;
-		ent->client->pers.special = 0;
-		gi.cprintf(ent, PRINT_HIGH, "Angel Of Energy De-activated\n");
-	}
-
-	else
-	{
-		ent->client->pers.special = AOENERGY;
-		gi.cprintf(ent, PRINT_HIGH, "Angel of Energy Activated\n");
-		Spawn_Angel(ent);
-	}
+void Cmd_AngelOE(edict_t* ent) {
+	Cmd_Angel(ent, AOENERGY, LFB_ANGELOENERGY, "Angel Of Energy");
 }
 
 //*********** FEIGN DEATH *******************

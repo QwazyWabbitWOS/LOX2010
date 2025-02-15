@@ -546,7 +546,6 @@ typedef enum classnum_n
 	CN_AOREVENGE,	//angel of revenge
 	CN_AOUNFREEZE,	//angel of unfreeze
 	CN_AOENERGY,	//angel of energy
-	CN_MAGE,		//mage?
 	CN_TRACKER,
 	CN_TURRET,
 	CN_CHAMBER,
@@ -1378,7 +1377,7 @@ typedef struct client_persistent_s
 
 	unsigned int ipAddr;		// Their IP address when they first connect
 
-	int		special;
+	int		special;		// Angel types.
 
 	// David Martin - LBIND variables
 	char		ondeath[MAX_INFO_STRING];

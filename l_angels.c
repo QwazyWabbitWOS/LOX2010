@@ -158,14 +158,6 @@ void Spawn_Angel(edict_t* ent)
 		angel->s.renderfx |= RF_GLOW;
 
 	}
-	else if (ent->client->pers.special == MAGE)
-	{
-		angel->think = AOM_Think;
-		angel->classname = "familiar";
-		angel->classnum = CN_MAGE;
-		angel->s.sound = gi.soundindex("world/amb19.wav");
-		angel->s.modelindex = gi.modelindex("models/super2/aomercy/tris.md2");
-	}
 
 	else
 	{

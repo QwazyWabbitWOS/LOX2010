@@ -5,19 +5,20 @@
 #ifndef ANGELS_H
 #define ANGELS_H
 
-
-#define		AODEATH			2  //	angel of death
-#define		AOLIFE			3  //	angel of life
-#define		AOMERCY			4  //	angel of mercy
-#define		AOFROST			5  //   angel of frost	
-#define		AOPLAGUE		6  //	angel of plague
-#define		AOFLAME			7  //	angel of flame
-#define		AOHORROR		8  //	angel of horror
-#define		AOBLIND  		9  //	angel of blindness
-#define		AOREVENGE		10 //	angel of revenge
-#define		AOUNFREEZE		11 //	angel of unfreeze
-#define		AOENERGY		12 //	angel of energy
-#define		MAGE			-2  //	???
+typedef enum {
+    AONONE,
+    AODEATH,
+    AOLIFE,
+    AOMERCY,
+    AOFROST,
+    AOPLAGUE,
+    AOFLAME,
+    AOHORROR,
+    AOBLIND,
+    AOREVENGE,
+    AOUNFREEZE,
+    AOENERGY
+} AngelType;
 
 //angels.c
 void Angel_Touch (edict_t *ent, edict_t *other, cplane_t *plane, csurface_t *surf);
