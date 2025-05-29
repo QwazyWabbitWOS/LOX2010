@@ -4822,7 +4822,7 @@ void SP_item_health_mega(edict_t* self)
 
 int CompareItemsByPickup(const void* a, const void* b)
 {
-	return strcmp((*(gitem_t**)a)->pickup_name, (*(gitem_t**)b)->pickup_name);
+	return Q_stricmp((*(gitem_t**)a)->pickup_name, (*(gitem_t**)b)->pickup_name);
 }
 
 
@@ -4862,7 +4862,7 @@ gitem_t* FindItem(char* pickup_name)
 	{
 		curr = (low + high) >> 1;
 		it = itemlistSorted[curr];
-		icmp = strcmp(it->pickup_name, pickup_name); //QW// must be strcmp!
+		icmp = Q_stricmp(it->pickup_name, pickup_name); //QW// must be Q_stricmp!
 		if (icmp > 0)
 			high = curr;
 		else if (icmp < 0)
