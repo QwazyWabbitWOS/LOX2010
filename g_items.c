@@ -4862,7 +4862,7 @@ gitem_t* FindItem(char* pickup_name)
 	{
 		curr = (low + high) >> 1;
 		it = itemlistSorted[curr];
-		icmp = Q_stricmp(it->pickup_name, pickup_name); //QW// must be Q_stricmp
+		icmp = strcmp(it->pickup_name, pickup_name); //QW// must be strcmp!
 		if (icmp > 0)
 			high = curr;
 		else if (icmp < 0)
