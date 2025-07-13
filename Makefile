@@ -6,6 +6,8 @@
 # Edited December 08, 2018 by QwazyWabbit
 #
 
+.DEFAULT_GOAL := game
+
 # this nice line comes from the linux kernel makefile
 ARCH := $(shell uname -m | sed -e s/i.86/i386/ \
 	-e s/sun4u/sparc64/ -e s/arm.*/arm/ \
@@ -48,69 +50,75 @@ SHLIBEXT=so
 #set position independent code
 SHLIBCFLAGS=-fPIC
 
+# Build directory
+BUILD_DIR = build$(ARCH)
+
+# Ensure build directory exists
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
 DO_SHLIB_CC=$(CC) $(CFLAGS) $(SHLIBCFLAGS) -o $@ -c $<
 
-.c.o:
+# Pattern rule to place objects in build directory
+$(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
 	$(DO_SHLIB_CC)
 
-#############################################################################
-# SETUP AND BUILD
-# GAME
-#############################################################################
+# List of source and object files
+GAME_SRCS = \
+	g_ai.c g_chase.c g_cmds.c g_combat.c g_devmenu.c g_func.c \
+	g_items.c g_main.c g_misc.c g_monster.c g_offworld.c \
+	g_phys.c g_save.c g_spawn.c g_svcmds.c g_target.c \
+	g_team.c g_trigger.c g_turret.c g_utils.c g_weapon.c \
+	jetpack.c lsight.c m_actor.c m_berserk.c \
+	m_boss2.c m_boss3.c m_boss31.c m_boss32.c m_brain.c g_ent.c \
+	m_chick.c m_flash.c m_flipper.c m_float.c m_flyer.c m_gladiator.c \
+	m_gunner.c m_hover.c m_infantry.c m_insane.c m_medic.c m_move.c \
+	m_mutant.c m_parasite.c m_soldier.c m_supertank.c m_tank.c \
+	maplist.c p_client.c p_hook.c p_hud.c p_menu.c p_trail.c p_view.c \
+	p_weapon.c q_shared.c s_cam.c scanner.c x_fbomb.c x_fire.c zbotcheck.c \
+	kamikaze.c l_airfist.c l_angelob.c l_angeloblind.c l_angelod.c \
+	l_angeloe.c l_angelof.c l_angeloh.c l_angelol.c l_angelom.c \
+	l_angelop.c l_angelor.c l_angelou.c l_angels.c \
+	l_antiflaregun.c l_antimattercannon.c l_ar_admin.c l_backpack.c \
+	l_bazookasweeper.c l_bucky.c l_chunkgun.c l_daynight.c \
+	l_disintegrator.c l_dm_grenades.c l_doubleimpact.c l_durg.c l_durgsweeper.c\
+	l_energyvortex.c l_fbfg.c l_flamesweeper.c l_flamethrower.c \
+	l_flaregun.c l_flashlight.c l_floatingminelauncher.c \
+	l_freezatron.c l_freezegun.c l_freezersweeper.c l_grenadesweeper.c \
+	l_guidednuke.c l_guidedrocket.c l_help.c \
+	l_explosivemachinegun.c l_iceballgun.c l_nukegrenade.c oak.c oakai.c \
+	l_kaminit.c l_lightninggun.c l_mace.c l_matchplay.c l_nailgun.c l_nuke.c \
+	l_plasmarifle.c l_positron.c l_pulserifle.c l_railgunsweeper.c \
+	l_rockets.c l_snipersweeper.c l_spiralrocket.c \
+	l_stickinggrenades.c l_stickygrenadesweeper.c l_superrailshotgun.c \
+	l_superblaster.c l_superblastersweeper.c l_sword.c \
+	l_tracker.c l_turret.c l_vacuummaker.c l_voting.c \
+	lasertrip.c wf_decoy.c performance.c
 
-GAME_OBJS = \
-	g_ai.o g_chase.o g_cmds.o g_combat.o g_devmenu.o g_func.o \
-		g_items.o g_main.o g_misc.o g_monster.o g_offworld.o \
-		g_phys.o g_save.o g_spawn.o g_svcmds.o g_target.o \
-		g_team.o g_trigger.o g_turret.o g_utils.o g_weapon.o \
-		jetpack.o lsight.o m_actor.o m_berserk.o \
-		m_boss2.o m_boss3.o m_boss31.o m_boss32.o m_brain.o g_ent.o\
-		m_chick.o m_flash.o m_flipper.o m_float.o m_flyer.o m_gladiator.o \
-		m_gunner.o m_hover.o m_infantry.o m_insane.o m_medic.o m_move.o \
-		m_mutant.o m_parasite.o m_soldier.o m_supertank.o m_tank.o \
-		maplist.o p_client.o p_hook.o p_hud.o p_menu.o p_trail.o p_view.o \
-		p_weapon.o q_shared.o s_cam.o scanner.o x_fbomb.o x_fire.o zbotcheck.o \
-		kamikaze.o l_airfist.o  l_angelob.o l_angeloblind.o l_angelod.o \
-		l_angeloe.o l_angelof.o l_angeloh.o l_angelol.o l_angelom.o \
-		l_angelop.o l_angelor.o l_angelou.o l_angels.o \
-		l_antiflaregun.o l_antimattercannon.o l_ar_admin.o l_backpack.o \
-		l_bazookasweeper.o l_bucky.o l_chunkgun.o l_daynight.o \
-		l_disintegrator.o l_dm_grenades.o l_doubleimpact.o l_durg.o \
-		l_energyvortex.o l_fbfg.o l_flamesweeper.o l_flamethrower.o \
-		l_flaregun.o l_flashlight.o l_floatingminelauncher.o \
-		l_freezatron.o l_freezegun.o l_freezersweeper.o l_grenadesweeper.o \
-		l_guidednuke.o l_guidedrocket.o l_help.o \
-		l_explosivemachinegun.o l_iceballgun.o l_nukegrenade.o oak.o oakai.o \
-		l_kaminit.o l_lightninggun.o l_mace.o l_matchplay.o l_nailgun.o l_nuke.o \
-		l_plasmarifle.o l_positron.o l_pulserifle.o l_railgunsweeper.o \
-		l_rockets.o l_snipersweeper.o l_spiralrocket.o \
-		l_stickinggrenades.o l_stickygrenadesweeper.o l_superrailshotgun.o \
-		l_superblaster.o l_superblastersweeper.o l_sword.o \
-		l_tracker.o l_turret.o l_vacuummaker.o l_voting.o \
-		lasertrip.o wf_decoy.o performance.o
+GAME_OBJS = $(GAME_SRCS:%.c=$(BUILD_DIR)/%.o)
 
-game$(ARCH).real.$(SHLIBEXT) : $(GAME_OBJS)
+# Build all object files that are out-of-date
+game: $(GAME_OBJS) game$(ARCH).real.$(SHLIBEXT)
+
+# Build everything (always rebuild all objects and the shared library)
+all: 
+	$(MAKE) clean
+	$(MAKE) $(BUILD_DIR) $(GAME_OBJS) game$(ARCH).real.$(SHLIBEXT)
+
+# Main target: depends on all object files
+game$(ARCH).real.$(SHLIBEXT): $(GAME_OBJS)
 	$(CC) $(CFLAGS) -shared -o $@ $(GAME_OBJS) -ldl -lm
 	$(LIBTOOL) -r $@
 	file $@
-
 
 #############################################################################
 # MISC
 #############################################################################
 
 clean:
-	/bin/rm -f $(GAME_OBJS)
-
-depend:
-	$(CC) -MM $(GAME_OBJS:.o=.c)
+	rm -rf $(BUILD_DIR)
 
 depends:
-	$(CC) $(CFLAGS) -MM *.c > dependencies
-
-all:
-	$(MAKE) clean
-	$(MAKE) depends
-	$(MAKE) -j
+	$(CC) $(CFLAGS) -MM $(GAME_SRCS) > dependencies
 
 -include dependencies

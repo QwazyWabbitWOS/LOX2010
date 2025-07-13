@@ -5,7 +5,7 @@
 #ifndef ANGELS_H
 #define ANGELS_H
 
-typedef enum {
+typedef enum AngelType {
     AONONE,
     AODEATH,
     AOLIFE,
