@@ -57,12 +57,6 @@ BUILD_DIR = build$(ARCH)
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-DO_SHLIB_CC=$(CC) $(CFLAGS) $(SHLIBCFLAGS) -o $@ -c $<
-
-# Pattern rule to place objects in build directory
-$(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
-	$(DO_SHLIB_CC)
-
 # List of source and object files
 GAME_SRCS = \
 	g_ai.c g_chase.c g_cmds.c g_combat.c g_devmenu.c g_func.c \
@@ -97,13 +91,14 @@ GAME_SRCS = \
 
 GAME_OBJS = $(GAME_SRCS:%.c=$(BUILD_DIR)/%.o)
 
+# Pattern rule to place objects in build directory
+$(BUILD_DIR)/%.o: %.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(SHLIBCFLAGS) -MMD -MP -MF $(@:.o=.d) -o $@ -c $<
+
+-include $(GAME_OBJS:.o=.d)
+
 # Build all object files that are out-of-date
 game: $(GAME_OBJS) game$(ARCH).real.$(SHLIBEXT)
-
-# Build everything (always rebuild all objects and the shared library)
-all: 
-	$(MAKE) clean
-	$(MAKE) $(BUILD_DIR) $(GAME_OBJS) game$(ARCH).real.$(SHLIBEXT)
 
 # Main target: depends on all object files
 game$(ARCH).real.$(SHLIBEXT): $(GAME_OBJS)
@@ -111,14 +106,16 @@ game$(ARCH).real.$(SHLIBEXT): $(GAME_OBJS)
 	$(LIBTOOL) -r $@
 	file $@
 
+# Build everything (always rebuild all objects and the shared library)
+all:
+	$(MAKE) clean
+	$(MAKE) $(BUILD_DIR)
+	$(MAKE) $(GAME_OBJS)
+	$(MAKE) game$(ARCH).real.$(SHLIBEXT)
+
 #############################################################################
 # MISC
 #############################################################################
 
 clean:
 	rm -rf $(BUILD_DIR)
-
-depends:
-	$(CC) $(CFLAGS) -MM $(GAME_SRCS) > dependencies
-
--include dependencies
