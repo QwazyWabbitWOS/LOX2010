@@ -461,8 +461,11 @@ __attribute__((noreturn)) void GameError(char* fmt, ...)
 	va_start(argptr, fmt);
 	vsnprintf(text, sizeof(text), fmt, argptr);
 	va_end(argptr);
-	gi.error("%s", text);
-	abort();
+	gi.dprintf(
+		"********************\n"
+		"FATAL: %s\n"
+		"********************\n", text);
+	exit(EXIT_FAILURE);
 }
 
 /*

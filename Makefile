@@ -3,7 +3,7 @@
 #
 # Jan '98 by Zoid <zoid@idsoftware.com>
 #
-# Edited December 08, 2018 by QwazyWabbit
+# Edited July 13, 2025 by QwazyWabbit
 #
 
 .DEFAULT_GOAL := game
@@ -57,7 +57,7 @@ BUILD_DIR = build$(ARCH)
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-# List of source and object files
+# List of source files
 GAME_SRCS = \
 	g_ai.c g_chase.c g_cmds.c g_combat.c g_devmenu.c g_func.c \
 	g_items.c g_main.c g_misc.c g_monster.c g_offworld.c \
@@ -112,10 +112,6 @@ all:
 	$(MAKE) $(BUILD_DIR)
 	$(MAKE) $(GAME_OBJS)
 	$(MAKE) game$(ARCH).real.$(SHLIBEXT)
-
-#############################################################################
-# MISC
-#############################################################################
 
 clean:
 	rm -rf $(BUILD_DIR)

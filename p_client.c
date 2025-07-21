@@ -1510,7 +1510,7 @@ void SelectSpawnPoint(edict_t* ent, vec3_t origin, vec3_t angles)
 				spot = G_Find(spot, FOFS(classname), "info_player_start");
 			}
 			if (!spot) {
-				GameError("Couldn't find spawn point %s\n", game.spawnpoint);
+				GameError("Couldn't find spawn point %s in %s\n", game.spawnpoint, level.mapname);
 			}
 		}
 	}
