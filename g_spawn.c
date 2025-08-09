@@ -947,9 +947,9 @@ void SP_worldspawn(edict_t* ent)
 	gi.imageindex("field_3");
 
 	if (!st.gravity)
-		gi.cvar_set("gravity", "800");
+		gi.cvar_set("sv_gravity", "800");
 	else
-		gi.cvar_set("gravity", st.gravity);
+		gi.cvar_set("sv_gravity", st.gravity);
 
 	snd_fry = gi.soundindex("player/fry.wav");	// standing in lava / slime
 
@@ -1115,47 +1115,6 @@ void SP_worldspawn(edict_t* ent)
 	//	gi.imageindex (PIC_FARTHERDOT_TAG);
 	//	gi.imageindex (PIC_FARTHESTDOT_TAG);
 }
-
-
-#if 0
-// Precache Foxman's song list.
-Foxman_precache()
-{
-	FILE* in;
-	char buffer[MAX_QPATH], * res;
-
-	// Open the songlist file.
-	gi.dprintf("Preparing to read songlist...\n");
-	sprintf(buffer, "./%s/songlist.txt", gamedir->string);
-	in = fopen(buffer, "rt");
-	if (in == NULL)
-	{
-		gi.dprintf("No songlist -- can't open ./%s/songlist.txt\n",
-			gamedir->string);
-	}
-	else
-	{
-		gi.dprintf("Reading songlist...\n");
-
-		// Precache each song in the list.
-		while ((res = fgets(buffer, sizeof(buffer), in)) != NULL)
-		{
-			// Chop the newline(s) from the end of the string.
-			res = buffer + strlen(buffer) - 1;
-			while (res >= buffer && (*res == 10 || *res == 13))
-			{
-				*res = 0; res--;
-			}
-
-			// Precache this sound.
-			gi.soundindex(res);
-		}
-
-		fclose(in);
-	}
-}
-#endif
-
 
 //====================================================== 
 //========== Spawn Temp Entity Functions =============== 
