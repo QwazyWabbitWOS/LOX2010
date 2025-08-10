@@ -59,7 +59,7 @@ $(BUILD_DIR):
 
 # List of source files
 GAME_SRCS = \
-	g_ai.c g_chase.c g_cmds.c g_combat.c g_devmenu.c g_func.c \
+	fileexists.c g_ai.c g_chase.c g_cmds.c g_combat.c g_devmenu.c g_func.c \
 	g_items.c g_main.c g_misc.c g_monster.c g_offworld.c \
 	g_phys.c g_save.c g_spawn.c g_svcmds.c g_target.c \
 	g_team.c g_trigger.c g_turret.c g_utils.c g_weapon.c \

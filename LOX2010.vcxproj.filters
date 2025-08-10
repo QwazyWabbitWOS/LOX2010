@@ -426,6 +426,9 @@
     <ClCompile Include="l_durgsweeper.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fileexists.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="g_local.h">
@@ -663,6 +666,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="fileexists.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -63,6 +63,7 @@
 #include "g_local.h"
 #include "l_voting.h"
 #include "maplist.h"
+#include "fileexists.h"
 
 cvar_t* electpercentage;	// default is 55%, set to 0 to disable elections
 cvar_t* electduration;		// duration of an election (seconds)
@@ -208,7 +209,7 @@ int Voting_BeginElection(edict_t* ent, elect_t type)
 		}
 
 		// if item isn't a stock map, check for the existence of a map file (bsp)
-		if (!Maplist_CheckStockmaps(mapname) && !Maplist_CheckFileExists(mapname))
+		if (!FileExists(mapname, FILE_MAP))
 		{
 			gi.cprintf(ent, PRINT_HIGH, "Map %s does not exist on this server.\n", mapname);
 			return false;
