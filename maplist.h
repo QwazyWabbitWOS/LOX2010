@@ -58,7 +58,7 @@ extern cvar_t *map_medcount;		// upper bound of medium
 
 qboolean	Maplist_Next (void);
 void		Maplist_InitVars(void);
-qboolean	Maplist_CheckStockmaps(char *thismap);
-qboolean	Maplist_CheckFileExists(char *mapname);
+//qboolean	Maplist_CheckStockmaps(char *thismap);
+//qboolean	Maplist_CheckFileExists(char *mapname);
 
 #endif

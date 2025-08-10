@@ -26,6 +26,7 @@
 
 #include "g_local.h"
 #include "maplist.h"
+#include "fileexists.h"
 
 static int  Maplist_CountPlayers(void);
 static void Maplist_VariableLoad(void);
@@ -62,20 +63,20 @@ cvar_t* map_medcount;		// upper bound of medium
 // rotations.
 
 // these are the 48 stock quake2 maps in pak0.pak, pak1.pak and pak3,pak
-static char* stockmaps[] =
-{
-    "base1", "base2", "base3", "biggun", "boss1",
-    "boss2", "bunk1", "city1", "city2", "city3",
-    "command", "cool1", "fact1", "fact2", "fact3",
-    "hangar1", "hangar2", "jail1", "jail2", "jail3",
-    "jail4", "jail5", "lab", "mine1", "mine2",
-    "mine3", "mine4", "mintro", "power1", "power2",
-    "security", "space", "strike", "train", "ware1",
-    "ware2", "waste1", "waste2", "waste3", "q2dm1",
-    "q2dm2", "q2dm3", "q2dm4", "q2dm5", "q2dm6",
-    "q2dm7", "q2dm8", // pak1.pak
-    "match1" //pak3.pak
-};
+//static char* stockmaps[] =
+//{
+//    "base1", "base2", "base3", "biggun", "boss1",
+//    "boss2", "bunk1", "city1", "city2", "city3",
+//    "command", "cool1", "fact1", "fact2", "fact3",
+//    "hangar1", "hangar2", "jail1", "jail2", "jail3",
+//    "jail4", "jail5", "lab", "mine1", "mine2",
+//    "mine3", "mine4", "mintro", "power1", "power2",
+//    "security", "space", "strike", "train", "ware1",
+//    "ware2", "waste1", "waste2", "waste3", "q2dm1",
+//    "q2dm2", "q2dm3", "q2dm4", "q2dm5", "q2dm6",
+//    "q2dm7", "q2dm8", // pak1.pak
+//    "match1" //pak3.pak
+//};
 
 // Called by InitGame() to
 // instantiate cvars for maplists and set defaults
@@ -100,40 +101,40 @@ void Maplist_InitVars(void)
 
 // input argument is pointer to selected map
 // returns true if it is a stock map, else false
-qboolean Maplist_CheckStockmaps(char* thismap)
-{
-    int i;
-
-    for (i = 0; i < (int)(sizeof stockmaps / sizeof stockmaps[0]); i++)
-    {
-        if (strcmp(thismap, stockmaps[i]) == 0)
-            return true;    // it's a stock map
-    }
-    return false;
-}
-
-qboolean Maplist_CheckFileExists(char* mapname)
-{
-    FILE* mf;
-    char buffer[MAX_QPATH];
-
-    // check basedir
-    sprintf(buffer, "%s/baseq2/maps/%s.bsp", basedir->string, mapname);
-    mf = fopen(buffer, "r");
-    if (mf != NULL) {
-        fclose(mf);
-        return true;
-    }
-
-    // check gamedir
-    sprintf(buffer, "%s/maps/%s.bsp", gamedir->string, mapname);
-    mf = fopen(buffer, "r");
-    if (mf != NULL) {
-        fclose(mf);
-        return true;
-    }
-    return false;
-}
+//qboolean Maplist_CheckStockmaps(char* thismap)
+//{
+//    int i;
+//
+//    for (i = 0; i < (int)(sizeof stockmaps / sizeof stockmaps[0]); i++)
+//    {
+//        if (strcmp(thismap, stockmaps[i]) == 0)
+//            return true;    // it's a stock map
+//    }
+//    return false;
+//}
+//
+//qboolean Maplist_CheckFileExists(char* mapname)
+//{
+//    FILE* mf;
+//    char buffer[MAX_QPATH];
+//
+//    // check basedir
+//    sprintf(buffer, "%s/baseq2/maps/%s.bsp", basedir->string, mapname);
+//    mf = fopen(buffer, "r");
+//    if (mf != NULL) {
+//        fclose(mf);
+//        return true;
+//    }
+//
+//    // check gamedir
+//    sprintf(buffer, "%s/maps/%s.bsp", gamedir->string, mapname);
+//    mf = fopen(buffer, "r");
+//    if (mf != NULL) {
+//        fclose(mf);
+//        return true;
+//    }
+//    return false;
+//}
 
 /*
 * Called by EndDMLevel()
@@ -249,7 +250,7 @@ qboolean Maplist_Next(void)
         // If we get this far we have a string that is supposed to be a valid map name.
         // Check the list of 48 stock Quake 2 maps and see if it's one of them.
         // If it isn't a stock map, check for the existence of a map file (bsp)
-        if (!Maplist_CheckStockmaps(buffer) && !Maplist_CheckFileExists(buffer))
+        if (!FileExists(buffer, FILE_MAP))
         {
             gi.bprintf(PRINT_HIGH,
                 "WARNING: Maplist line %i, map %s was not found. Using next map in list.\n", offset, buffer);

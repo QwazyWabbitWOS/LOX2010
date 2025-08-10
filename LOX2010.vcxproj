@@ -289,6 +289,7 @@
     <ClCompile Include="g_utils.c" />
     <ClCompile Include="g_weapon.c" />
     <ClCompile Include="highscorer.c" />
+    <ClCompile Include="fileexists.c" />
     <ClCompile Include="jetpack.c" />
     <ClCompile Include="kamikaze.c" />
     <ClCompile Include="lasertrip.c" />
@@ -409,6 +410,7 @@
     <ClInclude Include="g_local.h" />
     <ClInclude Include="g_team.h" />
     <ClInclude Include="g_weapon.h" />
+    <ClInclude Include="fileexists.h" />
     <ClInclude Include="kamikaze.h" />
     <ClInclude Include="lithhook.h" />
     <ClInclude Include="l_airfist.h" />
