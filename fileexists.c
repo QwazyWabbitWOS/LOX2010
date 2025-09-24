@@ -17,7 +17,7 @@ qboolean InPak(char* base_dir, char* game_dir, char* filename)
 
 	// Search paks in the game folder.
 
-	for (k = 9; (k >= 0) && !found; k--)
+	for (k = 99; (k >= 0) && !found; k--)
 	{
 		Q_strncpyz(pakfile, sizeof pakfile, base_dir);
 		if (strlen(game_dir))
@@ -40,8 +40,10 @@ qboolean InPak(char* base_dir, char* game_dir, char* filename)
 					for (kk = 0; (kk < numitems) && !found; kk++)
 					{
 						size_t n = fread(&pakitem, 1, sizeof(pak_item_t), f);
-						if (n && !Q_stricmp(pakitem.name, filename))
+						if (n && !Q_stricmp(pakitem.name, filename)) {
+							DbgPrintf("%s: %s found in %s.\n", __func__, pakitem.name, pakfile);
 							found = true;
+						}
 					}
 				}
 			}

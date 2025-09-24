@@ -25,7 +25,7 @@ CC = gcc -std=c17 -Wall -Wpedantic
 # this will let you build 32-bits on ia64 systems
 #
 # This is for native build
-CFLAGS=-O3 -DARCH="$(ARCH)" -DSTDC_HEADERS
+CFLAGS=-O3 -DARCH="$(ARCH)"
 # This is for 32-bit build on 64-bit host
 ifeq ($(ARCH), i386)
 CFLAGS += -m32 -I/usr/include
