@@ -578,7 +578,6 @@ void ReadField(FILE* f, field_t* field, byte* base)
 	void* p;
 	int			len;
 	int			index;
-	size_t	count;
 
 	p = (void*)(base + field->ofs);
 	switch (field->type)
@@ -597,7 +596,7 @@ void ReadField(FILE* f, field_t* field, byte* base)
 		else
 		{
 			*(char**)p = gi.TagMalloc(len, TAG_LEVEL);
-			count = fread(*(char**)p, len, 1, f);
+			size_t count = fread(*(char**)p, len, 1, f);
 			if (count) {
 				; // don't worry, be happy
 			}
@@ -610,7 +609,7 @@ void ReadField(FILE* f, field_t* field, byte* base)
 		else
 		{
 			*(char**)p = gi.TagMalloc(len, TAG_GAME);
-			count = fread(*(char**)p, len, 1, f);
+			size_t count = fread(*(char**)p, len, 1, f);
 			if (count) {
 				; // don't worry, be happy
 			}
@@ -686,9 +685,8 @@ All pointer variables (except function pointers) must be handled specially.
 void ReadClient(FILE* f, gclient_t* client)
 {
 	field_t* field;
-	size_t	count;
 
-	count = fread(client, sizeof(*client), 1, f);
+	size_t count = fread(client, sizeof(*client), 1, f);
 	if (count) {
 		; // don't worry, be happy
 	}
@@ -878,12 +876,12 @@ All pointer variables (except function pointers) must be handled specially.
 void ReadLevelLocals(FILE* f)
 {
 	field_t* field;
-	size_t	count;
 
-	count = fread(&level, sizeof(level), 1, f);
+	size_t count = fread(&level, sizeof(level), 1, f);
 	if (count) {
 		; // don't worry, be happy
 	}
+
 	for (field = levelfields; field->name; field++)
 	{
 		ReadField(f, field, (byte*)&level);

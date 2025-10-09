@@ -518,15 +518,6 @@ void jorg_firebullet(edict_t* self)
 
 void jorg_attack(edict_t* self)
 {
-	vec3_t	vec = { 0 };
-	float	range;
-
-	VectorSubtract(self->enemy->s.origin, self->s.origin, vec);
-	range = VectorLength(vec);
-	if (range) {
-		; //do nothing
-	}
-
 	if (random() <= 0.75)
 	{
 		gi.sound(self, CHAN_VOICE, sound_attack1, 1, ATTN_NORM, 0);
@@ -585,7 +576,6 @@ qboolean Jorg_CheckAttack(edict_t* self)
 	vec3_t	temp = { 0 };
 	float	chance;
 	trace_t	tr;
-	qboolean	enemy_infront;
 	int			enemy_range;
 	float		enemy_yaw;
 
@@ -604,10 +594,6 @@ qboolean Jorg_CheckAttack(edict_t* self)
 			return false;
 	}
 
-	enemy_infront = infront(self, self->enemy);
-	if (enemy_infront) {
-		; // do nothing
-	}
 	enemy_range = range(self, self->enemy);
 	VectorSubtract(self->enemy->s.origin, self->s.origin, temp);
 	enemy_yaw = vectoyaw(temp);

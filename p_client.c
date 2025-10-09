@@ -1519,7 +1519,6 @@ void SelectSpawnPoint(edict_t* ent, vec3_t origin, vec3_t angles)
 	VectorCopy(spot->s.angles, angles);
 }
 
-
 //======================================================================
 
 
@@ -2231,7 +2230,6 @@ void ClientDisconnect(edict_t* ent)
 	G_FreeEdict(ent);
 }
 
-
 //==============================================================
 
 
@@ -2742,11 +2740,60 @@ void ClientThink(edict_t* ent, usercmd_t* ucmd)
 	//STOP_PERFORMANCE_TIMER
 }
 
+/*
+===============
+Handle respawning of dead players based on button state and game rules
+===============
+*/
+static void CheckPlayerRespawn(edict_t* ent)
+{
+	gclient_t* client = ent->client;
+	int buttonMask;
+
+	// Don't check for respawn until minimum time has elapsed
+	if (level.time <= client->respawn_time)
+		return;
+
+	// In deathmatch only attack button triggers respawn
+	buttonMask = deathmatch->value ? BUTTON_ATTACK : -1;
+
+	// Check if respawn conditions are met
+	if ((client->latched_buttons & buttonMask) ||
+		(deathmatch->value && ((int)dmflags->value & DF_FORCE_RESPAWN)))
+	{
+		respawn(ent);
+		client->latched_buttons = 0;
+	}
+}
+
+/*
+===============
+Handle weapon animation state updates
+===============
+*/
+static void UpdateWeaponState(edict_t* ent)
+{
+	gclient_t* client = ent->client;
+	qboolean shouldThinkWeapon;
+
+	// Check if we need to run weapon thinking
+	shouldThinkWeapon = !client->weapon_thunk &&
+		ent->movetype != MOVETYPE_NOCLIP &&
+		!ent->frozen;
+
+	if (shouldThinkWeapon)
+	{
+		client->weapon_thunk = true;
+		Think_Weapon(ent);
+	}
+	else
+	{
+		client->weapon_thunk = false;
+	}
+}
 
 //
 // ==============
-// ClientBeginServerFrame
-//
 //  This will be called once for each server frame, before running
 //  any other entities in the world.
 //  ==============
@@ -2754,48 +2801,30 @@ void ClientThink(edict_t* ent, usercmd_t* ucmd)
 void ClientBeginServerFrame(edict_t* ent)
 {
 	gclient_t* client;
-	int		buttonMask;
 
-	if (level.intermissiontime)
+	if (!ent || !ent->client || level.intermissiontime)
 		return;
 
 	client = ent->client;
 
-	// run weapon animations if it hasn't been done by a ucmd_t
-	if (!client->weapon_thunk
-		//ZOID
-		&& ent->movetype != MOVETYPE_NOCLIP
-		//ZOID
-		&& !ent->frozen)
-		Think_Weapon(ent);
-	else
-		client->weapon_thunk = false;
-
+	// Handle dead player respawning
 	if (ent->deadflag)
 	{
-		// wait for any button just going down
-		if (level.time > client->respawn_time)
-		{
-			// in deathmatch, only wait for attack button
-			if (deathmatch->value)
-				buttonMask = BUTTON_ATTACK;
-			else
-				buttonMask = -1;
-
-			if ((client->latched_buttons & buttonMask) ||
-				(deathmatch->value && ((int)dmflags->value & DF_FORCE_RESPAWN)))
-			{
-				respawn(ent);
-				client->latched_buttons = 0;
-			}
-		}
+		CheckPlayerRespawn(ent);
 		return;
 	}
 
-	// add player trail so monsters can follow
+	// Handle weapon animations and thinking 
+	UpdateWeaponState(ent);
+
+	// Update monster tracking in single player
 	if (!deathmatch->value)
+	{
 		if (!visible(ent, PlayerTrail_LastSpot()))
 			PlayerTrail_Add(ent->s.old_origin);
+	}
+
+	// Reset latched buttons for next frame
 	client->latched_buttons = 0;
 }
 
@@ -2830,7 +2859,7 @@ edict_t* BestScoreEnt(void)
 //======================================================
 // Ghost think routine. 
 //======================================================
-void Ghost_Think(edict_t* Ghost)
+static void Ghost_Think(edict_t* Ghost)
 {
 	vec3_t start = { 0,0,0 };
 	vec3_t up;
@@ -2886,6 +2915,6 @@ void Create_Ghost(void)
 	VectorClear(Ghost->maxs);
 	Ghost->delay = 0;
 	Ghost->think = Ghost_Think;
-	Ghost->nextthink = 1.0; // Start in 1 second.
+	Ghost->nextthink = 1.0f; // Start in 1 second.
 	gi.linkentity(Ghost);
 }

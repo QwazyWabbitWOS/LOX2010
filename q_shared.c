@@ -255,12 +255,11 @@ float	anglemod(float a)
 // this is the slow, general version
 int BoxOnPlaneSide2(vec3_t emins, vec3_t emaxs, struct cplane_s* p)
 {
-	int		i;
 	float	dist1, dist2;
 	int		sides;
 	vec3_t	corners[2] = { 0 };
 
-	for (i = 0; i < 3; i++)
+	for (int i=0 ; i<3 ; i++)
 	{
 		if (p->normal[i] < 0)
 		{
@@ -753,9 +752,8 @@ int	paged_total;
 
 void Com_PageInMemory(byte* buffer, int size)
 {
-	int		i;
 
-	for (i = size - 1; i > 0; i -= 4096)
+	for (int i = size - 1; i > 0; i -= 4096)
 		paged_total += buffer[i];
 }
 
