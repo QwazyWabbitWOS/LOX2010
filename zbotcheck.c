@@ -57,7 +57,7 @@ qboolean ZbotCheck(edict_t* ent, usercmd_t* ucmd)
 		abs(ucmd->angles[0] - resp->angles[tog0][0]) +
 		abs(ucmd->angles[1] - resp->angles[tog0][1]) >= ZBOT_JITTERMOVE)
 	{
-		if (level.time <= resp->jitter_last + 0.1)
+		if (level.time <= resp->jitter_last + FRAMETIME)
 		{
 			if (!resp->jitter)
 				resp->jitter_time = level.time;

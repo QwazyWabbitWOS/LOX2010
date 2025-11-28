@@ -149,7 +149,7 @@ void hook_track(edict_t* self)
 	}
 
 	gi.linkentity(self);
-	self->nextthink = level.time + 0.1;
+	self->nextthink = level.time + FRAMETIME;
 }
 
 void hook_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
@@ -188,7 +188,7 @@ void hook_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf
 	self->owner->client->hookstate = HOOK_ON;
 
 	self->think = hook_track;
-	self->nextthink = level.time + 0.1;
+	self->nextthink = level.time + FRAMETIME;
 
 	self->solid = SOLID_NOT;
 }

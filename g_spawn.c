@@ -360,7 +360,7 @@ void ED_ParseField(char* key, char* value, edict_t* ent)
 
 	for (f = fields; f->name; f++)
 	{
-		if (!strcmp(f->name, key))
+		if (!Q_stricmp(f->name, key))
 		{	// found it
 			if (f->flags & FFL_SPAWNTEMP)
 				b = (byte*)&st;
@@ -511,7 +511,6 @@ void G_FindTeams(void)
 
 // Define this to make SpawnEntities() output a version of the read entities
 // containing everything that wasn't freed.  (A game-development thing.)
-//#define DUMPENTS
 
 /*
 * ==============
@@ -529,20 +528,22 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 	int      i;
 	float    skill_level;
 
-	// for the dumpents feature
+	// for the create_ent_files feature
 	char* entstart = NULL;
 	FILE* f = NULL;
 	char szFile[MAX_QPATH];
 
-	if (dumpents->value)
+	if (create_ent_files->value)
 	{
 		// Create the pathname to the new entity file.
 		Com_sprintf(szFile, sizeof(szFile), "%s/ent/new-%s.ent", gamedir->string, mapname);
 
 		// Try to open it.
 		f = fopen(szFile, "wb");
-		if (!f)
-			GameError("%s DUMPENTS: couldn't open %s for writing\n", __func__, szFile);
+		if (!f) {
+			gi.cprintf(NULL, PRINT_HIGH, "%s: Could not open file \"%s\". %s\n", __func__, szFile, strerror(errno));
+			GameError("%s: couldn't open %s for writing\n", __func__, szFile);
+		}
 	}
 
 	skill_level = floor(skill->value);
@@ -608,6 +609,7 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 			{
 				if (ent->spawnflags & SPAWNFLAG_NOT_DEATHMATCH)
 				{
+					//DbgPrintf("Inhibiting %s\n", ent->classname);
 					G_FreeEdict(ent);
 					inhibit++;
 					continue;
@@ -621,6 +623,7 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 					(((skill->value == 2) || (skill->value == 3)) && (ent->spawnflags & SPAWNFLAG_NOT_HARD))
 					)
 				{
+					//DbgPrintf("Inhibiting %s\n", ent->classname);
 					G_FreeEdict(ent);
 					inhibit++;
 					continue;
@@ -633,7 +636,7 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 		ED_CallSpawn(ent);
 
 		// If this entity survived, print it.
-		if (dumpents->value && ent->inuse)
+		if (create_ent_files->value && ent->inuse)
 		{
 			int entsize;
 			int nWritten;
@@ -647,13 +650,15 @@ void SpawnEntities(char* mapname, char* entities, char* spawnpoint)
 
 			// Write it.
 			nWritten = (int)fwrite(entstart, sizeof(char), entsize, f);
-			if (nWritten != entsize)
-				GameError("SpawnEntities DUMPENTS: couldn't write to file\n");
+			if (nWritten != entsize) { 
+				GameError("%s: error writing to file %s, nWritten != entsize", __func__, szFile);
+			}
 		}
 	}
 
-	if (dumpents->value)
+	if (f && create_ent_files->value) {
 		fclose(f);
+	}
 
 	gi.dprintf("%i entities inhibited\n", inhibit);
 

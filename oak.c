@@ -157,7 +157,7 @@ void SP_Oak_f(edict_t* owner)
 		ent->monsterinfo.idle_time = 0;
 
 		ent->think = oak_stand;
-		ent->nextthink = level.time + 0.1;
+		ent->nextthink = level.time + FRAMETIME;
 
 		ent->yaw_speed = 20;
 		ent->s.angles[PITCH] = 0;
@@ -211,7 +211,7 @@ void OAK_Respawn(edict_t* self)
 	VectorClear(self->velocity);
 
 	self->think = oak_stand;
-	self->nextthink = level.time + 0.1;
+	self->nextthink = level.time + FRAMETIME;
 
 	KillBox(self);
 

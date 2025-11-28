@@ -99,7 +99,7 @@ void oak_stand(edict_t* self)
 		// run the anim frames
 		OakAI_RunFrames(self, FRAME_stand01, FRAME_stand40);
 	}
-	self->nextthink = level.time + 0.1;
+	self->nextthink = level.time + FRAMETIME;
 }
 
 /************************************************
@@ -124,7 +124,7 @@ void oak_run(edict_t* self)
 
 	OakAI_MoveToEnemy(self, OAK_RUN);
 
-	self->nextthink = level.time + 0.1;
+	self->nextthink = level.time + FRAMETIME;
 }
 
 /************************************************
@@ -156,7 +156,7 @@ void oak_pain(edict_t* self, edict_t* other, float kick, int damage)
 	OakAI_RunFrames(self, FRAME_pain101, FRAME_pain104);
 	self->enemy = other;
 	self->think = oak_painthink;
-	self->nextthink = level.time + 0.1;
+	self->nextthink = level.time + FRAMETIME;
 	self->monsterinfo.idle_time = level.time + 0.3;
 }
 
@@ -171,7 +171,7 @@ void oak_painthink(edict_t* self)
 	{
 		self->think = oak_run;
 	}
-	self->nextthink = level.time + 0.1;
+	self->nextthink = level.time + FRAMETIME;
 }
 
 //
@@ -278,7 +278,7 @@ void OakAI_MoveToGoal(edict_t* ent, float dist)
 	if (ent->enemy && SV_CloseEnough(ent, ent->enemy, dist))
 	{
 		ent->think = oak_standclose;
-		ent->nextthink = level.time + 0.1;
+		ent->nextthink = level.time + FRAMETIME;
 		return;
 	}
 	M_walkmove(ent, ent->ideal_yaw, dist);
@@ -307,7 +307,7 @@ void oak_standclose(edict_t* self)
 	{
 		self->think = oak_stand;
 	}
-	self->nextthink = level.time + 0.1;
+	self->nextthink = level.time + FRAMETIME;
 }
 
 /************************************************

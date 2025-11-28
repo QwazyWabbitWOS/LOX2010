@@ -1094,8 +1094,8 @@ extern	cvar_t* max_lasertrips;	// number of lasers a player can attach
 extern	cvar_t* max_floatingmines;	// number of floating mines a player can launch
 extern	cvar_t* kami_frozen;		// can we kaminit a frozen player?
 
-extern	cvar_t* campertime;		// time allowed for camping if ANTICAMPER is on
-extern	cvar_t* dumpents;			// create ent files if set
+extern	cvar_t* campertime;			// time allowed for camping if ANTICAMPER is on
+extern	cvar_t* create_ent_files;	// create ent files if set
 extern	cvar_t* custom_ents;		// use custom ent files if available
 extern	cvar_t* homerseekowner;	// boolean to allow homers to seek owners (default = 1)
 extern	cvar_t* logstats;			// boolean to enable player stats log (default = 1)
