@@ -662,77 +662,53 @@ Parse a token out of a string
 */
 char* COM_Parse(char** data_p)
 {
-	int		c;
-	int		len;
-	char* data;
-
-	data = *data_p;
-	len = 0;
+	int c, len = 0;
+	char* data = *data_p;
 	com_token[0] = 0;
 
-	if (!data)
-	{
+	if (!data) {
 		*data_p = NULL;
 		return "";
 	}
 
-	// skip whitespace
-skipwhite:
-	while ((c = *data) <= ' ')
-	{
-		if (c == 0)
-		{
-			*data_p = NULL;
-			return "";
-		}
-		data++;
-	}
-
-	// skip // comments
-	if (c == '/' && data[1] == '/')
-	{
-		while (*data && *data != '\n')
+	// Skip whitespace and comments
+	while (1) {
+		while ((c = *data) <= ' ') {
+			if (c == 0) {
+				*data_p = NULL;
+				return "";
+			}
 			data++;
-		goto skipwhite;
+		}
+		if (c == '/' && data[1] == '/') {
+			while (*data && *data != '\n')
+				data++;
+		} else {
+			break;
+		}
 	}
 
-
-	// handle quoted strings specially
-	if (c == '\"')
-	{
+	// Handle quoted strings
+	if (c == '\"') {
 		data++;
-		while (1)
-		{
+		while (1) {
 			c = *data++;
 			if (c == '\"' || !c)
-			{
-				//bugfix from skuller
-				goto finish;
-			}
+				break;
 			if (len < MAX_TOKEN_CHARS)
-			{
-				com_token[len] = c;
-				len++;
-			}
+				com_token[len++] = c;
 		}
+	} else {
+		// Parse a regular word
+		do {
+			if (len < MAX_TOKEN_CHARS)
+				com_token[len++] = c;
+			data++;
+			c = *data;
+		} while (c > 32);
 	}
 
-	// parse a regular word
-	do
-	{
-		if (len < MAX_TOKEN_CHARS)
-		{
-			com_token[len] = c;
-			len++;
-		}
-		data++;
-		c = *data;
-	} while (c > 32);
-
-finish:
-
-	if (len == MAX_TOKEN_CHARS)
-	{
+	if (len == MAX_TOKEN_CHARS) {
 		Com_Printf("Token exceeded %i chars, discarded.\n", MAX_TOKEN_CHARS);
 		len = 0;
 	}
@@ -842,10 +818,22 @@ size_t Q_strncatz(char* dst, size_t dstSize, const char* src)
 size_t Q_strlower(char* string)
 {
 	size_t i;
-	
+
 	for (i = 0; string[i] != 0; i++)
 	{
 		Q_tolower(string[i]);
+	}
+	return i;
+}
+
+// Convert a string to uppercase
+size_t Q_strupper(char* string)
+{
+	size_t i;
+
+	for (i = 0; string[i] != 0; i++)
+	{
+		Q_toupper(string[i]);
 	}
 	return i;
 }
@@ -999,6 +987,8 @@ qboolean Info_Validate(char* s)
 	if (strstr(s, "\""))
 		return false;
 	if (strstr(s, ";"))
+		return false;
+	if (strstr(s, "%"))
 		return false;
 	return true;
 }

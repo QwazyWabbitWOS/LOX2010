@@ -212,10 +212,19 @@ inline int Q_tolower(int c)
 	return c;
 }
 
+inline int Q_toupper(int c)
+{
+	if (Q_islower(c)) {
+		c += ('A' - 'a');
+	}
+	return c;
+}
+
 int Q_stricmp(const char* s1, const char* s2);
 size_t Q_strncpyz(char* dst, size_t dstSize, const char* src);
 size_t Q_strncatz(char* dst, size_t dstSize, const char* src);
 size_t Q_strlower(char* string);
+size_t Q_strupper(char* string);
 
 #define Q_strncpy(dst, src, len) \
 do { \

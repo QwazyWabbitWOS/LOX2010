@@ -58,7 +58,7 @@ _CrtMemState startup1;	// memory diagnostics, link with debug lib (/MDd)
 #define BUILD	"Debug  "
 #endif
 
-#define VERSION	"1.12.27"	//QW// single instance of version string
+#define VERSION	"1.12.28"	//QW// single instance of version string
 
 // the "gameversion" client command will print this plus compile date
 #define	GAMEVERSION		"WOD:LOX, " VERSION	//deathmatch

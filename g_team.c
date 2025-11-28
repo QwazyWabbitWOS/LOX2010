@@ -232,7 +232,7 @@ edict_t* SelectCTFSpawnPoint(edict_t* ent, qboolean* spawnlive)
 	{
 		spot = ctfgame.spawnHere;
 		ctfgame.spawnHere = NULL;
-		goto spotFound;
+		return spot;
 	}
 
 	// If the game hasn't started yet, spawn as a ghost.
@@ -411,7 +411,7 @@ edict_t* SelectCTFSpawnPoint(edict_t* ent, qboolean* spawnlive)
 		default:
 			spot = G_Find(NULL, FOFS(classname), "info_player_start");
 			*spawnlive = false; // redundant; teamless players are ghosts anyway
-			goto spotFound;
+			return spot;
 		}
 
 		spot = NULL;
@@ -437,7 +437,7 @@ edict_t* SelectCTFSpawnPoint(edict_t* ent, qboolean* spawnlive)
 		if (!count)
 		{
 			spot = SelectRandomDeathmatchSpawnPoint();
-			goto spotFound;
+			return spot;
 		}
 
 		if (count <= 2)
@@ -457,8 +457,6 @@ edict_t* SelectCTFSpawnPoint(edict_t* ent, qboolean* spawnlive)
 				selection++;
 		} while (selection--);
 	}
-
-spotFound:
 
 	return spot;
 }

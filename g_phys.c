@@ -1,4 +1,3 @@
-
 // g_phys.c
 
 #include "g_local.h"
@@ -335,37 +334,39 @@ Does not change the entities velocity at all
 */
 trace_t SV_PushEntity(edict_t* ent, vec3_t push)
 {
-	trace_t	trace;
-	vec3_t	start = { 0 };
-	vec3_t	end = { 0 };
-	int		mask;
+	trace_t trace;
+	vec3_t start = { 0 };
+	vec3_t end = { 0 };
+	int mask;
 
 	VectorCopy(ent->s.origin, start);
 	VectorAdd(start, push, end);
 
-retry:
-	if (ent->clipmask)
-		mask = ent->clipmask;
-	else
-		mask = MASK_SOLID;
+	while (1) {
+		if (ent->clipmask)
+			mask = ent->clipmask;
+		else
+			mask = MASK_SOLID;
 
-	trace = gi.trace(start, ent->mins, ent->maxs, end, ent, mask);
+		trace = gi.trace(start, ent->mins, ent->maxs, end, ent, mask);
+		VectorCopy(trace.endpos, ent->s.origin);
+		gi.linkentity(ent);
 
-	VectorCopy(trace.endpos, ent->s.origin);
-	gi.linkentity(ent);
+		if (trace.fraction == 1.0f)
+			break;
 
-	if (trace.fraction != 1.0)
-	{
 		SV_Impact(ent, &trace);
 
 		// if the pushed entity went away and the pusher is still there
-		if (!trace.ent->inuse && ent->inuse)
-		{
+		if (!trace.ent->inuse && ent->inuse) {
 			// move the pusher back and try again
 			VectorCopy(start, ent->s.origin);
 			gi.linkentity(ent);
-			goto retry;
+			// update end in case push changed
+			VectorAdd(start, push, end);
+			continue;
 		}
+		break;
 	}
 
 	if (ent->inuse)

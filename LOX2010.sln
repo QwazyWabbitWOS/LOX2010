@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gamex86.real", "LOX2010.vcx
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{28E4D837-6EB3-4068-85D6-CF6B1D31EA48}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gamex86", "..\..\GameCam\GameCam.vcxproj", "{479A427F-0B08-4F66-8E51-218851C293B3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -25,21 +23,12 @@ Global
 		{AA4F5DC4-719E-4581-9A82-D8FBA585E44E}.Release|Win32.Build.0 = Release|Win32
 		{AA4F5DC4-719E-4581-9A82-D8FBA585E44E}.Release|x64.ActiveCfg = Release|x64
 		{AA4F5DC4-719E-4581-9A82-D8FBA585E44E}.Release|x64.Build.0 = Release|x64
-		{479A427F-0B08-4F66-8E51-218851C293B3}.Debug|Win32.ActiveCfg = Debug|Win32
-		{479A427F-0B08-4F66-8E51-218851C293B3}.Debug|Win32.Build.0 = Debug|Win32
-		{479A427F-0B08-4F66-8E51-218851C293B3}.Debug|x64.ActiveCfg = Debug|x64
-		{479A427F-0B08-4F66-8E51-218851C293B3}.Debug|x64.Build.0 = Debug|x64
-		{479A427F-0B08-4F66-8E51-218851C293B3}.Release|Win32.ActiveCfg = Release|Win32
-		{479A427F-0B08-4F66-8E51-218851C293B3}.Release|Win32.Build.0 = Release|Win32
-		{479A427F-0B08-4F66-8E51-218851C293B3}.Release|x64.ActiveCfg = Release|x64
-		{479A427F-0B08-4F66-8E51-218851C293B3}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AA4F5DC4-719E-4581-9A82-D8FBA585E44E} = {28E4D837-6EB3-4068-85D6-CF6B1D31EA48}
-		{479A427F-0B08-4F66-8E51-218851C293B3} = {28E4D837-6EB3-4068-85D6-CF6B1D31EA48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF7F52E7-BAB5-4F90-8AB8-0975B01FE063}
