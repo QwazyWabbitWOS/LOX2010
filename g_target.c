@@ -279,6 +279,28 @@ void SP_target_changelevel(edict_t* ent)
 	if ((strcmp(level.mapname, "fact1") == 0) && (strcmp(ent->map, "fact3") == 0))
 		ent->map = "fact3$secret1";
 
+	//QW//
+	// A not too ugly hack to intercept cinematic playbacks and move to the next map at end of units.
+	// The map member of target_changelevel has this format: "eou1_.cin+*bunk1$start".
+	// Here we parse out the map name between the * and $ delimiters to use as the next level.
+	if (coop->value) {
+		if (strstr(ent->map, ".cin+*"))
+		{
+			// Trim at the $ separator first, return the full token if no $ exists
+			char* pos = strtok(ent->map, "$");
+			pos = strstr(ent->map, "*");
+			Q_strncpyz(ent->map, strlen(ent->map), ++pos); // tricky bit here. Take only what follows the *.
+		}
+		else
+		{
+			if (strstr(ent->map, "victory.pcx")) // last map of last unit
+			{
+				Q_strncpyz(ent->map, strlen(ent->map), "*base1"); // delete saved levels and recycle the server.
+			}
+		}
+	}
+	//QW//
+
 	ent->use = use_target_changelevel;
 	ent->svflags = SVF_NOCLIENT;
 }

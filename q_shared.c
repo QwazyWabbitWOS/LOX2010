@@ -662,7 +662,8 @@ Parse a token out of a string
 */
 char* COM_Parse(char** data_p)
 {
-	int c, len = 0;
+	char c;
+	int len = 0;
 	char* data = *data_p;
 	com_token[0] = 0;
 

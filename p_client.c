@@ -2740,60 +2740,11 @@ void ClientThink(edict_t* ent, usercmd_t* ucmd)
 	//STOP_PERFORMANCE_TIMER
 }
 
-/*
-===============
-Handle respawning of dead players based on button state and game rules
-===============
-*/
-static void CheckPlayerRespawn(edict_t* ent)
-{
-	gclient_t* client = ent->client;
-	int buttonMask;
-
-	// Don't check for respawn until minimum time has elapsed
-	if (level.time <= client->respawn_time)
-		return;
-
-	// In deathmatch only attack button triggers respawn
-	buttonMask = deathmatch->value ? BUTTON_ATTACK : -1;
-
-	// Check if respawn conditions are met
-	if ((client->latched_buttons & buttonMask) ||
-		(deathmatch->value && ((int)dmflags->value & DF_FORCE_RESPAWN)))
-	{
-		respawn(ent);
-		client->latched_buttons = 0;
-	}
-}
-
-/*
-===============
-Handle weapon animation state updates
-===============
-*/
-static void UpdateWeaponState(edict_t* ent)
-{
-	gclient_t* client = ent->client;
-	qboolean shouldThinkWeapon;
-
-	// Check if we need to run weapon thinking
-	shouldThinkWeapon = !client->weapon_thunk &&
-		ent->movetype != MOVETYPE_NOCLIP &&
-		!ent->frozen;
-
-	if (shouldThinkWeapon)
-	{
-		client->weapon_thunk = true;
-		Think_Weapon(ent);
-	}
-	else
-	{
-		client->weapon_thunk = false;
-	}
-}
 
 //
 // ==============
+// ClientBeginServerFrame
+//
 //  This will be called once for each server frame, before running
 //  any other entities in the world.
 //  ==============
@@ -2801,30 +2752,48 @@ static void UpdateWeaponState(edict_t* ent)
 void ClientBeginServerFrame(edict_t* ent)
 {
 	gclient_t* client;
+	int		buttonMask;
 
-	if (!ent || !ent->client || level.intermissiontime)
+	if (level.intermissiontime)
 		return;
 
 	client = ent->client;
 
-	// Handle dead player respawning
+	// run weapon animations if it hasn't been done by a ucmd_t
+	if (!client->weapon_thunk
+		//ZOID
+		&& ent->movetype != MOVETYPE_NOCLIP
+		//ZOID
+		&& !ent->frozen)
+		Think_Weapon(ent);
+	else
+		client->weapon_thunk = false;
+
 	if (ent->deadflag)
 	{
-		CheckPlayerRespawn(ent);
+		// wait for any button just going down
+		if (level.time > client->respawn_time)
+		{
+			// in deathmatch, only wait for attack button
+			if (deathmatch->value)
+				buttonMask = BUTTON_ATTACK;
+			else
+				buttonMask = -1;
+
+			if ((client->latched_buttons & buttonMask) ||
+				(deathmatch->value && ((int)dmflags->value & DF_FORCE_RESPAWN)))
+			{
+				respawn(ent);
+				client->latched_buttons = 0;
+			}
+		}
 		return;
 	}
 
-	// Handle weapon animations and thinking 
-	UpdateWeaponState(ent);
-
-	// Update monster tracking in single player
+	// add player trail so monsters can follow
 	if (!deathmatch->value)
-	{
 		if (!visible(ent, PlayerTrail_LastSpot()))
 			PlayerTrail_Add(ent->s.old_origin);
-	}
-
-	// Reset latched buttons for next frame
 	client->latched_buttons = 0;
 }
 
