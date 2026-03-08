@@ -717,7 +717,7 @@ void WriteGame(char* filename, qboolean autosave)
 	int		i;
 	char	str[16];
 
-	if (dedicated->value)
+	if (!coop->value)
 		return;
 	if (!autosave)
 		SaveClientData();
@@ -749,7 +749,7 @@ void ReadGame(char* filename)
 
 	gi.FreeTags(TAG_GAME);
 
-	if (dedicated->value)
+	if (!coop->value)
 		return;
 	f = fopen(filename, "rb");
 	if (!f)
@@ -901,7 +901,7 @@ void WriteLevel(char* filename)
 	FILE* f;
 	void	(*base)(void);
 
-	if (dedicated->value)
+	if (!coop->value)
 		return;
 	f = fopen(filename, "wb");
 	if (!f)

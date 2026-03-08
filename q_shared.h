@@ -44,6 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <ctype.h>
 #include <errno.h>
 
+#define BIT(n)  (1U << (n))
 typedef unsigned char 		byte;
 typedef enum { false, true }	qboolean;
 
@@ -888,7 +889,7 @@ typedef enum temp_event_n
 #define STAT_CTF_TEAM1_CAPS			18
 #define STAT_CTF_TEAM2_PIC			19
 #define STAT_CTF_TEAM2_CAPS			20
-#define STAT_LOCATION				21
+#define STAT_LOCATION				21 // dual use, player location or texture at crosshair
 #define STAT_CTF_JOINED_TEAM1_PIC	22
 #define STAT_CTF_JOINED_TEAM2_PIC	23
 #define STAT_CTF_TEAM1_HEADER		24
