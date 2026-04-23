@@ -3440,8 +3440,10 @@ void Cmd_PlayerList_f(edict_t* ent)
 
 void Cmd_NotRecognized(edict_t* ent)
 {
-	if (console_chat->value)
+	if (console_chat->value) {
 		Cmd_Say_f(ent, false, true);
+		return;
+	}
 	else
 		gi.cprintf(ent, PRINT_HIGH, "Unrecognized command: %s %s\n", gi.argv(0), gi.args());
 }
@@ -3568,7 +3570,7 @@ void ClientCommand(edict_t* ent)
 	case 'g':
 		if (strcmp(cmd, "give") == 0)
 			Cmd_Give_f(ent);
-		if (strcmp(cmd, "givehook") == 0 || strcmp(cmd, "give_hook") == 0)
+		else if (strcmp(cmd, "givehook") == 0 || strcmp(cmd, "give_hook") == 0)
 			HookGiveBinds_f(ent);
 		else if (strcmp(cmd, "god") == 0)
 			Cmd_God_f(ent);
@@ -3809,7 +3811,6 @@ void ClientCommand(edict_t* ent)
 		break;
 
 	default:
-		Cmd_NotRecognized(ent);
 		break;
 	}
 }
