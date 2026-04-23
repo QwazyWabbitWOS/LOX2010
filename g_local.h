@@ -24,8 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN	//non-MFC
-#include <windows.h>
 #define _CRTDBG_MAP_ALLOC
+#include <windows.h>
 #include <stdlib.h>
 #include <crtdbg.h>
 _CrtMemState startup1;	// memory diagnostics, link with debug lib (/MDd)
@@ -1001,7 +1001,7 @@ extern	cvar_t* spectator_password;
 extern	cvar_t* needpass;
 extern	cvar_t* g_select_empty;
 extern	cvar_t* dedicated;
-extern	cvar_t* developer;
+extern	cvar_t* g_debug;
 extern	cvar_t* password;
 extern	cvar_t* filterban;
 extern	cvar_t* sv_gravity;

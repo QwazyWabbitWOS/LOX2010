@@ -65,7 +65,7 @@ void DbgPrintf(char* msg, ...)
 #if defined _WIN32
 	OutputDebugString(text);
 #else // Not WIN32
-	if (developer->value)
+	if (g_debug->value)
 		gi.dprintf(text);
 #endif /* _WIN32 */
 }
